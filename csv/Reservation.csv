@@ -1,1 +1,3 @@
 ReservationID;Date;Time;NoOfPax;Name;ContactNo;TableNo
+1;2021-10-12;1930;4;Chen Yifan;999;7
+2;2021-10-13;2000;5;Ryan;995;10000
