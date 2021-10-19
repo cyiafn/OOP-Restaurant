@@ -228,7 +228,12 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean deleteReservation() throws IOException, CsvException {
-		if (updateReservation(ReservationStatus.REMOVED) != ""){
+		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
+		filter.put(ReservationStatus.ACTIVE, 0);
+		filter.put(ReservationStatus.REMOVED, 0);
+		filter.put(ReservationStatus.EXPIRED, 0);
+		filter.put(ReservationStatus.COMPLETED, 0);
+		if (updateReservation(ReservationStatus.REMOVED, filter) != ""){
 			return true;
 		}
 		return false;
@@ -241,7 +246,12 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public String checkin() throws IOException, CsvException {
-		return updateReservation(ReservationStatus.ACTIVE);
+		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
+		filter.put(ReservationStatus.ACTIVE, 0);
+		filter.put(ReservationStatus.REMOVED, 0);
+		filter.put(ReservationStatus.EXPIRED, 0);
+		filter.put(ReservationStatus.COMPLETED, 0);
+		return updateReservation(ReservationStatus.ACTIVE, filter);
 	}
 
 	/**
@@ -251,17 +261,23 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public String closeReservation() throws IOException, CsvException {
-		return updateReservation(ReservationStatus.COMPLETED);
+		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
+		filter.put(ReservationStatus.CREATED, 0);
+		filter.put(ReservationStatus.REMOVED, 0);
+		filter.put(ReservationStatus.EXPIRED, 0);
+		filter.put(ReservationStatus.COMPLETED, 0);
+		return updateReservation(ReservationStatus.COMPLETED, filter);
 	}
 
 	/**
 	 * Function to update status of reservation.
 	 * @param stat the enum of the status
+	 * @param filter Filters out invalid transitions.
 	 * @return "" for failure and id for success.
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	private String updateReservation(ReservationStatus stat) throws CsvException, IOException {
+	private String updateReservation(ReservationStatus stat, HashMap<ReservationStatus, Integer>filter) throws CsvException, IOException {
 		//name;contactNo;dt
 		cleanup();
 		Scanner sc = new Scanner(System.in);
@@ -279,7 +295,7 @@ public class ReservationManager {
 		ArrayList<Reservation> temp = new ArrayList<>();
 		for (Integer key: reservations.keySet()){
 			for (Reservation i: reservations.get(key)){
-				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && i.getStatus().equals(ReservationStatus.CREATED)){
+				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && !filter.containsKey(i.getStatus())){
 					temp.add(i);
 				}
 			}
