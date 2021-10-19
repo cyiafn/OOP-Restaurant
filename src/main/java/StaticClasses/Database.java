@@ -100,6 +100,7 @@ public final class Database{
                 }
             }
             //if skipped, perform update
+            writeDat.add(line);
             if (updated){
                 try (ICSVWriter writer = new CSVWriterBuilder(
                     new FileWriter(directory + csvName))

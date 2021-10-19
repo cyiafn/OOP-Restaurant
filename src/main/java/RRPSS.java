@@ -5,6 +5,11 @@
  @since 2021-10-18
 */
 
+import ControlClasses.ReservationManager;
+import Enumerations.ReservationStatus;
+import com.opencsv.exceptions.CsvException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -18,7 +23,12 @@ public class RRPSS {
     public static void main(String[] args){
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
-
+        ReservationManager reservationM = null;
+        try {
+            reservationM = new ReservationManager();
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
+        }
         //main orchestrating loop
         int opt;
         do {
@@ -42,8 +52,47 @@ public class RRPSS {
                 case 2:
 
                     break;
+                case 11:
+                    try {
+                        if (reservationM.createReservation()){
+                            System.out.println("Reservation was made!");
+                        }else{
+                            System.out.println("No tables available with the given parameters.");
+                        }
+
+                    } catch (IOException | CsvException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+                case 12:
+                    try {
+                        reservationM.checkReservation();
+                    } catch (IOException | CsvException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 13:
+                    try {
+                        if (reservationM.deleteReservation()){
+                            System.out.println("Deleted reservation!");
+                        }
+                        else{
+                            System.out.println("Reservation not deleted");
+                        }
+                    } catch (IOException | CsvException e) {
+                        e.printStackTrace();
+                    }
+                case 14:
+                    try {
+                        reservationM.checkAvailability();
+                    } catch (IOException | CsvException e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 default:
                     System.out.println("Please enter an integer from 0 - 16!");
+                    break;
             }
         } while(opt != 0);
 
