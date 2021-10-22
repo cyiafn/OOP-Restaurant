@@ -5,7 +5,7 @@
 ### OBJECTIVE
 The main objective of this assignment is
 • to apply the Object-Oriented (OO) concepts you have learnt in the course,
-• to model, design and develop an OO application.
+• to model, desinign and develop an OO application.
 • to gain familiarity with using Java as an object oriented programming language.
 • to work collaboratively as a group to achieve a common goal.
 
