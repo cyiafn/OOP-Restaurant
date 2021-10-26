@@ -4,6 +4,7 @@ import EntityClasses.Reservation;
 import EntityClasses.Table;
 import Enumerations.ReservationStatus;
 import StaticClasses.Database;
+import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.time.Duration;
@@ -11,7 +12,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.*;
 
@@ -52,6 +52,7 @@ public class ReservationManager {
 	 * @throws IOException Read file exception.
 	 * @throws CsvException Read CSV Exception.
 	 */
+
 	public ReservationManager() throws IOException, CsvException {
 		tables = new ArrayList();
 		reservations = new HashMap<>();
@@ -63,105 +64,6 @@ public class ReservationManager {
 	}
 
 	/**
-	 * Helper function to request user for datetime.
-	 * @param after This signifies if the function checks if the provided date and time is after now or not.
-	 * @return LocalDateTime obj.
-	 */
-	private LocalDateTime getUserDate(boolean after){
-		Scanner sc = new Scanner(System.in);
-		LocalDateTime datetime;
-		do {
-			System.out.println("Please enter the date time in the format YYYY-MM-DD HH:MM ");
-			String dt = sc.next();
-			dt += " " + sc.next();
-			sc.nextLine();
-			String dateFormat = "yyyy-MM-dd HH:mm";
-			//parse date strictly
-			DateTimeFormatter dateTimeFormatter = DateTimeFormatter
-				.ofPattern(dateFormat).withResolverStyle(ResolverStyle.LENIENT);
-			try {
-				datetime = LocalDateTime.parse(dt.strip(), dateTimeFormatter);
-				if (after){
-					if (datetime.isAfter(LocalDateTime.now())){
-						break;
-					}
-					else{
-						System.out.println("Please enter a date after the current time!");
-						continue;
-					}
-
-				}
-				else{
-					break;
-				}
-
-			} catch (DateTimeParseException e) {
-				//continue loop
-				System.out.println("Invalid date input!");
-				continue;
-			}
-		}while (true);
-		return datetime;
-	}
-
-	/**
-	 * Helper function to get user name.
-	 * @return user's name.
-	 */
-	private String getUserName(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter your name: ");
-		String name = sc.nextLine();
-
-		return name.strip();
-	}
-
-	/**
-	 * Helper function to get users contact no, matching digit regex.
-	 * @return User's contact number in string.
-	 */
-	private String getUserContactNo(){
-		Scanner sc = new Scanner(System.in);
-		String contactNo;
-		//contactno unsafe input
-		do {
-			System.out.println("Please enter your contact number (no spaces or +): ");
-			contactNo = sc.next();
-			sc.nextLine();
-			if (contactNo.matches("\\d+")){
-				break;
-			}
-		}while (true);
-		return contactNo.strip();
-	}
-
-	/**
-	 * Helper function to get number of people.
-	 * @return returns int of number of people.
-	 */
-	private int getNoOfPax(){
-		Scanner sc = new Scanner(System.in);
-		int noOfPax;
-		do {
-			System.out.println("Please enter the number of people you would like to reserve for: ");
-			String unsafeInput = sc.next();
-			sc.nextLine();
-			if (unsafeInput.matches("\\d+")){
-				noOfPax = Integer.parseInt(unsafeInput);
-				if (!(noOfPax >= 2 && noOfPax <= 10)){
-					noOfPax = -1;
-					System.out.println("Please enter a valid integer!");
-				}
-			}
-			else{
-				noOfPax = -1;
-				System.out.println("Please enter a valid integer!");
-			}
-		} while(noOfPax == -1);
-		return noOfPax;
-	}
-
-	/**
 	 * Cleanup runs everytime any function in here runs to cleanup expiring reservations. (15mins)
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
@@ -170,8 +72,7 @@ public class ReservationManager {
 		//clean up expires stuff past 15 mins if created quietly
 		for (Integer i: reservations.keySet()){
 			for (Reservation j: reservations.get(i)){
-				if (j.getStatus() == ReservationStatus.CREATED && Duration.between(j.getDt(), LocalDateTime.now()).toMinutes() >= 15){
-					j.setStatus(ReservationStatus.EXPIRED);
+				if (j.cleanup()){
 					Database.updateLine(reservationFile, j.getReservationID(), j.getLineCSVFormat());
 				}
 
@@ -184,7 +85,7 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	public void loadTables() throws IOException, CsvException {
+	private void loadTables() throws IOException, CsvException {
 		//reads everything
 		ArrayList<HashMap<String, String>> loadedTables = Database.readAll(tableFile);
 		//add tables to ID and creates arraylist for each table.
@@ -200,7 +101,7 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	public void loadReservations() throws IOException, CsvException {
+	private void loadReservations() throws IOException, CsvException {
 		//loads everything
 		ArrayList<HashMap<String, String>> loadedTables = Database.readAll(reservationFile);
 		for (HashMap<String, String> i: loadedTables){
@@ -228,12 +129,7 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean deleteReservation() throws IOException, CsvException {
-		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
-		filter.put(ReservationStatus.ACTIVE, 0);
-		filter.put(ReservationStatus.REMOVED, 0);
-		filter.put(ReservationStatus.EXPIRED, 0);
-		filter.put(ReservationStatus.COMPLETED, 0);
-		if (updateReservation(ReservationStatus.REMOVED, filter) != ""){
+		if (updateReservation(ReservationStatus.REMOVED, ReservationStatus.CREATED) != ""){
 			return true;
 		}
 		return false;
@@ -246,12 +142,7 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public String checkin() throws IOException, CsvException {
-		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
-		filter.put(ReservationStatus.ACTIVE, 0);
-		filter.put(ReservationStatus.REMOVED, 0);
-		filter.put(ReservationStatus.EXPIRED, 0);
-		filter.put(ReservationStatus.COMPLETED, 0);
-		return updateReservation(ReservationStatus.ACTIVE, filter);
+		return updateReservation(ReservationStatus.ACTIVE, ReservationStatus.CREATED);
 	}
 
 	/**
@@ -261,41 +152,36 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public String closeReservation() throws IOException, CsvException {
-		HashMap<ReservationStatus, Integer> filter = new HashMap<>();
-		filter.put(ReservationStatus.CREATED, 0);
-		filter.put(ReservationStatus.REMOVED, 0);
-		filter.put(ReservationStatus.EXPIRED, 0);
-		filter.put(ReservationStatus.COMPLETED, 0);
-		return updateReservation(ReservationStatus.COMPLETED, filter);
+		return updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE);
 	}
 
 	/**
 	 * Function to update status of reservation.
 	 * @param stat the enum of the status
-	 * @param filter Filters out invalid transitions.
+	 * @param validState valid previous state
 	 * @return "" for failure and id for success.
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	private String updateReservation(ReservationStatus stat, HashMap<ReservationStatus, Integer>filter) throws CsvException, IOException {
+	private String updateReservation(ReservationStatus stat, ReservationStatus validState) throws CsvException, IOException {
 		//name;contactNo;dt
 		cleanup();
 		Scanner sc = new Scanner(System.in);
-		String name = getUserName();
-		String contactNo = getUserContactNo();
+		String name = InputHandler.getName();
+		String contactNo = InputHandler.getContactNo();
 		LocalDateTime datetime;
 		if (stat == ReservationStatus.REMOVED){
-			datetime = getUserDate(true);
+			datetime = InputHandler.getDate(true);
 		}
 		else{
-			datetime = getUserDate(false);
+			datetime = InputHandler.getDate(false);
 		}
 
 		//get all reservations with these attributes
 		ArrayList<Reservation> temp = new ArrayList<>();
 		for (Integer key: reservations.keySet()){
 			for (Reservation i: reservations.get(key)){
-				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && !filter.containsKey(i.getStatus())){
+				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && validState == i.getStatus()){
 					temp.add(i);
 				}
 			}
@@ -312,23 +198,7 @@ public class ReservationManager {
 			temp.get(i).print();
 			System.out.print("\n");
 		}
-		System.out.println("Please indicate which reservation (0 to cancel):");
-		//handle unsafe inputs
-		int opt;
-		do {
-			String unsafeInput = sc.next();
-			if (unsafeInput.matches("\\d+")){
-				opt = Integer.parseInt(unsafeInput);
-				if (!(opt >= 0 && opt <= temp.size())){
-					opt = -1;
-					System.out.println("Please enter a valid integer!");
-				}
-			}
-			else{
-				opt = -1;
-				System.out.println("Please enter a valid integer!");
-			}
-		} while(opt == -1);
+		int opt = InputHandler.getInt(0,temp.size(), "Please select your option (0 to exit): ", "Invalid integer!");
 		if (opt == 0){
 			return "";
 		}
@@ -347,12 +217,12 @@ public class ReservationManager {
 		cleanup();
 		Scanner sc = new Scanner(System.in);
 		//name
-		String name = getUserName();
-		String contactNo = getUserContactNo();
+		String name = InputHandler.getName();
+		String contactNo = InputHandler.getContactNo();
 
-		LocalDateTime datetime = getUserDate(true);
+		LocalDateTime datetime = InputHandler.getDate(true);
 		//no of pax
-		int noOfPax = getNoOfPax();
+		int noOfPax = InputHandler.getInt(1,10, "Please enter the number of people (1-10): ", "Invalid number of people!");
 
 		int minTableSpace;
 		if (noOfPax % 2 == 1){
@@ -392,9 +262,9 @@ public class ReservationManager {
 		cleanup();
 		Scanner sc = new Scanner(System.in);
 		//name
-		String name = getUserName();
-		String contactNo = getUserContactNo();
-		LocalDateTime datetime = getUserDate(false);
+		String name = InputHandler.getName();
+		String contactNo = InputHandler.getContactNo();
+		LocalDateTime datetime = InputHandler.getDate(false);
 
 		//get all reservations with these attributes
 		ArrayList<Reservation> temp = new ArrayList<>();
@@ -428,28 +298,11 @@ public class ReservationManager {
 
 		cleanup();
 		Scanner sc = new Scanner(System.in);
-		int table;
-		do {
-			System.out.println("Please enter the table number you want to check: ");
 
-			String unsafeInput = sc.next();
-			sc.nextLine();
-			if (unsafeInput.matches("\\d+")){
-				table = Integer.parseInt(unsafeInput);
-				if (!(table > 0 && table <= noOfTable)){
-					table = -1;
-					System.out.println("Please enter a valid table number!");
-				}
-			}
-			else{
-				table = -1;
-				System.out.println("Please enter a valid integer!");
-			}
-		} while(table == -1);
+		int table = InputHandler.getInt(1, noOfTable, "Please enter the table number: ", "Invalid table number!");
+		LocalDate datetime = InputHandler.getDate(false).toLocalDate();
 
-		LocalDate datetime = getUserDate(false).toLocalDate();
-
-
+		//Sorting to make it easier to filter
 		Collections.sort(reservations.get(table), Comparator.comparing(Reservation::getDt));
 		int startingInd = -1;
 		int endingInd = -1;
@@ -482,7 +335,7 @@ public class ReservationManager {
 			.withResolverStyle(ResolverStyle.LENIENT);
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
+		// parsing all reservations
 		LocalTime morning = LocalTime.parse("00:00", dateTimeFormatter);
 		LocalTime midnight = LocalTime.parse("23:59", dateTimeFormatter);
 		System.out.println("These are the time periods available.");
