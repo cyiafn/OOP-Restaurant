@@ -5,6 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Scanner;
+/**
+	Static input handler + validator class.
+ @author Chen Yifan
+ @version 1.0
+ @since 2021-10-19
+*/
 
 /**
  * Static class to request for user inputs and validate.

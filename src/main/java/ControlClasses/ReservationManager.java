@@ -68,7 +68,7 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	public void cleanup() throws IOException, CsvException {
+	private void cleanup() throws IOException, CsvException {
 		//clean up expires stuff past 15 mins if created quietly
 		for (Integer i: reservations.keySet()){
 			for (Reservation j: reservations.get(i)){
