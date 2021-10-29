@@ -1,12 +1,9 @@
 package UI;
 
 import ControlClasses.MenuManager;
-import EntityClasses.MenuItem;
-import Enumerations.FoodCategory;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuUI {
