@@ -14,6 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class MenuManager {
+	/**
+	 * Constant for file name reservation.
+	 */
+	public HashMap<Integer,FoodCategory> FoodCategoryMap = new HashMap<>();
 	private Menu _menu;
 	String filename =  "csv/menu.json";
 
@@ -46,30 +50,6 @@ public class MenuManager {
 		}
 		return instance;
 	}
-
-	/**
-	 * Constant for file name reservation.
-	 */
-	public static final String menuFile = "Menu.csv";
-	public HashMap<Integer,FoodCategory> FoodCategoryMap = new HashMap<>();
-
-
-	/**
-	 * Helper function
-	 * @return username
-	 */
-//	private String[] getUserInputForMenuNameDescription(){
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Please enter the menu name: ");
-//		String name = sc.nextLine();
-//
-//		System.out.println("Please enter the menu description: ");
-//		String description = sc.nextLine();
-//
-//		String[] nd = { name, description};
-//		System.out.println(nd[0] + nd[1]);
-//		return nd;
-//	}
 
 
 	private Integer checkCurrentMenuQuantity() {
@@ -104,8 +84,8 @@ public class MenuManager {
 		Integer quantity = Integer.parseInt(sc.nextLine());
 
 		Alacarte mi = new Alacarte(UUID.randomUUID().toString(),
-									name,  description,
-									price, quantity);
+				name,  description,
+				price, quantity);
 
 		return mi;
 	}
@@ -197,33 +177,33 @@ public class MenuManager {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
 				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Pork Belly Buns",
-						"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, " +
-								"topped with powdered sugar. With two eggs served any style, " +
-								"and your choice of smoked bacon or smoked ham.", 98.58, 1)
+								"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, " +
+										"topped with powdered sugar. With two eggs served any style, " +
+										"and your choice of smoked bacon or smoked ham.", 98.58, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Kebab",
-						"Two butter croissants of your choice (plain, almond or cheese). " +
-								"With a side of herb butter or house-made hazelnut spread. "
-						, 85.82, 1)
+								"Two butter croissants of your choice (plain, almond or cheese). " +
+										"With a side of herb butter or house-made hazelnut spread. "
+								, 85.82, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Katsu Curry",
-						"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. With a side of roasted potatoes."
-						, 36.95, 1)
+								"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. With a side of roasted potatoes."
+								, 36.95, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pork Sausage Roll",
 								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."
 								, 80.51, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pizza",
-						"28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides."
-						, 78.92, 1)
+								"28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides."
+								, 78.92, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Vodka",
-						"Vodka is traditionally made from potatoes or fermented cereal grains. Some brands also make it from other substances like fruit or sugar."+
-								"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or as cocktails like Martini, Bloody Mary and Cosmopolitan."
-						, 37.39, 1)
+								"Vodka is traditionally made from potatoes or fermented cereal grains. Some brands also make it from other substances like fruit or sugar."+
+										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or as cocktails like Martini, Bloody Mary and Cosmopolitan."
+								, 37.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "7up Sugar Free Lemon & Lime Can 24 x 330ml",
-						"7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, offices and workplaces directly from our warehouse in South London. "+
-								"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, enticing aroma of lemon and lime, fused and dusted with powdered sugar. "
-						, 60.39, 1)
+								"7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, offices and workplaces directly from our warehouse in South London. "+
+										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, enticing aroma of lemon and lime, fused and dusted with powdered sugar. "
+								, 60.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Som Tam",
-						"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."
-						, 16.78 , 1)
+								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."
+								, 16.78 , 1)
 
 				)
 
@@ -244,7 +224,7 @@ public class MenuManager {
 
 		Menu mymenu = new Menu( UUID.randomUUID().toString(),  "Royale RRPSS Menu",
 				"We sell various cuisine, including vegetarian and special seat meal," +
-				"which prepare by our michelin 5 star chef : Gordan Ramsay.", mc_arr);
+						"which prepare by our michelin 5 star chef : Gordan Ramsay.", mc_arr);
 
 
 		mymenu.InsertSingleMenuItemOnSingleMenuCategroy("MAINCOURSE",
@@ -252,24 +232,24 @@ public class MenuManager {
 						"A crunchy salad featuring fresh pineapple and roquefort",
 						108,1,
 						new ArrayList<>(
-							Arrays.asList(
-									new MenuItem(
-											UUID.randomUUID().toString(),"Wine and pasta casserole",
-											"Moist cake made with fresh caraway and roasted chestnut",
-											108/3, 1
-									),
-									new MenuItem(
-											UUID.randomUUID().toString(),"Jalapeno and ham pizza",
-											"Thin and crispy pizza topped with fresh jalapeno and smoked ham",
-											108/3, 1
-									),
-									new MenuItem(
-											UUID.randomUUID().toString(),"Basil and pineapple kebab",
-													"Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
-											108/3, 1
-									)
+								Arrays.asList(
+										new MenuItem(
+												UUID.randomUUID().toString(),"Wine and pasta casserole",
+												"Moist cake made with fresh caraway and roasted chestnut",
+												108/3, 1
+										),
+										new MenuItem(
+												UUID.randomUUID().toString(),"Jalapeno and ham pizza",
+												"Thin and crispy pizza topped with fresh jalapeno and smoked ham",
+												108/3, 1
+										),
+										new MenuItem(
+												UUID.randomUUID().toString(),"Basil and pineapple kebab",
+												"Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
+												108/3, 1
+										)
 
-							)
+								)
 						)
 
 				)
@@ -396,7 +376,9 @@ public class MenuManager {
 		if(f.exists() && !f.isDirectory())
 		{
 			// do nothing
-			System.out.println("There is a existing menu. Loading existing menu.");
+			System.out.println();
+			System.out.println("================================================");
+			System.out.println("There is an existing menu. Loading existing menu.");
 		}else
 		{
 			// Create default menu and write your json file
@@ -498,8 +480,6 @@ public class MenuManager {
 		else{
 			// nothing
 		}
-
-
 	}
 
 	public String GetTypeOfFoodItem() {
@@ -574,7 +554,6 @@ public class MenuManager {
 	/**
 	 * Useful class
 	 */
-
 	public static String ordinal(int i) {
 		String[] suffixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
 		switch (i % 100) {

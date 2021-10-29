@@ -19,25 +19,13 @@ public class MenuCategory {
 
     }
 
-    public MenuCategory(Map map) {
-        this._category = (FoodCategory) map.get("_category") ;
-        this._description = (String) map.get("_description");
-        this._menuItem = (ArrayList<MenuItem>) map.get("_menuItem");
-    }
-    public MenuCategory() { }
-
-
     public void insert_single_menu_item(MenuItem item) {
-//
-//        if(){
-//
-//        }
         this._menuItem.add(item);
     }
 
-    public void insert_single_menu_item_into_seat_meal(MenuItem item) {
-        this._menuItem.add(item);
-    }
+//    public void insert_single_menu_item_into_seat_meal(MenuItem item) {
+//        this._menuItem.add(item);
+//    }
 
     public void delete_single_menu_item(MenuItem item) {
         // searching for the item id
@@ -50,20 +38,15 @@ public class MenuCategory {
                 s.get_menuItemID().equals(id)
         ).findFirst().orElse(null);
 
-//        if (found_menu_item == null) {
-//            // try with set meat
-//            _menuItem.add()
-//        }
-
         return found_menu_item;
     }
 
-    public MenuItem FindByName(String name) {
-
-        MenuItem found_menu_item = _menuItem.stream().filter(s -> s.get_name().equals(name)).findFirst().orElse(null);
-
-        return found_menu_item;
-    }
+//    public MenuItem FindByName(String name) {
+//
+//        MenuItem found_menu_item = _menuItem.stream().filter(s -> s.get_name().equals(name)).findFirst().orElse(null);
+//
+//        return found_menu_item;
+//    }
 
     public void UpdateMenuItem(MenuItem mi , String name, String _description, double price, int quantity) {
         int index= this._menuItem.indexOf(mi);
@@ -94,9 +77,6 @@ public class MenuCategory {
                 Alacarte ac = (Alacarte) mi;
                 ac.print();
             }
-//				else{
-//					mi.print();
-//				}
         }
     }
 

@@ -3,20 +3,13 @@
  @author Chen Yifan
  @version 1.0
  @since 2021-10-18
-*/
+ */
 package StaticClasses;
 
 import java.io.*;
-import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import EntityClasses.Menu;
-import EntityClasses.MenuCategory;
-import EntityClasses.MenuItem;
-import Enumerations.FoodCategory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
@@ -24,7 +17,6 @@ import com.opencsv.exceptions.CsvValidationException;
 import groovy.json.JsonBuilder;
 import groovy.json.JsonOutput;
 import groovy.json.JsonSlurper;
-import groovy.json.JsonSlurperClassic;
 
 
 /**
@@ -43,7 +35,7 @@ public final class Database{
      * @param csvName "Reservation.csv" or wtv
      * @param line line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; <- String[] type
      */
-	public static void writeLine(String csvName, String[] line) throws IOException {
+    public static void writeLine(String csvName, String[] line) throws IOException {
         try (ICSVWriter writer = new CSVWriterBuilder(
                 new FileWriter(directory + csvName, true))
                 .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
@@ -51,7 +43,7 @@ public final class Database{
                 .build()) {
             writer.writeNext(line);
         }
-	}
+    }
     /**
      *
      * @param csvName The name of the CSV.
@@ -60,7 +52,7 @@ public final class Database{
      * @throws CsvException if csv exception
      * @throws IOException if fileio exception
      */
-	public static ArrayList<HashMap<String,String>> readAll(String csvName) throws CsvException, IOException {
+    public static ArrayList<HashMap<String,String>> readAll(String csvName) throws CsvException, IOException {
         try (CSVReader reader = new CSVReader(new FileReader(directory + csvName))) {
             //reading everything
             List<String[]> r = reader.readAll();
@@ -80,7 +72,7 @@ public final class Database{
             }
             return dat;
         }
-	}
+    }
 
     /**
      * Assumes you know what you are doing and PKs are unique.
@@ -92,7 +84,7 @@ public final class Database{
      * @throws IOException File IO Exception
      * @throws CsvException CSV Exception
      */
-	public static boolean updateLine(String csvName, String primaryKey, String[] line) throws IOException, CsvException {
+    public static boolean updateLine(String csvName, String primaryKey, String[] line) throws IOException, CsvException {
         try (var fr = new FileReader(directory + csvName, StandardCharsets.UTF_8);
              var reader = new CSVReader(fr)) {
             //reads everything
@@ -117,11 +109,11 @@ public final class Database{
             writeDat.add(line);
             if (updated){
                 try (ICSVWriter writer = new CSVWriterBuilder(
-                    new FileWriter(directory + csvName))
-                    .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
-                    .withSeparator(';')
-                    .build()) {
-                writer.writeAll(writeDat);
+                        new FileWriter(directory + csvName))
+                        .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
+                        .withSeparator(';')
+                        .build()) {
+                    writer.writeAll(writeDat);
                 }
                 return true;
             }
@@ -129,7 +121,7 @@ public final class Database{
 
         }
 
-	}
+    }
 
     /**
      * Essentially the same code as update, however, it doesn't "modify" anything
@@ -139,8 +131,8 @@ public final class Database{
      * @throws IOException file io exception
      * @throws CsvValidationException csv exception
      */
-	public static Boolean removeLine(String csvName, String primaryKey) throws IOException, CsvValidationException {
-		try (var fr = new FileReader(directory + csvName, StandardCharsets.UTF_8);
+    public static Boolean removeLine(String csvName, String primaryKey) throws IOException, CsvValidationException {
+        try (var fr = new FileReader(directory + csvName, StandardCharsets.UTF_8);
              var reader = new CSVReader(fr)) {
             //reads everything
             String[] nextLine;
@@ -163,49 +155,49 @@ public final class Database{
             //if skipped, perform update
             if (updated){
                 try (ICSVWriter writer = new CSVWriterBuilder(
-                    new FileWriter(directory + csvName))
-                    .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
-                    .withSeparator(';')
-                    .build()) {
-                writer.writeAll(writeDat);
+                        new FileWriter(directory + csvName))
+                        .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
+                        .withSeparator(';')
+                        .build()) {
+                    writer.writeAll(writeDat);
                 }
                 return true;
             }
             return false;
 
         }
-	}
+    }
 
 
     /**
-     * for json
+     * For json
      */
 
     private static FileWriter file;
 
     /**
-     * The json file must exist before you write to them
-     * @param menu
+     * The only method to write to JSON format text file
+     * You can pass any type of class in this method,
+     * With your own desired file path, and this method will save nice json format for you
+     * Usage:: writeToJsonFile("csv/menu.json")
+     * @param obj
+     * @param filepath
      * @throws IOException
      */
-    public static void writeToJsonFile(Menu menu, String filename) throws IOException {
+    public static void writeToJsonFile(Object obj, String filepath) throws IOException {
         try {
             // Make sure the file already exist beiore you write to them
-            File f = new File(filename.trim());
+            File f = new File(filepath.trim());
             if (f.createNewFile()) {
                 System.out.println("File created: " + f.getName());
             } else {
-                System.out.println("File already exists.");
+                //  System.out.println("File already exists.");
             }
-            JsonBuilder builder = new JsonBuilder(menu);
+            JsonBuilder builder = new JsonBuilder(obj);
             String json_str= builder.toString();
             String json_beauty = JsonOutput.prettyPrint(json_str);
-            file = new FileWriter(filename);
+            file = new FileWriter(filepath);
             file.write(json_beauty);
-
-//            file.flush();
-//            file.close();
-
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -224,21 +216,18 @@ public final class Database{
 
     /**
      *  pass in  file name and the file must be exist before you read
-     *  eg: readFromJsonFile("csv/crunchify.json")
+     *  You can choose to write empty object to the file by calling
+     *  writeToJsonFile method above
+     *  Usage:: readFromJsonFile("csv/menu.json")
      *
-     * @param filename
+     * @param filepath
      * @throws IOException
      */
-    public static Map loadFromJsonFile(String filename) throws IOException {
-
-
+    public static Map loadFromJsonFile(String filepath) throws IOException {
         JsonSlurper jsonSlurper= new JsonSlurper();
-        FileReader fileReader = new FileReader(filename);
+        FileReader fileReader = new FileReader(filepath);
 
-         Map data = (Map) jsonSlurper.parse(fileReader);
-         return data;
-
+        Map data = (Map) jsonSlurper.parse(fileReader);
+        return data;
     }
-
-
 }

@@ -1,9 +1,5 @@
 package EntityClasses;
 
-import EntityClasses.MenuCategory;
-import Enumerations.FoodCategory;
-
-import java.util.ArrayList;
 import java.util.Map;
 
 public class MenuItem {
