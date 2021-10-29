@@ -158,9 +158,25 @@ public class Reservation {
 		this.status = status;
 	}
 
+	/**
+	 * Generates an array of string formatting for writing to CSV
+	 * @return  an array of string for writing to CSV
+	 */
 	public String[] getLineCSVFormat(){
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String[] row = {reservationID, this.dt.format(myFormatObj), Integer.toString(noOfPax), name,contactNo, Integer.toString(tableNo), status.name()};
 		return row;
+	}
+
+	/**
+	 * Cleanup function to check if expired.
+	 * @return whether cleanup is done or not.
+	 */
+	public boolean cleanup(){
+		if (this.status == ReservationStatus.CREATED && Duration.between(this.dt, LocalDateTime.now()).toMinutes() >= 15){
+			this.status = ReservationStatus.EXPIRED;
+			return true;
+		}
+		return false;
 	}
 }
