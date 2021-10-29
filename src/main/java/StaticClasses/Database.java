@@ -7,11 +7,25 @@
 package StaticClasses;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import EntityClasses.Menu;
+import EntityClasses.MenuCategory;
+import EntityClasses.MenuItem;
+import Enumerations.FoodCategory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
+
+import groovy.json.JsonBuilder;
+import groovy.json.JsonOutput;
+import groovy.json.JsonSlurper;
+import groovy.json.JsonSlurperClassic;
+
 
 /**
  * This static class implements helper methods.
@@ -161,4 +175,70 @@ public final class Database{
 
         }
 	}
+
+
+    /**
+     * for json
+     */
+
+    private static FileWriter file;
+
+    /**
+     * The json file must exist before you write to them
+     * @param menu
+     * @throws IOException
+     */
+    public static void writeToJsonFile(Menu menu, String filename) throws IOException {
+        try {
+            // Make sure the file already exist beiore you write to them
+            File f = new File(filename.trim());
+            if (f.createNewFile()) {
+                System.out.println("File created: " + f.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            JsonBuilder builder = new JsonBuilder(menu);
+            String json_str= builder.toString();
+            String json_beauty = JsonOutput.prettyPrint(json_str);
+            file = new FileWriter(filename);
+            file.write(json_beauty);
+
+//            file.flush();
+//            file.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        finally {
+
+            try {
+                file.flush();
+                file.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     *  pass in  file name and the file must be exist before you read
+     *  eg: readFromJsonFile("csv/crunchify.json")
+     *
+     * @param filename
+     * @throws IOException
+     */
+    public static Map loadFromJsonFile(String filename) throws IOException {
+
+
+        JsonSlurper jsonSlurper= new JsonSlurper();
+        FileReader fileReader = new FileReader(filename);
+
+         Map data = (Map) jsonSlurper.parse(fileReader);
+         return data;
+
+    }
+
+
 }

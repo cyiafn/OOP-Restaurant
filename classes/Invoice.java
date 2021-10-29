@@ -6,6 +6,6 @@ public class Invoice {
 	private Boolean _memberDiscount;
 	private Boolean _isPaid;
 	private double _totalPayment;
-	private TaxDiscount _unnamed_TaxDiscount_;
 	private Order _unnamed_Order_;
+	private TaxDiscount _unnamed_TaxDiscount_;
 }

@@ -7,6 +7,7 @@
 
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
+import UI.MenuUI;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class RRPSS {
      * Main ochestrating class.
      * @param args default
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, CsvException {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
         ReservationManager reservationM = null;
@@ -48,6 +49,7 @@ public class RRPSS {
                     break;
                 case 1:
                     System.out.println("This is option 1, do something");
+                    MenuUI.getInstance().displayOptions();
                     break;
                 case 2:
 
@@ -102,9 +104,7 @@ public class RRPSS {
      * Printing menu.
      */
     public static void printMenu(){
-        System.out.println("1. Create menu item.\n" +
-                "2. Update menu item.\n" +
-                "3. Remove menu item.\n\n" +
+        System.out.println("1. Menu Management.\n" +
                 "4. Create promotion.\n" +
                 "5. Update promotion.\n" +
                 "6. Remove promotion.\n\n" +
