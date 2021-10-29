@@ -107,13 +107,6 @@ public class Menu {
                                 return 1;
                         }
                 }
-                System.out.println(" -------------------------------");
-                System.out.print(PrintColor.RED);
-                System.out.println("Sorry, unable to find the menu id to delete.");
-                System.out.println("There is nothing we can do.");
-                System.out.println("Remember that we only can delete the Alacarte item or SetMeal Item.");
-                System.out.print(PrintColor.RESET);
-                System.out.println(" -------------------------------");
                 return 0; // failed
         }
 
@@ -127,28 +120,17 @@ public class Menu {
                                 return 1;
                         }
                 }
-                System.out.println(" -------------------------------");
-                System.out.print(PrintColor.RED);
-                System.out.println("Sorry, unable to find the menu id to update.");
-                System.out.println("There is nothing we can do.");
-                System.out.println("Remember that we only can update the Alacarte item or SetMeal Item.");
-                System.out.print(PrintColor.RESET);
-                System.out.println(" -------------------------------");
                 return 0; // failed
         }
-
-//        public void update_signle_menu_item_on_single_menu_category(String fc, MenuItem item) {
-//
-//                for(MenuCategory mc : _menuCategory){
-//                        if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
-//                        {
-//                                mc(item);
-//                        }
-//                }
-//        }
-
-
-
+        public int FindById(String id){
+                for(MenuCategory mc : _menuCategory){
+                        if(mc.FindById(id)!= null){
+                                MenuItem mi= mc.FindById(id);
+                                return 1;
+                        }
+                }
+                return 0;
+        }
 
         public String get_iD() {
                 return _iD;

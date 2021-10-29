@@ -44,6 +44,12 @@ public class MenuManager {
 		this._menu = _menu;
 	}
 
+	/**
+	 * Static method
+	 * Menu Manager check exist only one at a time
+	 *
+	 * @return
+	 */
 	public static MenuManager retrieveInstance() {
 		if (instance == null) {
 			instance = new MenuManager();
@@ -51,24 +57,12 @@ public class MenuManager {
 		return instance;
 	}
 
-
-	private Integer checkCurrentMenuQuantity() {
-		// Load from csv and check the quantity
-		return 1;
-	}
-
-	private String[] getUserInputForMenuItemNameDescription(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the menu name: ");
-		String name = sc.nextLine();
-
-		System.out.println("Please enter the menu description: ");
-		String description = sc.nextLine();
-
-		String[] nd = { name, description};
-		return nd;
-	}
-
+	/**
+	 * Create Alacarte menu item from user input
+	 * Modular the function and DO DRY
+	 * Return Alacarte menu item
+	 * @return
+	 */
 	private Alacarte CreateAlacarteFromUserInput() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the menuItem name: ");
@@ -90,6 +84,12 @@ public class MenuManager {
 		return mi;
 	}
 
+	/**
+	 * Create Normal menu item from user input
+	 * Modular the function and DO DRY
+	 * Return menu item
+	 * @return
+	 */
 	private MenuItem CreateMenuItemFromUserInput() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the menuItem name: ");
@@ -111,7 +111,12 @@ public class MenuManager {
 		return mi;
 	}
 
-
+	/**
+	 * Create SetMeal menu item from user input
+	 * Modular the function and DO DRY
+	 * Return SetMeal menu item
+	 * @return
+	 */
 	private SetMeal CreateSetMealFromUserInput() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the menuItem name: ");
@@ -169,10 +174,11 @@ public class MenuManager {
 	}
 
 
-
-
-
-
+	/**
+	 * This function create a default menu when there is no menu file exists
+	 *
+	 * @return
+	 */
 	public Menu createSingleMenuWhenNoMenuExisted() {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
@@ -259,10 +265,17 @@ public class MenuManager {
 
 		// delete function
 		// mymenu.delete_signle_menu_item_on_single_menu_category();
-
 		return mymenu;
 	}
 
+	/**
+	 * This function is responsible for format the database output into the Menu Class object
+	 * Usage:: Menu new_menu = formatDatabaseMapIntoMenu(data);
+	 * This function is cooperate with the `loadFromJsonFile` in `Database.java`
+	 * If you want to use JSON file as well, this function you need to rewrite yourself to suit your class
+	 * @param data
+	 * @return
+	 */
 	public Menu formatDatabaseMapIntoMenu(Map data) {
 		List<Map> data_cat = (List<Map>) data.get("_menuCategory");
 		// Create the menu object here
@@ -370,6 +383,13 @@ public class MenuManager {
 	}
 
 
+	/**
+	 * This display Menu function is the entry point of Menu UI
+	 * Do not remove this method because this function loaded the Menu from database
+	 * If there is no menu file in the csv directory, it will create a new file with default menu values.
+	 *
+	 * @throws IOException
+	 */
 	public void displayMenu() throws IOException {
 
 		File f = new File(filename.trim());
@@ -393,13 +413,19 @@ public class MenuManager {
 		_menu = new_menu;
 
 		// TODO: REMOVE after testing
-//		JsonBuilder builder = new JsonBuilder(new_menu);
-//		String json_str= builder.toString();
-//		System.out.println(json_str);
+		//		JsonBuilder builder = new JsonBuilder(new_menu);
+		//		String json_str= builder.toString();
+		//		System.out.println(json_str);
 	}
 
 
-	// TODO: MOVE THIS TO CONSTRUCTOR OF MENU MANAGER
+
+
+	/**
+	 * // TODO: MOVE THIS TO CONSTRUCTOR OF MENU MANAGER
+	 * Hashmap for food category selection for user iput
+	 * @return
+	 */
 	public HashMap<Integer, FoodCategory> createHashMap() {
 		int i =1;
 		for (FoodCategory s : FoodCategory.values()){
@@ -411,6 +437,9 @@ public class MenuManager {
 
 	}
 
+	/**
+	 * Print function for Food category Hash Map
+	 */
 	public void printFoodCategoryHashMap() {
 		// Iterating HashMap through for loop
 		for (Map.Entry<Integer, FoodCategory> set :
@@ -418,6 +447,59 @@ public class MenuManager {
 			System.out.println(set.getKey() + "  |  " + set.getValue());
 		}
 	}
+
+	/**
+	 * Get type of food
+	 * Alacarte / Set Meal
+	 * @return
+	 */
+	public String GetTypeOfFoodItem() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter the type of Menu Item you want to create: ");
+		System.out.println(" Alacarte ");
+		System.out.println(" SetMeal ");
+		String type = sc.nextLine();
+
+		return type.toLowerCase(Locale.ROOT) ;
+	}
+
+	/**
+	 * Helper function to view Menu
+	 */
+	public void ViewMenu() {
+		for(MenuCategory mc : this._menu.get_menuCategory()){
+			mc.print();
+		}
+	}
+
+	/**
+	 * Modular Confirmation function
+	 * Follow DRY format
+	 * Reuse in creation / Update/ Delete menu item function
+	 * @param m
+	 * @throws IOException
+	 */
+	private void confirmation(Menu m) throws IOException {
+		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");
+		System.out.println("Type 1 to save. Type 0 to cancel this operation.");
+		Scanner sc = new Scanner(System.in);
+		System.out.println(" 1 | Yes ");
+		System.out.println(" 0 | No ");
+		Integer answer = Integer.parseInt(sc.nextLine());
+
+		if(answer == 1){
+			Database.writeToJsonFile(m ,filename.trim());
+		}
+		else{
+			// nothing
+		}
+	}
+
+	/**
+	 * Create Menu Item in this function
+	 *
+	 * @throws IOException
+	 */
 	public void CreateMenuItem() throws IOException {
 		// Asking which category you want to choose
 		// Display the Hashmap of the category
@@ -466,93 +548,63 @@ public class MenuManager {
 
 	}
 
-	private void confirmation(Menu m) throws IOException {
-		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");
-		System.out.println("Type 1 to save. Type 0 to cancel this operation.");
-		Scanner sc = new Scanner(System.in);
-		System.out.println(" 1 | Yes ");
-		System.out.println(" 0 | No ");
-		Integer answer = Integer.parseInt(sc.nextLine());
-
-		if(answer == 1){
-			Database.writeToJsonFile(m ,filename.trim());
-		}
-		else{
-			// nothing
-		}
-	}
-
-	public String GetTypeOfFoodItem() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the type of Menu Item you want to create: ");
-		System.out.println(" Alacarte ");
-		System.out.println(" SetMeal ");
-		String type = sc.nextLine();
-
-		return type.toLowerCase(Locale.ROOT) ;
-	}
-
-//	public void RemoveFromMenu() {
-//		this._menu.remove();
-//	}
-
-//	public void AddMenuCategory(FoodCategory fc , MenuItem mi) {
-//		this._menu.get_menuCategory().insert_single_menu_item_into_seat_meal(mi);
-//	}
-
-	public void ViewMenu() {
-		for(MenuCategory mc : this._menu.get_menuCategory()){
-			mc.print();
-		}
-		// PrintMenu();
-	}
-
-//	public void RetrieveMenuItem() {
-//		return this._menu;
-//	}
-
-
-
+	/**
+	 * Update Menu Item
+	 * Only update for set meal and alacarte
+	 * Cannot update sub menu item in set meal
+	 * Delete and create the set meal if you need to change the sub meal item
+	 * @throws IOException
+	 */
 	public void UpdateMenuItem() throws IOException {
 		System.out.println("Please type in the menu item id that you wish to update.");
 		Scanner sc = new Scanner(System.in);
 		String id = sc.nextLine();
 
-		MenuItem mi = CreateMenuItemFromUserInput();
+		int res_find=FindById(id);
+		if(res_find== 1)
+		{
+			MenuItem mi = CreateMenuItemFromUserInput();
 
-		Menu m = this.get_menu();
-		int res= m.Update(id, mi.get_name(), mi.get_description(), mi.get_price(), mi.get_quantity());
-		if(res ==1 ) {
-			this.set_menu(m);
-			//PrintMenu();
-			confirmation(this.get_menu());
+			Menu m = this.get_menu();
+			int res= m.Update(id, mi.get_name(), mi.get_description(), mi.get_price(), mi.get_quantity());
+			if(res ==1 ) {
+				this.set_menu(m);
+				//PrintMenu();
+				confirmation(this.get_menu());
+			}
 		}
+
 	}
 
+	/**
+	 * Delete Menu Item
+	 * Only delete the alacarte / set meal menu item
+	 * Will not search though the sub meal menu item
+	 * @throws IOException
+	 */
 	public void DeleteMenuItem() throws IOException {
 		// Ask delete menu item
 		System.out.println("Please type in the menu item id that you wish to delete.");
 		Scanner sc = new Scanner(System.in);
 		String id = sc.nextLine();
-		Menu m = this.get_menu();
-		int res= m.Delete(id);
-		if(res ==1 ) {
-			this.set_menu(m);
-			//PrintMenu();
-			confirmation(this.get_menu());
-		}
-	}
 
-	public void PrintMenu() {
-		// Iterating HashMap through for loop
-		JsonBuilder builder = new JsonBuilder(this.get_menu());
-		String json_str= builder.toString();
-		String json_beauty = JsonOutput.prettyPrint(json_str);
-		System.out.println(json_beauty);
+		int res_find=FindById(id);
+		if(res_find== 1)
+		{
+			Menu m = this.get_menu();
+			int res= m.Delete(id);
+			if(res ==1 ) {
+				this.set_menu(m);
+				confirmation(this.get_menu());
+			}
+		}
+
 	}
 
 	/**
-	 * Useful class
+	 * Helper class to format 1 to 1st
+	 * Input integer number
+	 * Usage::  ordinal(1) => 1st
 	 */
 	public static String ordinal(int i) {
 		String[] suffixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
@@ -565,5 +617,34 @@ public class MenuManager {
 				return i + suffixes[i % 10];
 
 		}
+	}
+
+	/**
+	 * Find by id
+	 * Follow DRY
+	 * @param id
+	 * @return
+	 */
+	public int FindById(String id){
+		int res = _menu.FindById(id);
+		if(res==0)
+		{
+			System.out.println(" -------------------------------");
+			System.out.print(PrintColor.RED);
+			System.out.println("Sorry, unable to find the menu id to update.");
+			System.out.println("There is nothing we can do.");
+			System.out.println("Remember that we only can update the Alacarte item or SetMeal Item.");
+			System.out.print(PrintColor.RESET);
+			System.out.println(" -------------------------------");
+
+		}
+		else{
+			System.out.println(" -------------------------------");
+			System.out.print(PrintColor.GREEN);
+			System.out.println("We found your menu item");
+			System.out.print(PrintColor.RESET);
+			System.out.println(" -------------------------------");
+		}
+		return res;
 	}
 }
