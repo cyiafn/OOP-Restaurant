@@ -1,8 +1,6 @@
 package UI;
 
 import ControlClasses.MenuManager;
-import com.opencsv.exceptions.CsvException;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,17 +9,24 @@ public class MenuUI {
     private static MenuUI instance = null;
     Scanner sc = new Scanner(System.in);
 
-
     public MenuUI() {
         sc = new Scanner(System.in);
     }
 
+    /**
+     * Singleton design for Menu Management
+     * @return return one and only one menu UI
+     */
     public static MenuUI getInstance() {
         if (instance == null) instance = new MenuUI();
         return instance;
     }
 
-    public void displayOptions() throws IOException, CsvException {
+    /**
+     * Entry point for Menu Management
+     * @throws IOException for read / write to json text file
+     */
+    public void displayOptions() throws IOException {
         int choice;
         do {
             MenuManager.retrieveInstance().displayMenu();
@@ -52,17 +57,33 @@ public class MenuUI {
         } while (choice < 5);
     }
 
-    // CRUD
+    /**
+     * Create operation from Menu Manager
+     * @throws IOException
+     */
     public void CreateMenuItem() throws IOException {
         MenuManager.retrieveInstance().CreateMenuItem();
     }
+
+    /**
+     * Delete Operation from Menu Manager
+     * @throws IOException
+     */
     public void DeleteMenuItem() throws IOException {
         MenuManager.retrieveInstance().DeleteMenuItem();
     }
+
+    /**
+     * Update operation from Menu Manager
+     * @throws IOException
+     */
     public void UpdateMenuItem() throws IOException {
         MenuManager.retrieveInstance().UpdateMenuItem();
     }
 
+    /**
+     * Retrieve operation from Menu Manager
+     */
     public void ViewMenu() {
         MenuManager.retrieveInstance().ViewMenu();
     }

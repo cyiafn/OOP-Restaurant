@@ -5,7 +5,6 @@ import Enumerations.PrintColor;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Map;
 
 public class Menu {
 
@@ -48,7 +47,7 @@ public class Menu {
         /**
          * This is overloading constructor for getting single menu category based on user input
          * @param fc
-         * @return
+         * @return a menu category
          */
         public MenuCategory get_single_menu_categroy(String fc) {
 
@@ -64,7 +63,7 @@ public class Menu {
         /**
          * This is overloading constructor for getting single menu category based on user input
          * @param fc
-         * @return
+         * @return void
          */
         public void InsertSingleMenuItemOnSingleMenuCategroy(String fc, MenuItem item) {
 
@@ -90,6 +89,11 @@ public class Menu {
                 }
         }
 
+        /**
+         * Delete function will search though the menu item and delete it
+         * @param item_id
+         * @return a integer
+         */
         public int Delete(String item_id) {
 
                 for(MenuCategory mc : _menuCategory){
@@ -103,6 +107,15 @@ public class Menu {
                 return 0; // failed
         }
 
+        /**
+         * Update function will update the menu item
+         * @param item_id
+         * @param name
+         * @param description
+         * @param price
+         * @param quantity
+         * @return 0,1, 0 is failed, 1 is success
+         */
         public int Update(String item_id, String name, String description, double price, int quantity) {
 
                 for(MenuCategory mc : _menuCategory){

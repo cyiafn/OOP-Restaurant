@@ -4,8 +4,6 @@ import EntityClasses.*;
 import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
 import StaticClasses.Database;
-import groovy.json.JsonBuilder;
-import groovy.json.JsonOutput;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class MenuManager {
 	 * Static method
 	 * Menu Manager check exist only one at a time
 	 *
-	 * @return
+	 * @return MenuManger
 	 */
 	public static MenuManager retrieveInstance() {
 		if (instance == null) {
@@ -61,7 +59,7 @@ public class MenuManager {
 	 * Create Alacarte menu item from user input
 	 * Modular the function and DO DRY
 	 * Return Alacarte menu item
-	 * @return
+	 * @return an Alacarte menu item
 	 */
 	private Alacarte CreateAlacarteFromUserInput() {
 		Scanner sc = new Scanner(System.in);
@@ -77,18 +75,17 @@ public class MenuManager {
 		System.out.println("Please enter the menuItem quantity: ");
 		Integer quantity = Integer.parseInt(sc.nextLine());
 
-		Alacarte mi = new Alacarte(UUID.randomUUID().toString(),
+
+		return new Alacarte(UUID.randomUUID().toString(),
 				name,  description,
 				price, quantity);
-
-		return mi;
 	}
 
 	/**
 	 * Create Normal menu item from user input
 	 * Modular the function and DO DRY
 	 * Return menu item
-	 * @return
+	 * @return a menu item
 	 */
 	private MenuItem CreateMenuItemFromUserInput() {
 		Scanner sc = new Scanner(System.in);
@@ -104,18 +101,16 @@ public class MenuManager {
 		System.out.println("Please enter the menuItem quantity: ");
 		Integer quantity = Integer.parseInt(sc.nextLine());
 
-		MenuItem mi = new MenuItem(UUID.randomUUID().toString(),
+		return  new MenuItem(UUID.randomUUID().toString(),
 				name,  description,
 				price, quantity);
-
-		return mi;
 	}
 
 	/**
 	 * Create SetMeal menu item from user input
 	 * Modular the function and DO DRY
 	 * Return SetMeal menu item
-	 * @return
+	 * @return a set meal
 	 */
 	private SetMeal CreateSetMealFromUserInput() {
 		Scanner sc = new Scanner(System.in);
@@ -162,7 +157,8 @@ public class MenuManager {
 
 		System.out.println("How many menu item you wish to create in this SetMeal? Maximum is 3");
 
-		SetMeal sm = new SetMeal(
+
+		return new SetMeal(
 				UUID.randomUUID().toString(),
 				name,
 				description,
@@ -170,45 +166,44 @@ public class MenuManager {
 				quantity,
 				list_of_mi
 		);
-		return sm;
 	}
 
 
 	/**
 	 * This function create a default menu when there is no menu file exists
 	 *
-	 * @return
+	 * @return a Menu
 	 */
 	public Menu createSingleMenuWhenNoMenuExisted() {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
 				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Pork Belly Buns",
-								"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, " +
-										"topped with powdered sugar. With two eggs served any style, " +
+								"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \n" +
+										"topped with powdered sugar. With two eggs served any style, \n" +
 										"and your choice of smoked bacon or smoked ham.", 98.58, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Kebab",
 								"Two butter croissants of your choice (plain, almond or cheese). " +
-										"With a side of herb butter or house-made hazelnut spread. "
+										"\nWith a side of herb butter or house-made hazelnut spread. "
 								, 85.82, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Katsu Curry",
-								"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. With a side of roasted potatoes."
+								"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \nWith a side of roasted potatoes."
 								, 36.95, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pork Sausage Roll",
-								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."
+								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \nWith a side of roasted potatoes, and your choice of toast or croissant."
 								, 80.51, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pizza",
 								"28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides."
 								, 78.92, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Vodka",
-								"Vodka is traditionally made from potatoes or fermented cereal grains. Some brands also make it from other substances like fruit or sugar."+
-										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or as cocktails like Martini, Bloody Mary and Cosmopolitan."
+								"Vodka is traditionally made from potatoes or fermented cereal grains. \nSome brands also make it from other substances like fruit or sugar."+
+										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \nas cocktails like Martini, Bloody Mary and Cosmopolitan."
 								, 37.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "7up Sugar Free Lemon & Lime Can 24 x 330ml",
-								"7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, offices and workplaces directly from our warehouse in South London. "+
-										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, enticing aroma of lemon and lime, fused and dusted with powdered sugar. "
+								"7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \noffices and workplaces directly from our warehouse in South London. "+
+										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, \nenticing aroma of lemon and lime, fused and dusted with powdered sugar. "
 								, 60.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Som Tam",
-								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."
+								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \nWith a side of roasted potatoes, and your choice of toast or croissant."
 								, 16.78 , 1)
 
 				)
@@ -273,7 +268,7 @@ public class MenuManager {
 	 * Usage:: Menu new_menu = formatDatabaseMapIntoMenu(data);
 	 * This function is cooperate with the `loadFromJsonFile` in `Database.java`
 	 * If you want to use JSON file as well, this function you need to rewrite yourself to suit your class
-	 * @param data
+	 * @param data, is a map
 	 * @return a Menu
 	 */
 	@SuppressWarnings("unchecked")
@@ -282,7 +277,7 @@ public class MenuManager {
 		// Create the menu object here
 		// first level: Menu Category
 		// 8 times
-		ArrayList<MenuCategory> new_menu_cat = new ArrayList<MenuCategory>();
+		ArrayList<MenuCategory> new_menu_cat = new ArrayList<>();
 		AtomicInteger i = new AtomicInteger(0);
 		data_cat.forEach(
 				(k) -> {
@@ -292,7 +287,7 @@ public class MenuManager {
 
 					// menu item
 					List<Map> real_cat = (List<Map>) data_cat.get(i.intValue()).get("_menuItem");
-					ArrayList<MenuItem> new_menu_item = new ArrayList<MenuItem>();
+					ArrayList<MenuItem> new_menu_item = new ArrayList<>();
 					// for each to get menu item
 					AtomicInteger m = new AtomicInteger(0);
 					real_cat.forEach(
@@ -373,14 +368,13 @@ public class MenuManager {
 		String id = data.get("_iD").toString();
 		String name = data.get("_name").toString();
 		String desp = data.get("_description").toString();
-		Menu new_menu = new Menu(
+
+		return new Menu(
 				id,
 				name,
 				desp,
 				new_menu_cat
 		);
-
-		return new_menu;
 	}
 
 
@@ -389,7 +383,7 @@ public class MenuManager {
 	 * Do not remove this method because this function loaded the Menu from database
 	 * If there is no menu file in the csv directory, it will create a new file with default menu values.
 	 *
-	 * @throws IOException
+	 * @throws IOException, cause this read/ write from json text file
 	 */
 	public void displayMenu() throws IOException {
 
@@ -425,7 +419,7 @@ public class MenuManager {
 	/**
 	 * // TODO: MOVE THIS TO CONSTRUCTOR OF MENU MANAGER
 	 * Hashmap for food category selection for user iput
-	 * @return
+	 * @return a Hashmap which contain food category
 	 */
 	public HashMap<Integer, FoodCategory> createHashMap() {
 		int i =1;
@@ -451,8 +445,8 @@ public class MenuManager {
 
 	/**
 	 * Get type of food
-	 * Alacarte / Set Meal
-	 * @return
+	 *
+	 * @return return a string, Alacarte / Set Meal
 	 */
 	public String GetTypeOfFoodItem() {
 		Scanner sc = new Scanner(System.in);
@@ -477,8 +471,8 @@ public class MenuManager {
 	 * Modular Confirmation function
 	 * Follow DRY format
 	 * Reuse in creation / Update/ Delete menu item function
-	 * @param m
-	 * @throws IOException
+	 * @param m, is a menu
+	 * @throws IOException, this function write to json text file
 	 */
 	private void confirmation(Menu m) throws IOException {
 		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");
@@ -499,7 +493,7 @@ public class MenuManager {
 	/**
 	 * Create Menu Item in this function
 	 *
-	 * @throws IOException
+	 * @throws IOException, cause this function write to json text file
 	 */
 	public void CreateMenuItem() throws IOException {
 		// Asking which category you want to choose
@@ -520,7 +514,7 @@ public class MenuManager {
 			System.out.println("You have no menu item");
 		}
 		else{
-			System.out.println("Here is your menu item in the Category : " + enum_cat.toString());
+			System.out.println("Here is your menu item in the Category : " + enum_cat);
 			mc.print();
 		}
 
@@ -623,8 +617,8 @@ public class MenuManager {
 	/**
 	 * Find by id
 	 * Follow DRY
-	 * @param id
-	 * @return
+	 * @param id , Menu Item ID
+	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
 	 */
 	public int FindById(String id){
 		int res = _menu.FindById(id);
