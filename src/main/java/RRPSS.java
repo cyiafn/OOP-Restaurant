@@ -104,7 +104,8 @@ public class RRPSS {
      * Printing menu.
      */
     public static void printMenu(){
-        System.out.println("1. Menu Management.\n" +
+        System.out.println("=========================\n" +
+                "1. Menu Management.\n\n" +
                 "4. Create promotion.\n" +
                 "5. Update promotion.\n" +
                 "6. Remove promotion.\n\n" +

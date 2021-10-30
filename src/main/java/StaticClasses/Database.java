@@ -179,7 +179,7 @@ public final class Database{
      * The only method to write to JSON format text file
      * You can pass any type of class in this method,
      * With your own desired file path, and this method will save nice json format for you
-     * Usage:: writeToJsonFile("csv/menu.json")
+     * Usage:: Database.writeToJsonFile(menu,"csv/menu.json")
      * @param obj
      * @param filepath
      * @throws IOException
@@ -218,7 +218,7 @@ public final class Database{
      *  pass in  file name and the file must be exist before you read
      *  You can choose to write empty object to the file by calling
      *  writeToJsonFile method above
-     *  Usage:: readFromJsonFile("csv/menu.json")
+     *  Usage:: Database.readFromJsonFile("csv/menu.json")
      *
      * @param filepath
      * @throws IOException

@@ -274,8 +274,9 @@ public class MenuManager {
 	 * This function is cooperate with the `loadFromJsonFile` in `Database.java`
 	 * If you want to use JSON file as well, this function you need to rewrite yourself to suit your class
 	 * @param data
-	 * @return
+	 * @return a Menu
 	 */
+	@SuppressWarnings("unchecked")
 	public Menu formatDatabaseMapIntoMenu(Map data) {
 		List<Map> data_cat = (List<Map>) data.get("_menuCategory");
 		// Create the menu object here

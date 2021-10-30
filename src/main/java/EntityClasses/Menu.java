@@ -43,13 +43,6 @@ public class Menu {
                 this._menuCategory = _menuCategory;
         }
 
-
-        public Menu(Map map) {
-                this._iD = (String) map.get("_id")  ;
-                this._name = (String) map.get("_name");
-                this._description = (String) map.get("_description");
-                this._menuCategory = (ArrayList<MenuCategory>) map.get("_menuCategory");
-        }
         public Menu() { }
 
         /**

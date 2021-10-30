@@ -49,7 +49,7 @@ public class MenuUI {
                     System.out.println("Please enter a valid option!");
                     choice = 0;
             }
-        } while (choice < 4);
+        } while (choice < 5);
     }
 
     // CRUD

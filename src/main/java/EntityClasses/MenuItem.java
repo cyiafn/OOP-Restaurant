@@ -18,13 +18,6 @@ public class MenuItem {
 
 	}
 
-	public MenuItem(Map map) {
-		this._menuItemID = (String) map.get("_menuItemID") ;
-		this._name = (String) map.get("_name") ;
-		this._description = (String) map.get("_description");
-		this._price = (Double) map.get("_price");
-		this._quantity = (Integer) map.get("_quantity");
-	}
 	public MenuItem() {}
 
 	public void print(){
