@@ -120,4 +120,33 @@ public final class InputHandler {
 		return output;
 	}
 
+	/**
+	 * Helper function for getting Doubles
+	 * @param min min allowed int
+	 * @param max max allowed int
+	 * @param req request string for user
+	 * @param er error string for uwser
+	 * @return the integer.
+	 */
+	public static double getDouble(int min, int max, String req, String er){
+		Scanner sc = new Scanner(System.in);
+		double output;
+		do {
+			System.out.println(req);
+			String unsafeInput = sc.next();
+			sc.nextLine();
+			if (unsafeInput.matches("\\d+\\.\\d+")){
+				output = Integer.parseInt(unsafeInput);
+				if (!(output >= min && output <= max)){
+					output = -1;
+					System.out.println(er);
+				}
+			}
+			else{
+				output = -1;
+				System.out.println(er);
+			}
+		} while(output == -1);
+		return output;
+	}
 }

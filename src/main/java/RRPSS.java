@@ -48,7 +48,6 @@ public class RRPSS {
                     System.out.println("Goodbye!");
                     break;
                 case 1:
-                    System.out.println("This is option 1, do something");
                     MenuUI.getInstance().displayOptions();
                     break;
                 case 2:
@@ -104,7 +103,7 @@ public class RRPSS {
      * Printing menu.
      */
     public static void printMenu(){
-        System.out.println("=========================\n" +
+        System.out.println("\n=========================\n" +
                 "1. Menu Management.\n\n" +
                 "4. Create promotion.\n" +
                 "5. Update promotion.\n" +

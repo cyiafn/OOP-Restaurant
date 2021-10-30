@@ -1,0 +1,136 @@
+{
+    "_name": "Royale RRPSS Menu",
+    "_description": "We sell various cuisine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
+    "_menuCategory": [
+        {
+            "_category": "APPETIZER",
+            "_menuItem": [
+                {
+                    "_name": "Pork Belly Buns",
+                    "_description": "Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \ntopped with powdered sugar. With two eggs served any style, \nand your choice of smoked bacon or smoked ham.",
+                    "_menuItemID": "59e48a80-f291-4e4d-b8af-e774c579ccd1",
+                    "_quantity": 1,
+                    "_price": 98.58,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "APPETIZER"
+        },
+        {
+            "_category": "MAINCOURSE",
+            "_menuItem": [
+                {
+                    "_name": "Kebab",
+                    "_description": "Two butter croissants of your choice (plain, almond or cheese). \nWith a side of herb butter or house-made hazelnut spread. ",
+                    "_menuItemID": "94852c90-61a7-45c6-a0a8-315aeacff0b7",
+                    "_quantity": 1,
+                    "_price": 85.82,
+                    "_type": "alacarte"
+                },
+                {
+                    "_name": "Pineapple and roquefort salad",
+                    "_description": "A crunchy salad featuring fresh pineapple and roquefort",
+                    "_menuItemID": "63a972d1-44b1-4b7a-bf0f-291cb67850ab",
+                    "_quantity": 1,
+                    "_price": 108.0,
+                    "_type": "setmeal",
+                    "_set_of_item": [
+                        {
+                            "_name": "Wine and pasta casserole",
+                            "_description": "Moist cake made with fresh caraway and roasted chestnut",
+                            "_menuItemID": "fa3a9ea7-fb14-4b24-9b66-f05198f0bef3",
+                            "_quantity": 1,
+                            "_price": 36.0
+                        },
+                        {
+                            "_name": "Jalapeno and ham pizza",
+                            "_description": "Thin and crispy pizza topped with fresh jalapeno and smoked ham",
+                            "_menuItemID": "713707bd-1504-47fd-8284-855687f6cf12",
+                            "_quantity": 1,
+                            "_price": 36.0
+                        },
+                        {
+                            "_name": "Basil and pineapple kebab",
+                            "_description": "Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
+                            "_menuItemID": "72620434-f525-4dce-a675-25db82b39696",
+                            "_quantity": 1,
+                            "_price": 36.0
+                        }
+                    ]
+                }
+            ],
+            "_description": "MAINCOURSE"
+        },
+        {
+            "_category": "SIDEDISH",
+            "_menuItem": [
+                {
+                    "_name": "Katsu Curry",
+                    "_description": "Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \nWith a side of roasted potatoes.",
+                    "_menuItemID": "860b8786-e0a8-4a58-8782-b532061aa415",
+                    "_quantity": 1,
+                    "_price": 36.95,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "SIDEDISH"
+        },
+        {
+            "_category": "DESSERT",
+            "_menuItem": [
+                {
+                    "_name": "Pork Sausage Roll",
+                    "_description": "Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \nWith a side of roasted potatoes, and your choice of toast or croissant.",
+                    "_menuItemID": "87cfc72e-6aee-4e3e-aa89-5bb506a55b66",
+                    "_quantity": 1,
+                    "_price": 80.51,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "DESSERT"
+        },
+        {
+            "_category": "CHILDRENSMENU",
+            "_menuItem": [
+                {
+                    "_name": "Pizza",
+                    "_description": "28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides.",
+                    "_menuItemID": "214f9b7b-7b8a-4b2c-b022-8e03b2e0e2c5",
+                    "_quantity": 1,
+                    "_price": 78.92,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "CHILDRENSMENU"
+        },
+        {
+            "_category": "ALCOHOLICDRINK",
+            "_menuItem": [
+                {
+                    "_name": "Vodka",
+                    "_description": "Vodka is traditionally made from potatoes or fermented cereal grains. \nSome brands also make it from other substances like fruit or sugar.\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \nas cocktails like Martini, Bloody Mary and Cosmopolitan.",
+                    "_menuItemID": "0449f4d3-a4a0-4fd6-ba0b-89bc82408742",
+                    "_quantity": 1,
+                    "_price": 37.39,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "ALCOHOLICDRINK"
+        },
+        {
+            "_category": "SOFTDRINKS",
+            "_menuItem": [
+                {
+                    "_name": "7up Sugar Free Lemon & Lime Can 24 x 330ml",
+                    "_description": "7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \noffices and workplaces directly from our warehouse in South London. \n Clear, bright and colourless liquid with a lively carbonation. Delicate, \nenticing aroma of lemon and lime, fused and dusted with powdered sugar. ",
+                    "_menuItemID": "8b2beaa6-2d79-4370-a2c3-6fd3eba68df2",
+                    "_quantity": 1,
+                    "_price": 60.39,
+                    "_type": "alacarte"
+                }
+            ],
+            "_description": "SOFTDRINKS"
+        }
+    ],
+    "_iD": "b6395025-31db-4c50-ac94-7e1aadcdc0cf"
+}

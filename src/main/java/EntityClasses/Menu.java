@@ -70,7 +70,7 @@ public class Menu {
                 for(MenuCategory mc : _menuCategory){
                         if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
-                                mc.insert_single_menu_item(item);
+                                mc.InsertSingleMenuItem(item);
                         }
                 }
         }
@@ -100,7 +100,7 @@ public class Menu {
                         if(mc.FindById(item_id)!= null){
                                 MenuItem mi= mc.FindById(item_id);
                                 mi.print();
-                                mc.delete_single_menu_item(mi);
+                                mc.DeleteSingleMenuItem(mi);
                                 return 1;
                         }
                 }
