@@ -8,6 +8,7 @@
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
 import UI.MenuUI;
+import UI.ReservationUI;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -51,45 +52,7 @@ public class RRPSS {
                     MenuUI.getInstance().displayOptions();
                     break;
                 case 2:
-
-                    break;
-                case 11:
-                    try {
-                        if (reservationM.createReservation()){
-                            System.out.println("Reservation was made!");
-                        }else{
-                            System.out.println("No tables available with the given parameters.");
-                        }
-
-                    } catch (IOException | CsvException e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
-                case 12:
-                    try {
-                        reservationM.checkReservation();
-                    } catch (IOException | CsvException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 13:
-                    try {
-                        if (reservationM.deleteReservation()){
-                            System.out.println("Deleted reservation!");
-                        }
-                        else{
-                            System.out.println("Reservation not deleted");
-                        }
-                    } catch (IOException | CsvException e) {
-                        e.printStackTrace();
-                    }
-                case 14:
-                    try {
-                        reservationM.checkAvailability();
-                    } catch (IOException | CsvException e) {
-                        e.printStackTrace();
-                    }
+                    ReservationUI.getInstance().display();
                     break;
                 default:
                     System.out.println("Please enter an integer from 0 - 16!");
@@ -105,6 +68,7 @@ public class RRPSS {
     public static void printMenu(){
         System.out.println("\n=========================\n" +
                 "1. Menu Management.\n\n" +
+                "2. Reservation Management.\n\n" +
                 "4. Create promotion.\n" +
                 "5. Update promotion.\n" +
                 "6. Remove promotion.\n\n" +
