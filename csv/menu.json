@@ -12,6 +12,14 @@
                     "_quantity": 1,
                     "_price": 98.58,
                     "_type": "alacarte"
+                },
+                {
+                    "_name": "ho fan",
+                    "_description": "ho fan",
+                    "_menuItemID": "4beabb4c-7008-48c4-82d1-ac14957eb52b",
+                    "_quantity": 1,
+                    "_price": 15.0,
+                    "_type": "alacarte"
                 }
             ],
             "_description": "APPETIZER"
@@ -28,11 +36,11 @@
                     "_type": "alacarte"
                 },
                 {
-                    "_name": "Pineapple and roquefort salad",
-                    "_description": "A crunchy salad featuring fresh pineapple and roquefort",
+                    "_name": "lol",
+                    "_description": "lol",
                     "_menuItemID": "63a972d1-44b1-4b7a-bf0f-291cb67850ab",
                     "_quantity": 1,
-                    "_price": 108.0,
+                    "_price": 12.0,
                     "_type": "setmeal",
                     "_set_of_item": [
                         {

@@ -24,11 +24,11 @@ public class Alacarte extends MenuItem {
         System.out.print(PrintColor.GREEN_BOLD);
         System.out.println(" Menu ID: " + this.get_menuItemID() + " | " );
         System.out.print(PrintColor.BLUE);
-        System.out.println(" Set Meal Name: "+ this.get_name() + " | ");
-        System.out.println(" Set Meal Description: "+ this.get_description());
+        System.out.println(" Alacarte Meal Name: "+ this.get_name() + " | ");
+        System.out.println(" Alacarte Description: "+ this.get_description());
         System.out.print(PrintColor.YELLOW_BOLD);
-        System.out.println(" Set Meal Price: " + this.get_price()+ " | "+ " Set Meal Quantity: "+ this.get_quantity().toString());
-        System.out.println(" Set Meal Type: "+ this.get_type());
+        System.out.println(" Alacarte Price: " + this.get_price()+ " | "+ " Alacarte Quantity: "+ this.get_quantity().toString());
+        System.out.println(" Alacarte Type: "+ this.get_type());
 
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
