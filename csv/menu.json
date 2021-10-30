@@ -65,11 +65,11 @@
             "_category": "SIDEDISH",
             "_menuItem": [
                 {
-                    "_name": "Katsu Curry",
-                    "_description": "Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \nWith a side of roasted potatoes.",
+                    "_name": "lol",
+                    "_description": "12",
                     "_menuItemID": "860b8786-e0a8-4a58-8782-b532061aa415",
                     "_quantity": 1,
-                    "_price": 36.95,
+                    "_price": 12.0,
                     "_type": "alacarte"
                 }
             ],

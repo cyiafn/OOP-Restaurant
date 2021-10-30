@@ -4,6 +4,7 @@ import EntityClasses.*;
 import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
 import StaticClasses.Database;
+import StaticClasses.InputHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,11 +70,11 @@ public class MenuManager {
 		System.out.println("Please enter the menuItem description: ");
 		String description = sc.nextLine();
 
-		System.out.println("Please enter the menuItem price: ");
-		Integer price = Integer.parseInt(sc.nextLine());
+		double price = InputHandler.getDouble(1,100,
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
 
-		System.out.println("Please enter the menuItem quantity: ");
-		Integer quantity = Integer.parseInt(sc.nextLine());
+		int quantity = InputHandler.getInt(1,10,
+				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10");
 
 
 		return new Alacarte(UUID.randomUUID().toString(),
@@ -95,11 +96,11 @@ public class MenuManager {
 		System.out.println("Please enter the menuItem description: ");
 		String description = sc.nextLine();
 
-		System.out.println("Please enter the menuItem price: ");
-		Integer price = Integer.parseInt(sc.nextLine());
+		double price = InputHandler.getDouble(1,100,
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
 
-		System.out.println("Please enter the menuItem quantity: ");
-		Integer quantity = Integer.parseInt(sc.nextLine());
+		int quantity = InputHandler.getInt(1,10,
+				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10.");
 
 		return  new MenuItem(UUID.randomUUID().toString(),
 				name,  description,
@@ -120,11 +121,12 @@ public class MenuManager {
 		System.out.println("Please enter the menuItem description: ");
 		String description = sc.nextLine();
 
-		System.out.println("Please enter the menuItem price: ");
-		Double price = Double.parseDouble(sc.nextLine());
+		double price = InputHandler.getDouble(1,100,
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
 
-		System.out.println("Please enter the menuItem quantity: ");
-		Integer quantity = Integer.parseInt(sc.nextLine());
+		int quantity = InputHandler.getInt(1,10,
+				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10.");
+
 
 		// Using switch case here
 		// resrict user to input only 3 times
@@ -448,14 +450,13 @@ public class MenuManager {
 	 *
 	 * @return return a string, Alacarte / Set Meal
 	 */
-	public String GetTypeOfFoodItem() {
+	public int GetTypeOfFoodItem() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the type of Menu Item you want to create: ");
-		System.out.println(" Alacarte ");
-		System.out.println(" SetMeal ");
-		String type = sc.nextLine();
+		System.out.println("1 for alacarte , 2 for set meal ");
+		int type = InputHandler.getInt(1,2,"(1) | Alacarte \n(2) | SetMeal ", "Error input! Please type in 1 or 2");
 
-		return type.toLowerCase(Locale.ROOT) ;
+		return type ;
 	}
 
 	/**
@@ -477,15 +478,19 @@ public class MenuManager {
 	private void confirmation(Menu m) throws IOException {
 		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");
 		System.out.println("Type 1 to save. Type 0 to cancel this operation.");
-		Scanner sc = new Scanner(System.in);
 		System.out.println(" 1 | Yes ");
 		System.out.println(" 0 | No ");
-		Integer answer = Integer.parseInt(sc.nextLine());
+
+		int answer = InputHandler.getInt(0,1,
+				" ", "Error input! Please recheck and retry again.");
+
 
 		if(answer == 1){
+			System.out.println("Save successfully!");
 			Database.writeToJsonFile(m ,filename.trim());
 		}
 		else{
+			System.out.println("Canceled this operation.");
 			// nothing
 		}
 	}
@@ -501,10 +506,8 @@ public class MenuManager {
 		createHashMap();
 		printFoodCategoryHashMap();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Please choose a category to create your menu item: " +
-				"\n By typing in the category number: ");
-		System.out.println();
-		Integer category_number = Integer.parseInt(sc.nextLine());
+		Integer category_number = InputHandler.getInt(1,FoodCategory.values().length ,"Please choose a category to create your menu item: " +
+				"\n By typing in the category number: ", "Error input! Please type from 1-8");
 		FoodCategory enum_cat =  FoodCategoryMap.get(category_number);
 
 		MenuCategory mc = _menu.get_single_menu_categroy(enum_cat.toString());
@@ -519,9 +522,9 @@ public class MenuManager {
 		}
 
 		// Ask the user for the type of menu item
-		String type = GetTypeOfFoodItem();
+		int type = GetTypeOfFoodItem();
 		System.out.println(type);
-		if(type.equals("alacarte") )
+		if(type==1 )
 		{
 			// Take in user input for menu item creation
 			MenuItem mi = CreateAlacarteFromUserInput();
@@ -529,7 +532,7 @@ public class MenuManager {
 			m.InsertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
 			this.set_menu(m);
 		}
-		else if (type.equals("setmeal"))
+		else if (type==2)
 		{
 			// Take in user input for menu item creation
 			MenuItem mi = CreateSetMealFromUserInput();

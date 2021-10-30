@@ -135,8 +135,9 @@ public final class InputHandler {
 			System.out.println(req);
 			String unsafeInput = sc.next();
 			sc.nextLine();
-			if (unsafeInput.matches("\\d+\\.\\d+")){
-				output = Integer.parseInt(unsafeInput);
+			// allow 10 or 10.00
+			if (unsafeInput.matches("\\d+")|| unsafeInput.matches("\\d+\\.\\d+")){
+				output = Double.parseDouble(unsafeInput);
 				if (!(output >= min && output <= max)){
 					output = -1;
 					System.out.println(er);
