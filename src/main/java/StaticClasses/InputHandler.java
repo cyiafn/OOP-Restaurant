@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Scanner;
 /**
-	Static input handler + validator class.
+ Static input handler + validator class.
  @author Chen Yifan
  @version 1.0
  @since 2021-10-19
@@ -15,15 +15,14 @@ import java.util.Scanner;
 /**
  * Static class to request for user inputs and validate.
  */
-public final class InputHandler {
-
+public class InputHandler {
+	public static Scanner sc = new Scanner(System.in);
     /**
 	 * Helper function to request user for datetime.
 	 * @param after This signifies if the function checks if the provided date and time is after now or not.
 	 * @return LocalDateTime obj.
 	 */
 	public static LocalDateTime getDate(boolean after){
-		Scanner sc = new Scanner(System.in);
 		LocalDateTime datetime;
 		do {
 			System.out.println("Please enter the date time in the format YYYY-MM-DD HH:MM ");
@@ -64,7 +63,6 @@ public final class InputHandler {
 	 * @return user's name.
 	 */
 	public static String getName(){
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter your name: ");
 		String name = sc.nextLine();
 
@@ -76,12 +74,12 @@ public final class InputHandler {
 	 * @return User's contact number in string.
 	 */
 	public static String getContactNo(){
-		Scanner sc = new Scanner(System.in);
 		String contactNo;
 		//contactno unsafe input
 		do {
 			System.out.println("Please enter your contact number (no spaces or +): ");
 			contactNo = sc.next();
+			System.out.println(contactNo);
 			sc.nextLine();
 			if (contactNo.matches("\\d+")){
 				break;
@@ -99,7 +97,6 @@ public final class InputHandler {
      * @return the integer.
      */
 	public static int getInt(int min, int max, String req, String er){
-		Scanner sc = new Scanner(System.in);
 		int output;
 		do {
 			System.out.println(req);
@@ -129,7 +126,6 @@ public final class InputHandler {
 	 * @return the integer.
 	 */
 	public static double getDouble(int min, int max, String req, String er){
-		Scanner sc = new Scanner(System.in);
 		double output;
 		do {
 			System.out.println(req);

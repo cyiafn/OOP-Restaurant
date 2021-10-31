@@ -10,6 +10,7 @@ import com.opencsv.exceptions.CsvException;
 import org.javatuples.Pair;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -85,7 +86,7 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	private void cleanup() throws IOException, CsvException {
+	public void cleanup() throws IOException, CsvException {
 		//clean up expires stuff past 15 mins if created, quietly
 		ArrayList<Reservation> tempAr = new ArrayList<>();
 		for (Reservation i: this.createdReservations){
@@ -276,7 +277,7 @@ public class ReservationManager {
 				ArrayList<Reservation> tempAr = reservations.get(i.getTableNo());
 				boolean invalid = false;
 				for (int j = 0; j < tempAr.size(); j ++){
-					if ((tempAr.get(j).getStatus() == ReservationStatus.ACTIVE || tempAr.get(j).getStatus() == ReservationStatus.CREATED) && Math.abs(Duration.between(tempAr.get(j).getDt(), datetime).toMinutes()) < 120){
+					if ((tempAr.get(j).getStatus() == ReservationStatus.ACTIVE || tempAr.get(j).getStatus() == ReservationStatus.CREATED) && Math.abs(Duration.between(tempAr.get(j).getDt(), datetime).toMinutes()) <= 120){
 						invalid = true;
 						break;
 					}
@@ -445,11 +446,29 @@ public class ReservationManager {
 			System.out.print(PrintColor.RESET);
 		}
 
+	}
 
+	/**
+	 * Gets all valid today created reservations after current time.
+	 * @return Arraylist of eligible today reservations.
+	 * @throws IOException Cannot interface with files
+	 * @throws CsvException Cannot read/write CSV.
+	 */
+	public ArrayList<Reservation> getTodaysCreatedReservations() throws IOException, CsvException {
+		cleanup();
 
+		//get all eligible reservations
+		ArrayList <Reservation> output = new ArrayList<>();
+		for (ArrayList<Reservation> i: reservations.values()){
+			for (Reservation r: i){
+				if (r.getDt().toLocalDate().equals(LocalDate.now()) && r.getStatus() == ReservationStatus.CREATED && r.getDt().toLocalTime().isAfter(LocalTime.now().minusHours(1))){
+					output.add(r);
+				}
 
+			}
+		}
 
-
+		return output;
 
 	}
 
