@@ -179,12 +179,12 @@ public final class Database{
      * The only method to write to JSON format text file
      * You can pass any type of class in this method,
      * With your own desired file path, and this method will save nice json format for you
-     * Usage:: Database.writeToJsonFile(menu,"csv/menu.json")
+     * Usage:: Database.WriteToJsonFile(menu,"csv/menu.json")
      * @param obj
      * @param filepath
      * @throws IOException
      */
-    public static void writeToJsonFile(Object obj, String filepath) throws IOException {
+    public static void WriteToJsonFile(Object obj, String filepath) throws IOException {
         try {
             // Make sure the file already exist beiore you write to them
             File f = new File(filepath.trim());
@@ -217,18 +217,31 @@ public final class Database{
     /**
      *  pass in  file name and the file must be exist before you read
      *  You can choose to write empty object to the file by calling
-     *  writeToJsonFile method above
+     *  WriteToJsonFile method above
      *  Usage:: Database.readFromJsonFile("csv/menu.json")
      *
      * @param filepath
      * @throws IOException
      */
-    public static Map loadFromJsonFile(String filepath) throws IOException {
+    public static Map LoadFromJsonFile(String filepath) throws IOException {
         JsonSlurper jsonSlurper= new JsonSlurper();
         FileReader fileReader = new FileReader(filepath);
 
         Map data = (Map) jsonSlurper.parse(fileReader);
         return data;
+    }
+
+    /**
+     * DELETE FILE FUNCTION
+     * @param filepath
+     */
+    public static void DeleteFile(String filepath)  {
+            File myObj = new File(filepath.trim());
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
     }
 
 }

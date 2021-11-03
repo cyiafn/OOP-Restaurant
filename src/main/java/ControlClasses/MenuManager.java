@@ -63,12 +63,9 @@ public class MenuManager {
 	 * @return an Alacarte menu item
 	 */
 	private Alacarte CreateAlacarteFromUserInput() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the menuItem name: ");
-		String name = sc.nextLine();
+		String name = InputHandler.getString("Please enter the menuItem name: ");
 
-		System.out.println("Please enter the menuItem description: ");
-		String description = sc.nextLine();
+		String description = InputHandler.getString("Please enter the menuItem description: ");
 
 		double price = InputHandler.getDouble(1,100,
 				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
@@ -268,7 +265,7 @@ public class MenuManager {
 	/**
 	 * This function is responsible for format the database output into the Menu Class object
 	 * Usage:: Menu new_menu = formatDatabaseMapIntoMenu(data);
-	 * This function is cooperate with the `loadFromJsonFile` in `Database.java`
+	 * This function is cooperate with the `LoadFromJsonFile` in `Database.java`
 	 * If you want to use JSON file as well, this function you need to rewrite yourself to suit your class
 	 * @param data, is a map
 	 * @return a Menu
@@ -401,10 +398,10 @@ public class MenuManager {
 			// Create default menu and write your json file
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
 			Menu menu = CreateSingleMenuWhenNoMenuExisted();
-			Database.writeToJsonFile(menu, filename.trim());
+			Database.WriteToJsonFile(menu, filename.trim());
 			System.out.println("Welcome to " + menu.get_name());
 		}
-		Map data = Database.loadFromJsonFile(filename.trim());
+		Map data = Database.LoadFromJsonFile(filename.trim());
 		Menu new_menu = formatDatabaseMapIntoMenu(data);
 		// So other function can use it
 		_menu = new_menu;
@@ -487,7 +484,7 @@ public class MenuManager {
 
 		if(answer == 1){
 			System.out.println("Save successfully!");
-			Database.writeToJsonFile(m ,filename.trim());
+			Database.WriteToJsonFile(m ,filename.trim());
 		}
 		else{
 			System.out.println("Canceled this operation.");
@@ -505,7 +502,7 @@ public class MenuManager {
 		// Display the Hashmap of the category
 		createHashMap();
 		printFoodCategoryHashMap();
-		Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(System.in);
 		Integer category_number = InputHandler.getInt(1,FoodCategory.values().length ,"Please choose a category to create your menu item: " +
 				"\n By typing in the category number: ", "Error input! Please type from 1-8");
 		FoodCategory enum_cat =  FoodCategoryMap.get(category_number);
@@ -554,9 +551,7 @@ public class MenuManager {
 	 * @throws IOException
 	 */
 	public void UpdateMenuItem() throws IOException {
-		System.out.println("Please type in the menu item id that you wish to update.");
-		Scanner sc = new Scanner(System.in);
-		String id = sc.nextLine();
+		String id = InputHandler.getString("Please type in the menu item id that you wish to update.");
 
 		int res_find=FindById(id);
 		if(res_find== 1)
@@ -591,10 +586,28 @@ public class MenuManager {
 	 */
 	public void DeleteMenuItem() throws IOException {
 		// Ask delete menu item
-		System.out.println("Please type in the menu item id that you wish to delete.");
-		Scanner sc = new Scanner(System.in);
-		String id = sc.nextLine();
+		String id = InputHandler.getString("Please type in the menu item id that you wish to delete.");
 
+		int res_find=FindById(id);
+		if(res_find== 1)
+		{
+			Menu m = this.get_menu();
+			int res= m.Delete(id);
+			if(res ==1 ) {
+				this.set_menu(m);
+				confirmation(this.get_menu());
+			}
+		}
+
+	}
+
+	/**
+	 * Delete Menu Item
+	 * Only delete the alacarte / set meal menu item
+	 * Will not search though the sub meal menu item
+	 * @throws IOException
+	 */
+	public void Teardown(String id) throws IOException {
 		int res_find=FindById(id);
 		if(res_find== 1)
 		{
@@ -639,7 +652,7 @@ public class MenuManager {
 		{
 			System.out.println(" -------------------------------");
 			System.out.print(PrintColor.RED);
-			System.out.println("Sorry, unable to find the menu id to update.");
+			System.out.println("Sorry, unable to find the menu id to update/delete.");
 			System.out.println("There is nothing we can do.");
 			System.out.println("Remember that we only can update the Alacarte item or SetMeal Item.");
 			System.out.print(PrintColor.RESET);
@@ -664,6 +677,11 @@ public class MenuManager {
 	 */
 	public MenuItem FindByIdForMenuItem(String id){
 		MenuItem res = _menu.FindByIdForMenuItem(id);
+		return res;
+	}
+
+	public MenuItem FindByNameForMenuItem(String name) {
+		MenuItem res = _menu.FindByNameForMenuItem(name);
 		return res;
 	}
 

@@ -146,4 +146,10 @@ public class InputHandler {
 		} while(output == -1);
 		return output;
 	}
+
+	public static String getString(String promptMessage) {
+		System.out.println(promptMessage);
+		String name = sc.nextLine();
+		return name.strip();
+	}
 }
