@@ -17,7 +17,7 @@ public class MenuUI {
      * Singleton design for Menu Management
      * @return return one and only one menu UI
      */
-    public static MenuUI getInstance() {
+    public static MenuUI getInstance() throws IOException {
         if (instance == null) instance = new MenuUI();
         return instance;
     }
@@ -29,7 +29,7 @@ public class MenuUI {
     public void displayOptions() throws IOException {
         int choice;
         do {
-            MenuManager.retrieveInstance().displayMenu();
+
             System.out.println("\n==================================================");
             System.out.println(" Menu item Management: ");
             System.out.println("==================================================");
@@ -84,7 +84,7 @@ public class MenuUI {
     /**
      * Retrieve operation from Menu Manager
      */
-    public void ViewMenu() {
+    public void ViewMenu() throws IOException {
         MenuManager.retrieveInstance().ViewMenu();
     }
 

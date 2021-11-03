@@ -33,8 +33,8 @@ public class MenuManager {
 	/**
 	 * Original method
 	 */
-	public MenuManager() {
-
+	public MenuManager() throws IOException {
+		init();
 	}
 	/**
 	 * Overloading method
@@ -49,7 +49,7 @@ public class MenuManager {
 	 *
 	 * @return MenuManger
 	 */
-	public static MenuManager retrieveInstance() {
+	public static MenuManager retrieveInstance() throws IOException {
 		if (instance == null) {
 			instance = new MenuManager();
 		}
@@ -387,7 +387,7 @@ public class MenuManager {
 	 *
 	 * @throws IOException, cause this read/ write from json text file
 	 */
-	public void displayMenu() throws IOException {
+	public void init() throws IOException {
 
 		File f = new File(filename.trim());
 		if(f.exists() && !f.isDirectory())
