@@ -1,6 +1,6 @@
 {
     "_name": "Royale RRPSS Menu",
-    "_description": "We sell various cuisine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
+    "_description": "We sell various cusetMealine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
     "_menuCategory": [
         {
             "_category": "APPETIZER",
@@ -14,11 +14,11 @@
                     "_type": "alacarte"
                 },
                 {
-                    "_name": "ho fan",
-                    "_description": "ho fan",
+                    "_name": "hor hor",
+                    "_description": "hor hor",
                     "_menuItemID": "4beabb4c-7008-48c4-82d1-ac14957eb52b",
-                    "_quantity": 1,
-                    "_price": 15.0,
+                    "_quantity": 9,
+                    "_price": 12.0,
                     "_type": "alacarte"
                 }
             ],
@@ -28,41 +28,27 @@
             "_category": "MAINCOURSE",
             "_menuItem": [
                 {
-                    "_name": "Kebab",
-                    "_description": "Two butter croissants of your choice (plain, almond or cheese). \nWith a side of herb butter or house-made hazelnut spread. ",
+                    "_name": "lol",
+                    "_description": "lol",
                     "_menuItemID": "94852c90-61a7-45c6-a0a8-315aeacff0b7",
                     "_quantity": 1,
-                    "_price": 85.82,
+                    "_price": 1.0,
                     "_type": "alacarte"
                 },
                 {
-                    "_name": "lol",
-                    "_description": "lol",
+                    "_name": "logitech",
+                    "_description": "logitech",
                     "_menuItemID": "63a972d1-44b1-4b7a-bf0f-291cb67850ab",
                     "_quantity": 1,
-                    "_price": 12.0,
+                    "_price": 34.0,
                     "_type": "setmeal",
                     "_set_of_item": [
                         {
-                            "_name": "Wine and pasta casserole",
-                            "_description": "Moist cake made with fresh caraway and roasted chestnut",
-                            "_menuItemID": "fa3a9ea7-fb14-4b24-9b66-f05198f0bef3",
+                            "_name": "king kong",
+                            "_description": "1",
+                            "_menuItemID": "8e497f83-2b53-4f0f-a1bb-d00c9bc2f98f",
                             "_quantity": 1,
-                            "_price": 36.0
-                        },
-                        {
-                            "_name": "Jalapeno and ham pizza",
-                            "_description": "Thin and crispy pizza topped with fresh jalapeno and smoked ham",
-                            "_menuItemID": "713707bd-1504-47fd-8284-855687f6cf12",
-                            "_quantity": 1,
-                            "_price": 36.0
-                        },
-                        {
-                            "_name": "Basil and pineapple kebab",
-                            "_description": "Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
-                            "_menuItemID": "72620434-f525-4dce-a675-25db82b39696",
-                            "_quantity": 1,
-                            "_price": 36.0
+                            "_price": 1.0
                         }
                     ]
                 }

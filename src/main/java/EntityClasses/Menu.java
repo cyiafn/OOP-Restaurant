@@ -75,6 +75,8 @@ public class Menu {
                 }
         }
 
+
+
         public void insert_single_menu_item_on_single_menu_categroy_with_seat_meal(String fc, MenuItem item) {
                 for(MenuCategory mc : _menuCategory){
                         if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
@@ -87,6 +89,28 @@ public class Menu {
                                 }
                         }
                 }
+        }
+
+        /**
+         * Delete function will search though the menu item and delete it
+         * @param item_id
+         * @return a integer, 1 is
+         */
+        public int GetTypeByID(String item_id) {
+
+                for(MenuCategory mc : _menuCategory){
+                        MenuItem mi= mc.FindById(item_id);
+                        if(mi instanceof Alacarte)
+                        {
+                                Alacarte ac = (Alacarte) mi;
+                                return 1;
+                        }
+                        if (mi instanceof SetMeal) {
+                                SetMeal sm = (SetMeal)mi;
+                                return 2;
+                        }
+                }
+                return 0; // failed
         }
 
         /**
@@ -110,24 +134,27 @@ public class Menu {
         /**
          * Update function will update the menu item
          * @param item_id
-         * @param name
-         * @param description
-         * @param price
-         * @param quantity
+         * @param mim
          * @return 0,1, 0 is failed, 1 is success
          */
-        public int Update(String item_id, String name, String description, double price, int quantity) {
+        public int Update(String item_id, MenuItem mim) {
 
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindById(item_id)!= null){
-                                MenuItem mi= mc.FindById(item_id);
+                        if(mc.FindById(item_id)!= null) {
+                                MenuItem mi = mc.FindById(item_id);
                                 mi.print();
-                                mc.UpdateMenuItem(mi , name, description, price, quantity);
+                                mc.UpdateMenuItem(mi, mim);
                                 return 1;
                         }
                 }
                 return 0; // failed
         }
+
+        /**
+         * Find by ID
+         * @param id
+         * @return int , return 1 or 0, 1 is success, 0 is failed
+         */
         public int FindById(String id){
                 for(MenuCategory mc : _menuCategory){
                         if(mc.FindById(id)!= null){

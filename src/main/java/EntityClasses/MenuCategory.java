@@ -46,16 +46,22 @@ public class MenuCategory {
     /**
      * Find the menu item by string id
      * @param id
-     * @return
+     * @return a menu item
      */
     public MenuItem FindById(String id) {
-
-        MenuItem found_menu_item = _menuItem.stream().filter(s ->
+        return  _menuItem.stream().filter(s ->
                 s.get_menuItemID().equals(id)
         ).findFirst().orElse(null);
-
-        return found_menu_item;
     }
+
+//    public MenuItem FindTypeById(String id) {
+//
+//        MenuItem found_menu_item = _menuItem.stream().filter(s ->
+//                s.get_menuItemID().equals(id)
+//        ).findFirst().orElse(null);
+//
+//        return found_menu_item;
+//    }
 
     /**
      * Find the menu item by name
@@ -70,20 +76,18 @@ public class MenuCategory {
     }
 
     /**
-     * Update the menu item by the name , description , price, and quantity
+     * Update the menu item by reset the id of the new menu item
      * @param mi
-     * @param name
-     * @param _description
-     * @param price
-     * @param quantity
+     * @param mim
      */
-    public void UpdateMenuItem(MenuItem mi , String name, String _description, double price, int quantity) {
+    public void UpdateMenuItem(MenuItem mi , MenuItem mim) {
         int index= this._menuItem.indexOf(mi);
-        mi.set_name(name);
-        mi.set_description(_description);
-        mi.set_price(price);
-        mi.set_quantity(quantity);
-        this._menuItem.set(index, mi);
+//        mi.set_name(mim.get_name());
+//        mi.set_description(_description);
+//        mi.set_price(mim.get_price());
+//        mi.set_quantity(mim.get_quantity());
+        mim.set_menuItemID(mi.get_menuItemID());
+        this._menuItem.set(index, mim);
     }
 
     /**

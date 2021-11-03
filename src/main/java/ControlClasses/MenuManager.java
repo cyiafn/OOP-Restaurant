@@ -176,7 +176,7 @@ public class MenuManager {
 	 *
 	 * @return a Menu
 	 */
-	public Menu createSingleMenuWhenNoMenuExisted() {
+	public Menu CreateSingleMenuWhenNoMenuExisted() {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
 				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Pork Belly Buns",
@@ -400,7 +400,7 @@ public class MenuManager {
 		{
 			// Create default menu and write your json file
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
-			Menu menu = createSingleMenuWhenNoMenuExisted();
+			Menu menu = CreateSingleMenuWhenNoMenuExisted();
 			Database.writeToJsonFile(menu, filename.trim());
 			System.out.println("Welcome to " + menu.get_name());
 		}
@@ -561,10 +561,19 @@ public class MenuManager {
 		int res_find=FindById(id);
 		if(res_find== 1)
 		{
-			MenuItem mi = CreateMenuItemFromUserInput();
+			MenuItem mi = new MenuItem();
+			int type = this._menu.GetTypeByID(id);
+			if(type == 1)
+			{
+				mi = CreateAlacarteFromUserInput();
+			}
+			else if (type ==2 )
+			{
+				mi = CreateSetMealFromUserInput();
+			}
 
 			Menu m = this.get_menu();
-			int res= m.Update(id, mi.get_name(), mi.get_description(), mi.get_price(), mi.get_quantity());
+			int res= m.Update(id, mi);
 			if(res ==1 ) {
 				this.set_menu(m);
 				//PrintMenu();
@@ -616,6 +625,7 @@ public class MenuManager {
 
 		}
 	}
+
 
 	/**
 	 * Find by id
