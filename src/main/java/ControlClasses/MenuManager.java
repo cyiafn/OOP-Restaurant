@@ -655,4 +655,17 @@ public class MenuManager {
 		}
 		return res;
 	}
+
+	/**
+	 * Find by id overloading method requested by Gotwin
+	 * Follow DRY
+	 * @param id , Menu Item
+	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
+	 */
+	public MenuItem FindByIdForMenuItem(String id){
+		MenuItem res = _menu.FindByIdForMenuItem(id);
+		return res;
+	}
+
+
 }

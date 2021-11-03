@@ -165,6 +165,22 @@ public class Menu {
                 return 0;
         }
 
+        /**
+         * Find by ID overloading method
+         * @param id
+         * @return MenuItem
+         */
+        public MenuItem FindByIdForMenuItem(String id){
+                MenuItem mi = new MenuItem();
+                for(MenuCategory mc : _menuCategory){
+                        if(mc.FindById(id)!= null){
+                                mi= mc.FindById(id);
+                                return mi;
+                        }
+                }
+                return mi;
+        }
+
         public String get_iD() {
                 return _iD;
         }
