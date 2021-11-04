@@ -2,10 +2,7 @@ package Tests;
 
 
 import ControlClasses.MenuManager;
-import EntityClasses.Alacarte;
-import EntityClasses.Menu;
-import EntityClasses.MenuCategory;
-import EntityClasses.MenuItem;
+import EntityClasses.*;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
@@ -39,7 +36,6 @@ public class MenuManager_test {
     static void Init(){
         try {
             inputHandler = new InputHandler();
-//            Menu
             MenuManager.retrieveInstance();
         }
         catch (IOException e)
@@ -230,6 +226,233 @@ public class MenuManager_test {
         }
     }
 
+    @Order(7)
+    @Test
+    void CreateSetMealFail() {
+        try {
+            provideInput(+ 1 + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + 0 + System.getProperty("line.separator")
+            );
+            boolean flag = true;
+            MenuManager.retrieveInstance().CreateMenuItem();
+            MenuItem mi_1 = MenuManager.retrieveInstance().FindByNameForMenuItem("111");
+            if(mi_1.get_name()=="111" && mi_1.get_description()=="111"
+                    && mi_1 instanceof  SetMeal)
+            {
+                flag=false;
+            }
+            assertTrue(flag);
+            //MenuManager.retrieveInstance().Teardown(mi.get_menuItemID());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Order(8)
+    @Test
+    void CreateSetMealSuccessful() {
+        try {
+            provideInput(+ 3 + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
+                    + "Steamed Truffle & Pork Xiao Long Bao" + System.getProperty("line.separator")
+                    + "Made in Truffle & Pork" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+            );
+            boolean flag = false;
+            MenuManager.retrieveInstance().CreateMenuItem();
+            MenuItem mi = MenuManager.retrieveInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            if (mi instanceof SetMeal
+                    && mi.get_name().equals("Steamed Truffle & Pork Xiao Long Bao") &&
+                    mi.get_description().equals("Made in Truffle & Pork"))
+            {
+                flag = true;
+            }
+            assertTrue(flag);
+            //MenuManager.retrieveInstance().Teardown(mi.get_menuItemID());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Order(9)
+    @Test
+    void UpdateSetMealSuccessful() {
+        try {
+            MenuItem mi_1 = MenuManager.retrieveInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            mi_ID = mi_1.get_menuItemID();
+            provideInput( mi_ID + System.getProperty("line.separator")
+                    + "999" + System.getProperty("line.separator")
+                    + "999" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+            );
+            boolean flag = false;
+            MenuManager.retrieveInstance().UpdateMenuItem();
+            MenuItem mi = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            if (mi instanceof  SetMeal
+                    && mi.get_menuItemID() == mi_ID
+                    && mi.get_name().equals("999") &&
+                    mi.get_description().equals("999"))
+            {
+                flag = true;
+            }
+            assertTrue(flag);
+            //MenuManager.retrieveInstance().Teardown(mi.get_menuItemID());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Order(10)
+    @Test
+    void UpdateSetMealFail() {
+        try {
+            MenuItem mi_1 = MenuManager.retrieveInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            mi_ID = mi_1.get_menuItemID();
+            provideInput( mi_ID + System.getProperty("line.separator")
+                    + "999" + System.getProperty("line.separator")
+                    + "999" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + "111" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + "222" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "any key" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + "333" + System.getProperty("line.separator")
+                    + 10 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + 0 + System.getProperty("line.separator")
+            );
+            boolean flag = true;
+            MenuManager.retrieveInstance().UpdateMenuItem();
+            MenuItem mi = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            if (mi instanceof  SetMeal
+                    && mi.get_menuItemID() == mi_ID
+                    && mi.get_name().equals("999") &&
+                    mi.get_description().equals("999"))
+            {
+                flag = false;
+            }
+            assertTrue(flag);
+            //MenuManager.retrieveInstance().Teardown(mi.get_menuItemID());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Order(11)
+    @Test
+    void DeleteSetMealSuccessful() {
+        try {
+            MenuItem mi_1 = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            mi_ID = mi_1.get_menuItemID();
+            provideInput( mi_ID + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+            );
+            boolean flag = true;
+            MenuManager.retrieveInstance().DeleteMenuItem();
+            MenuItem mi = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            if (mi instanceof  SetMeal
+                    && mi.get_menuItemID() == mi_ID
+                    && mi.get_name().equals("999") &&
+                    mi.get_description().equals("999"))
+            {
+                flag = false;
+            }
+            assertTrue(flag);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Order(12)
+    @Test
+    void DeleteSetMealFail() {
+        try {
+            MenuItem mi_1 = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            mi_ID = mi_1.get_menuItemID();
+            provideInput( mi_ID + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+            );
+            boolean flag = true;
+            MenuManager.retrieveInstance().DeleteMenuItem();
+            MenuItem mi = MenuManager.retrieveInstance().FindByNameForMenuItem("999");
+            if (mi instanceof  SetMeal
+                    && mi.get_menuItemID() == mi_ID
+                    && mi.get_name().equals("999") &&
+                    mi.get_description().equals("999"))
+            {
+                flag = false;
+            }
+            assertTrue(flag);
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

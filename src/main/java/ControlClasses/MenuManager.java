@@ -86,12 +86,12 @@ public class MenuManager {
 	 * @return a menu item
 	 */
 	private MenuItem CreateMenuItemFromUserInput() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the menuItem name: ");
-		String name = sc.nextLine();
+
+		String name = InputHandler.getString("Please enter the menuItem name: ");
 
 		System.out.println("Please enter the menuItem description: ");
-		String description = sc.nextLine();
+		String description = InputHandler.getString("Please enter the menuItem description: ");
+
 
 		double price = InputHandler.getDouble(1,100,
 				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
@@ -111,12 +111,10 @@ public class MenuManager {
 	 * @return a set meal
 	 */
 	private SetMeal CreateSetMealFromUserInput() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the menuItem name: ");
-		String name = sc.nextLine();
 
-		System.out.println("Please enter the menuItem description: ");
-		String description = sc.nextLine();
+		String name = InputHandler.getString("Please enter the menuItem name: ");
+
+		String description = InputHandler.getString("Please enter the menuItem description: ");
 
 		double price = InputHandler.getDouble(1,100,
 				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
@@ -134,9 +132,8 @@ public class MenuManager {
 			System.out.println("This section is to create menu item in the set meal.");
 			System.out.println("You are creating "+ ordinal(i) +" menu item in current set meal.");
 			System.out.println("** Minimum sub menu item is 1. Maximum sub menu item is 3. **");
-			System.out.println("Press # to exit or press any key to continue.");
 			System.out.print(PrintColor.RESET);
-			String c = sc.nextLine();
+			String c = InputHandler.getString("Press # to exit or press any key to continue.");
 			if (c.equals("#"))
 			{
 				if(i == 1)
