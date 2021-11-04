@@ -33,18 +33,18 @@ public class SetMeal extends MenuItem {
         System.out.println(" Set Meal Description: "+ this.get_description());
         System.out.print(PrintColor.YELLOW_BOLD);
         System.out.println(" Set Meal Price: " + this.get_price()+ " | "+ " Set Meal Quantity: "+ this.get_quantity().toString());
-        System.out.println(" Set Meal Type: "+ this.get_type());
+        System.out.println(" Type: "+ this.get_type());
         System.out.println("");
         for(MenuItem mi : this._set_of_item)
         {
             System.out.print(PrintColor.GREEN_BOLD);
             System.out.println("   {");
-            System.out.println("     Menu ID: " + mi.get_menuItemID() + " | ");
+//            System.out.println("     Menu ID: " + mi.get_menuItemID() + " | ");
             System.out.print(PrintColor.BLUE);
-            System.out.println("     Set Meal Name: "+ mi.get_name() + " | ");
-            System.out.println("     Set Meal Description: "+ mi.get_description());
+            System.out.println("     Name: "+ mi.get_name() + " | ");
+            System.out.println("     Description: "+ mi.get_description());
             System.out.print(PrintColor.YELLOW_BOLD);
-            System.out.println("     Set Meal Price: " + mi.get_price()+ " | "+ "Quantity: "+ mi.get_quantity().toString());
+            System.out.println("     Price: " + mi.get_price()+ " | "+ "Quantity: "+ mi.get_quantity().toString());
             System.out.println("   }");
         }
         System.out.print(PrintColor.RESET);

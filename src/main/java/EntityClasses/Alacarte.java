@@ -28,7 +28,7 @@ public class Alacarte extends MenuItem {
         System.out.println(" Alacarte Description: "+ this.get_description());
         System.out.print(PrintColor.YELLOW_BOLD);
         System.out.println(" Alacarte Price: " + this.get_price()+ " | "+ " Alacarte Quantity: "+ this.get_quantity().toString());
-        System.out.println(" Alacarte Type: "+ this.get_type());
+        System.out.println(" Type: "+ this.get_type());
 
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
