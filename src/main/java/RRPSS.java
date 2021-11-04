@@ -34,7 +34,7 @@ public class RRPSS {
         //main orchestrating loop
         int opt;
         do {
-            printMenu();
+            printEntryOptions();
             //handle unsafe inputs
             String unsafeInput = sc.next();
             if (unsafeInput.matches("\\d+")){
@@ -65,7 +65,7 @@ public class RRPSS {
     /**
      * Printing menu.
      */
-    public static void printMenu(){
+    public static void printEntryOptions(){
         System.out.println("\n=========================\n" +
                 "1. Menu Management.\n\n" +
                 "2. Reservation Management.\n\n" +

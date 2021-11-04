@@ -38,16 +38,16 @@ public class MenuUI {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    CreateMenuItem();
+                    MenuManager.retrieveInstance().CreateMenuItem();
                     break;
                 case 2:
-                    UpdateMenuItem();
+                    MenuManager.retrieveInstance().UpdateMenuItem();
                     break;
                 case 3:
-                    DeleteMenuItem();
+                    MenuManager.retrieveInstance().DeleteMenuItem();
                     break;
                 case 4:
-                    ViewMenu();
+                    MenuManager.retrieveInstance().ViewMenu();
                 case 5:
                     break;
                 default:
@@ -56,38 +56,4 @@ public class MenuUI {
             }
         } while (choice < 5);
     }
-
-    /**
-     * Create operation from Menu Manager
-     * @throws IOException
-     */
-    public void CreateMenuItem() throws IOException {
-        MenuManager.retrieveInstance().CreateMenuItem();
-    }
-
-    /**
-     * Delete Operation from Menu Manager
-     * @throws IOException
-     */
-    public void DeleteMenuItem() throws IOException {
-        MenuManager.retrieveInstance().DeleteMenuItem();
-    }
-
-    /**
-     * Update operation from Menu Manager
-     * @throws IOException
-     */
-    public void UpdateMenuItem() throws IOException {
-        MenuManager.retrieveInstance().UpdateMenuItem();
-    }
-
-    /**
-     * Retrieve operation from Menu Manager
-     */
-    public void ViewMenu() throws IOException {
-        MenuManager.retrieveInstance().ViewMenu();
-    }
-
-
-
 }
