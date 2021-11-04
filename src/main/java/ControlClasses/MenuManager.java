@@ -174,32 +174,32 @@ public class MenuManager {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
 				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Pork Belly Buns",
-								"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \n" +
-										"topped with powdered sugar. With two eggs served any style, \n" +
+								"Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \n " +
+										"topped with powdered sugar. With two eggs served any style, \n " +
 										"and your choice of smoked bacon or smoked ham.", 98.58, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Kebab",
 								"Two butter croissants of your choice (plain, almond or cheese). " +
-										"\nWith a side of herb butter or house-made hazelnut spread. "
+										"\n With a side of herb butter or house-made hazelnut spread. "
 								, 85.82, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Katsu Curry",
-								"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \nWith a side of roasted potatoes."
+								"Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \n With a side of roasted potatoes."
 								, 36.95, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pork Sausage Roll",
-								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \nWith a side of roasted potatoes, and your choice of toast or croissant."
+								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \n With a side of roasted potatoes, and your choice of toast or croissant."
 								, 80.51, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Pizza",
 								"28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides."
 								, 78.92, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Vodka",
-								"Vodka is traditionally made from potatoes or fermented cereal grains. \nSome brands also make it from other substances like fruit or sugar."+
-										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \nas cocktails like Martini, Bloody Mary and Cosmopolitan."
+								"Vodka is traditionally made from potatoes or fermented cereal grains. \n Some brands also make it from other substances like fruit or sugar."+
+										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \n as cocktails like Martini, Bloody Mary and Cosmopolitan."
 								, 37.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "7up Lemon & Lime",
-								"7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \noffices and workplaces directly from our warehouse in South London. "+
-										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, \nenticing aroma of lemon and lime, fused and dusted with powdered sugar. "
+								"7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \n offices and workplaces directly from our warehouse in South London. "+
+										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, \n enticing aroma of lemon and lime, fused and dusted with powdered sugar. "
 								, 60.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Som Tam",
-								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \nWith a side of roasted potatoes, and your choice of toast or croissant."
+								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \n With a side of roasted potatoes, and your choice of toast or croissant."
 								, 16.78 , 1)
 
 				)
