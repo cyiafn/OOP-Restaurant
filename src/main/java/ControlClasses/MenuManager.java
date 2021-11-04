@@ -194,8 +194,8 @@ public class MenuManager {
 								"Vodka is traditionally made from potatoes or fermented cereal grains. \nSome brands also make it from other substances like fruit or sugar."+
 										"\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \nas cocktails like Martini, Bloody Mary and Cosmopolitan."
 								, 37.39, 1)
-						, new Alacarte(UUID.randomUUID().toString(), "7up Sugar Free Lemon & Lime Can 24 x 330ml",
-								"7 up Sugar Free is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \noffices and workplaces directly from our warehouse in South London. "+
+						, new Alacarte(UUID.randomUUID().toString(), "7up Lemon & Lime",
+								"7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \noffices and workplaces directly from our warehouse in South London. "+
 										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, \nenticing aroma of lemon and lime, fused and dusted with powdered sugar. "
 								, 60.39, 1)
 						, new Alacarte(UUID.randomUUID().toString(), "Som Tam",
