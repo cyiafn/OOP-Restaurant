@@ -138,6 +138,16 @@ public class OrderManager {
         return orderList.size();
     }
 
+    public void checkID() {
+        int id = 1;
+        if(orderList!=null) {
+            for(Order order : orderList){
+                if(order.getOrderID() > id) id = order.getOrderID();
+            }
+        }
+        Order.setIdCount(id+1);
+    }
+
 
 
     public void deleteOrder(Order order) {

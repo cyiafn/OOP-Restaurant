@@ -65,11 +65,11 @@ public class OrderUI {
                     else System.out.println("Order does not exist!");
                     break;
                 case 3:
-                    /*if (OrderManager.getInstance().displayOrder() > 0) {
+                    if (OrderManager.getInstance().displayOrder() > 0) {
                         OrderUI.getInstance().runRemoveOrder();
                     } else {
                         System.out.println("No order made yet!");
-                    }*/
+                    }
                     break;
                 case 4:
                     viewOrder();
@@ -103,7 +103,21 @@ public class OrderUI {
         System.out.println("Enter Reservation ID");
         ReservationID = sc.nextLine();
         System.out.println("");
+        OrderManager.getInstance().checkID();
         Order order = new Order(ReservationID);
+        /*try {
+            var resi = ReservationManager.getInstance().getTodaysCreatedReservations();
+            if(resi.contains(ReservationID)) {
+                order.setReservationID(ReservationID);
+            }
+            //else order.setReservationNum(r.getReservationNum());
+            else {System.out.println("There is no such reservation.");
+                    return;}
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         order.setReservationID(ReservationID);
         updateOrder(order);
         if(order.getOrderedItems().size() == 0) {
@@ -123,6 +137,7 @@ public class OrderUI {
     public void updateOrder(Order order) throws IOException {
         sc = new Scanner(System.in);
         int input;
+        //int idd;
         String id = "";
         order.viewOrder();
         do {
@@ -143,20 +158,23 @@ public class OrderUI {
                     //OrderManager.getInstance().createOrderItem(order, id);
                     //MenuController.retrieveInstance().displayMenu();
                     System.out.println("");
+                    //idd = -1;
                     //String id;
                     //int i = 0;
                     //do {
                         try {
                             System.out.print("Enter Item ID: ");
                             Scanner sc = new Scanner(System.in);
+                            //idd = sc.nextInt();
                             id = sc.nextLine();
                             System.out.println(id);
                             if(id == null) System.out.printf("Invalid input! ");
+                            //if(idd <= 0) System.out.printf("Invalid input! ");
                         } catch (InputMismatchException e) {
                             System.out.printf("Invalid input! ");
                         }
                         sc.nextLine();
-                    //} //while (id != null );
+                    //} while (idd <= 0 );
                     OrderManager.getInstance().createOrderItem(order, id);
                     //System.out.println(id);
                     input = 0;
@@ -165,16 +183,19 @@ public class OrderUI {
                     if(order.getStatus().equals("Ordering")) {
                         if (!(order.getOrderedItems().isEmpty())) {
                             //id = "";
+                            //idd =-1;
                             //do {
                                 try {
                                     System.out.print("Enter Item ID: ");
                                     id = sc.nextLine();
+                                    //idd = sc.nextInt();
                                     if(id == null) System.out.printf("Invalid input! ");
+                                    //if(idd <= 0) System.out.printf("Invalid input! ");
                                 } catch (InputMismatchException e) {
                                     System.out.printf("Invalid input! ");
                                 }
                                 sc.nextLine();
-                            //} while (id <= 0);
+                           // } while (idd <= 0);
                             //MenuItem it = MenuManager.retrieveInstance().FindByIdForMenuItem(id);
                             //System.out.println(it);
                             OrderManager.getInstance().deleteOrderItem(order, id);
@@ -215,6 +236,7 @@ public class OrderUI {
                     break;
                 case 4:
                     if (!(order.getOrderedItems().isEmpty())) {
+                        //idd = -1
                         //id = -1;
                         //do {
                             try {
@@ -247,6 +269,28 @@ public class OrderUI {
         } while (input < 5);
         System.out.println("Done");
         OrderManager.getInstance().savetoDB2();
+    }
+
+    public void runRemoveOrder() throws IOException {
+        sc = new Scanner(System.in);
+        int orderID = -1;
+        do {
+            try {
+                System.out.print("Enter Order ID:");
+                orderID = sc.nextInt();
+                if(orderID <= 0) System.out.printf("Invalid input! ");
+            } catch (InputMismatchException e) {
+                System.out.printf("Invalid input! ");
+            }
+            sc.nextLine();
+        } while (orderID <= 0);
+        Order order = OrderManager.getInstance().retrieveOrder(orderID);
+        if (order != null) {
+            OrderManager.getInstance().deleteOrder(order);
+            System.out.printf("Order %d has been removed.\n", orderID);
+            OrderManager.getInstance().savetoDB2();
+        }
+        else System.out.println("Order does not exist!");
     }
 
     public void viewOrder() {

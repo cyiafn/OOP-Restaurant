@@ -46,6 +46,7 @@ public class Order {
         this.reservationID = reservationID;
         this.orderedItems = orderedItems;
         this.status = status;
+        //idCount = orderID+1;
     }
 
     /*public Order(int oid,String Staff, String date, String reservationID,ArrayList<MenuItem> orderedItems, String status){
@@ -232,17 +233,14 @@ public class Order {
         System.out.println("ID    Staff      Date                       ReservationID                       Status   ");
         System.out.println(toString());
         System.out.println("=================================================================================");
-        System.out.println("ID   Name                          Description                          Price(S$)");
+        System.out.println("ID                                                Name           Price(S$)");
         System.out.println("=================================================================================");
         for (MenuItem item : orderedItems) {
             System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_price());
             //System.out.println(item.get_quantity() +"    \t" + item.get_name() +"    \t" + item.get_price());
-
         }
         System.out.println("=================================================================================");
     }
-
-
 
     public String toString() {
 
