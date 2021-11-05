@@ -49,7 +49,7 @@ public class MenuManager {
 	 *
 	 * @return MenuManger
 	 */
-	public static MenuManager retrieveInstance() throws IOException {
+	public static MenuManager getInstance() throws IOException {
 		if (instance == null) {
 			instance = new MenuManager();
 		}

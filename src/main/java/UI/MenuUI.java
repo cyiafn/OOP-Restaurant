@@ -38,16 +38,16 @@ public class MenuUI {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    MenuManager.retrieveInstance().CreateMenuItem();
+                    MenuManager.getInstance().CreateMenuItem();
                     break;
                 case 2:
-                    MenuManager.retrieveInstance().UpdateMenuItem();
+                    MenuManager.getInstance().UpdateMenuItem();
                     break;
                 case 3:
-                    MenuManager.retrieveInstance().DeleteMenuItem();
+                    MenuManager.getInstance().DeleteMenuItem();
                     break;
                 case 4:
-                    MenuManager.retrieveInstance().ViewMenu();
+                    MenuManager.getInstance().ViewMenu();
                 case 5:
                     break;
                 default:
