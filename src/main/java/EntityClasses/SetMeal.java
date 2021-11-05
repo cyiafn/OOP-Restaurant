@@ -9,9 +9,7 @@ public class SetMeal extends MenuItem {
     String _type = "setmeal";
 
     private ArrayList<MenuItem> _set_of_item ;
-    public SetMeal(String _menuItemID, String _name, String _description, double _price, Integer _quantity) {
-        super(_menuItemID, _name, _description, _price, _quantity);
-    }
+
 
     public SetMeal(String _menuItemID, String _name, String _description, double _price, Integer _quantity, ArrayList<MenuItem> ala) {
         super(_menuItemID, _name, _description, _price, _quantity);
@@ -59,8 +57,6 @@ public class SetMeal extends MenuItem {
         this._type = _type;
     }
 
-
-
     public ArrayList<MenuItem> get_set_of_item() {
         return _set_of_item;
     }
@@ -69,12 +65,6 @@ public class SetMeal extends MenuItem {
         this._set_of_item = _set_of_iteme;
     }
 
-    public MenuItem FindById(String name) {
-
-        MenuItem found_menu_item = _set_of_item.stream().filter(s -> s.get_menuItemID().equals(name)).findFirst().orElse(null);
-
-        return found_menu_item;
-    }
 
 
 }

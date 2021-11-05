@@ -77,7 +77,7 @@ public class Menu {
 
 
 
-        public void insert_single_menu_item_on_single_menu_categroy_with_seat_meal(String fc, MenuItem item) {
+        public void InsertSingleMenuItemOnSingleMenuCategroyWithSeatMeal(String fc, MenuItem item) {
                 for(MenuCategory mc : _menuCategory){
                         if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
