@@ -454,15 +454,15 @@ public class ReservationManager {
 	 * @throws IOException Cannot interface with files
 	 * @throws CsvException Cannot read/write CSV.
 	 */
-	public ArrayList<Reservation> getTodaysCreatedReservations() throws IOException, CsvException {
+	public ArrayList<String> getTodaysCreatedReservations() throws IOException, CsvException {
 		cleanup();
 
 		//get all eligible reservations
-		ArrayList <Reservation> output = new ArrayList<>();
+		ArrayList <String> output = new ArrayList<>();
 		for (ArrayList<Reservation> i: reservations.values()){
 			for (Reservation r: i){
 				if (r.getDt().toLocalDate().equals(LocalDate.now()) && r.getStatus() == ReservationStatus.CREATED && r.getDt().toLocalTime().isAfter(LocalTime.now().minusHours(1))){
-					output.add(r);
+					output.add(r.getReservationID());
 				}
 
 			}

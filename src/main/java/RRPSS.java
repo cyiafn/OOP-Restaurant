@@ -5,9 +5,11 @@
  @since 2021-10-18
 */
 
+import ControlClasses.OrderManager;
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
 import UI.MenuUI;
+import UI.OrderUI;
 import UI.ReservationUI;
 import com.opencsv.exceptions.CsvException;
 
@@ -26,6 +28,7 @@ public class RRPSS {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
         ReservationManager reservationM = null;
+        OrderManager.getInstance().loadinDB();
         try {
             reservationM = new ReservationManager();
         } catch (IOException | CsvException e) {
@@ -54,6 +57,9 @@ public class RRPSS {
                 case 2:
                     ReservationUI.getInstance().display();
                     break;
+                case 3:
+                    OrderUI.getInstance().displayOptions();
+                    break;
                 default:
                     System.out.println("Please enter an integer from 0 - 16!");
                     break;
@@ -69,6 +75,7 @@ public class RRPSS {
         System.out.println("\n=========================\n" +
                 "1. Menu Management.\n\n" +
                 "2. Reservation Management.\n\n" +
+                "3. Order Management.\n\n" +
                 "4. Create promotion.\n" +
                 "5. Update promotion.\n" +
                 "6. Remove promotion.\n\n" +

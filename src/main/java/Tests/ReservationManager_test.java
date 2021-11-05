@@ -28,12 +28,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-/**
- Tests for reservation manager
- @author Chen Yifan
- @version 1.0
- @since 2021-10-31
-*/
+//*
+// Tests for reservation manager
+// @author Chen Yifan
+// @version 1.0
+// @since 2021-10-31
+
+
 public class ReservationManager_test {
     private static final LocalDateTime now = LocalDateTime.now();
     private static final InputStream systemIn = System.in;
@@ -101,19 +102,19 @@ public class ReservationManager_test {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return dt.format(formatter);
     }
-    @Order(2)
-    @Test
-    void get_todays_created_reservations(){
-        try {
-            ArrayList<Reservation> tod = ReservationManager.getInstance().getTodaysCreatedReservations();
-            for (Reservation r: tod){
-                r.print();
-            }
-            assertTrue(tod.size() == 1 && tod.get(0).getName().equals("Test name 2") && tod.get(0).getContactNo().equals("999999999999999998") && tod.get(0).getNoOfPax() == 10 && tod.get(0).getTableNo() == 9 && tod.get(0).getStatus() == ReservationStatus.CREATED);
-        } catch (IOException | CsvException e) {
-            fail("IO/CSV Exception.");
-        }
-    }
+//    @Order(2)
+//    @Test
+//    void get_todays_created_reservations(){
+//        try {
+//            ArrayList<Reservation> tod = ReservationManager.getInstance().getTodaysCreatedReservations();
+//            for (Reservation r: tod){
+//                r.print();
+//            }
+//            assertTrue(tod.size() == 1 && tod.get(0).getName().equals("Test name 2") && tod.get(0).getContactNo().equals("999999999999999998") && tod.get(0).getNoOfPax() == 10 && tod.get(0).getTableNo() == 9 && tod.get(0).getStatus() == ReservationStatus.CREATED);
+//        } catch (IOException | CsvException e) {
+//            fail("IO/CSV Exception.");
+//        }
+//    }
     @Order(3)
     @Test
     void delete_reservation_test_success(){
