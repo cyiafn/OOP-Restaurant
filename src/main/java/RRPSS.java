@@ -6,10 +6,12 @@
 */
 
 import ControlClasses.OrderManager;
+import ControlClasses.PromotionManager;
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
 import UI.MenuUI;
 import UI.OrderUI;
+import UI.PromotionUI;
 import UI.ReservationUI;
 import com.opencsv.exceptions.CsvException;
 
@@ -59,6 +61,9 @@ public class RRPSS {
                     break;
                 case 3:
                     OrderUI.getInstance().displayOptions();
+                    break;
+                case 4:
+                    PromotionUI.getInstance().displayOptions();
                     break;
                 default:
                     System.out.println("Please enter an integer from 0 - 16!");
