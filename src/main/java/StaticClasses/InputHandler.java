@@ -79,7 +79,6 @@ public class InputHandler {
 		do {
 			System.out.println("Please enter your contact number (no spaces or +): ");
 			contactNo = sc.next();
-			System.out.println(contactNo);
 			sc.nextLine();
 			if (contactNo.matches("\\d+")){
 				break;

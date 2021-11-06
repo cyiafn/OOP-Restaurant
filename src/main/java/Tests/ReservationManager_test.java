@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import ControlClasses.ReservationManager;
 import EntityClasses.Reservation;
+import Enumerations.PrintColor;
 import Enumerations.ReservationStatus;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
@@ -15,10 +16,7 @@ import org.junit.jupiter.api.*;
 import org.mockito.internal.util.reflection.Fields;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringBufferInputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Array;
 import java.time.LocalDate;
@@ -28,16 +26,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//*
-// Tests for reservation manager
-// @author Chen Yifan
-// @version 1.0
-// @since 2021-10-31
+/**Tests for reservation manager
+ *@author Chen Yifan
+ *@version 1.0
+ *@since 2021-10-31
+ */
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ReservationManager_test {
     private static final LocalDateTime now = LocalDateTime.now();
     private static final InputStream systemIn = System.in;
+    private static final PrintStream systemOut = System.out;
     private static InputHandler inputHandler;
     private ByteArrayInputStream testIn;
 
@@ -46,9 +46,10 @@ public class ReservationManager_test {
         try{
             inputHandler = new InputHandler();
             ArrayList<Reservation> sampleDat = new ArrayList<>();
-            sampleDat.add(new Reservation("testid1", now.minusMinutes(16), 10, "Test name 1", "999999999999999999", 10, ReservationStatus.CREATED));
-            sampleDat.add(new Reservation("testid2", now, 10, "Test name 2", "999999999999999998", 9, ReservationStatus.CREATED));
-            sampleDat.add(new Reservation("testid18", now, 8, "Test name 18", "999999999999999998", 7, ReservationStatus.CREATED));
+            sampleDat.add(new Reservation("testid1", now.minusMinutes(16).withSecond(0), 10, "Test name 1", "999999999999999999", 10, ReservationStatus.CREATED));
+            sampleDat.add(new Reservation("testid21", now.plusDays(1).withHour(12).withMinute(0).withSecond(0), 10, "Test name 21", "999999999999999999", 9, ReservationStatus.CREATED));
+            sampleDat.add(new Reservation("testid2", now.withSecond(0), 10, "Test name 2", "999999999999999998", 9, ReservationStatus.CREATED));
+            sampleDat.add(new Reservation("testid18", now.withSecond(0), 8, "Test name 18", "999999999999999998", 7, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid3", now.plusDays(10), 10, "Test name 3", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid4", now.plusDays(1).withHour(6).withMinute(0), 10, "Test name 4", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid5", now.plusDays(2).withHour(21).withMinute(0), 10, "Test name 5", "999999999999999998", 9, ReservationStatus.CREATED));
@@ -79,7 +80,7 @@ public class ReservationManager_test {
     @AfterAll
     static void teardown(){
         try {
-            for (int i = 0; i < 21; i ++){
+            for (int i = 0; i < 22; i ++){
                 if (i != 19){
                     Database.removeLine("Reservation.csv", "testid" + i);
                 }
@@ -102,20 +103,7 @@ public class ReservationManager_test {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return dt.format(formatter);
     }
-//    @Order(2)
-//    @Test
-//    void get_todays_created_reservations(){
-//        try {
-//            ArrayList<Reservation> tod = ReservationManager.getInstance().getTodaysCreatedReservations();
-//            for (Reservation r: tod){
-//                r.print();
-//            }
-//            assertTrue(tod.size() == 1 && tod.get(0).getName().equals("Test name 2") && tod.get(0).getContactNo().equals("999999999999999998") && tod.get(0).getNoOfPax() == 10 && tod.get(0).getTableNo() == 9 && tod.get(0).getStatus() == ReservationStatus.CREATED);
-//        } catch (IOException | CsvException e) {
-//            fail("IO/CSV Exception.");
-//        }
-//    }
-    @Order(3)
+    @Order(2)
     @Test
     void delete_reservation_test_success(){
         try {
@@ -227,27 +215,8 @@ public class ReservationManager_test {
             fail("IO/CSV Exception");
         }
     }
-//    @Test
-//    void close_reservation(){
-//        try {
-//            provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") + "1" + System.getProperty("line.separator"));
-//            ReservationManager.getInstance().closeReservation();
-//            ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
-//            boolean flag = false;
-//            for (HashMap<String, String> r: data){
-//                if (r.get("status").equals("COMPLETED") && r.get("reservationID").equals("testid18")){
-//                    flag = true;
-//                    break;
-//                }
-//            }
-//            assertTrue(flag);
-//
-//
-//        } catch (IOException | CsvException e) {
-//            fail("IO/CSV Exception");
-//        }
-//    }
 
+    @Order(6)
     @Test
     void create_reservation_fail_noavail_slots() {
         try {
@@ -268,6 +237,7 @@ public class ReservationManager_test {
             fail("IO/CSV Exception");
         }
     }
+    @Order(7)
     @Test
     void create_reservation_success() {
         try {
@@ -289,4 +259,48 @@ public class ReservationManager_test {
             fail("IO/CSV Exception");
         }
     }
+    @Order(8)
+    @Test
+    void check_reservation_booking_success() throws IOException, CsvException {
+        provideInput("Test name 2" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") +  formatDtToStr(now) + System.getProperty("line.separator") );
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        ReservationManager.getInstance().checkReservation();
+        System.setOut((PrintStream) systemOut);
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenteryourname:Pleaseenteryourcontactnumber(nospacesor+):PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MM1.Reservationfor:Testname2ContactNo:999999999999999998At:"+ formatDtToStr(now).replace(" ", "")+ "For:10paxAssigned:Tableno.9Status:CREATED");
+
+    }
+    @Order(9)
+    @Test
+    void check_table_availability_full() throws IOException, CsvException {
+        provideInput("10" + System.getProperty("line.separator") + formatDtToStr(now.plusDays(3)) + System.getProperty("line.separator") );
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        ReservationManager.getInstance().checkAvailability();
+        System.setOut(systemOut);
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMAvailablebookingtimings.Therearenoslotsavailableforbooking!");
+
+    }
+    @Order(10)
+    @Test
+    void check_table_availability_empty() throws IOException, CsvException {
+        provideInput("10" + System.getProperty("line.separator") + formatDtToStr(now.plusYears(1)) + System.getProperty("line.separator") );
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        ReservationManager.getInstance().checkAvailability();
+        System.setOut(systemOut);
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMReservationsareavailableforthewholeday!");
+    }
+    @Order(11)
+    @Test
+    void check_table_availability_available_space() throws IOException, CsvException {
+        provideInput("9" + System.getProperty("line.separator") + formatDtToStr(now.plusDays(1)) + System.getProperty("line.separator") );
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        ReservationManager.getInstance().checkAvailability();
+        System.setOut(systemOut);
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMAvailablebookingtimings.08:00-10:0014:00-21:00");
+    }
+
+
 }

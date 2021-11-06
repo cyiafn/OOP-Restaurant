@@ -387,10 +387,9 @@ public class ReservationManager {
 		int table = InputHandler.getInt(1, noOfTable, "Please enter the table number: ", "Invalid table number!");
 		LocalDate datetime = InputHandler.getDate(false).toLocalDate();
 		// get everything on that date
-
 		ArrayList<Reservation> curRes = new ArrayList<>();
 		for (Reservation r: reservations.get(table)){
-			if (r.getDt().isAfter(LocalDateTime.now().minusHours(2)) && (r.getStatus() == ReservationStatus.CREATED || r.getStatus() == ReservationStatus.ACTIVE)){
+			if ((r.getDt().toLocalDate().equals(datetime)) && (r.getStatus() == ReservationStatus.CREATED || r.getStatus() == ReservationStatus.ACTIVE)){
 				curRes.add(r);
 			}
 		}
