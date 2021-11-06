@@ -34,12 +34,13 @@ import java.util.Scanner;
 // @version 1.0
 // @since 2021-10-31
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ReservationManager_test {
     private static final LocalDateTime now = LocalDateTime.now();
     private static final InputStream systemIn = System.in;
     private static InputHandler inputHandler;
     private ByteArrayInputStream testIn;
+
     @BeforeAll
     static void init(){
         try{
@@ -54,7 +55,7 @@ public class ReservationManager_test {
             sampleDat.add(new Reservation("testid6", now.plusDays(3).withHour(7), 10, "Test name 6", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid7", now.plusDays(3).withHour(10), 10, "Test name 7", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid8", now.plusDays(3).withHour(13), 10, "Test name 8", "999999999999999998", 9, ReservationStatus.CREATED));
-            sampleDat.add( new Reservation("testid9", now.plusDays(3).withHour(16), 10, "Test name 9", "999999999999999998", 9, ReservationStatus.CREATED));
+            sampleDat.add(new Reservation("testid9", now.plusDays(3).withHour(16), 10, "Test name 9", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid10", now.plusDays(3).withHour(19), 10, "Test name 10", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid11", now.plusDays(3).withHour(21), 10, "Test name 11", "999999999999999998", 9, ReservationStatus.CREATED));
             sampleDat.add(new Reservation("testid12", now.plusDays(3).withHour(7), 10, "Test name 12", "999999999999999998", 10, ReservationStatus.CREATED));
@@ -78,7 +79,6 @@ public class ReservationManager_test {
     @AfterAll
     static void teardown(){
         try {
-
             for (int i = 0; i < 21; i ++){
                 if (i != 19){
                     Database.removeLine("Reservation.csv", "testid" + i);
@@ -227,26 +227,26 @@ public class ReservationManager_test {
             fail("IO/CSV Exception");
         }
     }
-    @Test
-    void close_reservation(){
-        try {
-            provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") + "1" + System.getProperty("line.separator"));
-            ReservationManager.getInstance().closeReservation();
-            ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
-            boolean flag = false;
-            for (HashMap<String, String> r: data){
-                if (r.get("status").equals("COMPLETED") && r.get("reservationID").equals("testid18")){
-                    flag = true;
-                    break;
-                }
-            }
-            assertTrue(flag);
-
-
-        } catch (IOException | CsvException e) {
-            fail("IO/CSV Exception");
-        }
-    }
+//    @Test
+//    void close_reservation(){
+//        try {
+//            provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") + "1" + System.getProperty("line.separator"));
+//            ReservationManager.getInstance().closeReservation();
+//            ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
+//            boolean flag = false;
+//            for (HashMap<String, String> r: data){
+//                if (r.get("status").equals("COMPLETED") && r.get("reservationID").equals("testid18")){
+//                    flag = true;
+//                    break;
+//                }
+//            }
+//            assertTrue(flag);
+//
+//
+//        } catch (IOException | CsvException e) {
+//            fail("IO/CSV Exception");
+//        }
+//    }
 
     @Test
     void create_reservation_fail_noavail_slots() {

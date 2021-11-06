@@ -169,13 +169,48 @@ public class ReservationManager {
 	}
 
 	/**
-	 * Orchestrating function to close a reservation when someone is done with food.
-	 * @return the id of the reservation.
+	 * Function to return the table number based on reservationid
+	 * @param reservationId reservation unique identifier
+	 * @return table number, -1 if don't have such reservation
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	public String closeReservation() throws IOException, CsvException {
-		return updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE);
+	public int getTableNumber(String reservationId) throws IOException, CsvException {
+		cleanup();
+		for (int a: reservations.keySet()){
+			for (Reservation r: reservations.get(a)){
+				if (r.getReservationID().equals(reservationId)){
+					return a;
+				}
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * function to close a reservation when someone is done with food.
+	 * @return successful close or not
+	 * @throws IOException IO file read exception
+	 * @throws CsvException CSV file read exception
+	 */
+	public boolean closeReservation(String reservationId) throws IOException, CsvException {
+		cleanup();
+		for (int a: reservations.keySet()){
+			for (Reservation r: reservations.get(a)){
+				if (r.getReservationID().equals(reservationId)){
+					if (r.getStatus() == ReservationStatus.ACTIVE){
+						r.setStatus(ReservationStatus.COMPLETED);
+						Database.updateLine(reservationFile, reservationId, r.getLineCSVFormat());
+						return true;
+					}
+					else{
+						return false;
+					}
+
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
