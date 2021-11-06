@@ -65,19 +65,19 @@ public class Menu {
          * @param fc
          * @return void
          */
-        public void InsertSingleMenuItemOnSingleMenuCategroy(String fc, MenuItem item) {
+        public void insertSingleMenuItemOnSingleMenuCategroy(String fc, MenuItem item) {
 
                 for(MenuCategory mc : _menuCategory){
                         if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
-                                mc.InsertSingleMenuItem(item);
+                                mc.insertSingleMenuItem(item);
                         }
                 }
         }
 
 
 
-        public void InsertSingleMenuItemOnSingleMenuCategroyWithSeatMeal(String fc, MenuItem item) {
+        public void insertSingleMenuItemOnSingleMenuCategroyWithSeatMeal(String fc, MenuItem item) {
                 for(MenuCategory mc : _menuCategory){
                         if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
@@ -124,7 +124,7 @@ public class Menu {
                         if(mc.findById(item_id)!= null){
                                 MenuItem mi= mc.findById(item_id);
                                 mi.print();
-                                mc.DeleteSingleMenuItem(mi);
+                                mc.deleteSingleMenuItem(mi);
                                 return 1;
                         }
                 }
@@ -189,8 +189,8 @@ public class Menu {
         public MenuItem findByNameForMenuItem(String name){
                 MenuItem mi = new MenuItem();
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindByName(name)!= null){
-                                mi= mc.FindByName(name);
+                        if(mc.findByName(name)!= null){
+                                mi= mc.findByName(name);
                                 return mi;
                         }
                 }

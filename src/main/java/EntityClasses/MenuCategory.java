@@ -26,7 +26,7 @@ public class MenuCategory {
      * Insert Menu Item into the Menu
      * @param item
      */
-    public void InsertSingleMenuItem(MenuItem item) {
+    public void insertSingleMenuItem(MenuItem item) {
         this._menuItem.add(item);
     }
 
@@ -38,7 +38,7 @@ public class MenuCategory {
      * Delete Menu Item in the Menu
      * @param item
      */
-    public void DeleteSingleMenuItem(MenuItem item) {
+    public void deleteSingleMenuItem(MenuItem item) {
         // searching for the item id
         this._menuItem.remove(item);
     }
@@ -68,7 +68,7 @@ public class MenuCategory {
      * @param name
      * @return
      */
-    public MenuItem FindByName(String name) {
+    public MenuItem findByName(String name) {
 
         MenuItem found_menu_item = _menuItem.stream().filter(s -> s.get_name().equals(name)).findFirst().orElse(null);
 

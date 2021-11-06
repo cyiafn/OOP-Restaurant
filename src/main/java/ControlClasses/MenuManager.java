@@ -224,7 +224,7 @@ public class MenuManager {
 						"which prepare by our michelin 5 star chef : Gordan Ramsay.", mc_arr);
 
 
-		mymenu.InsertSingleMenuItemOnSingleMenuCategroy("MAINCOURSE",
+		mymenu.insertSingleMenuItemOnSingleMenuCategroy("MAINCOURSE",
 				new SetMeal(UUID.randomUUID().toString(), "Pineapple and roquefort salad",
 						"A crunchy salad featuring fresh pineapple and roquefort",
 						108,1,
@@ -523,7 +523,7 @@ public class MenuManager {
 			// Take in user input for menu item creation
 			MenuItem mi = createAlacarteFromUserInput();
 			Menu m = this.get_menu();
-			m.InsertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
+			m.insertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
 			this.set_menu(m);
 		}
 		else if (type==2)
@@ -531,7 +531,7 @@ public class MenuManager {
 			// Take in user input for menu item creation
 			MenuItem mi = createSetMealFromUserInput();
 			Menu m = this.get_menu();
-			m.InsertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
+			m.insertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
 			this.set_menu(m);
 		}
 		mc.print();
