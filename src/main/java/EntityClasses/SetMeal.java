@@ -16,10 +16,6 @@ public class SetMeal extends MenuItem {
         _set_of_item = ala;
     }
 
-    public void insert_seat_meal_menu_item(MenuItem mi) {
-        this._set_of_item.add((mi));
-    }
-
     @Override
     public void print() {
         System.out.println(" -------------------------------");

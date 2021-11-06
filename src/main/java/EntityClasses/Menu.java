@@ -76,21 +76,6 @@ public class Menu {
         }
 
 
-
-        public void insertSingleMenuItemOnSingleMenuCategroyWithSeatMeal(String fc, MenuItem item) {
-                for(MenuCategory mc : _menuCategory){
-                        if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
-                        {
-                                for(MenuItem mi : mc.get_menuItem()){
-                                        if (mi instanceof SetMeal) {
-                                                SetMeal sm = (SetMeal)mi;
-                                                sm.insert_seat_meal_menu_item(item);
-                                        }
-                                }
-                        }
-                }
-        }
-
         /**
          * Delete function will search though the menu item and delete it
          * @param item_id
