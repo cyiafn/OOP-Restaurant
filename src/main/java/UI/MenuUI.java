@@ -1,10 +1,12 @@
 package UI;
 
 import ControlClasses.MenuManager;
+import Interfaces.UI;
+
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MenuUI {
+public class MenuUI implements UI {
 
     private static MenuUI instance = null;
     Scanner sc = new Scanner(System.in);
