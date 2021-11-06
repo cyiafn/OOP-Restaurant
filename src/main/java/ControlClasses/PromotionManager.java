@@ -14,7 +14,7 @@ public class PromotionManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public Menu ViewMenuItem(Object aMenuItemID) {
+	public Menu viewMenuItem(Object aMenuItemID) {
 		throw new UnsupportedOperationException();
 	}
 }

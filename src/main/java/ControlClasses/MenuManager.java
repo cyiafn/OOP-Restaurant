@@ -62,7 +62,7 @@ public class MenuManager {
 	 * Return Alacarte menu item
 	 * @return an Alacarte menu item
 	 */
-	private Alacarte CreateAlacarteFromUserInput() {
+	private Alacarte createAlacarteFromUserInput() {
 		String name = InputHandler.getString("Please enter the menuItem name: ");
 
 		String description = InputHandler.getString("Please enter the menuItem description: ");
@@ -85,7 +85,7 @@ public class MenuManager {
 	 * Return menu item
 	 * @return a menu item
 	 */
-	private MenuItem CreateMenuItemFromUserInput() {
+	private MenuItem createMenuItemFromUserInput() {
 
 		String name = InputHandler.getString("Please enter the menuItem name: ");
 
@@ -110,7 +110,7 @@ public class MenuManager {
 	 * Return SetMeal menu item
 	 * @return a set meal
 	 */
-	private SetMeal CreateSetMealFromUserInput() {
+	private SetMeal createSetMealFromUserInput() {
 
 		String name = InputHandler.getString("Please enter the menuItem name: ");
 
@@ -145,7 +145,7 @@ public class MenuManager {
 				}
 			}
 			else{
-				MenuItem mi=CreateMenuItemFromUserInput();
+				MenuItem mi=createMenuItemFromUserInput();
 				list_of_mi.add(mi);
 			}
 			i++;
@@ -170,7 +170,7 @@ public class MenuManager {
 	 *
 	 * @return a Menu
 	 */
-	public Menu CreateSingleMenuWhenNoMenuExisted() {
+	public Menu createSingleMenuWhenNoMenuExisted() {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
 				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Pork Belly Buns",
@@ -394,7 +394,7 @@ public class MenuManager {
 		{
 			// Create default menu and write your json file
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
-			Menu menu = CreateSingleMenuWhenNoMenuExisted();
+			Menu menu = createSingleMenuWhenNoMenuExisted();
 			Database.WriteToJsonFile(menu, filename.trim());
 			System.out.println("Welcome to " + menu.get_name());
 		}
@@ -444,7 +444,7 @@ public class MenuManager {
 	 *
 	 * @return return a string, Alacarte / Set Meal
 	 */
-	public int GetTypeOfFoodItem() {
+	public int getTypeOfFoodItem() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the type of Menu Item you want to create: ");
 		System.out.println("1 for alacarte , 2 for set meal ");
@@ -456,7 +456,7 @@ public class MenuManager {
 	/**
 	 * Helper function to view Menu
 	 */
-	public void ViewMenu() {
+	public void viewMenu() {
 		for(MenuCategory mc : this._menu.get_menuCategory()){
 			mc.print();
 		}
@@ -494,7 +494,7 @@ public class MenuManager {
 	 *
 	 * @throws IOException, cause this function write to json text file
 	 */
-	public void CreateMenuItem() throws IOException {
+	public void createMenuItem() throws IOException {
 		// Asking which category you want to choose
 		// Display the Hashmap of the category
 		createHashMap();
@@ -516,12 +516,12 @@ public class MenuManager {
 		}
 
 		// Ask the user for the type of menu item
-		int type = GetTypeOfFoodItem();
+		int type = getTypeOfFoodItem();
 		System.out.println(type);
 		if(type==1 )
 		{
 			// Take in user input for menu item creation
-			MenuItem mi = CreateAlacarteFromUserInput();
+			MenuItem mi = createAlacarteFromUserInput();
 			Menu m = this.get_menu();
 			m.InsertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
 			this.set_menu(m);
@@ -529,7 +529,7 @@ public class MenuManager {
 		else if (type==2)
 		{
 			// Take in user input for menu item creation
-			MenuItem mi = CreateSetMealFromUserInput();
+			MenuItem mi = createSetMealFromUserInput();
 			Menu m = this.get_menu();
 			m.InsertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
 			this.set_menu(m);
@@ -547,21 +547,21 @@ public class MenuManager {
 	 * Delete and create the set meal if you need to change the sub meal item
 	 * @throws IOException
 	 */
-	public void UpdateMenuItem() throws IOException {
+	public void updateMenuItem() throws IOException {
 		String id = InputHandler.getString("Please type in the menu item id that you wish to update.");
 
-		int res_find=FindById(id);
+		int res_find=findById(id);
 		if(res_find== 1)
 		{
 			MenuItem mi = new MenuItem();
 			int type = this._menu.GetTypeByID(id);
 			if(type == 1)
 			{
-				mi = CreateAlacarteFromUserInput();
+				mi = createAlacarteFromUserInput();
 			}
 			else if (type ==2 )
 			{
-				mi = CreateSetMealFromUserInput();
+				mi = createSetMealFromUserInput();
 			}
 
 			Menu m = this.get_menu();
@@ -581,11 +581,11 @@ public class MenuManager {
 	 * Will not search though the sub meal menu item
 	 * @throws IOException
 	 */
-	public void DeleteMenuItem() throws IOException {
+	public void deleteMenuItem() throws IOException {
 		// Ask delete menu item
 		String id = InputHandler.getString("Please type in the menu item id that you wish to delete.");
 
-		int res_find=FindById(id);
+		int res_find=findById(id);
 		if(res_find== 1)
 		{
 			Menu m = this.get_menu();
@@ -604,8 +604,8 @@ public class MenuManager {
 	 * Will not search though the sub meal menu item
 	 * @throws IOException
 	 */
-	public void Teardown(String id) throws IOException {
-		int res_find=FindById(id);
+	public void teardown(String id) throws IOException {
+		int res_find=findById(id);
 		if(res_find== 1)
 		{
 			Menu m = this.get_menu();
@@ -643,8 +643,8 @@ public class MenuManager {
 	 * @param id , Menu Item ID
 	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
 	 */
-	public int FindById(String id){
-		int res = _menu.FindById(id);
+	public int findById(String id){
+		int res = _menu.findById(id);
 		if(res==0)
 		{
 			System.out.println(" -------------------------------");
@@ -672,13 +672,13 @@ public class MenuManager {
 	 * @param id , Menu Item
 	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
 	 */
-	public MenuItem FindByIdForMenuItem(String id){
-		MenuItem res = _menu.FindByIdForMenuItem(id);
+	public MenuItem findByIdForMenuItem(String id){
+		MenuItem res = _menu.findByIdForMenuItem(id);
 		return res;
 	}
 
-	public MenuItem FindByNameForMenuItem(String name) {
-		MenuItem res = _menu.FindByNameForMenuItem(name);
+	public MenuItem findByNameForMenuItem(String name) {
+		MenuItem res = _menu.findByNameForMenuItem(name);
 		return res;
 	}
 

@@ -48,7 +48,7 @@ public class MenuCategory {
      * @param id
      * @return a menu item
      */
-    public MenuItem FindById(String id) {
+    public MenuItem findById(String id) {
         return  _menuItem.stream().filter(s ->
                 s.get_menuItemID().equals(id)
         ).findFirst().orElse(null);
@@ -80,7 +80,7 @@ public class MenuCategory {
      * @param mi
      * @param mim
      */
-    public void UpdateMenuItem(MenuItem mi , MenuItem mim) {
+    public void updateMenuItem(MenuItem mi , MenuItem mim) {
         int index= this._menuItem.indexOf(mi);
 //        mi.set_name(mim.get_name());
 //        mi.set_description(_description);

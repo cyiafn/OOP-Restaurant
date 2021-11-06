@@ -46,7 +46,7 @@ public class MenuManager_test {
     }
 
     @AfterAll
-    static void Teardown() {
+    static void teardown() {
         Database.DeleteFile("csv/menu.json");
     }
 
@@ -71,14 +71,14 @@ public class MenuManager_test {
                     + 0 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().CreateMenuItem();
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("111");
+            MenuManager.getInstance().createMenuItem();
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("111");
             if(mi_1.get_name()=="111" && mi_1.get_description()=="111" && mi_1 instanceof  Alacarte)
             {
                 flag=false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,8 +96,8 @@ public class MenuManager_test {
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = false;
-            MenuManager.getInstance().CreateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuManager.getInstance().createMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
                 if (mi instanceof  Alacarte
                         && mi.get_name().equals("Steamed Truffle & Pork Xiao Long Bao") &&
                         mi.get_description().equals("Made in Truffle & Pork"))
@@ -105,7 +105,7 @@ public class MenuManager_test {
                     flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -117,7 +117,7 @@ public class MenuManager_test {
     @Test
     void UpdateAlacarteSuccessful() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -127,8 +127,8 @@ public class MenuManager_test {
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = false;
-            MenuManager.getInstance().UpdateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().updateMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -137,7 +137,7 @@ public class MenuManager_test {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -147,7 +147,7 @@ public class MenuManager_test {
     @Test
     void UpdateAlacarteFail() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -157,8 +157,8 @@ public class MenuManager_test {
                     + 0 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().UpdateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().updateMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -167,7 +167,7 @@ public class MenuManager_test {
                 flag = false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,14 +178,14 @@ public class MenuManager_test {
     @Test
     void DeleteAlacarteSuccessful() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().DeleteMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().deleteMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -205,14 +205,14 @@ public class MenuManager_test {
     @Test
     void DeleteAlacarteFail() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().DeleteMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().deleteMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -255,15 +255,15 @@ public class MenuManager_test {
                     + 0 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().CreateMenuItem();
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("111");
+            MenuManager.getInstance().createMenuItem();
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("111");
             if(mi_1.get_name()=="111" && mi_1.get_description()=="111"
                     && mi_1 instanceof  SetMeal)
             {
                 flag=false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -296,8 +296,8 @@ public class MenuManager_test {
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = false;
-            MenuManager.getInstance().CreateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuManager.getInstance().createMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             if (mi instanceof SetMeal
                     && mi.get_name().equals("Steamed Truffle & Pork Xiao Long Bao") &&
                     mi.get_description().equals("Made in Truffle & Pork"))
@@ -305,7 +305,7 @@ public class MenuManager_test {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -316,7 +316,7 @@ public class MenuManager_test {
     @Test
     void UpdateSetMealSuccessful() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -341,8 +341,8 @@ public class MenuManager_test {
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = false;
-            MenuManager.getInstance().UpdateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().updateMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -351,7 +351,7 @@ public class MenuManager_test {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -361,7 +361,7 @@ public class MenuManager_test {
     @Test
     void UpdateSetMealFail() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -386,8 +386,8 @@ public class MenuManager_test {
                     + 0 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().UpdateMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().updateMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -396,7 +396,7 @@ public class MenuManager_test {
                 flag = false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().Teardown(mi.get_menuItemID());
+            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -406,14 +406,14 @@ public class MenuManager_test {
     @Test
     void DeleteSetMealSuccessful() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().DeleteMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().deleteMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&
@@ -433,14 +433,14 @@ public class MenuManager_test {
     @Test
     void DeleteSetMealFail() {
         try {
-            MenuItem mi_1 = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
             mi_ID = mi_1.get_menuItemID();
             provideInput( mi_ID + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
-            MenuManager.getInstance().DeleteMenuItem();
-            MenuItem mi = MenuManager.getInstance().FindByNameForMenuItem("999");
+            MenuManager.getInstance().deleteMenuItem();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
                     && mi.get_menuItemID() == mi_ID
                     && mi.get_name().equals("999") &&

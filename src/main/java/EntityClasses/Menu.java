@@ -99,7 +99,7 @@ public class Menu {
         public int GetTypeByID(String item_id) {
 
                 for(MenuCategory mc : _menuCategory){
-                        MenuItem mi= mc.FindById(item_id);
+                        MenuItem mi= mc.findById(item_id);
                         if(mi instanceof Alacarte)
                         {
                                 Alacarte ac = (Alacarte) mi;
@@ -121,8 +121,8 @@ public class Menu {
         public int Delete(String item_id) {
 
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindById(item_id)!= null){
-                                MenuItem mi= mc.FindById(item_id);
+                        if(mc.findById(item_id)!= null){
+                                MenuItem mi= mc.findById(item_id);
                                 mi.print();
                                 mc.DeleteSingleMenuItem(mi);
                                 return 1;
@@ -140,10 +140,10 @@ public class Menu {
         public int Update(String item_id, MenuItem mim) {
 
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindById(item_id)!= null) {
-                                MenuItem mi = mc.FindById(item_id);
+                        if(mc.findById(item_id)!= null) {
+                                MenuItem mi = mc.findById(item_id);
                                 mi.print();
-                                mc.UpdateMenuItem(mi, mim);
+                                mc.updateMenuItem(mi, mim);
                                 return 1;
                         }
                 }
@@ -155,10 +155,10 @@ public class Menu {
          * @param id
          * @return int , return 1 or 0, 1 is success, 0 is failed
          */
-        public int FindById(String id){
+        public int findById(String id){
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindById(id)!= null){
-                                MenuItem mi= mc.FindById(id);
+                        if(mc.findById(id)!= null){
+                                MenuItem mi= mc.findById(id);
                                 return 1;
                         }
                 }
@@ -170,11 +170,11 @@ public class Menu {
          * @param id
          * @return MenuItem
          */
-        public MenuItem FindByIdForMenuItem(String id){
+        public MenuItem findByIdForMenuItem(String id){
                 MenuItem mi = new MenuItem();
                 for(MenuCategory mc : _menuCategory){
-                        if(mc.FindById(id)!= null){
-                                mi= mc.FindById(id);
+                        if(mc.findById(id)!= null){
+                                mi= mc.findById(id);
                                 return mi;
                         }
                 }
@@ -186,7 +186,7 @@ public class Menu {
          * @param name
          * @return MenuItem
          */
-        public MenuItem FindByNameForMenuItem(String name){
+        public MenuItem findByNameForMenuItem(String name){
                 MenuItem mi = new MenuItem();
                 for(MenuCategory mc : _menuCategory){
                         if(mc.FindByName(name)!= null){

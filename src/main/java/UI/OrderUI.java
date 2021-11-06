@@ -154,7 +154,7 @@ public class OrderUI {
             input = sc.nextInt();
             switch (input) {
                 case 1:
-                    MenuManager.getInstance().ViewMenu();
+                    MenuManager.getInstance().viewMenu();
                     //OrderManager.getInstance().createOrderItem(order, id);
                     //MenuController.retrieveInstance().displayMenu();
                     System.out.println("");
@@ -196,7 +196,7 @@ public class OrderUI {
                                 }
                                 sc.nextLine();
                            // } while (idd <= 0);
-                            //MenuItem it = MenuManager.retrieveInstance().FindByIdForMenuItem(id);
+                            //MenuItem it = MenuManager.retrieveInstance().findByIdForMenuItem(id);
                             //System.out.println(it);
                             OrderManager.getInstance().deleteOrderItem(order, id);
                             /*if (it == null)

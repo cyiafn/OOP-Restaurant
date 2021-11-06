@@ -13,11 +13,11 @@ public class MenuManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public void ViewMenu() {
+	public void viewMenu() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void CreateMenuItem() {
+	public void createMenuItem() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -25,7 +25,7 @@ public class MenuManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public Menu ViewMenuItem(Object aMenuItemID) {
+	public Menu viewMenuItem(Object aMenuItemID) {
 		throw new UnsupportedOperationException();
 	}
 }

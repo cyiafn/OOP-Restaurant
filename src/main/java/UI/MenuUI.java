@@ -40,16 +40,16 @@ public class MenuUI implements UI {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    MenuManager.getInstance().CreateMenuItem();
+                    MenuManager.getInstance().createMenuItem();
                     break;
                 case 2:
-                    MenuManager.getInstance().UpdateMenuItem();
+                    MenuManager.getInstance().updateMenuItem();
                     break;
                 case 3:
-                    MenuManager.getInstance().DeleteMenuItem();
+                    MenuManager.getInstance().deleteMenuItem();
                     break;
                 case 4:
-                    MenuManager.getInstance().ViewMenu();
+                    MenuManager.getInstance().viewMenu();
                 case 5:
                     break;
                 default:
