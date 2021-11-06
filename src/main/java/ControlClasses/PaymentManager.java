@@ -6,6 +6,7 @@ import EntityClasses.Order;
 import Enumerations.PrintColor;
 import Enumerations.TaxDiscount;
 import StaticClasses.Database;
+import com.opencsv.exceptions.CsvException;
 
 
 import java.io.IOException;
@@ -33,114 +34,129 @@ public class PaymentManager {
         return instance;
     }
 
-    public void createInvoice(Order order){
-        ArrayList<MenuItem> itemList = order.getOrderedItems();
-        Invoice invoice = new Invoice(order.getOrderID(), order);
-        invoice.setMemberStatus(Invoice.Membership.IS_MEMBER);
-        computeSubTotal(invoice);
-        computeTotal(invoice);
-        displayPayment(invoice);
-        System.out.println("Invoice Created");
-    }
+//    public void createInvoice(Order order){
+//        ArrayList<MenuItem> itemList = order.getOrderedItems();
+//        Invoice invoice = new Invoice(order.getOrderID(), order);
+//        invoice.setMemberStatus(Invoice.Membership.IS_MEMBER);
+//        computeSubTotal(invoice);
+//        computeTotal(invoice);
+//        displayPayment(invoice);
+//        System.out.println("Invoice Created");
+//    }
 
 
-    public void createInvoice(Order order, int isMember){
+    public void createInvoice(Order order, int isMember) throws IOException, CsvException {
         ArrayList<MenuItem> itemList = order.getOrderedItems();
-        Invoice invoice = new Invoice(order.getOrderID(), order);
+        Invoice invoice = new Invoice(order);
         if(isMember==1){
             invoice.setMemberStatus(Invoice.Membership.IS_MEMBER);
         }
-        computeSubTotal(invoice);
-        computeTotal(invoice);
+        retrieveTableNo(invoice);
+        computeInvoice(invoice);
         displayPayment(invoice);
+       // savetoDB(invoice);
         System.out.println("Invoice Created");
     }
 
-    public Invoice retrieveInvoice(int invoiceID) {
-        for (Invoice invoice : invoiceList) {
-            if ( invoice.getInvoiceId() == invoiceID)
-                return invoice;
-        }
-        return null;
+//    public Invoice retrieveInvoice(int invoiceID) {
+//        for (Invoice invoice : invoiceList) {
+//            if ( invoice.getInvoiceId() == invoiceID)
+//                return invoice;
+//        }
+//        return null;
+//    }
+
+
+    public int retrieveTableNo(Invoice invoice) throws IOException, CsvException {
+        String reservationId = invoice.getOrders().getReservationID();
+        int tableNo = ReservationManager.getInstance().getTableNumber(reservationId);
+        invoice.setTableNo(tableNo);
+        return tableNo;
     }
 
-
-
-    public double computeSubTotal(Invoice invoice){
-        // compute the subtotal of the invoice
+    public void computeInvoice(Invoice invoice){
         double subTotal = 0;
-        //ArrayList<Order> orders = invoice.getOrders();
+        double memberDiscAmt = 0;
+        double subTotalAD = 0;
+        double gstAmt;
+        double svcChargeAmt;
+        double total;
+
         for(MenuItem item: invoice.getOrders().getOrderedItems()) {
-                    subTotal += item.get_price();
-                }
+            subTotal += item.get_price() * item.get_quantity();
+        }
+        if( invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER ){
+            memberDiscAmt = subTotal * memberDiscount; //Assume Member discount is applied on Subtotal before Tax
+            subTotalAD = subTotal - memberDiscAmt;
+        }
+        else
+            subTotalAD = subTotal;
+        gstAmt = subTotalAD * gst;
+        svcChargeAmt = subTotalAD * serviceCharge;
+        total = subTotalAD + gstAmt + svcChargeAmt ;
         invoice.setSubTotal(subTotal);
-        return subTotal;
-    }
-
-    public double computeTotal(Invoice invoice){
-        double subTotal = invoice.getSubTotal();
-        double total = subTotal + (subTotal * gst) + (subTotal * serviceCharge);
-        //Check if member from Reservation
-        if( invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER )
-            total *= (1-memberDiscount);
+        invoice.setMemberDiscAmt(memberDiscAmt);
+        invoice.setSubtotalAD(subTotalAD);
+        invoice.setGstAmt(gstAmt);
+        invoice.setSvcChargeAmt(svcChargeAmt);
         invoice.setTotal(total);
-        return total;
     }
-
 
     public void displayPayment(Invoice invoice){
+        String displayInvoiceId = invoice.getInvoiceId();
+        String displayStaff = invoice.getOrders().getStaff();
+        String displayDate = invoice.getDate();
+        int displayTableNo = invoice.getTableNo();
+
         double displaySubtotal = invoice.getSubTotal();
-        double displaySvcCharge = invoice.getSubTotal() * serviceCharge;
-        double displayGST = invoice.getSubTotal() * gst;
-        double displayMemberDiscount = invoice.getSubTotal() * memberDiscount;
+        double displaySubtotalAD = invoice.getSubTotalAD();
+        double displaySvcCharge = invoice.getSvcChargeAmt();
+        double displayGST = invoice.getGstAmt();
+        double displayMemberDiscount = invoice.getMemberDiscAmt();
+
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println(
-                "==============================\n" + "\tMichelin Western Restaurant\n" + "=============================="
+                         "======================================================================================\n"
+                                           + "\t\t\tMichelin Western Restaurant\n"
+                        + "======================================================================================\n"
         );
         System.out.print(PrintColor.RESET);
+        System.out.printf("Invoice ID: %s                                                       Date: %s\n", displayInvoiceId, displayDate);
+        System.out.printf("    Server: %s                                                   Table No.: %s\n", displayStaff, displayTableNo);
+        System.out.println("--------------------------------------------------------------------------------------");
         for(MenuItem item: invoice.getOrders().getOrderedItems()){
             System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_quantity()+"    \t" + item.get_price());
         }
-        System.out.printf("SUBTOTAL                                                                %.2f\n", displaySubtotal);
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("SUBTOTAL                                                                 %.2f\n", displaySubtotal);
+        if(invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER){
+            System.out.printf("%.2f%% ADDITIONAL MEMBER DISCOUNT                                                     - %.2f\n", memberDiscount*100, displayMemberDiscount);
+            System.out.printf("SUBTOTAL AFTER DISCOUNT                                                                 %.2f\n",displaySubtotalAD);
+        }
+        else
+            System.out.println("NOT MEMBER");
+
         System.out.printf("10%% SVC CHG                                                             %.2f\n", displaySvcCharge);
         System.out.printf("7%% GST                                                                  %.2f\n", displayGST);
 
-        System.out.println("---------------------------------------------------------------------------------");
-        if(invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER)
-            System.out.printf("%.2f%% ADDITIONAL MEMBER DISCOUNT                                                            - %.2f\n", memberDiscount*100, displayMemberDiscount);
-        else
-            System.out.println("NOT MEMBER");
+        System.out.println("--------------------------------------------------------------------------------------");
+
         System.out.printf("TOTAL                                                                   %.2f\n", invoice.getTotal());
+        System.out.println("======================================================================================\n");
     }
 
-//
-//    public void loadinDB() {
-//        PaymentDB paymentdb = new PaymentDB();
-//        try {
-//            this.paymentList = paymentdb.read(fileName);
-//            paymentdb.save(fileName, paymentList);
-//            checkID(); // ADDED TO CHECK
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void savetoDB() {
-//        PaymentDB paymentdb = new PaymentDB();
-//        try {
-//            paymentdb.save(fileName, paymentList);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-   public void savetoDB2() throws IOException {
-    //OrderDB orderdb = new OrderDB();
-    Database.saveOrder(invoiceFile, invoiceList);
-}
-    public void saveInvoice(Invoice invoice) throws IOException {
-        Database.writeLine(invoiceFile, invoice.getLineCSVFormat());
+
+   public void savetoDB(Invoice invoice) throws IOException {
+    Database.savePayment(invoiceFile, invoice);
     }
+
+//    public void loadFromDB() throws IOException {
+//        this.invoiceList = Database.readInvoice(invoiceFile);
+//    }
+
+//    public void saveInvoice(Invoice invoice) throws IOException {
+//        Database.writeLine(invoiceFile, invoice.getLineCSVFormat());
+//    }
 
 //    public boolean displayOrder() {
 //        Set<Integer> s = new HashSet<>();

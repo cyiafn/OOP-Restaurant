@@ -4,6 +4,7 @@ import ControlClasses.OrderManager;
 import ControlClasses.PaymentManager;
 import EntityClasses.Order;
 import Enumerations.PrintColor;
+import Interfaces.UI;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 
@@ -12,7 +13,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.*;
 
-public class PaymentUI {
+public class PaymentUI implements UI {
     public static PaymentUI instance = null;
     int c;
     Scanner sc = new Scanner(System.in);
@@ -72,7 +73,7 @@ public class PaymentUI {
     }
 
     public void viewInvoice(){
-
+//        double in
     }
 
     public void revenueReport(){
