@@ -55,7 +55,7 @@ public class RRPSS {
                     MenuUI.getInstance().displayOptions();
                     break;
                 case 2:
-                    ReservationUI.getInstance().display();
+                    ReservationUI.getInstance().displayOptions();
                     break;
                 case 3:
                     OrderUI.getInstance().displayOptions();

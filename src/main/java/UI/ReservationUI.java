@@ -3,6 +3,7 @@ package UI;
 import ControlClasses.ReservationManager;
 import EntityClasses.Reservation;
 import Enumerations.PrintColor;
+import Interfaces.UI;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 
@@ -18,7 +19,7 @@ import java.io.IOException;
 /**
  * UI Handler for all things related to reservation.
  */
-public class ReservationUI {
+public class ReservationUI implements UI {
     /**
      * Stores the single instance of reservationui
      */
@@ -36,7 +37,7 @@ public class ReservationUI {
      * Displays interface for reservation manager
      */
 
-    public void display(){
+    public void displayOptions(){
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println(
                 "==============================\n" + "\tReservation Management\n" + "=============================="
