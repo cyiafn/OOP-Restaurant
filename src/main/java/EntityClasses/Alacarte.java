@@ -1,36 +1,58 @@
 package EntityClasses;
-
-import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
 
+/**
+ * Alacarte entity class
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class Alacarte extends MenuItem {
-    String _type = "alacarte";
+    /**
+     * Type of Menu Item
+     * in this case is alacarte
+     */
+    String type = "alacarte";
 
-    public String get_type() {
-        return _type;
+    /**
+     * Constructor of Alacarte
+     * @param menuItemID
+     * @param name
+     * @param description
+     * @param price
+     * @param quantity
+     */
+    public Alacarte(String menuItemID, String name, String description, double price, Integer quantity) {
+        super(menuItemID, name, description, price, quantity);
     }
 
-    public void set_type(String _type) {
-        this._type = _type;
-    }
-
-    public Alacarte(String _menuItemID, String _name, String _description, double _price, Integer _quantity) {
-        super(_menuItemID, _name, _description, _price, _quantity);
-    }
-
+    /**
+     * override function from parent class print()
+     */
     @Override
     public void print() {
         System.out.println(" -------------------------------");
         System.out.print(PrintColor.GREEN_BOLD);
-        System.out.println(" Menu ID: " + this.get_menuItemID() + " | " );
+        System.out.println(" Menu ID: " + this.getMenuItemID() + " | " );
         System.out.print(PrintColor.BLUE);
-        System.out.println(" Alacarte Meal Name: "+ this.get_name() + " | ");
-        System.out.println(" Alacarte Description: "+ this.get_description());
+        System.out.println(" Alacarte Meal Name: "+ this.getName() + " | ");
+        System.out.println(" Alacarte Description: "+ this.getDescription());
         System.out.print(PrintColor.YELLOW_BOLD);
-        System.out.println(" Alacarte Price: " + this.get_price()+ " | "+ " Alacarte Quantity: "+ this.get_quantity().toString());
-        System.out.println(" Type: "+ this.get_type());
+        System.out.println(" Alacarte Price: " + this.getPrice()+ " | "+ " Alacarte Quantity: "+ this.getQuantity().toString());
+        System.out.println(" Type: "+ this.getType());
 
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
     }
+    /*
+    Accessor and Mutator
+     */
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 }

@@ -11,21 +11,28 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * MenuManager is a controller
+ * Which handle the lifecycle of the Menu Entity
+ * You can access the function here to retrieve menu item or update the menu item
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class MenuManager {
 	/**
 	 * Constant for file name reservation.
 	 */
 	public HashMap<Integer,FoodCategory> FoodCategoryMap = new HashMap<>();
-	private Menu _menu;
+	private Menu menu;
 	String filename =  "csv/menu.json";
 
-	public Menu get_menu() {
-		return _menu;
+	public Menu getMenu() {
+		return menu;
 	}
 
-	public void set_menu(Menu _menu) {
-		this._menu = _menu;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	private static MenuManager instance = null;
@@ -39,8 +46,8 @@ public class MenuManager {
 	/**
 	 * Overloading method
 	 */
-	public MenuManager(Menu _menu) {
-		this._menu = _menu;
+	public MenuManager(Menu menu) {
+		this.menu = menu;
 	}
 
 	/**
@@ -121,10 +128,6 @@ public class MenuManager {
 
 		int quantity = InputHandler.getInt(1,10,
 				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10.");
-
-
-		// Using switch case here
-		// resrict user to input only 3 times
 		int i = 1;
 		ArrayList<MenuItem> list_of_mi = new ArrayList<>();
 		while(i<4){
@@ -245,23 +248,16 @@ public class MenuManager {
 												"Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
 												108/3, 1
 										)
-
 								)
 						)
-
 				)
 		);
-
-		// Update function
-
-		// delete function
-		// mymenu.delete_signle_menu_item_on_single_menu_category();
 		return mymenu;
 	}
 
 	/**
 	 * This function is responsible for format the database output into the Menu Class object
-	 * Usage:: Menu new_menu = formatDatabaseMapIntoMenu(data);
+	 * Usage:: Menu newMenu = formatDatabaseMapIntoMenu(data);
 	 * This function is cooperate with the `LoadFromJsonFile` in `Database.java`
 	 * If you want to use JSON file as well, this function you need to rewrite yourself to suit your class
 	 * @param data, is a map
@@ -269,48 +265,40 @@ public class MenuManager {
 	 */
 	@SuppressWarnings("unchecked")
 	public Menu formatDatabaseMapIntoMenu(Map data) {
-		List<Map> data_cat = (List<Map>) data.get("_menuCategory");
-		// Create the menu object here
-		// first level: Menu Category
-		// 8 times
-		ArrayList<MenuCategory> new_menu_cat = new ArrayList<>();
+		List<Map> data_cat = (List<Map>) data.get("menuCategory");
+		ArrayList<MenuCategory> newMenuCat = new ArrayList<>();
 		AtomicInteger i = new AtomicInteger(0);
 		data_cat.forEach(
 				(k) -> {
-
-//                    System.out.println(k );
-//                    System.out.println(i );
-
-					// menu item
-					List<Map> real_cat = (List<Map>) data_cat.get(i.intValue()).get("_menuItem");
-					ArrayList<MenuItem> new_menu_item = new ArrayList<>();
+					List<Map> real_cat = (List<Map>) data_cat.get(i.intValue()).get("menuItem");
+					ArrayList<MenuItem> newMenuItem = new ArrayList<>();
 					// for each to get menu item
 					AtomicInteger m = new AtomicInteger(0);
 					real_cat.forEach(
 							(l) -> {
-								String uid = real_cat.get(m.intValue()).get("_menuItemID").toString();
-								String des = real_cat.get(m.intValue()).get("_description").toString();
-								String name =   real_cat.get(m.intValue()).get("_name").toString();
-								double price = Double.parseDouble(real_cat.get(m.intValue()).get("_price").toString());
-								int quantity = Integer.parseInt(real_cat.get(m.intValue()).get("_quantity").toString());
+								String uid = real_cat.get(m.intValue()).get("menuItemID").toString();
+								String des = real_cat.get(m.intValue()).get("description").toString();
+								String name =   real_cat.get(m.intValue()).get("name").toString();
+								double price = Double.parseDouble(real_cat.get(m.intValue()).get("price").toString());
+								int quantity = Integer.parseInt(real_cat.get(m.intValue()).get("quantity").toString());
 //                                System.out.println(l );
-								if(real_cat.get(m.intValue()).get("_type").toString().equals("setmeal"))
+								if(real_cat.get(m.intValue()).get("type").toString().equals("setmeal"))
 								{
 									// Means it is set meal
 									AtomicInteger o = new AtomicInteger(0);
-									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("_set_of_item");
+									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("setOfItem");
 									if(!sub_setmeal.isEmpty())
 									{
 										ArrayList<MenuItem> sub_setmeal_mi = new ArrayList<>();
 										sub_setmeal.forEach(
 												(p) -> {
-													String sub_uid = sub_setmeal.get(o.intValue()).get("_menuItemID").toString();
-													String sub_des = sub_setmeal.get(o.intValue()).get("_description").toString();
-													String sub_name =   sub_setmeal.get(o.intValue()).get("_name").toString();
-													double sub_price = Double.parseDouble(sub_setmeal.get(o.intValue()).get("_price").toString());
-													int sub_quantity = Integer.parseInt(sub_setmeal.get(o.intValue()).get("_quantity").toString()) ;
+													String sub_uid = sub_setmeal.get(o.intValue()).get("menuItemID").toString();
+													String sub_des = sub_setmeal.get(o.intValue()).get("description").toString();
+													String subname =   sub_setmeal.get(o.intValue()).get("name").toString();
+													double subprice = Double.parseDouble(sub_setmeal.get(o.intValue()).get("price").toString());
+													int subquantity = Integer.parseInt(sub_setmeal.get(o.intValue()).get("quantity").toString()) ;
 													MenuItem mii = new MenuItem(
-															sub_uid,sub_name ,sub_des , sub_price, sub_quantity
+															sub_uid,subname ,sub_des , subprice, subquantity
 													);
 													sub_setmeal_mi.add(mii);
 													o.getAndIncrement();
@@ -325,7 +313,7 @@ public class MenuManager {
 												quantity,
 												sub_setmeal_mi
 										);
-										new_menu_item.add(menu_item);
+										newMenuItem.add(menu_item);
 										m.getAndIncrement();
 									}
 
@@ -340,36 +328,34 @@ public class MenuManager {
 											price,
 											quantity
 									);
-									new_menu_item.add(menu_item);
+									newMenuItem.add(menu_item);
 									m.getAndIncrement();
 								}
 							}
 					);
 
-					String des = data_cat.get(i.intValue()).get("_description").toString();
-					String cat =  data_cat.get(i.intValue()).get("_category").toString();
+					String des = data_cat.get(i.intValue()).get("description").toString();
+					String cat =  data_cat.get(i.intValue()).get("category").toString();
 					FoodCategory enum_cat = FoodCategory.valueOf(cat);
 					MenuCategory mc = new MenuCategory(
 							enum_cat,
 							des,
-							new_menu_item
+							newMenuItem
 					);
 
-					new_menu_cat.add(mc);
+					newMenuCat.add(mc);
 					i.getAndIncrement();
 				}
 		);
-
-		// form the menu here
-		String id = data.get("_iD").toString();
-		String name = data.get("_name").toString();
-		String desp = data.get("_description").toString();
+		String id = data.get("id").toString();
+		String name = data.get("name").toString();
+		String desp = data.get("description").toString();
 
 		return new Menu(
 				id,
 				name,
 				desp,
-				new_menu_cat
+				newMenuCat
 		);
 	}
 
@@ -396,24 +382,17 @@ public class MenuManager {
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
 			Menu menu = createSingleMenuWhenNoMenuExisted();
 			Database.WriteToJsonFile(menu, filename.trim());
-			System.out.println("Welcome to " + menu.get_name());
+			System.out.println("Welcome to " + menu.getName());
 		}
 		Map data = Database.LoadFromJsonFile(filename.trim());
-		Menu new_menu = formatDatabaseMapIntoMenu(data);
-		// So other function can use it
-		_menu = new_menu;
-
-		// TODO: REMOVE after testing
-		//		JsonBuilder builder = new JsonBuilder(new_menu);
-		//		String json_str= builder.toString();
-		//		System.out.println(json_str);
+		Menu newMenu = formatDatabaseMapIntoMenu(data);
+		this.setMenu(newMenu);
 	}
 
 
 
 
 	/**
-	 * // TODO: MOVE THIS TO CONSTRUCTOR OF MENU MANAGER
 	 * Hashmap for food category selection for user iput
 	 * @return a Hashmap which contain food category
 	 */
@@ -423,9 +402,7 @@ public class MenuManager {
 			FoodCategoryMap.put(i, s);
 			i++;
 		}
-		// System.out.println(FoodCategoryMap);
 		return FoodCategoryMap;
-
 	}
 
 	/**
@@ -457,7 +434,7 @@ public class MenuManager {
 	 * Helper function to view Menu
 	 */
 	public void viewMenu() {
-		for(MenuCategory mc : this._menu.get_menuCategory()){
+		for(MenuCategory mc : this.menu.getMenuCategory()){
 			mc.print();
 		}
 	}
@@ -491,22 +468,20 @@ public class MenuManager {
 
 	/**
 	 * Create Menu Item in this function
-	 *
+	 * 		// Asking which category you want to choose
+	 * 		// Display the Hashmap of the category
 	 * @throws IOException, cause this function write to json text file
 	 */
 	public void createMenuItem() throws IOException {
-		// Asking which category you want to choose
-		// Display the Hashmap of the category
+
 		createHashMap();
 		printFoodCategoryHashMap();
-//		Scanner sc = new Scanner(System.in);
 		Integer category_number = InputHandler.getInt(1,FoodCategory.values().length ,"Please choose a category to create your menu item: " +
 				"\n By typing in the category number: ", "Error input! Please type from 1-8");
 		FoodCategory enum_cat =  FoodCategoryMap.get(category_number);
 
-		MenuCategory mc = _menu.get_single_menu_categroy(enum_cat.toString());
-		// Print the menu item in the category
-		if(mc.get_menuItem().size()==0)
+		MenuCategory mc = menu.getSingleMenuCategroy(enum_cat.toString());
+		if(mc.getMenuItem().size()==0)
 		{
 			System.out.println("You have no menu item");
 		}
@@ -515,28 +490,24 @@ public class MenuManager {
 			mc.print();
 		}
 
-		// Ask the user for the type of menu item
 		int type = getTypeOfFoodItem();
 		System.out.println(type);
 		if(type==1 )
 		{
-			// Take in user input for menu item creation
 			MenuItem mi = createAlacarteFromUserInput();
-			Menu m = this.get_menu();
+			Menu m = this.getMenu();
 			m.insertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
-			this.set_menu(m);
+			this.setMenu(m);
 		}
 		else if (type==2)
 		{
-			// Take in user input for menu item creation
 			MenuItem mi = createSetMealFromUserInput();
-			Menu m = this.get_menu();
+			Menu m = this.getMenu();
 			m.insertSingleMenuItemOnSingleMenuCategroy(enum_cat.toString(),mi);
-			this.set_menu(m);
+			this.setMenu(m);
 		}
 		mc.print();
-		//MenuCategory mc = _menu.get_single_menu_categroy(enum_cat.toString());
-		confirmation(this.get_menu());
+		confirmation(this.getMenu());
 
 	}
 
@@ -554,7 +525,7 @@ public class MenuManager {
 		if(res_find== 1)
 		{
 			MenuItem mi = new MenuItem();
-			int type = this._menu.GetTypeByID(id);
+			int type = this.menu.getTypeByID(id);
 			if(type == 1)
 			{
 				mi = createAlacarteFromUserInput();
@@ -564,12 +535,12 @@ public class MenuManager {
 				mi = createSetMealFromUserInput();
 			}
 
-			Menu m = this.get_menu();
-			int res= m.Update(id, mi);
+			Menu m = this.getMenu();
+			int res= m.update(id, mi);
 			if(res ==1 ) {
-				this.set_menu(m);
+				this.setMenu(m);
 				//PrintMenu();
-				confirmation(this.get_menu());
+				confirmation(this.getMenu());
 			}
 		}
 
@@ -588,11 +559,11 @@ public class MenuManager {
 		int res_find=findById(id);
 		if(res_find== 1)
 		{
-			Menu m = this.get_menu();
-			int res= m.Delete(id);
+			Menu m = this.getMenu();
+			int res= m.delete(id);
 			if(res ==1 ) {
-				this.set_menu(m);
-				confirmation(this.get_menu());
+				this.setMenu(m);
+				confirmation(this.getMenu());
 			}
 		}
 
@@ -608,14 +579,13 @@ public class MenuManager {
 		int res_find=findById(id);
 		if(res_find== 1)
 		{
-			Menu m = this.get_menu();
-			int res= m.Delete(id);
+			Menu m = this.getMenu();
+			int res= m.delete(id);
 			if(res ==1 ) {
-				this.set_menu(m);
-				confirmation(this.get_menu());
+				this.setMenu(m);
+				confirmation(this.getMenu());
 			}
 		}
-
 	}
 
 	/**
@@ -644,7 +614,7 @@ public class MenuManager {
 	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
 	 */
 	public int findById(String id){
-		int res = _menu.findById(id);
+		int res = menu.findById(id);
 		if(res==0)
 		{
 			System.out.println(" -------------------------------");
@@ -669,16 +639,21 @@ public class MenuManager {
 	/**
 	 * Find by id overloading method requested by Gotwin
 	 * Follow DRY
-	 * @param id , Menu Item
-	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
+	 * @param id
+	 * @return MenuItem
 	 */
 	public MenuItem findByIdForMenuItem(String id){
-		MenuItem res = _menu.findByIdForMenuItem(id);
+		MenuItem res = menu.findByIdForMenuItem(id);
 		return res;
 	}
-
+	/**
+	 * Find by id overloading method requested by Gotwin
+	 * Follow DRY
+	 * @param name
+	 * @return MenuItem
+	 */
 	public MenuItem findByNameForMenuItem(String name) {
-		MenuItem res = _menu.findByNameForMenuItem(name);
+		MenuItem res = menu.findByNameForMenuItem(name);
 		return res;
 	}
 

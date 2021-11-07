@@ -6,42 +6,50 @@ import Enumerations.PrintColor;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Menu entity class
+ * Only have one menu exists at any point in time
+ *          *
+ *          *      https://home.binwise.com/blog/types-of-menu
+ *          *     a la carte menus,
+ *          *     static menus,
+ *          *     du jour menus,
+ *          *     cycle menus, and
+ *          *     fixed menus.
+ *          *     Beverage Menu
+ *          *     Dessert Menu?
+ *          *     Possible menu vs normal menu
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class Menu {
 
         /**
-         *     VALENTINEDAYMENU,
-         *     FATHERDAYMENU,
-         *     MOTHERDAYMENU
-         *
-         *      https://home.binwise.com/blog/types-of-menu
-         *     a la carte menus,
-         *     static menus,
-         *     du jour menus,
-         *     cycle menus, and
-         *     fixed menus.
-         *     Beverage Menu
-         *     Dessert Menu?
-         *     Possible menu vs normal menu
+        Attributes of Menu
          */
-        private String _iD;
-        private String _name;
-        private String _description;
-        private ArrayList<MenuCategory> _menuCategory;
+        private String id;
+        private String name;
+        private String description;
+        private ArrayList<MenuCategory> menuCategory;
 
         /**
-         *
-         * @param _iD
-         * @param _name
-         * @param _description
-         * @param _menuCategory
+         * Constructor of Menu
+         * @param id
+         * @param name
+         * @param description
+         * @param menuCategory
          */
-        public Menu(String _iD, String _name, String _description, ArrayList<MenuCategory> _menuCategory) {
-                this._iD = _iD;
-                this._name = _name;
-                this._description = _description;
-                this._menuCategory = _menuCategory;
+        public Menu(String id, String name, String description, ArrayList<MenuCategory> menuCategory) {
+                this.id = id;
+                this.name = name;
+                this.description = description;
+                this.menuCategory = menuCategory;
         }
 
+        /**
+         * Empty Constructor of Menu
+         */
         public Menu() { }
 
         /**
@@ -49,10 +57,10 @@ public class Menu {
          * @param fc
          * @return a menu category
          */
-        public MenuCategory get_single_menu_categroy(String fc) {
+        public MenuCategory getSingleMenuCategroy(String fc) {
 
-                for(MenuCategory mc : _menuCategory){
-                        if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
+                for(MenuCategory mc : menuCategory){
+                        if( mc.getCategory() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
                                 return mc;
                         }
@@ -67,8 +75,8 @@ public class Menu {
          */
         public void insertSingleMenuItemOnSingleMenuCategroy(String fc, MenuItem item) {
 
-                for(MenuCategory mc : _menuCategory){
-                        if( mc.get_category() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
+                for(MenuCategory mc : menuCategory){
+                        if( mc.getCategory() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
                         {
                                 mc.insertSingleMenuItem(item);
                         }
@@ -78,13 +86,13 @@ public class Menu {
 
         /**
          * Delete function will search though the menu item and delete it
-         * @param item_id
+         * @param itemid
          * @return a integer, 1 is
          */
-        public int GetTypeByID(String item_id) {
+        public int getTypeByID(String itemid) {
 
-                for(MenuCategory mc : _menuCategory){
-                        MenuItem mi= mc.findById(item_id);
+                for(MenuCategory mc : menuCategory){
+                        MenuItem mi= mc.findById(itemid);
                         if(mi instanceof Alacarte)
                         {
                                 Alacarte ac = (Alacarte) mi;
@@ -99,15 +107,15 @@ public class Menu {
         }
 
         /**
-         * Delete function will search though the menu item and delete it
-         * @param item_id
+         * delete function will search though the menu item and delete it
+         * @param itemid
          * @return a integer
          */
-        public int Delete(String item_id) {
+        public int delete(String itemid) {
 
-                for(MenuCategory mc : _menuCategory){
-                        if(mc.findById(item_id)!= null){
-                                MenuItem mi= mc.findById(item_id);
+                for(MenuCategory mc : menuCategory){
+                        if(mc.findById(itemid)!= null){
+                                MenuItem mi= mc.findById(itemid);
                                 mi.print();
                                 mc.deleteSingleMenuItem(mi);
                                 return 1;
@@ -118,15 +126,15 @@ public class Menu {
 
         /**
          * Update function will update the menu item
-         * @param item_id
+         * @param itemid
          * @param mim
          * @return 0,1, 0 is failed, 1 is success
          */
-        public int Update(String item_id, MenuItem mim) {
+        public int update(String itemid, MenuItem mim) {
 
-                for(MenuCategory mc : _menuCategory){
-                        if(mc.findById(item_id)!= null) {
-                                MenuItem mi = mc.findById(item_id);
+                for(MenuCategory mc : menuCategory){
+                        if(mc.findById(itemid)!= null) {
+                                MenuItem mi = mc.findById(itemid);
                                 mi.print();
                                 mc.updateMenuItem(mi, mim);
                                 return 1;
@@ -141,7 +149,7 @@ public class Menu {
          * @return int , return 1 or 0, 1 is success, 0 is failed
          */
         public int findById(String id){
-                for(MenuCategory mc : _menuCategory){
+                for(MenuCategory mc : menuCategory){
                         if(mc.findById(id)!= null){
                                 MenuItem mi= mc.findById(id);
                                 return 1;
@@ -157,7 +165,7 @@ public class Menu {
          */
         public MenuItem findByIdForMenuItem(String id){
                 MenuItem mi = new MenuItem();
-                for(MenuCategory mc : _menuCategory){
+                for(MenuCategory mc : menuCategory){
                         if(mc.findById(id)!= null){
                                 mi= mc.findById(id);
                                 return mi;
@@ -173,7 +181,7 @@ public class Menu {
          */
         public MenuItem findByNameForMenuItem(String name){
                 MenuItem mi = new MenuItem();
-                for(MenuCategory mc : _menuCategory){
+                for(MenuCategory mc : menuCategory){
                         if(mc.findByName(name)!= null){
                                 mi= mc.findByName(name);
                                 return mi;
@@ -182,36 +190,39 @@ public class Menu {
                 return mi;
         }
 
-        public String get_iD() {
-                return _iD;
+        /*
+        Accessors and Mutators
+         */
+        public String getId() {
+                return id;
         }
 
-        public void set_iD(String _iD) {
-                this._iD = _iD;
+        public void setId(String id) {
+                this.id = id;
         }
 
-        public String get_name() {
-                return _name;
+        public String getName() {
+                return name;
         }
 
-        public void set_name(String _name) {
-                this._name = _name;
+        public void setName(String name) {
+                this.name = name;
         }
 
-        public String get_description() {
-                return _description;
+        public String getDescription() {
+                return description;
         }
 
-        public void set_description(String _description) {
-                this._description = _description;
+        public void setDescription(String description) {
+                this.description = description;
         }
 
-        public ArrayList<MenuCategory> get_menuCategory() {
-                return _menuCategory;
+        public ArrayList<MenuCategory> getMenuCategory() {
+                return menuCategory;
         }
 
-        public void set_menuCategory(ArrayList<MenuCategory> _menuCategory) {
-                this._menuCategory = _menuCategory;
+        public void setMenuCategory(ArrayList<MenuCategory> menuCategory) {
+                this.menuCategory = menuCategory;
         }
 
 

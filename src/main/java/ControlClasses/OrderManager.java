@@ -163,14 +163,16 @@ public class OrderManager {
         //MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemidd);
         //System.out.println(it);
         //System.out.println(it.get_menuItemID());
+        //System.out.println(it.getmenuItemID());
+
         if (it == null)
             System.out.println("Item does not exist!");
         else if (order.removeItem(it));
             //System.out.println("Item not in order!");
         //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(itemid);
-        //System.out.println(item.get_menuItemID());
+        //System.out.println(item.getmenuItemID());
         //if (item != null) order.removeItem(item);
-        //System.out.println(item.get_menuItemID());
+        //System.out.println(item.getmenuItemID());
         //else System.out.println("This item does not exist");
     }
 
@@ -183,6 +185,7 @@ public class OrderManager {
         //System.out.println(item.get_menuItemID());
 
 
+        //System.out.println(item.getmenuItemID());
         if (item != null) order.addItem(item);
         else System.out.println("This item does not exist");
 
@@ -200,7 +203,7 @@ public class OrderManager {
         {*/
             //ArrayList<MenuItem> mi_arr = Or
             //order.addtoOrder(item);
-            //Menu m = MenuManager.retrieveInstance().get_menu();
+            //Menu m = MenuManager.retrieveInstance().getMenu();
             //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(item);
             //int res = m.Update(id)
             /*if (res== 1) {

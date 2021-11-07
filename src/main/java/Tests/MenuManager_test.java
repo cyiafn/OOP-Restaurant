@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  Black box Tests for menu manager
- @author Daniel Chu
+ @author Daniel Chu Jia Hao
  @version 1.0
  @since 2021-11-03
  */
@@ -30,7 +30,7 @@ public class MenuManager_test {
     private static final InputStream systemIn = System.in;
     private static InputHandler inputHandler;
     private ByteArrayInputStream testIn;
-    private String mi_ID;
+    private String miid;
 
 
     @BeforeAll
@@ -73,12 +73,11 @@ public class MenuManager_test {
             boolean flag = true;
             MenuManager.getInstance().createMenuItem();
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("111");
-            if(mi_1.get_name()=="111" && mi_1.get_description()=="111" && mi_1 instanceof  Alacarte)
+            if(mi_1.getName()=="111" && mi_1.getDescription()=="111" && mi_1 instanceof  Alacarte)
             {
                 flag=false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,13 +98,12 @@ public class MenuManager_test {
             MenuManager.getInstance().createMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
                 if (mi instanceof  Alacarte
-                        && mi.get_name().equals("Steamed Truffle & Pork Xiao Long Bao") &&
-                        mi.get_description().equals("Made in Truffle & Pork"))
+                        && mi.getName().equals("Steamed Truffle & Pork Xiao Long Bao") &&
+                        mi.getDescription().equals("Made in Truffle & Pork"))
                 {
                     flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,8 +116,8 @@ public class MenuManager_test {
     void UpdateAlacarteSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + 10 + System.getProperty("line.separator")
@@ -130,14 +128,13 @@ public class MenuManager_test {
             MenuManager.getInstance().updateMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,8 +145,8 @@ public class MenuManager_test {
     void UpdateAlacarteFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + 10 + System.getProperty("line.separator")
@@ -160,14 +157,13 @@ public class MenuManager_test {
             MenuManager.getInstance().updateMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -179,17 +175,17 @@ public class MenuManager_test {
     void DeleteAlacarteSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
             MenuManager.getInstance().deleteMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }
@@ -206,17 +202,17 @@ public class MenuManager_test {
     void DeleteAlacarteFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
             MenuManager.getInstance().deleteMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  Alacarte
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }
@@ -257,13 +253,12 @@ public class MenuManager_test {
             boolean flag = true;
             MenuManager.getInstance().createMenuItem();
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("111");
-            if(mi_1.get_name()=="111" && mi_1.get_description()=="111"
+            if(mi_1.getName()=="111" && mi_1.getDescription()=="111"
                     && mi_1 instanceof  SetMeal)
             {
                 flag=false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -299,13 +294,13 @@ public class MenuManager_test {
             MenuManager.getInstance().createMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
             if (mi instanceof SetMeal
-                    && mi.get_name().equals("Steamed Truffle & Pork Xiao Long Bao") &&
-                    mi.get_description().equals("Made in Truffle & Pork"))
+                    && mi.getName().equals("Steamed Truffle & Pork Xiao Long Bao") &&
+                    mi.getDescription().equals("Made in Truffle & Pork"))
             {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
+
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -317,8 +312,8 @@ public class MenuManager_test {
     void UpdateSetMealSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + 10 + System.getProperty("line.separator")
@@ -344,14 +339,13 @@ public class MenuManager_test {
             MenuManager.getInstance().updateMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = true;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -362,8 +356,8 @@ public class MenuManager_test {
     void UpdateSetMealFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + 10 + System.getProperty("line.separator")
@@ -389,14 +383,13 @@ public class MenuManager_test {
             MenuManager.getInstance().updateMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }
             assertTrue(flag);
-            //MenuManager.getInstance().teardown(mi.get_menuItemID());
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -407,17 +400,17 @@ public class MenuManager_test {
     void DeleteSetMealSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
             MenuManager.getInstance().deleteMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }
@@ -434,17 +427,17 @@ public class MenuManager_test {
     void DeleteSetMealFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            mi_ID = mi_1.get_menuItemID();
-            provideInput( mi_ID + System.getProperty("line.separator")
+            miid = mi_1.getMenuItemID();
+            provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
             boolean flag = true;
             MenuManager.getInstance().deleteMenuItem();
             MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("999");
             if (mi instanceof  SetMeal
-                    && mi.get_menuItemID() == mi_ID
-                    && mi.get_name().equals("999") &&
-                    mi.get_description().equals("999"))
+                    && mi.getMenuItemID() == miid
+                    && mi.getName().equals("999") &&
+                    mi.getDescription().equals("999"))
             {
                 flag = false;
             }

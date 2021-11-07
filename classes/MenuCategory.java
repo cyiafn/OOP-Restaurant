@@ -1,11 +1,11 @@
 public class MenuCategory {
-	private Integer _iD;
-	private String _name;
-	private String _description;
+	private Integer id;
+	private String name;
+	private String description;
 	private FoodCategory _foodCategory;
-	private ArrayList<MenuItem> _menuItem;
-	private int _menuID;
-	private Menu _unnamed_Menu_;
+	private ArrayList<MenuItem> menuItem;
+	private int menuID;
+	private Menu _unnamedmenu_;
 	public FoodCategory _unnamed_FoodCategory_8;
-	private MenuItem _unnamed_MenuItem_;
+	private MenuItem _unnamedmenuItem_;
 }

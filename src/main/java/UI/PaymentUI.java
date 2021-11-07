@@ -4,6 +4,7 @@ import ControlClasses.OrderManager;
 import ControlClasses.PaymentManager;
 import EntityClasses.Order;
 import Enumerations.PrintColor;
+import Interfaces.UI;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 
@@ -12,7 +13,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.*;
 
-public class PaymentUI {
+public class PaymentUI implements UI {
     public static PaymentUI instance = null;
     int c;
     Scanner sc = new Scanner(System.in);
@@ -72,14 +73,14 @@ public class PaymentUI {
     }
 
     public void viewInvoice(){
-
+//        double in
     }
 
     public void revenueReport(){
 
     }
 
-    public void displayOptions() throws IOException, CsvException {
+    public void displayOptions() throws IOException {
             System.out.println(PrintColor.YELLOW_BOLD);
             System.out.println(
                     "==============================\n" + "\tPayment Management\n" + "=============================="
@@ -91,7 +92,7 @@ public class PaymentUI {
             int opt = InputHandler.getInt(0, 2, "Please enter an option (0 to exit): ", "Please enter an integer from 0-2!");
             switch (opt) {
                 case 1:
-                    createInvoice();
+                    //createInvoice();
                     break;
                 case 2:
                     viewInvoice();
