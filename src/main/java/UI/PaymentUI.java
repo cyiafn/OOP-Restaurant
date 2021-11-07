@@ -2,6 +2,7 @@ package UI;
 
 import ControlClasses.OrderManager;
 import ControlClasses.PaymentManager;
+import EntityClasses.Invoice;
 import EntityClasses.Order;
 import Enumerations.PrintColor;
 import Interfaces.UI;
@@ -29,7 +30,7 @@ public class PaymentUI implements UI {
 
     public static boolean isNumeric(String str){return false;};
 
-    public void createInvoice() throws IOException, CsvException {
+    public void generateInvoice() {
         Scanner sc = new Scanner(System.in);
 
 //        if (PaymentManager.getInstance().displayOrder() > 0)
@@ -65,7 +66,7 @@ public class PaymentUI implements UI {
                     System.out.println("0 -> No");
                     System.out.println("1 -> Yes");
                     choice = sc.nextInt();
-                    PaymentManager.getInstance().createInvoice(order, choice);
+                    PaymentManager.getInstance().createInvoice(order,choice);
                 }
                 else System.out.println("Order does not exist!");
             }
@@ -73,7 +74,14 @@ public class PaymentUI implements UI {
     }
 
     public void viewInvoice(){
-//        double in
+        Scanner sc = new Scanner(System.in);
+        String invoiceId = InputHandler.getString("Enter the Invoice you would like to view");
+        Invoice invoice = PaymentManager.getInstance().retrieveInvoice(invoiceId);
+        if( invoice != null) {
+            PaymentManager.getInstance().displayPayment(invoice);
+        }
+        else
+            System.out.println("Invoice not Found");
     }
 
     public void revenueReport(){
@@ -93,6 +101,7 @@ public class PaymentUI implements UI {
             switch (opt) {
                 case 1:
                     //createInvoice();
+                    generateInvoice();
                     break;
                 case 2:
                     viewInvoice();

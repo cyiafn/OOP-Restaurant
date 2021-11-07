@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Invoice {
-    private static int idCount = 1;
     private String invoiceId;
     private int tableNo;
     private double subTotal = 0;
@@ -51,6 +50,25 @@ public class Invoice {
         this.tableNo = 0; // GET FROM ORDERS
     }
 
+    public Invoice(String invoiceId, String date, int tableNo, double subTotal, double memberDiscAmt, double subTotalAD, double gstAmt,
+                   double svcChargeAmt, double total, Order orders){
+        this.invoiceId = invoiceId;
+        this.date = date;
+        this.tableNo = tableNo;
+        this.staffName = orders.getStaff();
+        this.subTotal = subTotal;
+        this.memberDiscAmt = memberDiscAmt;
+        this.subTotalAD = subTotalAD;
+        this.gstAmt = gstAmt;
+        this.svcChargeAmt = svcChargeAmt;
+        this.total = total;
+        this.orders = orders;
+        if(memberDiscAmt==0)
+            this.memberStatus = Membership.NOT_MEMBER;
+        else
+            this.memberStatus = Membership.IS_MEMBER;
+    }
+
     public String getInvoiceId(){ return invoiceId; }
     public void setInvoiceId(String invoiceId){ this.invoiceId = invoiceId; }
     public String getDate(){return date;}
@@ -86,5 +104,4 @@ public class Invoice {
 //                String.valueOf(orders),};
 //        return row;
 //    }
-
 }

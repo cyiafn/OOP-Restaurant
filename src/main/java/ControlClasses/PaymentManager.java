@@ -45,31 +45,44 @@ public class PaymentManager {
 //    }
 
 
-    public void createInvoice(Order order, int isMember) throws IOException, CsvException {
+    public void createInvoice(Order order, int isMember) {
         ArrayList<MenuItem> itemList = order.getOrderedItems();
         Invoice invoice = new Invoice(order);
         if(isMember==1){
             invoice.setMemberStatus(Invoice.Membership.IS_MEMBER);
         }
+
         retrieveTableNo(invoice);
         computeInvoice(invoice);
-        displayPayment(invoice);
-       // savetoDB(invoice);
+        savetoDB(invoice);
         System.out.println("Invoice Created");
+        displayPayment(invoice);
     }
 
-//    public Invoice retrieveInvoice(int invoiceID) {
-//        for (Invoice invoice : invoiceList) {
-//            if ( invoice.getInvoiceId() == invoiceID)
-//                return invoice;
-//        }
-//        return null;
-//    }
+
+    public Invoice retrieveInvoice(String invoiceID) {
+        try {
+            loadFromDB();
+            for (Invoice invoice : invoiceList) {
+                if ( invoice.getInvoiceId().equals(invoiceID))
+                    return invoice;
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
-    public int retrieveTableNo(Invoice invoice) throws IOException, CsvException {
+    public int retrieveTableNo(Invoice invoice) {
         String reservationId = invoice.getOrders().getReservationID();
-        int tableNo = ReservationManager.getInstance().getTableNumber(reservationId);
+        int tableNo = 0;
+        try {
+            tableNo = ReservationManager.getInstance().getTableNumber(reservationId);
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
+        }
         invoice.setTableNo(tableNo);
         return tableNo;
     }
@@ -146,13 +159,25 @@ public class PaymentManager {
     }
 
 
-   public void savetoDB(Invoice invoice) throws IOException {
-    Database.savePayment(invoiceFile, invoice);
-    }
+   public void savetoDB(Invoice invoice){
+       try {
+           Database.savePayment(invoiceFile, invoice);
+           System.out.printf("Successfully saved to %s\n",invoiceFile);
+       } catch (IOException e) {
+           System.out.printf("Unable to save to %s\n", invoiceFile);
+           e.printStackTrace();
+       }
+   }
 
-//    public void loadFromDB() throws IOException {
-//        this.invoiceList = Database.readInvoice(invoiceFile);
-//    }
+    public void loadFromDB(){
+        try {
+            this.invoiceList = Database.readInvoice(invoiceFile);
+            System.out.printf("Successfully Loaded from %s\n",invoiceFile);
+        } catch (IOException e) {
+            System.out.printf("Unable to save from %s\n", invoiceFile);
+            e.printStackTrace();
+        }
+    }
 
 //    public void saveInvoice(Invoice invoice) throws IOException {
 //        Database.writeLine(invoiceFile, invoice.getLineCSVFormat());

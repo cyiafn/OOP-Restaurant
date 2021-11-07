@@ -306,15 +306,21 @@ public final class Database{
         st.append(SEPARATOR);
         st.append(order.getReservationID());
         st.append(SEPARATOR);
-        st.append(order.getDate());
+        st.append(invoice.getDate());
         st.append(SEPARATOR);
-//        st.append(order.getStatus());
         st.append(invoice.getTableNo());
         st.append(SEPARATOR);
         st.append(order.getStaff());
         st.append(SEPARATOR);
-
         st.append(invoice.getSubTotal());
+        st.append(SEPARATOR);
+        st.append(invoice.getMemberDiscAmt());
+        st.append(SEPARATOR);
+        st.append(invoice.getSubTotalAD());
+        st.append(SEPARATOR);
+        st.append(invoice.getGstAmt());
+        st.append(SEPARATOR);
+        st.append(invoice.getSvcChargeAmt());
         st.append(SEPARATOR);
         st.append(invoice.getTotal());
         st.append(SEPARATOR);
@@ -372,40 +378,48 @@ public final class Database{
         return orderList;
     }
 
-//    public static ArrayList<Invoice> readInvoice(String fileName) throws IOException {
-//        ArrayList<String> stringArray = (ArrayList<String>) Database.read(fileName);
-//        ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
-//
-//
-//        for (int i = 0; i < stringArray.size(); i++) {
-//            String st = stringArray.get(i);
-//            StringTokenizer star = new StringTokenizer(st, SEPARATOR);
-//            ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-//
-//            int invoiceId = Integer.valueOf(star.nextToken().trim());
-//            int orderId = Integer.valueOf(star.nextToken().trim());
-//            String reservationID = star.nextToken().trim();
-//            String date = star.nextToken().trim();
-//            int tableNo = Integer.valueOf(star.nextToken().trim());
-//            String staff = star.nextToken().trim();
-//
-//            while(star.hasMoreTokens()) {
-//                // int itemID = Integer.valueOf(star.nextToken().trim());
-//                String itemID = star.nextToken().trim();
-//                String name = star.nextToken().trim();
-//                double price = Double.valueOf(star.nextToken().trim());
-//                int qty = Integer.valueOf(star.nextToken().trim());
-//                MenuItem item = new MenuItem(itemID, name,"", price, "");
-//                //MenuItem item = new MenuItem(itemID, name, price, type);
-//                items.add(item);
-//            }
-//            Order order = new Order(orderId,reservationID,date,"",staff,items);
-//            Invoice invoice = new Invoice(order);
-//            invoiceList.add(invoice);
-//        }
-//        System.out.println(stringArray.size() + " Invoice(s) Loaded.");
-//        return invoiceList;
-//    }
+    public static ArrayList<Invoice> readInvoice(String fileName) throws IOException {
+        ArrayList<String> stringArray = (ArrayList<String>) Database.read(fileName);
+        ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
+
+
+        for (int i = 0; i < stringArray.size(); i++) {
+            String st = stringArray.get(i);
+            StringTokenizer star = new StringTokenizer(st, SEPARATOR);
+            ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+
+            String invoiceId = star.nextToken().trim();
+            int orderId = Integer.valueOf(star.nextToken().trim());
+            String reservationID = star.nextToken().trim();
+            String date = star.nextToken().trim();
+            int tableNo = Integer.valueOf(star.nextToken().trim());
+            String staffName = star.nextToken().trim();
+            double subTotal = Double.valueOf(star.nextToken().trim());
+            double memberDiscAmt = Double.valueOf(star.nextToken().trim());
+            double subTotalAD = Double.valueOf(star.nextToken().trim());
+            double gstAmt = Double.valueOf(star.nextToken().trim());
+            double svcChargeAmt = Double.valueOf(star.nextToken().trim());
+            double  total = Double.valueOf(star.nextToken().trim());
+
+            while(star.hasMoreTokens()) {
+                // int itemID = Integer.valueOf(star.nextToken().trim());
+                String itemID = star.nextToken().trim();
+                String name = star.nextToken().trim();
+                String desc = "";
+                double price = Double.valueOf(star.nextToken().trim());
+                int qty = Integer.valueOf(star.nextToken().trim());
+                MenuItem item = new MenuItem(itemID, name, desc, price, qty);
+                //MenuItem item = new MenuItem(itemID, name, price, type);
+                items.add(item);
+            }
+            Order order = new Order(orderId,reservationID,date,"confirmed",staffName,items);
+            Invoice invoice = new Invoice(invoiceId, date, tableNo, subTotal, memberDiscAmt, subTotalAD
+                                         ,gstAmt, svcChargeAmt, total, order);
+            invoiceList.add(invoice);
+        }
+        System.out.println(stringArray.size() + " Invoice(s) Loaded.");
+        return invoiceList;
+    }
 
     public static void writeOrder(String fileName, List data) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(directory+fileName));
