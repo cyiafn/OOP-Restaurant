@@ -1,5 +1,8 @@
 package EntityClasses;
 
+import ControlClasses.MenuManager;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -15,7 +18,7 @@ public class Order {
     //private ArrayList<Staff> staff1 = new ArrayList<Staff>();;
     private ArrayList<MenuItem> orderedItems = new ArrayList<MenuItem>();;
     //private ArrayList<String> orderedItems;
-    //private int quantity;
+    private int quantity;
     //private OrderStatus status;
     private String status = "Ordering";
     private String Staff = "";
@@ -31,7 +34,7 @@ public class Order {
         this.date = d;
         this.reservationID = reservationID;
         this.orderedItems = orderedItems;
-        //this.quantity = quantity;
+        this.quantity = quantity;
         this.status = status;
         this.Staff = Staff;
         //this.staff1 = staff1;
@@ -46,6 +49,18 @@ public class Order {
         this.reservationID = reservationID;
         this.orderedItems = orderedItems;
         this.status = status;
+        //this.quantity = quantity;
+        //idCount = orderID+1;
+    }
+
+    public Order(int oid,String reservationID,String date,String status, String Staff,ArrayList<MenuItem> orderedItems,int quantity){
+        this.orderID = oid;
+        this.Staff = Staff;
+        this.date = date;
+        this.reservationID = reservationID;
+        this.orderedItems = orderedItems;
+        this.status = status;
+        this.quantity = quantity;
         //idCount = orderID+1;
     }
 
@@ -156,13 +171,13 @@ public class Order {
         this.status = status;
     }
 
-//    public int getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     /*public Menu createOrder() {
         ArrayList<MenuItem> orderedItems = new ArrayList<>()
@@ -198,17 +213,29 @@ public class Order {
         this.orderedItems.add(item);
     }
 
-    public boolean removeItem(MenuItem item) {
+    public boolean removeItem(MenuItem item) throws IOException {
         for (MenuItem it : orderedItems) {
-            System.out.println(it.toString());
-            System.out.println(it.get_menuItemID());
-            this.orderedItems.remove(it);
-            return true;
-            /*if (it.get_menuItemID() == item.get_menuItemID()) {
-                System.out.println(it);
+//            System.out.println(it.toString());
+            //System.out.println(it.get_menuItemID());
+            //this.orderedItems.remove(it);
+            //return true;
+
+            if (it.get_menuItemID() == item.get_menuItemID()) {
                 this.orderedItems.remove(it);
                 return true;
-            }*/
+            }
+//                if (it.get_menuItemID() == it.get_menuItemID()) {
+//                    System.out.println(it.get_menuItemID());
+//                    System.out.println(item);
+//                    //this.orderedItems.remove(it);
+//                    return true;
+//                }
+//            if (orderedItems.contains(it.get_menuItemID())) {
+//                System.out.println(it);
+//                this.orderedItems.remove(it);
+//                return true;
+//            }
+
         }
         return false;
     }
@@ -233,10 +260,10 @@ public class Order {
         System.out.println("ID    Staff      Date                       ReservationID                       Status   ");
         System.out.println(toString());
         System.out.println("=================================================================================");
-        System.out.println("ID                                                Name           Price(S$)");
+        System.out.println("ID                                                Name           Price(S$)    Quantity  ");
         System.out.println("=================================================================================");
         for (MenuItem item : orderedItems) {
-            System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_price());
+            System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_price() +"    \t" + item.get_quantity());
             //System.out.println(item.get_quantity() +"    \t" + item.get_name() +"    \t" + item.get_price());
         }
         System.out.println("=================================================================================");

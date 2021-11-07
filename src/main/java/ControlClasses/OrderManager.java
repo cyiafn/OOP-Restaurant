@@ -160,11 +160,12 @@ public class OrderManager {
 
     public void deleteOrderItem(Order order, String itemid) throws IOException {
         MenuItem it = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        //MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemidd);
+        //System.out.println(it);
         //System.out.println(it.get_menuItemID());
-
         if (it == null)
             System.out.println("Item does not exist!");
-        else if (!order.removeItem(it));
+        else if (order.removeItem(it));
             //System.out.println("Item not in order!");
         //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(itemid);
         //System.out.println(item.get_menuItemID());
@@ -174,10 +175,24 @@ public class OrderManager {
     }
 
     public void createOrderItem(Order order, String itemid) throws IOException {
+
         MenuItem item = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        //MenuItem it2 = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        //System.out.println(item);
+        //System.out.println(it2);
         //System.out.println(item.get_menuItemID());
+
+
         if (item != null) order.addItem(item);
         else System.out.println("This item does not exist");
+
+        int quantity;
+        System.out.println("Enter Quantity");
+        Scanner sc = new Scanner(System.in);
+        quantity = sc.nextInt();
+        //order.setQuantity(quantity);
+        item.set_quantity(quantity);
+
         //order.addtoOrder(item);
         //MenuItem item = MenuManager.retrieveInstance().findById(menuid);
         //int res_find=MenuManager.retrieveInstance().findById(item);

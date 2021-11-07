@@ -309,6 +309,7 @@ public final class Database{
             String date = star.nextToken().trim();
             String status = star.nextToken().trim();
             String staff = star.nextToken().trim();
+            //int quantity = Integer.valueOf(star.nextToken().trim());
 
             while(star.hasMoreTokens()) {
                // int itemID = Integer.valueOf(star.nextToken().trim());
