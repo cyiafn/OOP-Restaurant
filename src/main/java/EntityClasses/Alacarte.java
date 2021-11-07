@@ -1,21 +1,34 @@
 package EntityClasses;
 import Enumerations.PrintColor;
 
+/**
+ * Alacarte entity class
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class Alacarte extends MenuItem {
+    /**
+     * Type of Menu Item
+     * in this case is alacarte
+     */
     String type = "alacarte";
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    /**
+     * Constructor of Alacarte
+     * @param menuItemID
+     * @param name
+     * @param description
+     * @param price
+     * @param quantity
+     */
     public Alacarte(String menuItemID, String name, String description, double price, Integer quantity) {
         super(menuItemID, name, description, price, quantity);
     }
 
+    /**
+     * override function from parent class print()
+     */
     @Override
     public void print() {
         System.out.println(" -------------------------------");
@@ -31,4 +44,15 @@ public class Alacarte extends MenuItem {
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
     }
+    /*
+    Accessor and Mutator
+     */
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 }

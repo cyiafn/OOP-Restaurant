@@ -5,7 +5,16 @@ import Enumerations.PrintColor;
 
 import java.util.*;
 
+/**
+ * MenuCategory entity class
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class MenuCategory {
+    /*
+    Attributes of MenuCategory
+     */
     private String description;
     private FoodCategory category;
     private ArrayList<MenuItem> menuItem;

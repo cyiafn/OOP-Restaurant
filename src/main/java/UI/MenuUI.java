@@ -6,6 +6,13 @@ import Interfaces.UI;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * MenuUI is a boudary class
+ * Which responsible to display options for Menu Management and use Menu Manager to access the menu item
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class MenuUI implements UI {
 
     private static MenuUI instance = null;

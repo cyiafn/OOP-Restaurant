@@ -1,14 +1,29 @@
 package EntityClasses;
 
-import java.util.Map;
-
+/**
+ * MenuItem entity class
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class MenuItem {
+	/*
+	Attributes of Menu Item
+	 */
 	private String menuItemID;
 	private String name;
 	private String description;
 	private double price;
 	private Integer quantity;
 
+	/**
+	 * Constructor of MenuItem
+	 * @param menuItemID
+	 * @param name
+	 * @param description
+	 * @param price
+	 * @param quantity
+	 */
 	public MenuItem(String menuItemID, String name, String description, double price, Integer quantity) {
 		this.menuItemID = menuItemID;
 		this.name = name;
@@ -18,8 +33,14 @@ public class MenuItem {
 
 	}
 
+	/**
+	 * Empty Constructor for menuitem
+	 */
 	public MenuItem() {}
 
+	/**
+	 * print function for all attributes
+	 */
 	public void print(){
 		System.out.println(this.getMenuItemID());
 		System.out.println(this.getName());
@@ -28,6 +49,9 @@ public class MenuItem {
 		System.out.println(this.getQuantity().toString());
 	}
 
+	/*
+	Accessor and Mutator
+	 */
 	public String getMenuItemID() {
 		return menuItemID;
 	}

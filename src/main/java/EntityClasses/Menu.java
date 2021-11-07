@@ -6,22 +6,27 @@ import Enumerations.PrintColor;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Menu entity class
+ * Only have one menu exists at any point in time
+ *          *
+ *          *      https://home.binwise.com/blog/types-of-menu
+ *          *     a la carte menus,
+ *          *     static menus,
+ *          *     du jour menus,
+ *          *     cycle menus, and
+ *          *     fixed menus.
+ *          *     Beverage Menu
+ *          *     Dessert Menu?
+ *          *     Possible menu vs normal menu
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class Menu {
 
         /**
-         *     VALENTINEDAYMENU,
-         *     FATHERDAYMENU,
-         *     MOTHERDAYMENU
-         *
-         *      https://home.binwise.com/blog/types-of-menu
-         *     a la carte menus,
-         *     static menus,
-         *     du jour menus,
-         *     cycle menus, and
-         *     fixed menus.
-         *     Beverage Menu
-         *     Dessert Menu?
-         *     Possible menu vs normal menu
+        Attributes of Menu
          */
         private String id;
         private String name;
@@ -29,7 +34,7 @@ public class Menu {
         private ArrayList<MenuCategory> menuCategory;
 
         /**
-         *
+         * Constructor of Menu
          * @param id
          * @param name
          * @param description
@@ -42,6 +47,9 @@ public class Menu {
                 this.menuCategory = menuCategory;
         }
 
+        /**
+         * Empty Constructor of Menu
+         */
         public Menu() { }
 
         /**
@@ -182,6 +190,9 @@ public class Menu {
                 return mi;
         }
 
+        /*
+        Accessors and Mutators
+         */
         public String getId() {
                 return id;
         }

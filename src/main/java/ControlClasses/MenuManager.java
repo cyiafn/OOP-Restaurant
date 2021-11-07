@@ -11,7 +11,14 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * MenuManager is a controller
+ * Which handle the lifecycle of the Menu Entity
+ * You can access the function here to retrieve menu item or update the menu item
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class MenuManager {
 	/**
 	 * Constant for file name reservation.

@@ -1,21 +1,41 @@
 package EntityClasses;
-
-import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
-
 import java.util.ArrayList;
 
+/**
+ * SetMeal entity class
+ * @author Daniel Chu Jia Hao
+ * @version 1.0
+ * @since 2021-11-07
+ */
 public class SetMeal extends MenuItem {
+    /**
+     * Type of Menu Item
+     * in this case is setmeal
+     */
     String type = "setmeal";
-
+    /**
+     * This attribute to store a set of Menu Item
+     */
     private ArrayList<MenuItem> setOfItem ;
 
-
+    /**
+     * Constructor of Set Meal
+     * @param menuItemID
+     * @param name
+     * @param description
+     * @param price
+     * @param quantity
+     * @param ala
+     */
     public SetMeal(String menuItemID, String name, String description, double price, Integer quantity, ArrayList<MenuItem> ala) {
         super(menuItemID, name, description, price, quantity);
         setOfItem = ala;
     }
 
+    /**
+     * override function from parent class print()
+     */
     @Override
     public void print() {
         System.out.println(" -------------------------------");
@@ -44,6 +64,9 @@ public class SetMeal extends MenuItem {
         System.out.println(" -------------------------------");
     }
 
+    /*
+    Accessor and Mutator
+     */
     public String getType() {
         return type;
     }

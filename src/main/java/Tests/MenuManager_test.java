@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  Black box Tests for menu manager
- @author Daniel Chu
+ @author Daniel Chu Jia Hao
  @version 1.0
  @since 2021-11-03
  */
