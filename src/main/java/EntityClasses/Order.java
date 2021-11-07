@@ -220,7 +220,7 @@ public class Order {
             //this.orderedItems.remove(it);
             //return true;
 
-            if (it.get_menuItemID() == item.get_menuItemID()) {
+            if (it.getMenuItemID() == item.getMenuItemID()) {
                 this.orderedItems.remove(it);
                 return true;
             }
@@ -263,7 +263,7 @@ public class Order {
         System.out.println("ID                                                Name           Price(S$)    Quantity  ");
         System.out.println("=================================================================================");
         for (MenuItem item : orderedItems) {
-            System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_price() +"    \t" + item.get_quantity());
+            System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t" + item.getPrice() +"    \t" + item.getQuantity());
             //System.out.println(item.get_quantity() +"    \t" + item.get_name() +"    \t" + item.get_price());
         }
         System.out.println("=================================================================================");

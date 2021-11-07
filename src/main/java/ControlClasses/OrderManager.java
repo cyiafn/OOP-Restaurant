@@ -194,7 +194,7 @@ public class OrderManager {
         Scanner sc = new Scanner(System.in);
         quantity = sc.nextInt();
         //order.setQuantity(quantity);
-        item.set_quantity(quantity);
+        item.setQuantity(quantity);
 
         //order.addtoOrder(item);
         //MenuItem item = MenuManager.retrieveInstance().findById(menuid);

@@ -248,6 +248,7 @@ public class OrderUI {
                         //do {
                             try {
                                 System.out.print("Enter Item ID: ");
+                                Scanner sc = new Scanner(System.in);
                                 id = sc.nextLine();
                                 if(id == null) System.out.printf("Invalid input! ");
                             } catch (InputMismatchException e) {
