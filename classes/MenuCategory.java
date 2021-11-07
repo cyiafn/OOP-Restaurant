@@ -4,8 +4,8 @@ public class MenuCategory {
 	private String description;
 	private FoodCategory _foodCategory;
 	private ArrayList<MenuItem> menuItem;
-	private int _menuID;
-	private Menu _unnamed_Menu_;
+	private int menuID;
+	private Menu _unnamedmenu_;
 	public FoodCategory _unnamed_FoodCategory_8;
 	private MenuItem _unnamedmenuItem_;
 }

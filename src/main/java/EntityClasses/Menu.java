@@ -49,7 +49,7 @@ public class Menu {
          * @param fc
          * @return a menu category
          */
-        public MenuCategory get_single_menu_categroy(String fc) {
+        public MenuCategory getSingleMenuCategroy(String fc) {
 
                 for(MenuCategory mc : menuCategory){
                         if( mc.getCategory() == FoodCategory.valueOf(fc.toUpperCase(Locale.ROOT)))
@@ -81,7 +81,7 @@ public class Menu {
          * @param itemid
          * @return a integer, 1 is
          */
-        public int GetTypeByID(String itemid) {
+        public int getTypeByID(String itemid) {
 
                 for(MenuCategory mc : menuCategory){
                         MenuItem mi= mc.findById(itemid);
@@ -99,11 +99,11 @@ public class Menu {
         }
 
         /**
-         * Delete function will search though the menu item and delete it
+         * delete function will search though the menu item and delete it
          * @param itemid
          * @return a integer
          */
-        public int Delete(String itemid) {
+        public int delete(String itemid) {
 
                 for(MenuCategory mc : menuCategory){
                         if(mc.findById(itemid)!= null){
@@ -122,7 +122,7 @@ public class Menu {
          * @param mim
          * @return 0,1, 0 is failed, 1 is success
          */
-        public int Update(String itemid, MenuItem mim) {
+        public int update(String itemid, MenuItem mim) {
 
                 for(MenuCategory mc : menuCategory){
                         if(mc.findById(itemid)!= null) {

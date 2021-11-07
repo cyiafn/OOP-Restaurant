@@ -185,7 +185,7 @@ public class OrderManager {
         {*/
             //ArrayList<MenuItem> mi_arr = Or
             //order.addtoOrder(item);
-            //Menu m = MenuManager.retrieveInstance().get_menu();
+            //Menu m = MenuManager.retrieveInstance().getMenu();
             //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(item);
             //int res = m.Update(id)
             /*if (res== 1) {

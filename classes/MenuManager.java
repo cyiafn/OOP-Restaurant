@@ -1,5 +1,5 @@
 public class MenuManager {
-	private ArrayList<Menu> _menu;
+	private ArrayList<Menu> menu;
 
 	public void CreateMenu() {
 		throw new UnsupportedOperationException();
