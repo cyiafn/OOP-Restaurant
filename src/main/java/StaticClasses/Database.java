@@ -296,49 +296,51 @@ public final class Database{
         Database.writeOrder(filename, ordersw);
     }
 
-    public static void savePayment(String filename, Invoice invoice) throws IOException {
-        ArrayList<String> ordersw = new ArrayList<String>();
-        Order order = invoice.getOrders();
-        StringBuilder st = new StringBuilder();
-        st.append(invoice.getInvoiceId());
-        st.append(SEPARATOR);
-        st.append(order.getOrderID());
-        st.append(SEPARATOR);
-        st.append(order.getReservationID());
-        st.append(SEPARATOR);
-        st.append(invoice.getDate());
-        st.append(SEPARATOR);
-        st.append(invoice.getTableNo());
-        st.append(SEPARATOR);
-        st.append(order.getStaff());
-        st.append(SEPARATOR);
-        st.append(invoice.getSubTotal());
-        st.append(SEPARATOR);
-        st.append(invoice.getMemberDiscAmt());
-        st.append(SEPARATOR);
-        st.append(invoice.getSubTotalAD());
-        st.append(SEPARATOR);
-        st.append(invoice.getGstAmt());
-        st.append(SEPARATOR);
-        st.append(invoice.getSvcChargeAmt());
-        st.append(SEPARATOR);
-        st.append(invoice.getTotal());
-        st.append(SEPARATOR);
+    public static void savePayment(String filename, ArrayList<Invoice> invoiceList) throws IOException {
+        ArrayList<String> invoicesw = new ArrayList<String>();
+        for (int i = 0; i < invoiceList.size(); i++) {
+            Invoice invoice = invoiceList.get(i);
+            Order order = invoice.getOrders();
+            StringBuilder st = new StringBuilder();
+            st.append(invoice.getInvoiceId());
+            st.append(SEPARATOR);
+            st.append(order.getOrderID());
+            st.append(SEPARATOR);
+            st.append(order.getReservationID());
+            st.append(SEPARATOR);
+            st.append(invoice.getDate());
+            st.append(SEPARATOR);
+            st.append(invoice.getTableNo());
+            st.append(SEPARATOR);
+            st.append(order.getStaff());
+            st.append(SEPARATOR);
+            st.append(invoice.getSubTotal());
+            st.append(SEPARATOR);
+            st.append(invoice.getMemberDiscAmt());
+            st.append(SEPARATOR);
+            st.append(invoice.getSubTotalAD());
+            st.append(SEPARATOR);
+            st.append(invoice.getGstAmt());
+            st.append(SEPARATOR);
+            st.append(invoice.getSvcChargeAmt());
+            st.append(SEPARATOR);
+            st.append(invoice.getTotal());
+            st.append(SEPARATOR);
 
-        ArrayList<MenuItem> items = order.getOrderedItems();
-        for(MenuItem item : items) {
-            st.append(item.getMenuItemID());
-            st.append(SEPARATOR);
-            st.append(item.getName());
-            st.append(SEPARATOR);
-            st.append(item.getPrice());
-            st.append(SEPARATOR);
-            st.append(item.getQuantity());
-            st.append(SEPARATOR);
+            ArrayList<MenuItem> items = order.getOrderedItems();
+            for (MenuItem item : items) {
+                st.append(item.getMenuItemID());
+                st.append(SEPARATOR);
+                st.append(item.getName());
+                st.append(SEPARATOR);
+                st.append(item.getPrice());
+                st.append(SEPARATOR);
+                st.append(item.getQuantity());
+                st.append(SEPARATOR);
+            }
+            invoicesw.add(st.toString());
         }
-        ordersw.add(st.toString());
-
-        Database.writeOrder(filename, ordersw);
+        Database.writeOrder(filename, invoicesw);
     }
 
    // @Override

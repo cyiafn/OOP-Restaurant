@@ -54,9 +54,16 @@ public class PaymentManager {
 
         retrieveTableNo(invoice);
         computeInvoice(invoice);
-        savetoDB(invoice);
+        invoiceList.add(invoice);
+        savetoDB(invoiceList);
         System.out.println("Invoice Created");
         displayPayment(invoice);
+        try {
+            OrderManager.getInstance().deleteOrder(invoice.getOrders());
+            ReservationManager.getInstance().closeReservation(invoice.getOrders().getReservationID());
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -159,9 +166,9 @@ public class PaymentManager {
     }
 
 
-   public void savetoDB(Invoice invoice){
+   public void savetoDB(ArrayList<Invoice> invoiceList){
        try {
-           Database.savePayment(invoiceFile, invoice);
+           Database.savePayment(invoiceFile, invoiceList);
            System.out.printf("Successfully saved to %s\n",invoiceFile);
        } catch (IOException e) {
            System.out.printf("Unable to save to %s\n", invoiceFile);

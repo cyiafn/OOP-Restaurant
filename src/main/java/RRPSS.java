@@ -6,6 +6,7 @@
 */
 
 import ControlClasses.OrderManager;
+import ControlClasses.PaymentManager;
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
 import UI.*;
@@ -27,6 +28,7 @@ public class RRPSS {
         Scanner sc = new Scanner(System.in);
         ReservationManager reservationM = null;
         OrderManager.getInstance().loadinDB();
+        PaymentManager.getInstance().loadFromDB();
         try {
             reservationM = new ReservationManager();
         } catch (IOException | CsvException e) {

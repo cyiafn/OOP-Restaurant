@@ -42,7 +42,7 @@ public class Invoice {
     public Invoice(Order orders){
         Calendar c = Calendar.getInstance();
         this.date = sdf.format(c.getTime());
-        this.invoiceId = Id.format(c.getTime()) + orders.getOrderID(); //Using of date format + orderID to create invoiceID
+        this.invoiceId = Id.format(c.getTime()) + orders.getOrderID(); //Using of date format + orderID + Time + to create invoiceID
         this.memberStatus = Membership.NOT_MEMBER;
 
         this.orders = orders;
