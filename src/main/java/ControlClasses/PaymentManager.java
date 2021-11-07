@@ -83,7 +83,7 @@ public class PaymentManager {
         double total;
 
         for(MenuItem item: invoice.getOrders().getOrderedItems()) {
-            subTotal += item.get_price() * item.get_quantity();
+            subTotal += item.getPrice() * item.getQuantity();
         }
         if( invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER ){
             memberDiscAmt = subTotal * memberDiscount; //Assume Member discount is applied on Subtotal before Tax
@@ -125,7 +125,7 @@ public class PaymentManager {
         System.out.printf("    Server: %s                                                   Table No.: %s\n", displayStaff, displayTableNo);
         System.out.println("--------------------------------------------------------------------------------------");
         for(MenuItem item: invoice.getOrders().getOrderedItems()){
-            System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_quantity()+"    \t" + item.get_price());
+            System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t" + item.getQuantity()+"    \t" + item.getPrice());
         }
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.printf("SUBTOTAL                                                                 %.2f\n", displaySubtotal);

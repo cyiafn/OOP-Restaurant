@@ -255,7 +255,7 @@ public class MenuManager {
 		// Update function
 
 		// delete function
-		// mymenu.delete_signle_menu_item_on_single_menu_category();
+		// mymenu.delete_signle_menu_item_on_singlemenuCategory();
 		return mymenu;
 	}
 
@@ -269,7 +269,7 @@ public class MenuManager {
 	 */
 	@SuppressWarnings("unchecked")
 	public Menu formatDatabaseMapIntoMenu(Map data) {
-		List<Map> data_cat = (List<Map>) data.get("_menuCategory");
+		List<Map> data_cat = (List<Map>) data.get("menuCategory");
 		// Create the menu object here
 		// first level: Menu Category
 		// 8 times
@@ -282,35 +282,35 @@ public class MenuManager {
 //                    System.out.println(i );
 
 					// menu item
-					List<Map> real_cat = (List<Map>) data_cat.get(i.intValue()).get("_menuItem");
+					List<Map> real_cat = (List<Map>) data_cat.get(i.intValue()).get("menuItem");
 					ArrayList<MenuItem> new_menu_item = new ArrayList<>();
 					// for each to get menu item
 					AtomicInteger m = new AtomicInteger(0);
 					real_cat.forEach(
 							(l) -> {
-								String uid = real_cat.get(m.intValue()).get("_menuItemID").toString();
-								String des = real_cat.get(m.intValue()).get("_description").toString();
-								String name =   real_cat.get(m.intValue()).get("_name").toString();
-								double price = Double.parseDouble(real_cat.get(m.intValue()).get("_price").toString());
-								int quantity = Integer.parseInt(real_cat.get(m.intValue()).get("_quantity").toString());
+								String uid = real_cat.get(m.intValue()).get("menuItemID").toString();
+								String des = real_cat.get(m.intValue()).get("description").toString();
+								String name =   real_cat.get(m.intValue()).get("name").toString();
+								double price = Double.parseDouble(real_cat.get(m.intValue()).get("price").toString());
+								int quantity = Integer.parseInt(real_cat.get(m.intValue()).get("quantity").toString());
 //                                System.out.println(l );
-								if(real_cat.get(m.intValue()).get("_type").toString().equals("setmeal"))
+								if(real_cat.get(m.intValue()).get("type").toString().equals("setmeal"))
 								{
 									// Means it is set meal
 									AtomicInteger o = new AtomicInteger(0);
-									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("_set_of_item");
+									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("setOfItem");
 									if(!sub_setmeal.isEmpty())
 									{
 										ArrayList<MenuItem> sub_setmeal_mi = new ArrayList<>();
 										sub_setmeal.forEach(
 												(p) -> {
-													String sub_uid = sub_setmeal.get(o.intValue()).get("_menuItemID").toString();
-													String sub_des = sub_setmeal.get(o.intValue()).get("_description").toString();
-													String sub_name =   sub_setmeal.get(o.intValue()).get("_name").toString();
-													double sub_price = Double.parseDouble(sub_setmeal.get(o.intValue()).get("_price").toString());
-													int sub_quantity = Integer.parseInt(sub_setmeal.get(o.intValue()).get("_quantity").toString()) ;
+													String sub_uid = sub_setmeal.get(o.intValue()).get("menuItemID").toString();
+													String sub_des = sub_setmeal.get(o.intValue()).get("description").toString();
+													String subname =   sub_setmeal.get(o.intValue()).get("name").toString();
+													double subprice = Double.parseDouble(sub_setmeal.get(o.intValue()).get("price").toString());
+													int subquantity = Integer.parseInt(sub_setmeal.get(o.intValue()).get("quantity").toString()) ;
 													MenuItem mii = new MenuItem(
-															sub_uid,sub_name ,sub_des , sub_price, sub_quantity
+															sub_uid,subname ,sub_des , subprice, subquantity
 													);
 													sub_setmeal_mi.add(mii);
 													o.getAndIncrement();
@@ -346,8 +346,8 @@ public class MenuManager {
 							}
 					);
 
-					String des = data_cat.get(i.intValue()).get("_description").toString();
-					String cat =  data_cat.get(i.intValue()).get("_category").toString();
+					String des = data_cat.get(i.intValue()).get("description").toString();
+					String cat =  data_cat.get(i.intValue()).get("category").toString();
 					FoodCategory enum_cat = FoodCategory.valueOf(cat);
 					MenuCategory mc = new MenuCategory(
 							enum_cat,
@@ -361,9 +361,9 @@ public class MenuManager {
 		);
 
 		// form the menu here
-		String id = data.get("_iD").toString();
-		String name = data.get("_name").toString();
-		String desp = data.get("_description").toString();
+		String id = data.get("id").toString();
+		String name = data.get("name").toString();
+		String desp = data.get("description").toString();
 
 		return new Menu(
 				id,
@@ -396,7 +396,7 @@ public class MenuManager {
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
 			Menu menu = createSingleMenuWhenNoMenuExisted();
 			Database.WriteToJsonFile(menu, filename.trim());
-			System.out.println("Welcome to " + menu.get_name());
+			System.out.println("Welcome to " + menu.getName());
 		}
 		Map data = Database.LoadFromJsonFile(filename.trim());
 		Menu new_menu = formatDatabaseMapIntoMenu(data);
@@ -457,7 +457,7 @@ public class MenuManager {
 	 * Helper function to view Menu
 	 */
 	public void viewMenu() {
-		for(MenuCategory mc : this._menu.get_menuCategory()){
+		for(MenuCategory mc : this._menu.getMenuCategory()){
 			mc.print();
 		}
 	}
@@ -506,7 +506,7 @@ public class MenuManager {
 
 		MenuCategory mc = _menu.get_single_menu_categroy(enum_cat.toString());
 		// Print the menu item in the category
-		if(mc.get_menuItem().size()==0)
+		if(mc.getMenuItem().size()==0)
 		{
 			System.out.println("You have no menu item");
 		}

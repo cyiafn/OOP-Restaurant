@@ -8,6 +8,6 @@ public enum Category {
 	private Object _alcoholicDrink;
 	private Object _softDrinks;
 	private Object _attribute;
-	public MenuCategory _unnamed_MenuCategory_3;
-	public MenuCategory _unnamed_MenuCategory_4;
+	public MenuCategory _unnamedmenuCategory_3;
+	public MenuCategory _unnamedmenuCategory_4;
 }

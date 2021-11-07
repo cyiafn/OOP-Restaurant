@@ -80,7 +80,7 @@ public class PaymentUI implements UI {
 
     }
 
-    public void displayOptions() throws IOException, CsvException {
+    public void displayOptions() throws IOException {
             System.out.println(PrintColor.YELLOW_BOLD);
             System.out.println(
                     "==============================\n" + "\tPayment Management\n" + "=============================="
@@ -92,7 +92,7 @@ public class PaymentUI implements UI {
             int opt = InputHandler.getInt(0, 2, "Please enter an option (0 to exit): ", "Please enter an integer from 0-2!");
             switch (opt) {
                 case 1:
-                    createInvoice();
+                    //createInvoice();
                     break;
                 case 2:
                     viewInvoice();

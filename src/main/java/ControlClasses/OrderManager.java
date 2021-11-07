@@ -160,22 +160,22 @@ public class OrderManager {
 
     public void deleteOrderItem(Order order, String itemid) throws IOException {
         MenuItem it = MenuManager.getInstance().findByIdForMenuItem(itemid);
-        //System.out.println(it.get_menuItemID());
+        //System.out.println(it.getmenuItemID());
 
         if (it == null)
             System.out.println("Item does not exist!");
         else if (!order.removeItem(it));
             //System.out.println("Item not in order!");
         //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(itemid);
-        //System.out.println(item.get_menuItemID());
+        //System.out.println(item.getmenuItemID());
         //if (item != null) order.removeItem(item);
-        //System.out.println(item.get_menuItemID());
+        //System.out.println(item.getmenuItemID());
         //else System.out.println("This item does not exist");
     }
 
     public void createOrderItem(Order order, String itemid) throws IOException {
         MenuItem item = MenuManager.getInstance().findByIdForMenuItem(itemid);
-        //System.out.println(item.get_menuItemID());
+        //System.out.println(item.getmenuItemID());
         if (item != null) order.addItem(item);
         else System.out.println("This item does not exist");
         //order.addtoOrder(item);

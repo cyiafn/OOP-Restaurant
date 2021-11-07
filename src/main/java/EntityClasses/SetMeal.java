@@ -6,14 +6,14 @@ import Enumerations.PrintColor;
 import java.util.ArrayList;
 
 public class SetMeal extends MenuItem {
-    String _type = "setmeal";
+    String type = "setmeal";
 
-    private ArrayList<MenuItem> _set_of_item ;
+    private ArrayList<MenuItem> setOfItem ;
 
 
-    public SetMeal(String _menuItemID, String _name, String _description, double _price, Integer _quantity, ArrayList<MenuItem> ala) {
-        super(_menuItemID, _name, _description, _price, _quantity);
-        _set_of_item = ala;
+    public SetMeal(String menuItemID, String name, String description, double price, Integer quantity, ArrayList<MenuItem> ala) {
+        super(menuItemID, name, description, price, quantity);
+        setOfItem = ala;
     }
 
     @Override
@@ -21,44 +21,43 @@ public class SetMeal extends MenuItem {
         System.out.println(" -------------------------------");
         System.out.print(PrintColor.GREEN_BOLD);
 
-        System.out.println(" Menu ID: " + this.get_menuItemID() + " | " );
+        System.out.println(" Menu ID: " + this.getMenuItemID() + " | " );
         System.out.print(PrintColor.BLUE);
-        System.out.println(" Set Meal Name: "+ this.get_name() + " | ");
-        System.out.println(" Set Meal Description: "+ this.get_description());
+        System.out.println(" Set Meal Name: "+ this.getName() + " | ");
+        System.out.println(" Set Meal Description: "+ this.getDescription());
         System.out.print(PrintColor.YELLOW_BOLD);
-        System.out.println(" Set Meal Price: " + this.get_price()+ " | "+ " Set Meal Quantity: "+ this.get_quantity().toString());
-        System.out.println(" Type: "+ this.get_type());
+        System.out.println(" Set Meal Price: " + this.getPrice()+ " | "+ " Set Meal Quantity: "+ this.getQuantity().toString());
+        System.out.println(" Type: "+ this.getType());
         System.out.println("");
-        for(MenuItem mi : this._set_of_item)
+        for(MenuItem mi : this.setOfItem)
         {
             System.out.print(PrintColor.GREEN_BOLD);
             System.out.println("   {");
-//            System.out.println("     Menu ID: " + mi.get_menuItemID() + " | ");
             System.out.print(PrintColor.BLUE);
-            System.out.println("     Name: "+ mi.get_name() + " | ");
-            System.out.println("     Description: "+ mi.get_description());
+            System.out.println("     Name: "+ mi.getName() + " | ");
+            System.out.println("     Description: "+ mi.getDescription());
             System.out.print(PrintColor.YELLOW_BOLD);
-            System.out.println("     Price: " + mi.get_price()+ " | "+ "Quantity: "+ mi.get_quantity().toString());
+            System.out.println("     Price: " + mi.getPrice()+ " | "+ "Quantity: "+ mi.getQuantity().toString());
             System.out.println("   }");
         }
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
     }
 
-    public String get_type() {
-        return _type;
+    public String getType() {
+        return type;
     }
 
-    public void set_type(String _type) {
-        this._type = _type;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public ArrayList<MenuItem> get_set_of_item() {
-        return _set_of_item;
+    public ArrayList<MenuItem> getSetOfItem() {
+        return setOfItem;
     }
 
-    public void set_set_of_item(ArrayList<MenuItem> _set_of_iteme) {
-        this._set_of_item = _set_of_iteme;
+    public void setSetOfItem(ArrayList<MenuItem> setOfIteme) {
+        this.setOfItem = setOfIteme;
     }
 
 

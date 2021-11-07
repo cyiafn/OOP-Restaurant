@@ -201,14 +201,10 @@ public class Order {
     public boolean removeItem(MenuItem item) {
         for (MenuItem it : orderedItems) {
             System.out.println(it.toString());
-            System.out.println(it.get_menuItemID());
+            System.out.println(it.getMenuItemID());
             this.orderedItems.remove(it);
             return true;
-            /*if (it.get_menuItemID() == item.get_menuItemID()) {
-                System.out.println(it);
-                this.orderedItems.remove(it);
-                return true;
-            }*/
+
         }
         return false;
     }
@@ -216,7 +212,7 @@ public class Order {
     /*public String[] getLineCSVFormat(){
         //DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         for (MenuItem item : orderedItems) {
-            String[] row = {Integer.toString(orderID), Staff, date, reservationID, item.get_menuItemID(), item.get_name(), String.valueOf(item.get_price())};
+            String[] row = {Integer.toString(orderID), Staff, date, reservationID, item.getmenuItemID(), item.getName(), String.valueOf(item.getPrice())};
             return row;
         }
         return new String[0];
@@ -236,8 +232,7 @@ public class Order {
         System.out.println("ID                                                Name           Price(S$)");
         System.out.println("=================================================================================");
         for (MenuItem item : orderedItems) {
-            System.out.println(item.get_menuItemID() +"    \t" + item.get_name() +"    \t" + item.get_price());
-            //System.out.println(item.get_quantity() +"    \t" + item.get_name() +"    \t" + item.get_price());
+            System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t" + item.getPrice());
         }
         System.out.println("=================================================================================");
     }

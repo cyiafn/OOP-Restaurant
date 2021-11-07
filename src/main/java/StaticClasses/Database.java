@@ -281,13 +281,13 @@ public final class Database{
 
             ArrayList<MenuItem> items = order.getOrderedItems();
             for(MenuItem item : items) {
-                st.append(item.get_menuItemID());
+                st.append(item.getMenuItemID());
                 st.append(SEPARATOR);
-                st.append(item.get_name());
+                st.append(item.getName());
                 st.append(SEPARATOR);
-                st.append(item.get_price());
+                st.append(item.getPrice());
                 st.append(SEPARATOR);
-                st.append(item.get_quantity());
+                st.append(item.getQuantity());
                 st.append(SEPARATOR);
             }
             ordersw.add(st.toString());
@@ -321,13 +321,13 @@ public final class Database{
 
         ArrayList<MenuItem> items = order.getOrderedItems();
         for(MenuItem item : items) {
-            st.append(item.get_menuItemID());
+            st.append(item.getMenuItemID());
             st.append(SEPARATOR);
-            st.append(item.get_name());
+            st.append(item.getName());
             st.append(SEPARATOR);
-            st.append(item.get_price());
+            st.append(item.getPrice());
             st.append(SEPARATOR);
-            st.append(item.get_quantity());
+            st.append(item.getQuantity());
             st.append(SEPARATOR);
         }
         ordersw.add(st.toString());

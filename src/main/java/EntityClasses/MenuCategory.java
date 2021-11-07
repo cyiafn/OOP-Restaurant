@@ -6,20 +6,20 @@ import Enumerations.PrintColor;
 import java.util.*;
 
 public class MenuCategory {
-    private String _description;
-    private FoodCategory _category;
-    private ArrayList<MenuItem> _menuItem;
+    private String description;
+    private FoodCategory category;
+    private ArrayList<MenuItem> menuItem;
 
     /**
      * Constructor for MenuCategory
-     * @param _category
-     * @param _description
-     * @param _menuItem
+     * @param category
+     * @param description
+     * @param menuItem
      */
-    public MenuCategory(FoodCategory _category, String _description, ArrayList<MenuItem> _menuItem) {
-        this._category = _category;
-        this._description = _description;
-        this._menuItem = _menuItem;
+    public MenuCategory(FoodCategory category, String description, ArrayList<MenuItem> menuItem) {
+        this.category = category;
+        this.description = description;
+        this.menuItem = menuItem;
     }
 
     /**
@@ -27,12 +27,8 @@ public class MenuCategory {
      * @param item
      */
     public void insertSingleMenuItem(MenuItem item) {
-        this._menuItem.add(item);
+        this.menuItem.add(item);
     }
-
-//    public void insert_single_menu_item_into_seat_meal(MenuItem item) {
-//        this._menuItem.add(item);
-//    }
 
     /**
      * Delete Menu Item in the Menu
@@ -40,7 +36,7 @@ public class MenuCategory {
      */
     public void deleteSingleMenuItem(MenuItem item) {
         // searching for the item id
-        this._menuItem.remove(item);
+        this.menuItem.remove(item);
     }
 
     /**
@@ -49,19 +45,10 @@ public class MenuCategory {
      * @return a menu item
      */
     public MenuItem findById(String id) {
-        return  _menuItem.stream().filter(s ->
-                s.get_menuItemID().equals(id)
+        return  menuItem.stream().filter(s ->
+                s.getMenuItemID().equals(id)
         ).findFirst().orElse(null);
     }
-
-//    public MenuItem FindTypeById(String id) {
-//
-//        MenuItem found_menu_item = _menuItem.stream().filter(s ->
-//                s.get_menuItemID().equals(id)
-//        ).findFirst().orElse(null);
-//
-//        return found_menu_item;
-//    }
 
     /**
      * Find the menu item by name
@@ -70,7 +57,7 @@ public class MenuCategory {
      */
     public MenuItem findByName(String name) {
 
-        MenuItem found_menu_item = _menuItem.stream().filter(s -> s.get_name().equals(name)).findFirst().orElse(null);
+        MenuItem found_menu_item = menuItem.stream().filter(s -> s.getName().equals(name)).findFirst().orElse(null);
 
         return found_menu_item;
     }
@@ -81,13 +68,9 @@ public class MenuCategory {
      * @param mim
      */
     public void updateMenuItem(MenuItem mi , MenuItem mim) {
-        int index= this._menuItem.indexOf(mi);
-//        mi.set_name(mim.get_name());
-//        mi.set_description(_description);
-//        mi.set_price(mim.get_price());
-//        mi.set_quantity(mim.get_quantity());
-        mim.set_menuItemID(mi.get_menuItemID());
-        this._menuItem.set(index, mim);
+        int index= this.menuItem.indexOf(mi);
+        mim.setMenuItemID(mi.getMenuItemID());
+        this.menuItem.set(index, mim);
     }
 
     /**
@@ -95,10 +78,10 @@ public class MenuCategory {
      * Based on inheritance.
      */
     public void print(){
-        for(MenuItem mi : this.get_menuItem())
+        for(MenuItem mi : this.getMenuItem())
         {
             System.out.print(PrintColor.RED);
-            System.out.println(" Category:    "+ this.get_category().toString());
+            System.out.println(" Category:    "+ this.getCategory().toString());
             System.out.print(PrintColor.RESET);
             if (mi instanceof SetMeal) {
                 SetMeal sm = (SetMeal)mi;
@@ -117,28 +100,28 @@ public class MenuCategory {
      * Accessor and mutator
      * @return
      */
-    public FoodCategory get_category() {
-        return _category;
+    public FoodCategory getCategory() {
+        return category;
     }
 
-    public void set_category(FoodCategory _category) {
-        this._category = _category;
+    public void setCategory(FoodCategory category) {
+        this.category = category;
     }
 
-    public ArrayList<MenuItem> get_menuItem() {
-        return _menuItem;
+    public ArrayList<MenuItem> getMenuItem() {
+        return menuItem;
     }
 
-    public void set_menuItem(ArrayList<MenuItem> _menuItem) {
-        this._menuItem = _menuItem;
+    public void setMenuItem(ArrayList<MenuItem> menuItem) {
+        this.menuItem = menuItem;
     }
 
-    public String get_description() {
-        return _description;
+    public String getDescription() {
+        return description;
     }
 
-    public void set_description(String _description) {
-        this._description = _description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
