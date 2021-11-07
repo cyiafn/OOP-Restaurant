@@ -1,2 +1,6 @@
 promotionID;name;description;duration;price;menuItemID
-4fc623a8-5026-49ea-a8bf-21ee967be328;test;test;24/7/2021 - 14/7/2021;120.0;b9e57447-ced5-4cd5-a5c2-7f590000d536
+9b44bb26-c4a1-4b08-a1ac-a2eaa762d641;test;test;14/7/2021 - 17/7/2021;80.0;9afb9000-75c7-43da-9bfd-9e7154d359ed
+003414f7-28e0-486d-9988-1c553dd72e4d;test;test;14;10.0;1baad401-c7fd-407c-a617-4c0e85402585
+e1cd76fe-3505-40be-9389-d1d50b02b1ad;pls work;work;11/4/2021 - 15/6/2021;10.0;b9e57447-ced5-4cd5-a5c2-7f590000d536
+1078e5ec-46cb-4df9-a552-5417ba1abaca;test;test;14;100.0;d6cc23bc-575b-4372-9ef4-9cfec7f3fbf2
+85b5dcd3-2d20-44ec-9e8a-979104349dcc;work;work;1;10.0;c0a8dce4-4399-4a21-9a0f-a4f417dd59c5

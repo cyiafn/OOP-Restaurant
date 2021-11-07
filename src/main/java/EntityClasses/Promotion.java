@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Promotion {
+public class Promotion extends Subject{
 	//private Integer _promotionPercentage;
 	private String _promotionID;
 	private double _promotionPrice;
@@ -44,7 +44,6 @@ public class Promotion {
 	public String getMenuItemID(){
 		return this._menuItemID;
 	}
-
 
 
 	public String getPromotionID() {

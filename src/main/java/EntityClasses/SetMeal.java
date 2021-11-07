@@ -33,6 +33,7 @@ public class SetMeal extends MenuItem {
         setOfItem = ala;
     }
 
+
     /**
      * override function from parent class print()
      */

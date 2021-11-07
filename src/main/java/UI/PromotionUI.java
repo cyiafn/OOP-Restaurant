@@ -2,6 +2,7 @@ package UI;
 import ControlClasses.OrderManager;
 import ControlClasses.PromotionManager;
 import EntityClasses.Order;
+import Interfaces.UI;
 import StaticClasses.Database;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;

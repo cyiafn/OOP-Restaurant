@@ -19,7 +19,7 @@ import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 import org.apache.groovy.json.internal.IO;
 
-public class OrderUI {
+public class OrderUI{
     public static OrderUI instance = null;
     Scanner sc = new Scanner(System.in);
 

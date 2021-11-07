@@ -13,12 +13,14 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.UUID;
 
-public class PromotionManager {
+public class PromotionManager{
 	String name;
 	private Object _attribute;
+	List<String> setItems = new ArrayList<String>();
 	private static PromotionManager instance = null;
 	String filename = "Promotion.csv";
-	ArrayList<Promotion> _promotions = new ArrayList<>();
+	ArrayList<Promotion> promotions = new ArrayList<>();
+	Promotion p = new Promotion(); // Current promotion
 	public static PromotionManager getInstance() throws IOException, CsvException {
 		if (instance == null) {
 			instance = new PromotionManager();
@@ -30,7 +32,10 @@ public class PromotionManager {
 	}
 	public PromotionManager() throws IOException, CsvException {
 		loadPromotion();
-
+		loadSetMenuItems();
+		//this.setItems.forEach(response ->{
+		//	System.out.println(response);
+		//});
 	}
 
 
@@ -45,10 +50,14 @@ public class PromotionManager {
 		String menuItemId = InputHandler.getString("Please type in the menu item id that you wish to input.");
 		MenuItem item = MenuManager.getInstance().findByIdForMenuItem(menuItemId);
 		if(item!=null) {
-			Promotion p = new Promotion(UUID.randomUUID().toString(),name,description,duration,price,menuItemId);
-			this._promotions.add(p);
+			this.p = new Promotion(UUID.randomUUID().toString(),name,description,duration,price,menuItemId);
+			this.promotions.add(p);
+			MenuItem test5 = new MenuItem(p,p.getMenuItemID());
+			p.notifyAllObservers();
+			//p.setState(1);
+			//MenuItem test2 = new MenuItem(p.setState(2));
 			String[] test = {p.getPromotionID(), p.getPromotionName(),p.getDescription(),p.getDuration(),String.valueOf(p.getPromotionPrice()),p.getMenuItemID()};
-			System.out.println("hi");
+			//System.out.println("hi");
 			Database.writeLine(filename,test);
 		}
 
@@ -66,7 +75,7 @@ public class PromotionManager {
 		Scanner strScan = new Scanner(System.in);
 		String id = InputHandler.getString("Please enter the ID of the promotion you would like to edit ");
 		//System.out.println(id);
-		for( Promotion resp:this._promotions){
+		for( Promotion resp:this.promotions){
 			String promoID = resp.getPromotionID();
 			//System.out.println(promoID);
 			//System.out.println(id);
@@ -129,24 +138,24 @@ public class PromotionManager {
 		throw new UnsupportedOperationException();
 	}
 	public void addPromotion(Promotion p){
-		this._promotions.add(p);
+		this.promotions.add(p);
 	}
 
 	public void loadPromotion() throws IOException, CsvException {
-		ArrayList<HashMap<String, String>> promotions = Database.readAll(filename);
+		ArrayList<HashMap<String, String>> listPromotions = Database.readAll(filename);
 		//add tables to ID and creates arraylist for each table.
-		_promotions = new ArrayList<>();
-		for (HashMap<String, String> i: promotions){
+		promotions = new ArrayList<>();
+		for (HashMap<String, String> i: listPromotions){
 			//System.out.println("hi");
 			//System.out.println(String.valueOf(i.get("duration")));
 //Promotion p  = new Promotion(String.valueOf(i.get("promotionID")),String.valueOf(i.get("name")), String.valueOf(i.get("description")),String.valueOf(i.get("duration")),Double.parseDouble(i.get("price")),String.valueOf(i.get("menuItemID")));
 //_promotions.add(p);
-			_promotions.add(new Promotion(String.valueOf(i.get("promotionID")),String.valueOf(i.get("name")), String.valueOf(i.get("description")),String.valueOf(i.get("duration")),Double.parseDouble(i.get("price")),String.valueOf(i.get("menuItemID"))));
+			promotions.add(new Promotion(String.valueOf(i.get("promotionID")),String.valueOf(i.get("name")), String.valueOf(i.get("description")),String.valueOf(i.get("duration")),Double.parseDouble(i.get("price")),String.valueOf(i.get("menuItemID"))));
 		}
 	}
 	public void ViewPromotion() throws IOException, CsvException {
 		//loadPromotion();
-		for(Promotion response : this._promotions){
+		for(Promotion response : this.promotions){
 			System.out.println("====================");
 			System.out.println("Promotion ID: "+ response.getPromotionID());
 			System.out.println("Promotion Name: "+ response.getPromotionName());
@@ -166,9 +175,10 @@ public class PromotionManager {
 
 
 	}
+
 	public void deletePromotion() throws CsvException, IOException {
 		String dltID = InputHandler.getString("Please enter the ID of the promotion you would like to delete");
-		for(Promotion resp : this._promotions) {
+		for(Promotion resp : this.promotions) {
 			if(resp.getPromotionID().equals(dltID)) {
 				int confirm = InputHandler.getInt(0, 1, "(1) Confirm Deletion\t (0) Back", "invalid choice");
 				if (confirm == 1) {
@@ -182,6 +192,37 @@ public class PromotionManager {
 			}
 		}
 		System.out.println("ID of the promotion was not found");
+	}
+	public void loadSetMenuItems() throws IOException {
+		List<String> listOfSetItems = new ArrayList<String>();
+		Map data = Database.LoadFromJsonFile("csv/menu.json");
+		List<Map> data_cat = (List<Map>) data.get("menuCategory");
+		AtomicInteger i = new AtomicInteger();
+		data_cat.forEach(res ->{
+			List<Map> data_cat2 = (List<Map>) data_cat.get(i.intValue()).get("menuItem");
+			AtomicInteger j = new AtomicInteger();
+			data_cat2.forEach(response ->{ //menuItem
+				//System.out.println(response);
+				String test =data_cat2.get(j.intValue()).get("type").toString();
+				AtomicInteger k = new AtomicInteger();
+				if(test.equals("setmeal")){
+					List<Map> data_cat3 = (List<Map>) data_cat2.get(j.intValue()).get("setOfItem");
+					data_cat3.forEach(resp->{
+						String menuItemID =  data_cat3.get(k.intValue()).get("menuItemID").toString();
+						//System.out.println(menuItemID);
+						listOfSetItems.add(menuItemID);
+						k.getAndIncrement();
+					});
+
+				}
+
+
+				//System.out.println(data_cat2.get(j.intValue()).get("type"));
+				j.getAndIncrement();
+			});
+			i.getAndIncrement();
+		});
+		this.setItems = listOfSetItems;
 	}
 		/*promotionList.forEach((resp)->{
 			System.out.println("==========================");
