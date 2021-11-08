@@ -104,6 +104,10 @@ public class MenuCategory {
         }
     }
 
+    /**
+     * Retrieve all set meal item id in the menu
+     * @return ArrayList<String> which belong to Set meal item id
+     */
     public ArrayList<String> retrieveAllSeatMealID(){
         ArrayList<String> listOfSmenuID = new ArrayList<>();
         for(MenuItem mi : this.getMenuItem())
