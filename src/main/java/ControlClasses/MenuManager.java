@@ -656,10 +656,8 @@ public class MenuManager extends Observer {
 	}
 
 	/**
-	 * Delete Menu Item
-	 * Only delete the alacarte / set meal menu item
-	 * Will not search though the sub meal menu item
-	 * @throws IOException
+	 * Retrieve all set meal item id in the menu
+	 * @return ArrayList<String> which belong to Set meal item id
 	 */
 	public ArrayList<String> retrieveAllSeatMealID() {
 		ArrayList<String> listOfSmenuID = new ArrayList<>();
