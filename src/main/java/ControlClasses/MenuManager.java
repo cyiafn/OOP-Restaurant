@@ -101,6 +101,7 @@ public class MenuManager extends Observer {
 						{
 							mi.print();
 							((SetMeal) mi).setPromotionPrice(value);
+							((SetMeal) mi).setPromotionStatus(true);
 							System.out.println("------------------------------------------------------------");
 							System.out.println("Updating this Set Meal for promotion price! Do check it out");
 							System.out.println("------------------------------------------------------------");
@@ -119,6 +120,7 @@ public class MenuManager extends Observer {
 			for (String id : als ) {
 				MenuItem mi2 = findByIdForMenuItem(id);
 				((SetMeal) mi2).setPromotionPrice(0);
+				((SetMeal) mi2).setPromotionStatus(false);
 			}
 
 			System.out.println("Observer Menu Manager update promotion set meal successfully");

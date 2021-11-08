@@ -19,6 +19,7 @@ public class SetMeal extends MenuItem {
      */
     private ArrayList<MenuItem> setOfItem ;
     private  double promotionPrice= 0;
+    private boolean promotionStatus = false;
 
     /**
      * Constructor of Set Meal
@@ -117,6 +118,14 @@ public class SetMeal extends MenuItem {
 
     public void setPromotionPrice(double promotionPrice) {
         this.promotionPrice = promotionPrice;
+    }
+
+    public boolean isPromotionStatus() {
+        return promotionStatus;
+    }
+
+    public void setPromotionStatus(boolean promotionStatus) {
+        this.promotionStatus = promotionStatus;
     }
 
 
