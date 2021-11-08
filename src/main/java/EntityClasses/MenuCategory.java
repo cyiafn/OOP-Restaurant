@@ -104,6 +104,18 @@ public class MenuCategory {
         }
     }
 
+    public ArrayList<String> retrieveAllSeatMealID(){
+        ArrayList<String> listOfSmenuID = new ArrayList<>();
+        for(MenuItem mi : this.getMenuItem())
+        {
+            if(mi instanceof SetMeal)
+            {
+                listOfSmenuID.add(mi.getMenuItemID());
+            }
+        }
+        return listOfSmenuID;
+    }
+
     /**
      * Below is normal setter and getter
      * Accessor and mutator

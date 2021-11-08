@@ -2,5 +2,5 @@ package EntityClasses;
 
 public abstract class Observer {
     protected Subject subject;
-    public abstract void updatePromootionSetMeal();
+    public abstract void updatePromotionSetMeal();
 }

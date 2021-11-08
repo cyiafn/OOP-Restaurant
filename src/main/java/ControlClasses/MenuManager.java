@@ -64,21 +64,31 @@ public class MenuManager extends Observer {
 		return instance;
 	}
 
+	/**
+	 * For observer pattern design to update menu
+	 * @param subject
+	 */
 	public void updateMenuManagerForSubject(Subject subject){
 		this.subject = subject;
 		this.subject.attach(this);
 	}
+
+	/**
+	 * Inherit from observer class
+	 * responsible for update the menu item promotion price
+	 */
 	@Override
-	public void updatePromootionSetMeal(){
+	public void updatePromotionSetMeal(){
 		try {
 			// Set set meal promotion price
+			ArrayList<String> als =  this.retrieveAllSeatMealID();
 			List<Map<String, Double>> subs = subject.getState();
 			for(Map<String, Double> s : subs)
 			{
 				Iterator iterator = s.keySet().iterator();
 
-					while( iterator.hasNext() )
-					{
+				while( iterator.hasNext() )
+				{
 					String key   = (String) iterator.next();
 					System.out.println(key);
 
@@ -87,18 +97,32 @@ public class MenuManager extends Observer {
 					MenuItem mi = findByIdForMenuItem(key);
 					if(mi instanceof SetMeal)
 					{
-						mi.print();
-						((SetMeal) mi).setPromotionPrice(value);
-						System.out.println("------------------------------------------------------------");
-						System.out.println("Updating this Set Meal for promotion price! Do check it out");
-						System.out.println("------------------------------------------------------------");
-						mi.print();
+						if(((SetMeal) mi).getPromotionPrice() != value)
+						{
+							mi.print();
+							((SetMeal) mi).setPromotionPrice(value);
+							System.out.println("------------------------------------------------------------");
+							System.out.println("Updating this Set Meal for promotion price! Do check it out");
+							System.out.println("------------------------------------------------------------");
+							mi.print();
+						}
 					}
-					System.out.println("Observer Menu Manager update promotion set meal successfully");
-					Database.WriteToJsonFile(this.getMenu(), this.filename.trim());
+
+
+					/**
+					 * Check for removed menu item from the promotion
+					 */
+					als.remove(key);
 				}
 			}
+			// reset the id not in subject to be 0
+			for (String id : als ) {
+				MenuItem mi2 = findByIdForMenuItem(id);
+				((SetMeal) mi2).setPromotionPrice(0);
+			}
 
+			System.out.println("Observer Menu Manager update promotion set meal successfully");
+			Database.WriteToJsonFile(this.getMenu(), this.filename.trim());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -631,6 +655,22 @@ public class MenuManager extends Observer {
 		}
 	}
 
+	/**
+	 * Delete Menu Item
+	 * Only delete the alacarte / set meal menu item
+	 * Will not search though the sub meal menu item
+	 * @throws IOException
+	 */
+	public ArrayList<String> retrieveAllSeatMealID() {
+		ArrayList<String> listOfSmenuID = new ArrayList<>();
+		for(MenuCategory mc : this.getMenu().getMenuCategory())
+		{
+			for( String lmi : mc.retrieveAllSeatMealID()){
+				listOfSmenuID.add(lmi);
+			}
+		}
+		return listOfSmenuID;
+	}
 	/**
 	 * Helper class to format 1 to 1st
 	 * Input integer number
