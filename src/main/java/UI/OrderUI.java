@@ -163,7 +163,7 @@ public class OrderUI{
                     //int i = 0;
                     //do {
                         try {
-                            System.out.print("Enter Item ID: ");
+                            System.out.print("Enter MenuItem Name: ");
                             Scanner sc = new Scanner(System.in);
                             //idd = sc.nextInt();
                             id = sc.nextLine();
@@ -187,7 +187,7 @@ public class OrderUI{
                             //idd =-1;
                             //do {
                                 try {
-                                    System.out.print("Enter Item ID: ");
+                                    System.out.print("Enter MenuItem Name: ");
                                     Scanner sc = new Scanner(System.in);
                                     id = sc.nextLine();
                                     //idd = sc.nextInt();
@@ -231,7 +231,6 @@ public class OrderUI{
                                 order.setStatus("Delivered");
                                 break;
                         }
-
                     }
                     break;
                 case 3:
@@ -247,7 +246,7 @@ public class OrderUI{
                         //id = -1;
                         //do {
                             try {
-                                System.out.print("Enter Item ID: ");
+                                System.out.print("Enter MenuItem Name: ");
                                 Scanner sc = new Scanner(System.in);
                                 id = sc.nextLine();
                                 if(id == null) System.out.printf("Invalid input! ");
@@ -284,7 +283,7 @@ public class OrderUI{
         int orderID = -1;
         do {
             try {
-                System.out.print("Enter Order ID:");
+                System.out.print("Enter MenuItem Name:");
                 orderID = sc.nextInt();
                 if(orderID <= 0) System.out.printf("Invalid input! ");
             } catch (InputMismatchException e) {
@@ -319,7 +318,7 @@ public class OrderUI{
                 int orderID = -1;
                 do {
                     try {
-                        System.out.print("Enter Order ID:");
+                        System.out.print("Enter MenuItem Name:");
                         orderID = sc.nextInt();
                         if(orderID <= 0) System.out.printf("Invalid input! ");
                     } catch (InputMismatchException e) {
@@ -333,189 +332,4 @@ public class OrderUI{
             }
         } else System.out.println("No order made yet!");
     }
-
-    /*public void updateOrder(Order order) {
-        sc = new Scanner(System.in);
-        int input;
-        int id;
-        order.viewOrder();
-        do {
-            System.out.println("Please Choose a option to Continue:");
-            System.out.println("(1) Add item");
-            if(order.getStatus().equals("Ordering")) {
-                System.out.println("(2) Remove item");
-                System.out.println("(3) Finish");
-            }else {
-                System.out.println("(2) Update Status");
-                System.out.println("(3) Change Remarks\n(4) Remove item");
-                System.out.println("(5) Finish");
-            }
-            input = sc.nextInt();
-            switch (input) {
-                case 1:
-                    MenuController.retrieveInstance().displayMenu();
-                    System.out.println("");
-                    id = -1;
-                    do {
-                        try {
-                            System.out.print("Enter Item ID: ");
-                            id = sc.nextInt();
-                            if(id <= 0) System.out.printf("Invalid input! ");
-                        } catch (InputMismatchException e) {
-                            System.out.printf("Invalid input! ");
-                        }
-                        sc.nextLine();
-                    } while (id <= 0);
-                    OrderManager.getInstance().createOrderItem(order, id);
-                    input = 0;
-                    break;
-                case 2:
-                    if(order.getStatus().equals("Ordering")) {
-                        if (!(order.getItems().isEmpty())) {
-                            id = -1;
-                            do {
-                                try {
-                                    System.out.print("Enter Item ID: ");
-                                    id = sc.nextInt();
-                                    if(id <= 0) System.out.printf("Invalid input! ");
-                                } catch (InputMismatchException e) {
-                                    System.out.printf("Invalid input! ");
-                                }
-                                sc.nextLine();
-                            } while (id <= 0);
-                            Item it = MenuController.retrieveInstance().retrieveItem(id);
-                            if (it == null)
-                                System.out.println("Item does not exist!");
-                            else if (!order.removeItem(it))
-                                System.out.println("Item not in order!");
-                            input = 0;
-                        }
-                        else System.out.println("Order has no item!");
-                    } else {
-                        sc.nextLine();
-                        System.out.println("Enter new status: ");
-                        System.out.println("(1) Preparing");
-                        System.out.println("(2) Prepared");
-                        System.out.println("(3) Delivered");
-                        String input1 = sc.nextLine();
-                        switch (input1) {
-                            case "1":
-                                order.setStatus("Preparing");
-                                break;
-                            case "2":
-                                order.setStatus("Prepared");
-                                break;
-                            case "3":
-                                order.setStatus("Delivered");
-                                break;
-                        }
-
-                    }
-                    break;
-                case 3:
-                    if(!order.getStatus().equals("Ordering")) {
-                        sc.nextLine();
-                        System.out.print("Enter new remarks: ");
-                        order.setRemarks(sc.nextLine());
-                    } else input = 5;
-                    break;
-                case 4:
-                    if (!(order.getItems().isEmpty())) {
-                        id = -1;
-                        do {
-                            try {
-                                System.out.print("Enter Item ID: ");
-                                id = sc.nextInt();
-                                if(id <= 0) System.out.printf("Invalid input! ");
-                            } catch (InputMismatchException e) {
-                                System.out.printf("Invalid input! ");
-                            }
-                            sc.nextLine();
-                        } while (id <= 0);
-                        Item it = MenuController.retrieveInstance().retrieveItem(id);
-                        if (it == null)
-                            System.out.println("Item does not exist!");
-                        else if (!order.removeItem(it))
-                            System.out.println("Item not in order!");
-                        input = 0;
-                    }
-                    else System.out.println("Order has no item!");
-                    break;
-                case 5:
-                    break;
-                default:
-                    System.out.println("Please enter a valid option.");
-                    input = 0;
-            }
-            OrderManager.getInstance().updateOrder(order);
-            order.viewOrder();
-        } while (input < 5);
-        OrderManager.getInstance().savetoDB();
-    }
-
-
-    public void runRemoveOrder() {
-        sc = new Scanner(System.in);
-        int orderID = -1;
-        do {
-            try {
-                System.out.print("Enter Order ID:");
-                orderID = sc.nextInt();
-                if(orderID <= 0) System.out.printf("Invalid input! ");
-            } catch (InputMismatchException e) {
-                System.out.printf("Invalid input! ");
-            }
-            sc.nextLine();
-        } while (orderID <= 0);
-        Order order = OrderManager.getInstance().retrieveOrder(orderID);
-        if (order != null) {
-            OrderManager.getInstance().deleteOrder(order);
-            System.out.printf("Order %d has been removed.\n", orderID);
-        }
-        else System.out.println("Order does not exist!");
-    }
-
-    public void viewOrder() {
-        sc = new Scanner(System.in);
-        if (OrderManager.getInstance().displayOrder() > 0) {
-            int choice = -1;
-            do {
-                try {
-                    System.out.println("View order by (0 - Order ID, 1 - Room ID):");
-                    choice = sc.nextInt();
-                    if(choice != 0 && choice != 1) System.out.printf("Invalid input! ");
-                } catch (InputMismatchException e) {
-                    System.out.printf("Invalid input! ");
-                }
-                sc.nextLine();
-            } while (choice != 0 && choice != 1);
-            if(choice == 0) {
-                int orderID = -1;
-                do {
-                    try {
-                        System.out.print("Enter Order ID:");
-                        orderID = sc.nextInt();
-                        if(orderID <= 0) System.out.printf("Invalid input! ");
-                    } catch (InputMismatchException e) {
-                        System.out.printf("Invalid input! ");
-                    }
-                    sc.nextLine();
-                } while (orderID <= 0);
-                Order order = OrderManager.getInstance().retrieveOrder(orderID);
-                if (order != null) order.viewOrder();
-                else System.out.println("Order does not exist!");
-            } else {
-                System.out.println("Enter Room ID:");
-                String roomID = sc.nextLine();
-                ArrayList<Order> orderList = OrderManager.getInstance().retrieveOrderList(roomID);
-                if (orderList != null) {
-                    for (Order order : orderList) {
-                        order.viewOrder();
-                        System.out.println();
-                    }
-                }
-                else System.out.println("Order does not exist!");
-            }
-        } else System.out.println("No order made yet!");
-    }*/
 }

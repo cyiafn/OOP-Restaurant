@@ -32,16 +32,7 @@ public class OrderManager {
     public static final String filename = "order.csv";
 
     private static OrderManager instance = null;
-    /*String filename =  "csv/order.json";
-    private Order _order;
 
-    public Order get_order() {
-        return _order;
-    }
-
-    public void set_order(Order _order) {
-        this._order = _order;
-    }*/
     public OrderManager() {
         orderList = new ArrayList<Order>();
     }
@@ -54,50 +45,23 @@ public class OrderManager {
         return instance;
     }
 
-    public void OrderManager(){
-        ReservationManager reservationM = null;
-        try {
-            reservationM = new ReservationManager();
-        } catch (IOException | CsvException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void savetoDB2() throws IOException {
-        //OrderDB orderdb = new OrderDB();
         Database.saveOrder(filename, orderList);
     }
-
-
 
     public void savetoDB() throws IOException {
         Database.WriteToJsonFile(orderList, "csv/order.json");
 
     }
     public void loadinDB() throws IOException {
-        //OrderDB orderdb = new OrderDB();
         this.orderList = Database.readOrder(filename);
     }
 
 
-//    public void savetoDB1(Order order) throws IOException {
-//        Database.writeLine(orderFile, order.getLineCSVFormat());
-//
-//    }
-
-//    public void loadinDB() throws IOException, CsvException {
-//        //loads everything
-//        Map data = Database.loadFromJsonFile(filename.trim());
-//        //Order new_order = formatDatabaseMapIntoMenu(data);
-//        //_order = new_order;
-//    }
-
     public void updateOrder(Order order) throws IOException {
         orderList.remove(order);
-        //checkID();
-        /*if(orderList.add(order)){
-            Database.writeLine(orderFile, order.getLineCSVFormat());
-        }*/
+        checkID();
         orderList.add(order);
 
     }
@@ -148,18 +112,22 @@ public class OrderManager {
         Order.setIdCount(id+1);
     }
 
-
-
     public void deleteOrder(Order order) {
         int id = order.getOrderID();
         if(id == (Order.getIdCount()-1))
             Order.setIdCount(id);
         orderList.remove(order);
         //checkID();
+        try {
+            savetoDB2();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteOrderItem(Order order, String itemid) throws IOException {
-        MenuItem it = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        //MenuItem it = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemid);
         //MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemidd);
         //System.out.println(it);
         //System.out.println(it.get_menuItemID());
@@ -168,7 +136,9 @@ public class OrderManager {
         if (it == null)
             System.out.println("Item does not exist!");
         else if (order.removeItem(it));
-            //System.out.println("Item not in order!");
+        //savetoDB2();
+
+        //System.out.println("Item not in order!");
         //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(itemid);
         //System.out.println(item.getmenuItemID());
         //if (item != null) order.removeItem(item);
@@ -178,34 +148,53 @@ public class OrderManager {
 
     public void createOrderItem(Order order, String itemid) throws IOException {
 
-        MenuItem item = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        //MenuItem item = MenuManager.getInstance().findByIdForMenuItem(itemid);
+        MenuItem item = MenuManager.getInstance().findByNameForMenuItem(itemid);
+//        if(item instanceof SetMeal) {
+//
+//            order.addItem(item);
+//        }
         //MenuItem it2 = MenuManager.getInstance().findByIdForMenuItem(itemid);
         //System.out.println(item);
         //System.out.println(it2);
         //System.out.println(item.get_menuItemID());
-
-
         //System.out.println(item.getmenuItemID());
-        if (item != null) order.addItem(item);
-        else System.out.println("This item does not exist");
+        if (item.getName() != null) {
+            if(item instanceof  SetMeal) {
+                double newprice = ((SetMeal) item).getPromotionPrice();
+                if (newprice > 0.0){
+                    item.setPrice(newprice);
+                    //order.setPromotionstatus("Yes");
+                }
+            }
+            //else order.setPromotionstatus("No");
+            if (item.getName() == item.getName()){
+                order.removeItem(item);
+            }
+            order.addItem(item);
+            int quantity;
+            System.out.println("Enter Quantity");
+            Scanner sc = new Scanner(System.in);
+            quantity = sc.nextInt();
+            item.setQuantity(quantity);
+        } else System.out.println("This item does not exist");
 
-        int quantity;
-        System.out.println("Enter Quantity");
-        Scanner sc = new Scanner(System.in);
-        quantity = sc.nextInt();
-        //order.setQuantity(quantity);
-        item.setQuantity(quantity);
+
+
+
+
+
 
         //order.addtoOrder(item);
         //MenuItem item = MenuManager.retrieveInstance().findById(menuid);
         //int res_find=MenuManager.retrieveInstance().findById(item);
         /*if(res_find == 1)
         {*/
-            //ArrayList<MenuItem> mi_arr = Or
-            //order.addtoOrder(item);
-            //Menu m = MenuManager.retrieveInstance().getMenu();
-            //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(item);
-            //int res = m.Update(id)
+        //ArrayList<MenuItem> mi_arr = Or
+        //order.addtoOrder(item);
+        //Menu m = MenuManager.retrieveInstance().getMenu();
+        //MenuItem item = MenuManager.retrieveInstance().findByIdForMenuItem(item);
+        //int res = m.Update(id)
             /*if (res== 1) {
                 //order.addItem(m);
                 order.addtoOrder(menuid);

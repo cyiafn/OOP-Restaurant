@@ -11,7 +11,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import EntityClasses.Invoice;
+import EntityClasses.*;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
@@ -30,8 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Scanner;
-import EntityClasses.MenuItem;
-import EntityClasses.Order;
 
 import javax.crypto.spec.IvParameterSpec;
 
@@ -289,6 +287,27 @@ public final class Database{
                 st.append(SEPARATOR);
                 st.append(item.getQuantity());
                 st.append(SEPARATOR);
+                if(item instanceof SetMeal){
+                    if(((SetMeal) item).isPromotionStatus()){
+                        st.append("true");
+                        st.append(SEPARATOR);
+                        st.append("setmeal");
+                        st.append(SEPARATOR);
+                        System.out.println("setmeal true");
+                    }
+                    else {
+                        st.append("false");
+                        st.append(SEPARATOR);
+                        st.append("setmeal");
+                        st.append(SEPARATOR);
+                    }
+                }
+                else if(item instanceof Alacarte) {
+                    st.append("false");
+                    st.append(SEPARATOR);
+                    st.append("alacarte");
+                    st.append(SEPARATOR);
+                }
             }
             ordersw.add(st.toString());
         }
@@ -353,6 +372,7 @@ public final class Database{
             String st = stringArray.get(i);
             StringTokenizer star = new StringTokenizer(st, SEPARATOR);
             ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+            ArrayList<MenuItem> item2 = new ArrayList<MenuItem>();
 
             int orderId = Integer.valueOf(star.nextToken().trim());
             String reservationID = star.nextToken().trim();
@@ -367,10 +387,25 @@ public final class Database{
                 String name = star.nextToken().trim();
                 String desc = "";
                 double price = Double.valueOf(star.nextToken().trim());
-                int type = Integer.valueOf(star.nextToken().trim());
-                MenuItem item = new MenuItem(itemID, name,desc, price, type);
+                int qty = Integer.valueOf(star.nextToken().trim());
+                String promostatus = star.nextToken().trim();
+                String mealtype = star.nextToken().trim();
+                //MenuItem item = new MenuItem(itemID, name,desc, price, qty);
                 //MenuItem item = new MenuItem(itemID, name, price, type);
-                items.add(item);
+                //items.add(item);
+                if(mealtype.equals("setmeal")){
+                    SetMeal setitem = new SetMeal(itemID, name,desc, price, qty, item2);
+                    if(promostatus.equals("true")){
+                        setitem.setPromotionStatus(true);
+
+                    }
+                    items.add(setitem);
+                }
+                if(mealtype.equals("alacarte")){
+                    Alacarte alaitem = new Alacarte(itemID, name,desc, price, qty);
+                    items.add(alaitem);
+                }
+
             }
 
             Order order = new Order(orderId,reservationID,date,status,staff,items);
