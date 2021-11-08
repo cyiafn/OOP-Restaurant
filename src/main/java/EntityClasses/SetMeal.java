@@ -18,6 +18,7 @@ public class SetMeal extends MenuItem {
      * This attribute to store a set of Menu Item
      */
     private ArrayList<MenuItem> setOfItem ;
+    private  double promotionPrice= 0;
 
     /**
      * Constructor of Set Meal
@@ -30,7 +31,22 @@ public class SetMeal extends MenuItem {
      */
     public SetMeal(String menuItemID, String name, String description, double price, Integer quantity, ArrayList<MenuItem> ala) {
         super(menuItemID, name, description, price, quantity);
-        setOfItem = ala;
+        setSetOfItem(ala);
+    }
+
+    /**
+     * OVerloading Constructor of Set Meal
+     * @param menuItemID
+     * @param name
+     * @param description
+     * @param price
+     * @param quantity
+     * @param ala
+     */
+    public SetMeal(String menuItemID, String name, String description, double price,double promotionPrice ,Integer quantity,ArrayList<MenuItem> ala) {
+        super(menuItemID, name, description, price, quantity);
+        setSetOfItem(ala);
+        setPromotionPrice(promotionPrice);
     }
 
 
@@ -40,8 +56,19 @@ public class SetMeal extends MenuItem {
     @Override
     public void print() {
         System.out.println(" -------------------------------");
+        if(this.promotionPrice!= 0)
+        {
+            System.out.print(PrintColor.GREEN_UNDERLINED);
+            System.out.println(" This is a promotion Set Meal!");
+            System.out.println(" Now entire set meal only need "+ this.getPromotionPrice() + " !!!");
+            System.out.println(" Do not miss this oppurtunity!");
+            System.out.print(PrintColor.RESET);
+        }
+        else{
+            System.out.print(PrintColor.GREEN_UNDERLINED);
+            System.out.println(" Promotion Price is : "+ this.getPromotionPrice());
+        }
         System.out.print(PrintColor.GREEN_BOLD);
-
         System.out.println(" Menu ID: " + this.getMenuItemID() + " | " );
         System.out.print(PrintColor.BLUE);
         System.out.println(" Set Meal Name: "+ this.getName() + " | ");
@@ -82,6 +109,14 @@ public class SetMeal extends MenuItem {
 
     public void setSetOfItem(ArrayList<MenuItem> setOfIteme) {
         this.setOfItem = setOfIteme;
+    }
+
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 
 

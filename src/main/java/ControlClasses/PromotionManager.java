@@ -20,6 +20,7 @@ public class PromotionManager{
 	private static PromotionManager instance = null;
 	String filename = "Promotion.csv";
 	ArrayList<Promotion> promotions = new ArrayList<>();
+	List<Map<String , Double>> promotionList = new ArrayList<>();
 	Promotion p = new Promotion(); // Current promotion
 	public static PromotionManager getInstance() throws IOException, CsvException {
 		if (instance == null) {
@@ -52,8 +53,21 @@ public class PromotionManager{
 		if(item!=null) {
 			this.p = new Promotion(UUID.randomUUID().toString(),name,description,duration,price,menuItemId);
 			this.promotions.add(p);
-			MenuItem test5 = new MenuItem(p,p.getMenuItemID());
-			p.notifyAllObservers();
+			// MenuItem test5 = new MenuItem(p,p.getMenuItemID());
+			/**
+			 * For ryan , This is what you need, i accept the Map<String, Double>, which is menu item id and promotion price
+			 * you can pull from your promotion and cast to the type Map<String, Double> and pass to my menu manager observer
+			 */
+			Subject subject = new Subject();
+			MenuManager.getInstance().updateMenuManagerForSubject(subject);
+			Map<String, Double> m = new HashMap<>();
+			m.put(menuItemId, price);
+			promotionList.add(m);
+			subject.setState(promotionList);
+			/**
+			 * no need do the below
+			 */
+			//p.notifyAllObservers();
 			//p.setState(1);
 			//MenuItem test2 = new MenuItem(p.setState(2));
 			String[] test = {p.getPromotionID(), p.getPromotionName(),p.getDescription(),p.getDuration(),String.valueOf(p.getPromotionPrice()),p.getMenuItemID()};

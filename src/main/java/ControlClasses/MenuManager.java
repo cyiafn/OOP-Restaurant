@@ -1,6 +1,7 @@
 package ControlClasses;
 
 import EntityClasses.*;
+import EntityClasses.Observer;
 import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
 import StaticClasses.Database;
@@ -19,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.0
  * @since 2021-11-07
  */
-public class MenuManager {
+public class MenuManager extends Observer {
 	/**
 	 * Constant for file name reservation.
 	 */
@@ -63,6 +64,46 @@ public class MenuManager {
 		return instance;
 	}
 
+	public void updateMenuManagerForSubject(Subject subject){
+		this.subject = subject;
+		this.subject.attach(this);
+	}
+	@Override
+	public void updatePromootionSetMeal(){
+		try {
+			// Set set meal promotion price
+			List<Map<String, Double>> subs = subject.getState();
+			for(Map<String, Double> s : subs)
+			{
+				Iterator iterator = s.keySet().iterator();
+
+					while( iterator.hasNext() )
+					{
+					String key   = (String) iterator.next();
+					System.out.println(key);
+
+					Double value = s.get(key);
+
+					MenuItem mi = findByIdForMenuItem(key);
+					if(mi instanceof SetMeal)
+					{
+						mi.print();
+						((SetMeal) mi).setPromotionPrice(value);
+						System.out.println("------------------------------------------------------------");
+						System.out.println("Updating this Set Meal for promotion price! Do check it out");
+						System.out.println("------------------------------------------------------------");
+						mi.print();
+					}
+					System.out.println("Observer Menu Manager update promotion set meal successfully");
+					Database.WriteToJsonFile(this.getMenu(), this.filename.trim());
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Create Alacarte menu item from user input
 	 * Modular the function and DO DRY
@@ -75,7 +116,7 @@ public class MenuManager {
 		String description = InputHandler.getString("Please enter the menuItem description: ");
 
 		double price = InputHandler.getDouble(1,100,
-				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again. \n Range of price is 1-100");
 
 		int quantity = InputHandler.getInt(1,10,
 				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10");
@@ -96,12 +137,11 @@ public class MenuManager {
 
 		String name = InputHandler.getString("Please enter the menuItem name: ");
 
-		System.out.println("Please enter the menuItem description: ");
 		String description = InputHandler.getString("Please enter the menuItem description: ");
 
 
 		double price = InputHandler.getDouble(1,100,
-				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again. \n Range of price is 1-100");
 
 		int quantity = InputHandler.getInt(1,10,
 				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10.");
@@ -124,7 +164,7 @@ public class MenuManager {
 		String description = InputHandler.getString("Please enter the menuItem description: ");
 
 		double price = InputHandler.getDouble(1,100,
-				"Please enter the menuItem price: ", "Error input! Please recheck and retry again.");
+				"Please enter the menuItem price: ", "Error input! Please recheck and retry again. \n Range of price is 1-100.");
 
 		int quantity = InputHandler.getInt(1,10,
 				"Please enter the menuItem quantity: ", "Error input! Please recheck and retry again. \n Range of quantity is 1-10.");
@@ -280,12 +320,14 @@ public class MenuManager {
 								String des = real_cat.get(m.intValue()).get("description").toString();
 								String name =   real_cat.get(m.intValue()).get("name").toString();
 								double price = Double.parseDouble(real_cat.get(m.intValue()).get("price").toString());
+
 								int quantity = Integer.parseInt(real_cat.get(m.intValue()).get("quantity").toString());
 //                                System.out.println(l );
 								if(real_cat.get(m.intValue()).get("type").toString().equals("setmeal"))
 								{
 									// Means it is set meal
 									AtomicInteger o = new AtomicInteger(0);
+									double promotionPrice = Double.parseDouble(real_cat.get(m.intValue()).get("promotionPrice").toString());
 									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("setOfItem");
 									if(!sub_setmeal.isEmpty())
 									{
@@ -310,6 +352,7 @@ public class MenuManager {
 												name,
 												des,
 												price,
+												promotionPrice,
 												quantity,
 												sub_setmeal_mi
 										);
@@ -369,7 +412,7 @@ public class MenuManager {
 	 */
 	public void init() throws IOException {
 
-		File f = new File(filename.trim());
+		File f = new File(this.filename.trim());
 		if(f.exists() && !f.isDirectory())
 		{
 			// do nothing
@@ -381,10 +424,10 @@ public class MenuManager {
 			// Create default menu and write your json file
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
 			Menu menu = createSingleMenuWhenNoMenuExisted();
-			Database.WriteToJsonFile(menu, filename.trim());
+			Database.WriteToJsonFile(menu, this.filename.trim());
 			System.out.println("Welcome to " + menu.getName());
 		}
-		Map data = Database.LoadFromJsonFile(filename.trim());
+		Map data = Database.LoadFromJsonFile(this.filename.trim());
 		Menu newMenu = formatDatabaseMapIntoMenu(data);
 		this.setMenu(newMenu);
 	}
@@ -458,7 +501,7 @@ public class MenuManager {
 
 		if(answer == 1){
 			System.out.println("Save successfully!");
-			Database.WriteToJsonFile(m ,filename.trim());
+			Database.WriteToJsonFile(m ,this.filename.trim());
 		}
 		else{
 			System.out.println("Canceled this operation.");

@@ -2,15 +2,21 @@ package EntityClasses;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Subject {
     private List<Observer> observers = new ArrayList<Observer>();
-    private int state;
-    public int getState() {
+    /**
+     * First paramter is menuItemID
+     * Second paramter is promotinoPrice
+     *
+     */
+    private List<Map<String, Double>> state = new ArrayList<>();
+    public List<Map<String, Double>> getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(List<Map<String, Double>> state) {
         this.state = state;
         notifyAllObservers();
     }
@@ -21,7 +27,7 @@ public class Subject {
 
     public void notifyAllObservers(){
         for (Observer observer : observers) {
-            observer.update();
+            observer.updatePromootionSetMeal();
         }
     }
 }

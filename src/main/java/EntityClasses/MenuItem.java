@@ -1,16 +1,12 @@
 package EntityClasses;
 
-import ControlClasses.MenuManager;
-
-import java.io.IOException;
-
 /**
  * MenuItem entity class
  * @author Daniel Chu Jia Hao
  * @version 1.0
  * @since 2021-11-07
  */
-public class MenuItem extends Observer{
+public class MenuItem {
 	/*
 	Attributes of Menu Item
 	 */
@@ -35,11 +31,6 @@ public class MenuItem extends Observer{
 		this.price = price;
 		this.quantity = quantity;
 	}
-	public MenuItem(Subject subject,String id){
-		this.menuItemID = id;
-		this.subject=subject;
-		this.subject.attach(this);
-	}
 
 	/**
 	 * Empty Constructor for menuitem
@@ -55,13 +46,6 @@ public class MenuItem extends Observer{
 		System.out.println(this.getDescription());
 		System.out.println(this.getPrice());
 		System.out.println(this.getQuantity().toString());
-	}
-	public void update(){
-		try {
-			System.out.println(MenuManager.getInstance().findByIdForMenuItem(this.getMenuItemID()).getName()+" has a promotion! Do check it out");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/*
