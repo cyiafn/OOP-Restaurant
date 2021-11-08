@@ -354,6 +354,7 @@ public class MenuManager extends Observer {
 									// Means it is set meal
 									AtomicInteger o = new AtomicInteger(0);
 									double promotionPrice = Double.parseDouble(real_cat.get(m.intValue()).get("promotionPrice").toString());
+									boolean promotionStatus = Boolean.parseBoolean(real_cat.get(m.intValue()).get("promotionStatus").toString());
 									List<Map> sub_setmeal = (List<Map>) real_cat.get(m.intValue()).get("setOfItem");
 									if(!sub_setmeal.isEmpty())
 									{
@@ -382,6 +383,7 @@ public class MenuManager extends Observer {
 												quantity,
 												sub_setmeal_mi
 										);
+										menu_item.setPromotionStatus(promotionStatus);
 										newMenuItem.add(menu_item);
 										m.getAndIncrement();
 									}
