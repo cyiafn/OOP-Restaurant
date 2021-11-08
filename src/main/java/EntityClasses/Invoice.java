@@ -24,8 +24,8 @@ public class Invoice {
     private String staffName;
 
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-    SimpleDateFormat Id = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    SimpleDateFormat Id = new SimpleDateFormat("yyyyMMddss");
 
 
 //    public Invoice(int orderId, ArrayList<MenuItem> orders){
@@ -42,7 +42,7 @@ public class Invoice {
     public Invoice(Order orders){
         Calendar c = Calendar.getInstance();
         this.date = sdf.format(c.getTime());
-        this.invoiceId = Id.format(c.getTime()) + orders.getOrderID(); //Using of date format + orderID + Time + to create invoiceID
+        this.invoiceId = Id.format(c.getTime()) + + orders.getOrderID(); //Using of date format + orderID + Time + to create invoiceID
         this.memberStatus = Membership.NOT_MEMBER;
 
         this.orders = orders;

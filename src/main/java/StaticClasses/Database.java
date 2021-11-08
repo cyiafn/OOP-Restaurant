@@ -293,7 +293,6 @@ public final class Database{
                         st.append(SEPARATOR);
                         st.append("setmeal");
                         st.append(SEPARATOR);
-                        System.out.println("setmeal true");
                     }
                     else {
                         st.append("false");

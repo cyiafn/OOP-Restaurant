@@ -10,6 +10,8 @@ import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.*;
@@ -84,8 +86,60 @@ public class PaymentUI implements UI {
             System.out.println("Invoice not Found");
     }
 
-    public void revenueReport(){
+    public void viewRevenueReport(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Period");
+        System.out.println("(1)By day\t(2)By Month\t(3)By Year\t(0)Back");
+        int c = InputHandler.getInt(0,3,"", "Please enter a valid input");
+        switch (c){
+            case 1:
+                int date;
+                do{
+                    System.out.println("Enter the date in 'yyyyMMdd' format");
+                    date = sc.nextInt();
+                    if( String.valueOf(date).length()==8){
+                        PaymentManager.getInstance().generateRevenueReport(String.valueOf(date), c);
+                        break;
+                    }
+                    else{
+                        if(date!=0)System.out.println("Invalid Date!");
+                        else System.out.println("Exited");
+                    }
+                }while (date!=0);
+                break;
+            case 2:
+                int month;
+                do{
+                    System.out.println("Enter the date in 'yyyyMM' format");
+                    month = sc.nextInt();
+                    if( String.valueOf(month).length()==6){
+                        PaymentManager.getInstance().generateRevenueReport(String.valueOf(month), c);
+                        break;
+                    }
+                    else{
+                        if(month!=0)System.out.println("Invalid Month!");
+                        else System.out.println("Exited");
+                    }
+                }while (month!=0);
+                break;
+            case 3:
+                int year;
+                do{
+                    System.out.println("Enter the date in 'yyyy' format");
+                    year = sc.nextInt();
+                    if( String.valueOf(year).length()==4){
+                        PaymentManager.getInstance().generateRevenueReport(String.valueOf(year), c);
+                        break;
+                    }
+                    else{
+                        if(year!=0)System.out.println("Invalid Year!");
+                        else System.out.println("Exited");
+                    }
+                }while (year!=0);
+                break;
+            default:
 
+        }
     }
 
     public void displayOptions() throws IOException {
@@ -97,17 +151,22 @@ public class PaymentUI implements UI {
             System.out.println("(1) Create Invoice and Make Payment.\t(2) View Invoice.");
             System.out.println("(3) Revenue Report.\t(4) NULL.");
             //System.out.println("(3) Remove reservation booking\t(4) Check table availability.");
-            int opt = InputHandler.getInt(0, 2, "Please enter an option (0 to exit): ", "Please enter an integer from 0-2!");
+            String s;
+            int opt = InputHandler.getInt(0, 3, "Please enter an option (0 to exit): ", "Please enter an integer from 0-3!");
             switch (opt) {
                 case 1:
                     //createInvoice();
                     generateInvoice();
+                    s = InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 2:
                     viewInvoice();
+                    s = InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 3:
-                    revenueReport();
+                    viewRevenueReport();
+                    s = InputHandler.getString("Press Any Key To Continue");
+                    break;
             }
     }
 }

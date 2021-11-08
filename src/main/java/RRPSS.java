@@ -85,16 +85,16 @@ public class RRPSS {
 
                 "5. Update promotion.\n" +
                 "6. Remove promotion.\n\n" +
-                "7. Create order.\n" +
-                "8. View order.\n" +
-                "9. Add order items to order.\n" +
-                "10. Remove order items from order.\n\n" +
-                "11. Create reservation booking.\n" +
-                "12. Check reservation booking.\n" +
-                "13. Remove reservation booking.\n\n" +
-                "14. Check table availability.\n\n" +
-                "15. Print order invoice.\n" +
-                "16. Print sale revenue report by period.\n\n" +
+//                "7. Create order.\n" +
+//                "8. View order.\n" +
+//                "9. Add order items to order.\n" +
+//                "10. Remove order items from order.\n\n" +
+//                "11. Create reservation booking.\n" +
+//                "12. Check reservation booking.\n" +
+//                "13. Remove reservation booking.\n\n" +
+//                "14. Check table availability.\n\n" +
+//                "15. Print order invoice.\n" +
+//                "16. Print sale revenue report by period.\n\n" +
                 "0. Exit.");
     }
 
