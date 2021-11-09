@@ -1,0 +1,138 @@
+{
+    "id": "e93adbfb-b55c-4f75-a2ee-e25cf50f217f",
+    "description": "We sell various cuisine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
+    "name": "Royale RRPSS Menu",
+    "menuCategory": [
+        {
+            "category": "APPETIZER",
+            "description": "APPETIZER",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 98.58,
+                    "description": "Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \n topped with powdered sugar. With two eggs served any style, \n and your choice of smoked bacon or smoked ham.",
+                    "menuItemID": "2d430dbf-47c9-4323-9a6b-29a4de092c5a",
+                    "quantity": 1,
+                    "name": "Pork Belly Buns"
+                }
+            ]
+        },
+        {
+            "category": "MAINCOURSE",
+            "description": "MAINCOURSE",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 85.82,
+                    "description": "Two butter croissants of your choice (plain, almond or cheese). \n With a side of herb butter or house-made hazelnut spread. ",
+                    "menuItemID": "fb125934-a739-4d35-94d7-b56f32b1231c",
+                    "quantity": 1,
+                    "name": "Kebab"
+                },
+                {
+                    "type": "setmeal",
+                    "promotionPrice": 0.0,
+                    "setOfItem": [
+                        {
+                            "price": 36.0,
+                            "description": "Moist cake made with fresh caraway and roasted chestnut",
+                            "menuItemID": "1911f4bb-04e5-416d-8a47-1b0e0161fa10",
+                            "quantity": 1,
+                            "name": "Wine and pasta casserole"
+                        },
+                        {
+                            "price": 36.0,
+                            "description": "Thin and crispy pizza topped with fresh jalapeno and smoked ham",
+                            "menuItemID": "c8bccdf3-2183-4802-83dd-860098dcc2ba",
+                            "quantity": 1,
+                            "name": "Jalapeno and ham pizza"
+                        },
+                        {
+                            "price": 36.0,
+                            "description": "Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
+                            "menuItemID": "7f48e776-fc66-41ac-b8b5-ec50e1d40f46",
+                            "quantity": 1,
+                            "name": "Basil and pineapple kebab"
+                        }
+                    ],
+                    "price": 108.0,
+                    "description": "A crunchy salad featuring fresh pineapple and roquefort",
+                    "menuItemID": "18a8432d-4f35-42f5-82bc-6f55d5e99d97",
+                    "quantity": 1,
+                    "name": "Pineapple and roquefort salad",
+                    "promotionStatus": true
+                }
+            ]
+        },
+        {
+            "category": "SIDEDISH",
+            "description": "SIDEDISH",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 36.95,
+                    "description": "Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \n With a side of roasted potatoes.",
+                    "menuItemID": "19905d25-f2b4-4688-9190-0f8a454ca3fe",
+                    "quantity": 1,
+                    "name": "Katsu Curry"
+                }
+            ]
+        },
+        {
+            "category": "DESSERT",
+            "description": "DESSERT",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 80.51,
+                    "description": "Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \n With a side of roasted potatoes, and your choice of toast or croissant.",
+                    "menuItemID": "e0ac26e1-e9dd-4424-815c-265b5aaf3b34",
+                    "quantity": 1,
+                    "name": "Pork Sausage Roll"
+                }
+            ]
+        },
+        {
+            "category": "CHILDRENSMENU",
+            "description": "CHILDRENSMENU",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 78.92,
+                    "description": "28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides.",
+                    "menuItemID": "ee85c1be-fc1c-426b-9b2f-132c7ba4abbb",
+                    "quantity": 1,
+                    "name": "Pizza"
+                }
+            ]
+        },
+        {
+            "category": "ALCOHOLICDRINK",
+            "description": "ALCOHOLICDRINK",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 37.39,
+                    "description": "Vodka is traditionally made from potatoes or fermented cereal grains. \n Some brands also make it from other substances like fruit or sugar.\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \n as cocktails like Martini, Bloody Mary and Cosmopolitan.",
+                    "menuItemID": "4c8540ac-b94c-4218-bab3-3e4335efc736",
+                    "quantity": 1,
+                    "name": "Vodka"
+                }
+            ]
+        },
+        {
+            "category": "SOFTDRINKS",
+            "description": "SOFTDRINKS",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 60.39,
+                    "description": "7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \n offices and workplaces directly from our warehouse in South London. \n Clear, bright and colourless liquid with a lively carbonation. Delicate, \n enticing aroma of lemon and lime, fused and dusted with powdered sugar. ",
+                    "menuItemID": "272bbed4-ba26-471a-8f21-e1eae1dfdd87",
+                    "quantity": 1,
+                    "name": "7up Lemon & Lime"
+                }
+            ]
+        }
+    ]
+}

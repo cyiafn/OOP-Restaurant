@@ -83,8 +83,8 @@ public class RRPSS {
                 "3. Order Management.\n\n" +
                 "4. Payment Management.\n" +
 
-                "5. Update promotion.\n" +
-                "6. Remove promotion.\n\n" +
+                "5. Promotion Management.\n" +
+               // "6. Remove promotion.\n\n" +
 //                "7. Create order.\n" +
 //                "8. View order.\n" +
 //                "9. Add order items to order.\n" +

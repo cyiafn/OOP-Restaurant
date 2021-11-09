@@ -1,102 +1,160 @@
 package EntityClasses;
 
-import ControlClasses.MenuManager;
-
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
+
+/**
+ * Promotion entity class
+ * @author Chia Songcheng
+ * @version 1.0
+ * @since 2021-11-07
+ */
 
 public class Promotion extends Subject{
-	//private Integer _promotionPercentage;
-	private String _promotionID;
-	private double _promotionPrice;
-	//private Date _startDate;
-	//private Date _endDate;
-	private String _promotionDuration;
-	private String _promotionDescription;
-	private String _menuItemID;
-	private String _promotionName;
+	/*
+	Attributes of Menu Item
+	 */
+	private String promotionID;
+	private double promotionPrice;
+	private String promotionDescription;
+	private String menuItemID;
+	private String promotionName;
+	private String promotionStartDate;
+	private String promotionEndDate;
 
+	/**
+	 * Constructor of MenuItem
+	 * @param promotionID promotion ID
+	 * @param promotionPrice promotion price
+	 * @param promotionDescription promotion description
+	 * @param menuItemID promotion menu item ID
+	 * @param promotionName promotion name
+	 * @param promotionStartDate promotion start date
+	 * @param promotionEndDate promotion end date
+	 */
 
-	public Promotion(String id,String name,String _description,String duration, double price , String menuItemID){
-		this._promotionID = id;
-		this._promotionDescription = _description;
-		this._promotionDuration=duration;
-		this._promotionPrice = price;
-		this._menuItemID = menuItemID;
-		this._promotionName = name;
+	public Promotion(String id,String name,String _description,String startDate,String endDate, double price , String menuItemID){
+		this.promotionID = id;
+		this.promotionDescription = _description;
+		this.promotionStartDate = startDate;
+		this.promotionEndDate = endDate;
+		this.promotionPrice = price;
+		this.menuItemID = menuItemID;
+		this.promotionName = name;
 
 	}
+	/**
+	 * Empty Constructor for Promotion
+	 */
 	public Promotion(){
 
 	}
+
+	/*
+	Accessor and Mutator
+	 */
+
+	/**
+	 * PromotionName getter
+	 * @return promotionName
+	 */
 	public String getPromotionName(){
-		return this._promotionName;
+		return this.promotionName;
 	}
+	/**
+	 * PromotionName setter
+	 */
 	public void setPromotionName(String name){
-		this._promotionName = name;
+		this.promotionName = name;
 	}
-
+	/**
+	 * MenuItemID setter
+	 */
 	public void setMenuItemID(String menuItemId){
-		this._menuItemID = menuItemId;
+		this.menuItemID = menuItemId;
 	}
+	/**
+	 * MenuItemID getter
+	 * @return MenuItemID
+	 */
 	public String getMenuItemID(){
-		return this._menuItemID;
+		return this.menuItemID;
 	}
 
-
+	/**
+	 * PromotionID getter
+	 * @return promotionID
+	 */
 	public String getPromotionID() {
-		return this._promotionID;
+		return this.promotionID;
 	}
-
+	/**
+	 * PromotionID setter
+	 */
 	public void setPromotionID(String aPromotionMenuID) {
-		this._promotionID = aPromotionMenuID;
+		this.promotionID = aPromotionMenuID;
 	}
-
+	/**
+	 * PromotionPrice getter
+	 * @return promotionPrice
+	 */
 	public double getPromotionPrice() {
-		return this._promotionPrice;
+		return this.promotionPrice;
 	}
-
+	/**
+	 * PromotionPrice setter
+	 */
 	public void setPromotionPrice(double aPromotionPrice) {
-		this._promotionPrice = aPromotionPrice;
+		this.promotionPrice = aPromotionPrice;
+	}
+	/**
+	 * StartDate setter
+	 */
+	public void setStartDate(String startDate){
+		this.promotionStartDate = startDate;
+	}
+	/**
+	 * PromotionStartDate getter
+	 * @return promotionStartDate
+	 */
+	public String getStartDate(){
+		return this.promotionStartDate;
+	}
+	/**
+	 * PromotionEndDate setter
+	 */
+	public void setEndDate(String endDate){
+		this.promotionEndDate = endDate;
+	}
+	/**
+	 * PromotionEndDate getter
+	 * @return promotionEndDate
+	 */
+	public String getEndDate(){
+		return this.promotionEndDate;
 	}
 
-	public void setDuration(String duration){
-		this._promotionDuration = duration;
-	}
-	public String getDuration(){
-		return this._promotionDuration;
-	}
-
+	/**
+	 * Generates an array of string formatting for writing to CSV
+	 * @return  an array of string for writing to CSV
+	 */
 	public String[] getLineCSVFormat(){
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		String[] row = {this._promotionID, this._promotionName, this._promotionDescription,this._promotionDuration,Double.toString(this._promotionPrice), this._menuItemID};
+		String[] row = {this.promotionID, this.promotionName, this.promotionDescription,this.promotionStartDate,this.promotionEndDate,Double.toString(this.promotionPrice), this.menuItemID};
 		return row;
 	}
-
-	/*public Date getStartDate() {
-		return this._startDate;
-	}
-
-	public void setStartDate(Date aStartDate) {
-		this._startDate = aStartDate;
-	}
-
-	public Date getEndDate() {
-		return this._endDate;
-	}
-
-	public void setEndDate(Date aEndDate) {
-		this._endDate = aEndDate;
-	}
-*/
+	/**
+	 * PromotionDescription getter
+	 * @return promotionDescription
+	 */
 	public String getDescription() {
-		return this._promotionDescription;
+		return this.promotionDescription;
 	}
+	/**
+	 * PromotionDescription setter
+	 */
 
-	public void set_description(String description) {
-		this._promotionDescription= description;
+	public void setDescription(String description) {
+		this.promotionDescription= description;
 	}
 
 

@@ -1,9 +1,13 @@
 package StaticClasses;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.Date;
 import java.util.Scanner;
 /**
  Static input handler + validator class.
@@ -56,6 +60,31 @@ public class InputHandler {
 			}
 		}while (true);
 		return datetime;
+	}
+	/**
+	 * Helper function to request user for date.
+	 * Ensures that string input is formatted according to dd/MM/yyyy
+	 * @return date in string
+	 */
+	public static String stringDate(String promptMessage){
+		String date;
+		do {
+			System.out.println(promptMessage);
+			date = sc.nextLine();
+			//sc.nextLine();
+			//String dateFormat = "dd/MM/yyyy";
+			DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			//parse date strictly
+			try {
+				Date date1 =inputFormatter.parse(date);
+				String dateOutput = outputFormatter.format(date1);
+				return dateOutput;
+			} catch (ParseException e) {
+				System.out.println("Invalid date input");
+				continue;
+			}
+		}while (true);
 	}
 
     /**

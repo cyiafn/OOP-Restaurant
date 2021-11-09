@@ -1,23 +1,35 @@
 package UI;
-import ControlClasses.OrderManager;
+
 import ControlClasses.PromotionManager;
-import EntityClasses.Order;
 import Interfaces.UI;
-import StaticClasses.Database;
+import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.util.*;
 
-public class PromotionUI {
-    Scanner sc = new Scanner(System.in);
+
+/**
+ * PromotionUI is a boudary class
+ * Which responsible for displaying options for Promotion Management
+ * @author Chia Songcheng
+ * @version 1.0
+ * @since 2021-11-07
+ */
+
+public class PromotionUI implements UI {
     private static PromotionUI instance = null;
-    public static PromotionUI getInstance() {
+    public static PromotionUI getInstance() throws IOException {
         if (instance == null) {
             instance = new PromotionUI();
         }
         return instance;
     }
-    public void displayOptions() throws IOException, CsvException {
+
+    /**
+     * Entry point for Menu Management
+     */
+
+    public void displayOptions() {
         int choice;
         do{
             System.out.println("\n==================================================");
@@ -26,47 +38,35 @@ public class PromotionUI {
             System.out.println("(1) Create Promotion\t(2) Update Promotion");
             System.out.println("(3) Remove Promotion\t(4) View Promotion");
             System.out.println("(5) Back");
-            choice = sc.nextInt();
+            choice = InputHandler.getInt(1,5,"Please enter your choice","Invalid choice please try again");
             switch (choice){
                 case 1:
-                    PromotionManager.getInstance().createPromotion();
+                    try{
+                        PromotionManager.getInstance().createPromotion();
+                    } catch (IOException | CsvException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 2:
-                    PromotionManager.getInstance().updatePromotion();
-                    /*Scanner sc = new Scanner(System.in);
-                    int id = -1;
-                    do {
-                        try {
-                            System.out.println("(1) to update with Alacart\t (2) to update with setItem");
-                            id = sc.nextInt();
-                            if(id <= 0) System.out.printf("Invalid input! ");
-                            switch(id) {
-                                case 1:
-                                    System.out.println("Enter Alacart ID to be updated into promotion");
-                                    id = sc.nextInt();
-                                    if (id <= 0) System.out.println("Invalid Input!");
-                                    break;
-                                case 2:
-                                    System.out.println("Enter SetMenu ID to be updated into promotion");
-                                    id = sc.nextInt();
-                                    if (id <= 0) System.out.println("Invalid Input!");
-                                    break;
-                            }
-                        } catch (InputMismatchException e) {
-                            System.out.printf("Invalid input! ");
-                        }
-                        sc.nextLine();
-                    } while (id <= 0);
-                    // Promotion promo = PromotionManager.getInstance().retrieveOrder(id);
-                    //if (order != null) updateOrder(order);
-                    //else System.out.println("Order does not exist!");*/
+                    try{
+                        PromotionManager.getInstance().updatePromotion();
+                    } catch (IOException | CsvException f) {
+                        f.printStackTrace();
+                    }
                     break;
                 case 3:
-                    PromotionManager.getInstance().deletePromotion();
+                    try{
+                        PromotionManager.getInstance().deletePromotion();
+                    } catch (IOException | CsvException g) {
+                        g.printStackTrace();
+                    }
                     break;
                 case 4:
-                    //Map data = Database.LoadFromJsonFile(filename.trim());
-                    PromotionManager.getInstance().ViewPromotion();
+                    try{
+                        PromotionManager.getInstance().viewPromotion();
+                    } catch (IOException | CsvException h) {
+                        h.printStackTrace();
+                    }
                     break;
                 case 5:
                     break;
