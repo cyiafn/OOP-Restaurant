@@ -220,7 +220,11 @@ public class Order {
             //this.orderedItems.remove(it);
             //return true;
 
-            if (it.getMenuItemID() == item.getMenuItemID()) {
+//            if (it.getMenuItemID() == item.getMenuItemID()) {
+//                this.orderedItems.remove(it);
+//                return true;
+//            }
+            if (it.getMenuItemID().equals(item.getMenuItemID())) {
                 this.orderedItems.remove(it);
                 return true;
             }

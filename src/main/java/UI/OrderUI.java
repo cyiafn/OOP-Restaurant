@@ -254,18 +254,31 @@ public class OrderUI{
                                 System.out.printf("Invalid input! ");
                             }
                             sc.nextLine();
-                            OrderManager.getInstance().deleteOrderItem(order, id);
+                            //OrderManager.getInstance().deleteOrderItem(order, id);
+
                         //} //while (id <= 0);
-//                        Item it = MenuController.retrieveInstance().retrieveItem(id);
-//                        if (it == null)
-//                            System.out.println("Item does not exist!");
-//                        else if (!order.removeItem(it))
-//                            System.out.println("Item not in order!");
-//                        input = 0;
+                        MenuItem it = MenuManager.getInstance().findByNameForMenuItem(id);
+                        if (it == null)
+                            System.out.println("Item does not exist!");
+                        else if (!order.removeItem(it))
+                            System.out.println("Item not in order!");
+                        input = 0;
                     }
-                    else System.out.println("Order has no item!");
+//                    else{
+//                        if(order.getOrderedItems().size() == 0) {
+//                            System.out.println("You did not add any items! Order deleted.");
+//                            OrderManager.getInstance().deleteOrder(order);
+//                        }
+//                    }
                     break;
                 case 5:
+
+//                    if (OrderManager.getInstance().displayOrder() > 0) {
+//                        OrderUI.getInstance().runRemoveOrder();
+//                    } else {
+//                        System.out.println("No order made yet!");
+//                    }
+
                     break;
                 default:
                     System.out.println("Please enter a valid option.");
@@ -275,6 +288,10 @@ public class OrderUI{
             order.viewOrder();
         } while (input < 5);
         System.out.println("Done");
+        if(order.getOrderedItems().size() == 0) {
+            System.out.println("You did not add any items! Order deleted.");
+            OrderManager.getInstance().deleteOrder(order);
+        }
         OrderManager.getInstance().savetoDB2();
     }
 
@@ -283,7 +300,7 @@ public class OrderUI{
         int orderID = -1;
         do {
             try {
-                System.out.print("Enter MenuItem Name:");
+                System.out.print("Enter OrderID:");
                 orderID = sc.nextInt();
                 if(orderID <= 0) System.out.printf("Invalid input! ");
             } catch (InputMismatchException e) {
@@ -318,7 +335,7 @@ public class OrderUI{
                 int orderID = -1;
                 do {
                     try {
-                        System.out.print("Enter MenuItem Name:");
+                        System.out.print("Enter OrderID:");
                         orderID = sc.nextInt();
                         if(orderID <= 0) System.out.printf("Invalid input! ");
                     } catch (InputMismatchException e) {

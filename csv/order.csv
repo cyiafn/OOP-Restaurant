@@ -1,1 +1,3 @@
-1;123;2021-11-05 15:11;Confirmed;Tom;7e1c8186-18a6-4517-bad6-27cd58e59bfd;Vodka;37.39;1;e2214e3b-3c46-4031-93a2-066888b8e9a2;7up Lemon & Lime;360.39;2;
+2;1;2021-11-08 23:11;Confirmed;Tommy;8c614b53-ba40-4a9f-980a-0bd6282f4fb0;Cool;1.0;1;false;setmeal;869a9c0f-b046-43cd-b51c-0f861865b0f4;Pineapple and roquefort salad;108.0;1;false;setmeal;
+3;1;2021-11-09 00:11;Confirmed;Tom;8c614b53-ba40-4a9f-980a-0bd6282f4fb0;Cool;1.0;1;true;setmeal;869a9c0f-b046-43cd-b51c-0f861865b0f4;Pineapple and roquefort salad;108.0;1;false;setmeal;
+4;1;2021-11-09 00:11;Confirmed;Tom;869a9c0f-b046-43cd-b51c-0f861865b0f4;Pineapple and roquefort salad;108.0;1;false;setmeal;8c614b53-ba40-4a9f-980a-0bd6282f4fb0;Cool;1.0;1;true;setmeal;

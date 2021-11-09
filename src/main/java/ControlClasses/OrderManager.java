@@ -168,7 +168,10 @@ public class OrderManager {
                 }
             }
             //else order.setPromotionstatus("No");
-            if (item.getName() == item.getName()){
+//            if (item.getName() == item.getName()){
+//                order.removeItem(item);
+//            }
+            if (item.getName().equals(item.getName())){
                 order.removeItem(item);
             }
             order.addItem(item);
