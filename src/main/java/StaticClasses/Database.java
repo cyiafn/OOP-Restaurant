@@ -474,7 +474,7 @@ public final class Database{
                     SetMeal setitem = new SetMeal(itemID, name,desc, price, qty, item2);
                     if(promostatus.equals("true")){
                         setitem.setPromotionStatus(true);
-
+                        //setitem.isPromo
                     }
                     items.add(setitem);
                 }

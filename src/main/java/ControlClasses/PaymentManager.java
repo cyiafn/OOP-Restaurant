@@ -1,8 +1,6 @@
 package ControlClasses;
 
-import EntityClasses.Invoice;
-import EntityClasses.MenuItem;
-import EntityClasses.Order;
+import EntityClasses.*;
 import Enumerations.PrintColor;
 import Enumerations.TaxDiscount;
 import StaticClasses.Database;
@@ -155,49 +153,120 @@ public class PaymentManager {
         String date = invoice.getDate();
         String displayDate = date.substring(0, date.indexOf(' '));
         String displayTime = date.substring(date.indexOf(' ')+1);
-        int displayTableNo = invoice.getTableNo();
+        String foodType = null;
 
+        int displayTableNo = invoice.getTableNo();
         double displaySubtotal = invoice.getSubTotal();
         double displaySubtotalAD = invoice.getSubTotalAD();
         double displaySvcCharge = invoice.getSvcChargeAmt();
         double displayGST = invoice.getGstAmt();
         double displayMemberDiscount = invoice.getMemberDiscAmt();
         System.out.println(PrintColor.YELLOW_BOLD);
-        System.out.printf("====================================================================================================\n");
-        System.out.printf("                                   Michelin Western Restaurant\n");
-        System.out.printf("                                      50 Nanyang Ave, 639798\n");
-        System.out.printf("                                          Tel: 6791 1744\n");
-        System.out.printf("====================================================================================================\n");
+        System.out.printf("=============================================================================================================================\n");
+        System.out.printf("                                             Michelin Western Restaurant\n");
+        System.out.printf("                                               50 Nanyang Ave, 639798\n");
+        System.out.printf("                                                  Tel: 6791 1744\n");
+        System.out.printf("=============================================================================================================================\n");
         System.out.print(PrintColor.RESET);
-        System.out.printf("Invoice ID: %s                                                        Date: %s\n", displayInvoiceId, displayDate);
-        System.out.printf("    Server: %s                  Table No.: %s                                  Time: %s\n", displayStaff, displayTableNo, displayTime);
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.println("ID                                          Item                       \t\t Qty   Price per Item(S$)");
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        for(MenuItem item: invoice.getOrders().getOrderedItems()){
-
-            //System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t\t\t\t" + item.getQuantity()+"    \t" + item.getPrice());
-            fmt.format("%s        %-30s   %-5s %-6.2f\n", item.getMenuItemID(), item.getName(), item.getQuantity(), item.getPrice());
+        System.out.printf("Invoice ID: %s                                                                                                Date: %s\n", displayInvoiceId, displayDate);
+        System.out.printf("    Server: %s                           Table No.: %s                                                       Time: %s\n", displayStaff, displayTableNo, displayTime);
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("ID                                      Food Type    Item                                   \t\t Qty   Price per Item(S$)");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+        for(MenuItem item: invoice.getOrders().getOrderedItems()) {
+            if (item instanceof Alacarte) {
+                foodType = ((Alacarte) item).getType();
+                System.out.printf("%s    %-10s   %-45s   %-10s  %-6.2f\n", item.getMenuItemID(), foodType, item.getName(), item.getQuantity(), item.getPrice());
+            }
+        }
+        for (MenuItem item2 : invoice.getOrders().getOrderedItems()) {
+            if (item2 instanceof SetMeal) {
+                String foodName = item2.getName();
+                foodType = ((SetMeal) item2).getType();
+                boolean isPromo = ((SetMeal) item2).isPromotionStatus();
+                if(isPromo)
+                    foodName = foodName + " (Promo Price)";
+                System.out.printf("%s    %-10s   %-45s   %-10s  %-6.2f\n", item2.getMenuItemID(), foodType, foodName, item2.getQuantity(), item2.getPrice());
+            }
         }
         System.out.println(fmt);
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.printf("SUBTOTAL                                                                           %-10.2f\n", displaySubtotal);
-        if(invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER){
-            System.out.printf("%.2f%% ADDITIONAL MEMBER DISCOUNT                                                 -%-5.2f\n", memberDiscount*100, displayMemberDiscount);
-            System.out.printf("SUBTOTAL AFTER DISCOUNT                                                            %-10.2f\n",displaySubtotalAD);
-        }
-        else
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("SUBTOTAL                                                                                                         %-10.2f\n", displaySubtotal);
+        if (invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER) {
+            System.out.printf("%.2f%% ADDITIONAL MEMBER DISCOUNT                                                                               -%-5.2f\n", memberDiscount * 100, displayMemberDiscount);
+            System.out.printf("SUBTOTAL AFTER DISCOUNT                                                                                          %-10.2f\n", displaySubtotalAD);
+        } else
             System.out.println("NOT MEMBER");
 
-        System.out.printf("10%% SVC CHG                                                                        %-10.2f\n", displaySvcCharge);
-        System.out.printf("7%% GST                                                                             %-10.2f\n", displayGST);
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.printf("TOTAL                                                                              %-10.2f\n", invoice.getTotal());
-        System.out.println("====================================================================================================");
-        System.out.println("                                Thank You For Dining With Us!");
-        System.out.println("====================================================================================================");
+        System.out.printf("10%% SVC CHG                                                                                                      %-10.2f\n", displaySvcCharge);
+        System.out.printf("7%% GST                                                                                                           %-10.2f\n", displayGST);
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("TOTAL                                                                                                            %-10.2f\n", invoice.getTotal());
+        System.out.println("=============================================================================================================================\n");
+        System.out.println("                                             Thank You For Dining With Us!");
+        System.out.println("=============================================================================================================================\n");
     }
 
+//    public void displayPayment(Invoice invoice){
+//        Formatter fmt = new Formatter();
+//        String displayInvoiceId = invoice.getInvoiceId();
+//        String displayStaff = invoice.getOrders().getStaff();
+//        String date = invoice.getDate();
+//        String displayDate = date.substring(0, date.indexOf(' '));
+//        String displayTime = date.substring(date.indexOf(' ')+1);
+//        String foodType = null;
+//
+//        int displayTableNo = invoice.getTableNo();
+//        double displaySubtotal = invoice.getSubTotal();
+//        double displaySubtotalAD = invoice.getSubTotalAD();
+//        double displaySvcCharge = invoice.getSvcChargeAmt();
+//        double displayGST = invoice.getGstAmt();
+//        double displayMemberDiscount = invoice.getMemberDiscAmt();
+//        System.out.println(PrintColor.YELLOW_BOLD);
+//        System.out.printf("====================================================================================================\n");
+//        System.out.printf("                                   Michelin Western Restaurant\n");
+//        System.out.printf("                                      50 Nanyang Ave, 639798\n");
+//        System.out.printf("                                          Tel: 6791 1744\n");
+//        System.out.printf("====================================================================================================\n");
+//        System.out.print(PrintColor.RESET);
+//        System.out.printf("Invoice ID: %s                                                        Date: %s\n", displayInvoiceId, displayDate);
+//        System.out.printf("    Server: %s                  Table No.: %s                                  Time: %s\n", displayStaff, displayTableNo, displayTime);
+//        System.out.println("----------------------------------------------------------------------------------------------------");
+//        System.out.println("ID                                      Food Type    Item                                   \t\t Qty   Price per Item(S$)");
+//        System.out.println("----------------------------------------------------------------------------------------------------");
+//        for(MenuItem item: invoice.getOrders().getOrderedItems()) {
+//            if (item instanceof Alacarte) {
+//                foodType = ((Alacarte) item).getType();
+//                System.out.printf("%s    %-10s   %-45s   %-10s  %-6.2f\n", item.getMenuItemID(), foodType, item.getName(), item.getQuantity(), item.getPrice());
+//            }
+//        }
+//        for (MenuItem item2 : invoice.getOrders().getOrderedItems()) {
+//                if (item2 instanceof SetMeal) {
+//                    String foodName = item2.getName();
+//                    foodType = ((SetMeal) item2).getType();
+//                    boolean isPromo = ((SetMeal) item2).isPromotionStatus();
+//                    if(isPromo)
+//                        foodName = foodName + " (Promo Price)";
+//                    System.out.printf("%s    %-10s   %-45s   %-10s  %-6.2f\n", item2.getMenuItemID(), foodType, foodName, item2.getQuantity(), item2.getPrice());
+//                }
+//        }
+//        System.out.println(fmt);
+//                System.out.println("----------------------------------------------------------------------------------------------------");
+//                System.out.printf("SUBTOTAL                                                                           %-10.2f\n", displaySubtotal);
+//                if (invoice.getMemberStatus() == Invoice.Membership.IS_MEMBER) {
+//                    System.out.printf("%.2f%% ADDITIONAL MEMBER DISCOUNT                                                 -%-5.2f\n", memberDiscount * 100, displayMemberDiscount);
+//                    System.out.printf("SUBTOTAL AFTER DISCOUNT                                                            %-10.2f\n", displaySubtotalAD);
+//                } else
+//                    System.out.println("NOT MEMBER");
+//
+//                System.out.printf("10%% SVC CHG                                                                        %-10.2f\n", displaySvcCharge);
+//                System.out.printf("7%% GST                                                                             %-10.2f\n", displayGST);
+//                System.out.println("----------------------------------------------------------------------------------------------------");
+//                System.out.printf("TOTAL                                                                              %-10.2f\n", invoice.getTotal());
+//                System.out.println("====================================================================================================");
+//                System.out.println("                                Thank You For Dining With Us!");
+//                System.out.println("====================================================================================================");
+//    }
 
    public void savetoDB(ArrayList<Invoice> invoiceList){
        try {
@@ -216,6 +285,7 @@ public class PaymentManager {
             e.printStackTrace();
         }
     }
+}
 
 //    public void saveInvoice(Invoice invoice) throws IOException {
 //        Database.writeLine(invoiceFile, invoice.getLineCSVFormat());
@@ -231,4 +301,3 @@ public class PaymentManager {
 //        }
 //        return orderList.size();
 //    }
-}

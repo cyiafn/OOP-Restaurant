@@ -80,8 +80,7 @@ public class RRPSS {
                 "1. Menu Management.\n\n" +
                 "2. Reservation Management.\n\n" +
                 "3. Order Management.\n\n" +
-                "4. Payment Management.\n" +
-
+                "4. Payment Management.\n\n" +
                 "5. Promotion Management.\n" +
                // "6. Remove promotion.\n\n" +
 //                "7. Create order.\n" +

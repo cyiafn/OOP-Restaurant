@@ -87,7 +87,87 @@ public class InputHandler {
 		}while (true);
 	}
 
-    /**
+	/**
+	 * Helper function to request user for date.
+	 * Ensures that string input is formatted according to dd/MM/yyyy
+	 * Output string will be yyyyMMdd
+	 * @return date in string
+	 */
+	public static String stringDate2(String promptMessage){
+		String date;
+		do {
+			System.out.println(promptMessage);
+			date = sc.nextLine();
+			//sc.nextLine();
+			//String dateFormat = "dd/MM/yyyy";
+			DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat outputFormatter = new SimpleDateFormat("yyyyMMdd");
+			//parse date strictly
+			try {
+				Date date1 =inputFormatter.parse(date);
+				String dateOutput = outputFormatter.format(date1);
+				return dateOutput;
+			} catch (ParseException e) {
+				System.out.println("Invalid date input");
+				continue;
+			}
+		}while (true);
+	}
+
+	/**
+	 * Helper function to request user for date.
+	 * Ensures that string input is formatted according to MM/yyyy
+	 * Output string will be yyyyMM
+	 * @return date in string
+	 */
+	public static String stringDate3(String promptMessage){
+		String date;
+		do {
+			System.out.println(promptMessage);
+			date = sc.nextLine();
+			//sc.nextLine();
+			//String dateFormat = "dd/MM/yyyy";
+			DateFormat inputFormatter = new SimpleDateFormat("MM/yyyy");
+			DateFormat outputFormatter = new SimpleDateFormat("yyyyMM");
+			//parse date strictly
+			try {
+				Date date1 =inputFormatter.parse(date);
+				String dateOutput = outputFormatter.format(date1);
+				return dateOutput;
+			} catch (ParseException e) {
+				System.out.println("Invalid date input");
+				continue;
+			}
+		}while (true);
+	}
+	/**
+	 * Helper function to request user for date.
+	 * Ensures that string input is formatted according to yyyy
+	 * Output string will be yyyy
+	 * @return date in string
+	 */
+	public static String stringDate4(String promptMessage){
+		String date;
+		do {
+			System.out.println(promptMessage);
+			date = sc.nextLine();
+			//sc.nextLine();
+			//String dateFormat = "dd/MM/yyyy";
+			DateFormat inputFormatter = new SimpleDateFormat("yyyy");
+			DateFormat outputFormatter = new SimpleDateFormat("yyyy");
+			//parse date strictly
+			try {
+				Date date1 =inputFormatter.parse(date);
+				String dateOutput = outputFormatter.format(date1);
+				return dateOutput;
+			} catch (ParseException e) {
+				System.out.println("Invalid date input");
+				continue;
+			}
+		}while (true);
+	}
+
+	/**
 	 * Helper function to get customer's name.
 	 * @return user's name.
 	 */
