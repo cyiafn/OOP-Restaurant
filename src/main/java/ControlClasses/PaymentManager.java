@@ -175,7 +175,7 @@ public class PaymentManager {
         System.out.println("ID                                          Item                       \t\t Qty   Price per Item(S$)");
         System.out.println("----------------------------------------------------------------------------------------------------");
         for(MenuItem item: invoice.getOrders().getOrderedItems()){
-            item.
+
             //System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t\t\t\t" + item.getQuantity()+"    \t" + item.getPrice());
             fmt.format("%s        %-30s   %-5s %-6.2f\n", item.getMenuItemID(), item.getName(), item.getQuantity(), item.getPrice());
         }
