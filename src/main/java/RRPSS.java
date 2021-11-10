@@ -27,7 +27,6 @@ public class RRPSS {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
         ReservationManager reservationM = null;
-        OrderManager.getInstance().loadinDB();
         PaymentManager.getInstance().loadFromDB();
         try {
             reservationM = new ReservationManager();
