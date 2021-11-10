@@ -16,15 +16,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.*;
 
+/**
+ * PaymentUI the boundary class that will be responsible for pass User's inputs to the PaymentManager(Controller Class)
+ * PaymentUI will also be responsible for the display of options for user to pass inputs to the PaymentManager Class
+ * @author Ong Yew Han
+ * @version 1.7
+ * @since 2021-11-09
+ */
 public class PaymentUI implements UI {
+    /**
+     * Stores the Singleton instance of the PaymentUI
+     */
     public static PaymentUI instance = null;
     int c;
     Scanner sc = new Scanner(System.in);
 
-    private PaymentUI(){
-        sc = new Scanner(System.in);
-    }
-
+    /**
+     * Static method to create a new PaymentUI if there isn't already one, else return
+     * @return a Singleton PaymentUI
+     */
     public static PaymentUI getInstance(){
         if(instance == null) instance = new PaymentUI();
         return instance;
@@ -32,10 +42,12 @@ public class PaymentUI implements UI {
 
     public static boolean isNumeric(String str){return false;};
 
+    /**
+     * Helper function to display the UI if the View Invoice option is selected by User
+     * in displayOptions. The inputs will be validated here before parsing to PaymentManger
+     */
     public void generateInvoice() {
         Scanner sc = new Scanner(System.in);
-
-//        if (PaymentManager.getInstance().displayOrder() > 0)
           if (true){
             int choice = -1;
             do {
@@ -75,6 +87,10 @@ public class PaymentUI implements UI {
         } else System.out.println("No order made yet!");
     }
 
+    /**
+     * Helper function to display the UI if the View Invoice option is selected by User
+     * in displayOptions. The inputs will be validated here before parsing to PaymentManger
+     */
     public void viewInvoice(){
         Scanner sc = new Scanner(System.in);
         String invoiceId = InputHandler.getString("Enter the Invoice you would like to view");
@@ -85,7 +101,10 @@ public class PaymentUI implements UI {
         else
             System.out.println("Invoice not Found");
     }
-
+    /**
+     * Helper function to display the UI if the View Invoice option is selected by User
+     * in displayOptions. The inputs will be validated here before parsing to PaymentManger
+     */
     public void viewRevenueReport(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the Period");
@@ -142,6 +161,11 @@ public class PaymentUI implements UI {
         }
     }
 
+    /**
+     * displayOptions() is the entry point called by the RRPSS class when functions related to Payment is
+     * required
+     * @throws IOException to catch any exception related to User Inputs
+     */
     public void displayOptions() throws IOException {
             System.out.println(PrintColor.YELLOW_BOLD);
             System.out.println(
@@ -155,17 +179,16 @@ public class PaymentUI implements UI {
             int opt = InputHandler.getInt(0, 3, "Please enter an option (0 to exit): ", "Please enter an integer from 0-3!");
             switch (opt) {
                 case 1:
-                    //createInvoice();
                     generateInvoice();
-                    s = InputHandler.getString("Press Any Key To Continue");
+                    InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 2:
                     viewInvoice();
-                    s = InputHandler.getString("Press Any Key To Continue");
+                    InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 3:
                     viewRevenueReport();
-                    s = InputHandler.getString("Press Any Key To Continue");
+                    InputHandler.getString("Press Any Key To Continue");
                     break;
             }
     }

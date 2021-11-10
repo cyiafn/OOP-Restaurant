@@ -88,11 +88,13 @@ public class RevenueReport {
                                 // Get item.qty
                                 // Add to order
                                 itemId = item.getMenuItemID();
+                                // If item is already in list
+                                // Compute qty
                                 if(itemList.containsKey(itemId)){
                                         int itemQty = qtyList.get(itemId);
                                         qtyList.put(itemId, itemQty + item.getQuantity());
                                 }
-                                else {
+                                else { //Else add item to list
                                         itemList.put(itemId, item.getName());
                                         qtyList.put(itemId, item.getQuantity());
                                         priceList.put(itemId, item.getPrice());
@@ -106,12 +108,13 @@ public class RevenueReport {
                         totalRevenue += invoice.getTotal();
                 }
                 displayResult(itemList, qtyList, priceList); //Generate the Revenue created
+                clearData();
         }
         private static void displayResult(HashMap<String, String> itemList, HashMap<String, Integer> qtyList, HashMap<String, Double> priceList){
                 Formatter fmt = new Formatter();
-                System.out.printf("====================================================================================================\n");
+                System.out.printf("=======================================================================================================\n");
                 System.out.printf("\t\t\t\tREVENUE REPORT FOR %s\n", reportDate);
-                System.out.printf("====================================================================================================\n");
+                System.out.printf("=======================================================================================================\n");
                 System.out.println("ID                                          Item                       \t\t Qty   Revenue per Item(S$)");
                 for(Map.Entry<String, String> entry: itemList.entrySet()){
                         String itemID = entry.getKey();
@@ -132,6 +135,13 @@ public class RevenueReport {
                 System.out.printf("Total Revenue: %.2f\n", totalRevenue);
                 System.out.println("====================================================================================================\n");
         }
-        private static void clearData(){}
+        private static void clearData(){
+                totalSubTotal = 0;
+                totalSubTotalAD = 0;
+                totalMemberDiscAmt = 0;
+                totalGstAmt = 0;
+                totalSvcChargeAmt = 0;
+                totalRevenue = 0;
+        }
 
 }

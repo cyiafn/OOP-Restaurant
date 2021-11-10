@@ -17,6 +17,15 @@ import java.util.Formatter;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * PaymentManager is a controller
+ * Which handle all thing related to payment in a Restaurant Reservation and Point of Sale System (RRPSS)
+ * This includes the actions of printing an Invoice based on orders and also the ability to generate
+ * a revenue report based on User's input period(by day, by month or by year)
+ * @author Ong Yew Han
+ * @version 1.7
+ * @since 2021-11-09
+ */
 public class PaymentManager {
     private double gst = TaxDiscount.GST;
     private double serviceCharge = TaxDiscount.SERVICE_CHARGE;
@@ -156,7 +165,7 @@ public class PaymentManager {
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.printf("====================================================================================================\n");
         System.out.printf("                                   Michelin Western Restaurant\n");
-        System.out.printf("                                      50 Nanyang Ave, 639798");
+        System.out.printf("                                      50 Nanyang Ave, 639798\n");
         System.out.printf("                                          Tel: 6791 1744\n");
         System.out.printf("====================================================================================================\n");
         System.out.print(PrintColor.RESET);
@@ -166,6 +175,7 @@ public class PaymentManager {
         System.out.println("ID                                          Item                       \t\t Qty   Price per Item(S$)");
         System.out.println("----------------------------------------------------------------------------------------------------");
         for(MenuItem item: invoice.getOrders().getOrderedItems()){
+            item.
             //System.out.println(item.getMenuItemID() +"    \t" + item.getName() +"    \t\t\t\t" + item.getQuantity()+"    \t" + item.getPrice());
             fmt.format("%s        %-30s   %-5s %-6.2f\n", item.getMenuItemID(), item.getName(), item.getQuantity(), item.getPrice());
         }
