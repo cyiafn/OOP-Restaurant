@@ -7,6 +7,7 @@
 
 import ControlClasses.OrderManager;
 import ControlClasses.PaymentManager;
+import ControlClasses.PromotionManager;
 import ControlClasses.ReservationManager;
 import Enumerations.ReservationStatus;
 import UI.*;

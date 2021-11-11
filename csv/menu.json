@@ -1,5 +1,5 @@
 {
-    "id": "e93adbfb-b55c-4f75-a2ee-e25cf50f217f",
+    "id": "08c46953-8ec5-4141-9c0a-09360db8a6cb",
     "description": "We sell various cuisine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
     "name": "Royale RRPSS Menu",
     "menuCategory": [
@@ -11,9 +11,28 @@
                     "type": "alacarte",
                     "price": 98.58,
                     "description": "Thick slices of French toast bread, brown sugar, half-and-half and vanilla, \n topped with powdered sugar. With two eggs served any style, \n and your choice of smoked bacon or smoked ham.",
-                    "menuItemID": "2d430dbf-47c9-4323-9a6b-29a4de092c5a",
+                    "menuItemID": "43bfbb2c-906a-4ada-8d65-ab72b5a6478a",
                     "quantity": 1,
                     "name": "Pork Belly Buns"
+                },
+                {
+                    "type": "setmeal",
+                    "promotionPrice": 0.0,
+                    "setOfItem": [
+                        {
+                            "price": 70.0,
+                            "description": "wok",
+                            "menuItemID": "0e7ac227-1fc1-48b4-aa67-08c8458cab68",
+                            "quantity": 1,
+                            "name": "wok"
+                        }
+                    ],
+                    "price": 70.0,
+                    "description": "testpromo",
+                    "menuItemID": "3c4d2f67-26ae-4995-bba4-b25c51ff56a1",
+                    "quantity": 1,
+                    "name": "testpromo",
+                    "promotionStatus": false
                 }
             ]
         },
@@ -25,39 +44,39 @@
                     "type": "alacarte",
                     "price": 85.82,
                     "description": "Two butter croissants of your choice (plain, almond or cheese). \n With a side of herb butter or house-made hazelnut spread. ",
-                    "menuItemID": "fb125934-a739-4d35-94d7-b56f32b1231c",
+                    "menuItemID": "274b6d07-e46e-4194-8567-205e5cf44331",
                     "quantity": 1,
                     "name": "Kebab"
                 },
                 {
                     "type": "setmeal",
-                    "promotionPrice": 0.0,
+                    "promotionPrice": 10.0,
                     "setOfItem": [
                         {
                             "price": 36.0,
                             "description": "Moist cake made with fresh caraway and roasted chestnut",
-                            "menuItemID": "1911f4bb-04e5-416d-8a47-1b0e0161fa10",
+                            "menuItemID": "2a8d1371-312c-46d5-8465-27047117c11b",
                             "quantity": 1,
                             "name": "Wine and pasta casserole"
                         },
                         {
                             "price": 36.0,
                             "description": "Thin and crispy pizza topped with fresh jalapeno and smoked ham",
-                            "menuItemID": "c8bccdf3-2183-4802-83dd-860098dcc2ba",
+                            "menuItemID": "e0082d8b-7f42-4299-8a55-a762bf09923f",
                             "quantity": 1,
                             "name": "Jalapeno and ham pizza"
                         },
                         {
                             "price": 36.0,
                             "description": "Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
-                            "menuItemID": "7f48e776-fc66-41ac-b8b5-ec50e1d40f46",
+                            "menuItemID": "e5c27aea-baf4-4baa-9340-18a3fcd2f752",
                             "quantity": 1,
                             "name": "Basil and pineapple kebab"
                         }
                     ],
                     "price": 108.0,
                     "description": "A crunchy salad featuring fresh pineapple and roquefort",
-                    "menuItemID": "18a8432d-4f35-42f5-82bc-6f55d5e99d97",
+                    "menuItemID": "8ecafdaf-28a0-42f9-9e90-866ef713aec4",
                     "quantity": 1,
                     "name": "Pineapple and roquefort salad",
                     "promotionStatus": true
@@ -72,7 +91,7 @@
                     "type": "alacarte",
                     "price": 36.95,
                     "description": "Smoked salmon, poached eggs, diced red onions and Hollandaise sauce on an English muffin. \n With a side of roasted potatoes.",
-                    "menuItemID": "19905d25-f2b4-4688-9190-0f8a454ca3fe",
+                    "menuItemID": "1574c837-c7b2-45a4-a5ee-8e4620fc873b",
                     "quantity": 1,
                     "name": "Katsu Curry"
                 }
@@ -86,7 +105,7 @@
                     "type": "alacarte",
                     "price": 80.51,
                     "description": "Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \n With a side of roasted potatoes, and your choice of toast or croissant.",
-                    "menuItemID": "e0ac26e1-e9dd-4424-815c-265b5aaf3b34",
+                    "menuItemID": "fc5ecad4-223e-4ef7-a6c8-930e833501f5",
                     "quantity": 1,
                     "name": "Pork Sausage Roll"
                 }
@@ -100,7 +119,7 @@
                     "type": "alacarte",
                     "price": 78.92,
                     "description": "28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides.",
-                    "menuItemID": "ee85c1be-fc1c-426b-9b2f-132c7ba4abbb",
+                    "menuItemID": "aa0d8852-53fd-487d-bbfd-4c2f73a368d5",
                     "quantity": 1,
                     "name": "Pizza"
                 }
@@ -114,7 +133,7 @@
                     "type": "alacarte",
                     "price": 37.39,
                     "description": "Vodka is traditionally made from potatoes or fermented cereal grains. \n Some brands also make it from other substances like fruit or sugar.\n One of the most used and loved alcoholic drink, vodka is either consumed neat or \n as cocktails like Martini, Bloody Mary and Cosmopolitan.",
-                    "menuItemID": "4c8540ac-b94c-4218-bab3-3e4335efc736",
+                    "menuItemID": "837b36da-6dc0-4fd6-a924-22cca92d6b65",
                     "quantity": 1,
                     "name": "Vodka"
                 }
@@ -128,7 +147,7 @@
                     "type": "alacarte",
                     "price": 60.39,
                     "description": "7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \n offices and workplaces directly from our warehouse in South London. \n Clear, bright and colourless liquid with a lively carbonation. Delicate, \n enticing aroma of lemon and lime, fused and dusted with powdered sugar. ",
-                    "menuItemID": "272bbed4-ba26-471a-8f21-e1eae1dfdd87",
+                    "menuItemID": "366ca1a9-c519-4481-b32a-3cc4cdb98862",
                     "quantity": 1,
                     "name": "7up Lemon & Lime"
                 }

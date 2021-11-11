@@ -1,6 +1,7 @@
 package UI;
 
 import ControlClasses.PromotionManager;
+import Enumerations.PrintColor;
 import Interfaces.UI;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
@@ -32,9 +33,11 @@ public class PromotionUI implements UI {
     public void displayOptions() {
         int choice;
         do{
+            System.out.println(PrintColor.YELLOW_BOLD);
             System.out.println("\n==================================================");
             System.out.println(" Welcome To Promotion Management: ");
             System.out.println("==================================================");
+            System.out.print(PrintColor.RESET);
             System.out.println("(1) Create Promotion\t(2) Update Promotion");
             System.out.println("(3) Remove Promotion\t(4) View Promotion");
             System.out.println("(5) Back");

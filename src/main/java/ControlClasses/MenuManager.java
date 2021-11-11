@@ -6,6 +6,7 @@ import Enumerations.FoodCategory;
 import Enumerations.PrintColor;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.File;
 import java.io.IOException;
@@ -505,6 +506,13 @@ public class MenuManager extends Observer {
 	 * Helper function to view Menu
 	 */
 	public void viewMenu() {
+		try {
+			PromotionManager.getInstance().checkDateAfter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (CsvException e) {
+			e.printStackTrace();
+		}
 		for(MenuCategory mc : this.menu.getMenuCategory()){
 			mc.print();
 		}

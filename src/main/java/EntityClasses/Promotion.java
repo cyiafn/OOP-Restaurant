@@ -32,9 +32,9 @@ public class Promotion extends Subject{
 	 * @param promotionEndDate promotion end date
 	 */
 
-	public Promotion(String id,String name,String _description,String startDate,String endDate, double price , String menuItemID){
+	public Promotion(String id,String name,String description,String startDate,String endDate, double price , String menuItemID){
 		this.promotionID = id;
-		this.promotionDescription = _description;
+		this.promotionDescription = description;
 		this.promotionStartDate = startDate;
 		this.promotionEndDate = endDate;
 		this.promotionPrice = price;
