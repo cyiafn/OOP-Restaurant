@@ -65,6 +65,8 @@ public class ReservationManager {
 	 */
     public static ReservationManager getInstance() throws IOException, CsvException {
         if (instance == null) instance = new ReservationManager();
+		//cleans up whenever ReservationManager is called.
+		instance.cleanup();
         return instance;
     }
 	/**
@@ -153,7 +155,6 @@ public class ReservationManager {
 	 */
 	public boolean deleteReservation() throws IOException, CsvException {
 		//name;contactNo;dt
-		cleanup();
 		Scanner sc = new Scanner(System.in);
 		System.out.print(PrintColor.GREEN_BOLD);
 		String name = InputHandler.getName();
@@ -201,7 +202,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public String checkin(String reservationId) throws IOException, CsvException {
-		cleanup();
 		return updateReservation(ReservationStatus.ACTIVE, ReservationStatus.CREATED, reservationId);
 	}
 
@@ -213,7 +213,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public int getTableNumber(String reservationId) throws IOException, CsvException {
-		cleanup();
 		for (int a: reservations.keySet()){
 			for (Reservation r: reservations.get(a)){
 				if (r.getReservationID().equals(reservationId)){
@@ -231,7 +230,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean closeReservation(String reservationId) throws IOException, CsvException {
-		cleanup();
 		if (updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE, reservationId).equals("")){
 			return false;
 		}
@@ -247,7 +245,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	private String updateReservation(ReservationStatus stat, ReservationStatus validState, String reservationId) throws CsvException, IOException {
-		cleanup();
 		for (int a: reservations.keySet()){
 			for (Reservation r: reservations.get(a)){
 				if (r.getReservationID().equals(reservationId)){
@@ -273,7 +270,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean createReservation() throws IOException, CsvException {
-		cleanup();
 		Scanner sc = new Scanner(System.in);
 		String timeFormat = "HH:mm";
 		//parse date strictly
@@ -332,7 +328,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public void checkReservation() throws IOException, CsvException {
-		cleanup();
 		Scanner sc = new Scanner(System.in);
 		//name
 		System.out.print(PrintColor.GREEN_BOLD);
@@ -373,7 +368,6 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public void checkAvailability() throws IOException, CsvException {
-		cleanup();
 		Scanner sc = new Scanner(System.in);
 		String timeFormat = "HH:mm";
 		//parse date strictly
@@ -486,7 +480,6 @@ public class ReservationManager {
 	 * @throws CsvException Cannot read/write CSV.
 	 */
 	public ArrayList<String> getTodaysCreatedReservations() throws IOException, CsvException {
-		cleanup();
 
 		//get all eligible reservations
 		ArrayList <String> output = new ArrayList<>();
