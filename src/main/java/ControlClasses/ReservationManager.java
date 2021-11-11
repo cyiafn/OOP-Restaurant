@@ -152,10 +152,46 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean deleteReservation() throws IOException, CsvException {
-		if (updateReservation(ReservationStatus.REMOVED, ReservationStatus.CREATED) != ""){
-			return true;
+		//name;contactNo;dt
+		cleanup();
+		Scanner sc = new Scanner(System.in);
+		System.out.print(PrintColor.GREEN_BOLD);
+		String name = InputHandler.getName();
+		String contactNo = InputHandler.getContactNo();
+		LocalDateTime datetime;
+		datetime = InputHandler.getDate(true);
+
+		//get all reservations with these attributes
+		ArrayList<Reservation> temp = new ArrayList<>();
+		for (Integer key: reservations.keySet()){
+			for (Reservation i: reservations.get(key)){
+				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && ReservationStatus.CREATED == i.getStatus()){
+					temp.add(i);
+				}
+			}
 		}
-		return false;
+		System.out.print(PrintColor.RED);
+		//no such attributes
+		if (temp.size() == 0 ){
+			System.out.println("There are no valid reservations!");
+			return false;
+		}
+		System.out.print(PrintColor.RESET);
+		//select which reservation to update
+		for (int i = 0; i < temp.size(); i ++){
+			System.out.print(Integer.toString(i + 1) + ". ");
+			temp.get(i).print();
+			System.out.print("\n");
+		}
+		System.out.print(PrintColor.GREEN_BOLD);
+		int opt = InputHandler.getInt(0,temp.size(), "Please select your option (0 to exit): ", "Invalid integer!");
+		if (opt == 0){
+			return false;
+		}
+		System.out.print(PrintColor.RESET);
+		temp.get(opt-1).setStatus(ReservationStatus.REMOVED);
+		Database.updateLine(reservationFile, temp.get(opt-1).getReservationID(), temp.get(opt-1).getLineCSVFormat());
+		return true;
 	}
 
 	/**
@@ -164,8 +200,9 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	public String checkin() throws IOException, CsvException {
-		return updateReservation(ReservationStatus.ACTIVE, ReservationStatus.CREATED);
+	public String checkin(String reservationId) throws IOException, CsvException {
+		cleanup();
+		return updateReservation(ReservationStatus.ACTIVE, ReservationStatus.CREATED, reservationId);
 	}
 
 	/**
@@ -195,22 +232,10 @@ public class ReservationManager {
 	 */
 	public boolean closeReservation(String reservationId) throws IOException, CsvException {
 		cleanup();
-		for (int a: reservations.keySet()){
-			for (Reservation r: reservations.get(a)){
-				if (r.getReservationID().equals(reservationId)){
-					if (r.getStatus() == ReservationStatus.ACTIVE){
-						r.setStatus(ReservationStatus.COMPLETED);
-						Database.updateLine(reservationFile, reservationId, r.getLineCSVFormat());
-						return true;
-					}
-					else{
-						return false;
-					}
-
-				}
-			}
+		if (updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE, reservationId).equals("")){
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -221,52 +246,24 @@ public class ReservationManager {
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
 	 */
-	private String updateReservation(ReservationStatus stat, ReservationStatus validState) throws CsvException, IOException {
-		//name;contactNo;dt
+	private String updateReservation(ReservationStatus stat, ReservationStatus validState, String reservationId) throws CsvException, IOException {
 		cleanup();
-		Scanner sc = new Scanner(System.in);
-		System.out.print(PrintColor.GREEN_BOLD);
-		String name = InputHandler.getName();
-		String contactNo = InputHandler.getContactNo();
-		LocalDateTime datetime;
-		if (stat == ReservationStatus.REMOVED){
-			datetime = InputHandler.getDate(true);
-		}
-		else{
-			datetime = InputHandler.getDate(false);
-		}
+		for (int a: reservations.keySet()){
+			for (Reservation r: reservations.get(a)){
+				if (r.getReservationID().equals(reservationId)){
+					if (r.getStatus() == validState){
+						r.setStatus(stat);
+						Database.updateLine(reservationFile, reservationId, r.getLineCSVFormat());
+						return r.getReservationID();
+					}
+					else{
+						return "";
+					}
 
-		//get all reservations with these attributes
-		ArrayList<Reservation> temp = new ArrayList<>();
-		for (Integer key: reservations.keySet()){
-			for (Reservation i: reservations.get(key)){
-				if (i.getName().equals(name) && i.getDt().equals(datetime) && i.getContactNo().equals(contactNo) && validState == i.getStatus()){
-					temp.add(i);
 				}
 			}
 		}
-		System.out.print(PrintColor.RED);
-		//no such attributes
-		if (temp.size() == 0 ){
-			System.out.println("There are no valid reservations!");
-			return "";
-		}
-		System.out.print(PrintColor.RESET);
-		//select which reservation to update
-		for (int i = 0; i < temp.size(); i ++){
-			System.out.print(Integer.toString(i + 1) + ". ");
-			temp.get(i).print();
-			System.out.print("\n");
-		}
-		System.out.print(PrintColor.GREEN_BOLD);
-		int opt = InputHandler.getInt(0,temp.size(), "Please select your option (0 to exit): ", "Invalid integer!");
-		if (opt == 0){
-			return "";
-		}
-		System.out.print(PrintColor.RESET);
-		temp.get(opt-1).setStatus(stat);
-		Database.updateLine(reservationFile, temp.get(opt-1).getReservationID(), temp.get(opt-1).getLineCSVFormat());
-		return temp.get(opt-1).getReservationID();
+		return "";
 	}
 
 	/**

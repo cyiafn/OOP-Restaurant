@@ -1,4 +1,5 @@
 reservationID;dt;noOfPax;name;contactNo;tableNo;status
 6e962206-ff71-4b8f-8bfc-76cb8da7faf1;2021-12-12 06:00;10;yifan;1;9;CREATED
-6e962206-ff71-4b8f-8bfc-76cb8da7faf1;2021-12-12 10:00;10;yifan;1;9;CREATED
+6e962206-ff71-4b8f-8bfc-76cb8da7faf1;2021-12-12 06:00;10;yifan;1;10;CREATED
 6e962206-ff71-4b8f-8bfc-76cb8da7faf0;2021-12-12 12:12;10;yifan;1;9;CREATED
+08c83b40-636c-4a0a-b9db-b7983783fbb5;2021-12-13 06:00;10;Yifan;213123;9;REMOVED

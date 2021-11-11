@@ -176,8 +176,8 @@ public class ReservationManager_test {
     @Test
     void checkin_test_success(){
         try {
-            provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") + "1" + System.getProperty("line.separator"));
-            ReservationManager.getInstance().checkin();
+            //provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") + "1" + System.getProperty("line.separator"));
+            ReservationManager.getInstance().checkin("testid18");
             ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
             boolean flag = false;
             for (HashMap<String, String> r: data){
@@ -198,8 +198,8 @@ public class ReservationManager_test {
     @Test
     void checkin_test_failure(){
         try {
-            provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") );
-            ReservationManager.getInstance().checkin();
+            //provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") );
+            ReservationManager.getInstance().checkin("testid18");
             ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
             boolean flag = false;
             for (HashMap<String, String> r: data){
