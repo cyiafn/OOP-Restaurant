@@ -32,7 +32,7 @@ public class PromotionManager_test {
         inputHandler = new InputHandler();
         ArrayList<Promotion> sampleDat = new ArrayList<>();
         try {
-            sampleDat.add(new Promotion("test","testingNOEDIT","testNOEDIT","02/11/2021","20/11/2021",10.0,"4fbfdb52-09c1-4c11-96b0-852420616862"));
+            //sampleDat.add(new Promotion("test","testingNOEDIT","testNOEDIT","02/11/2021","20/11/2021",10.0,"4fbfdb52-09c1-4c11-96b0-852420616862"));
             PromotionManager.getInstance();
             for (Promotion i: sampleDat) {
                 Database.writeLine("Promotion.csv", i.getLineCSVFormat());
@@ -76,14 +76,14 @@ public class PromotionManager_test {
                     + 10.00 + System.getProperty("line.separator")
                     + "2/11/2021" + System.getProperty("line.separator")
                     + "20/11/2021" + System.getProperty("line.separator")
-                    + "44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85" + System.getProperty("line.separator")
+                    + "000d3c0d-54e7-46fe-9df5-554e271cbcc0" + System.getProperty("line.separator")
             );
            boolean flag = false;
            PromotionManager.getInstance().createPromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
                 if(promo.getPromotionName().equals("testing") && promo.getDescription().equals("testing") && promo.getPromotionPrice() ==10.0 && promo.getStartDate().equals("02/11/2021")
-                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
+                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("000d3c0d-54e7-46fe-9df5-554e271cbcc0")){
                     flag = true;
                 }
             }
@@ -318,13 +318,13 @@ public class PromotionManager_test {
         try {
             provideInput("testing" + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
-                    + "44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85"
+                    + "000d3c0d-54e7-46fe-9df5-554e271cbcc0"
             );
             boolean flag = false;
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-             if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
+             if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("000d3c0d-54e7-46fe-9df5-554e271cbcc0")){
                     flag = true;
                 }
             }
@@ -349,7 +349,7 @@ public class PromotionManager_test {
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
                 System.out.println(promo.getPromotionName());
-                if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
+                if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("000d3c0d-54e7-46fe-9df5-554e271cbcc0")){
                     flag = true;
                 }
             }
