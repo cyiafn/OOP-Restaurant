@@ -1,0 +1,96 @@
+{
+    "id": "d307034d-6f3e-439d-8194-24dfbbb0cdcb",
+    "description": "We sell various cuisine, including vegetarian and special seat meal,which prepare by our michelin 5 star chef : Gordan Ramsay.",
+    "name": "Michelin Western Restaurant",
+    "menuCategory": [
+        {
+            "category": "APPETIZER",
+            "description": "APPETIZER",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 17.0,
+                    "description": "topped with powdered sugar. With two eggs served any style, \n and your choice of smoked bacon or smoked ham.",
+                    "menuItemID": "bb1f7e0a-7f6e-49a8-9f67-b918fa9d1163",
+                    "quantity": 1,
+                    "name": "Salad"
+                }
+            ]
+        },
+        {
+            "category": "MAINCOURSE",
+            "description": "MAINCOURSE",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 15.0,
+                    "description": "Two butter croissants of your choice (plain, almond or cheese). \n With a side of herb butter or house-made hazelnut spread. ",
+                    "menuItemID": "4d83ab7c-6bf2-424b-8b22-7b0bc1f95169",
+                    "quantity": 1,
+                    "name": "Kebab"
+                },
+                {
+                    "type": "setmeal",
+                    "promotionPrice": 0.0,
+                    "setOfItem": [
+                        {
+                            "price": 20.0,
+                            "description": "Moist cake made with fresh caraway and roasted chestnut",
+                            "menuItemID": "bb02eeec-44a6-4f78-bdc9-108ff2b05891",
+                            "quantity": 1,
+                            "name": "Wine and pasta casserole"
+                        },
+                        {
+                            "price": 20.0,
+                            "description": "Thin and crispy pizza topped with fresh jalapeno and smoked ham",
+                            "menuItemID": "73d254ef-b252-4eb7-b61d-88f7f4af9d18",
+                            "quantity": 1,
+                            "name": "Jalapeno and ham pizza"
+                        },
+                        {
+                            "price": 20.0,
+                            "description": "Skewer-cooked dried basil and fresh pineapple served in warm pitta pocketsn",
+                            "menuItemID": "5b908eae-3edb-4e4a-affc-c59beb93ebb0",
+                            "quantity": 1,
+                            "name": "Basil and pineapple kebab"
+                        }
+                    ],
+                    "price": 60.0,
+                    "description": "A crunchy salad featuring fresh pineapple and roquefort",
+                    "menuItemID": "8c350ddf-574d-464b-ab0c-17dcfb5a53f9",
+                    "quantity": 1,
+                    "name": "Pineapple and roquefort salad",
+                    "promotionStatus": false
+                }
+            ]
+        },
+        {
+            "category": "DESSERT",
+            "description": "DESSERT",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 30.0,
+                    "description": "Duck  favour pizza.",
+                    "menuItemID": "76975381-f0d8-42f6-8b0c-fc641bce3af0",
+                    "quantity": 1,
+                    "name": "Pizza"
+                }
+            ]
+        },
+        {
+            "category": "SOFTDRINKS",
+            "description": "SOFTDRINKS",
+            "menuItem": [
+                {
+                    "type": "alacarte",
+                    "price": 2.5,
+                    "description": "7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \n offices and workplaces directly from our warehouse in South London. \n Clear, bright and colourless liquid with a lively carbonation. Delicate, \n enticing aroma of lemon and lime, fused and dusted with powdered sugar. ",
+                    "menuItemID": "10db3945-6074-4568-9d10-3cd6d2fdbf2c",
+                    "quantity": 1,
+                    "name": "7up Lemon & Lime"
+                }
+            ]
+        }
+    ]
+}

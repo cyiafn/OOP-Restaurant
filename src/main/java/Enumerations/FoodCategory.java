@@ -1,11 +1,14 @@
 package Enumerations;
 
+/**
+ * Main course,
+ * drinks,
+ * dessert
+ *
+ */
 public enum FoodCategory {
     APPETIZER,
     MAINCOURSE,
-    SIDEDISH,
     DESSERT,
-    CHILDRENSMENU,
-    ALCOHOLICDRINK,
     SOFTDRINKS
 }
