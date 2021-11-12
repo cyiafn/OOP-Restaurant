@@ -55,6 +55,11 @@ public class PromotionManager{
 		}
 		return instance;
 	}
+
+	/**
+	 * load Promotion and set menu data from csv and json into PromotionManager
+	 */
+
 	public PromotionManager() throws IOException, CsvException {
 		loadPromotion();
 		loadSetMenuItems();
@@ -83,7 +88,7 @@ public class PromotionManager{
 		}
 			Promotion p = new Promotion(UUID.randomUUID().toString(),name,description,startDate,endDate,price,menuItemId);
 			this.promotions.add(p);
-			System.out.println(checkDateValid(startDate,endDate));
+			//System.out.println(checkDateValid(startDate,endDate));
 			if(checkDateValid(startDate,endDate)) {
 				Subject subject = new Subject();
 				MenuManager.getInstance().updateMenuManagerForSubject(subject);
@@ -221,7 +226,6 @@ return false;
 						}
 						resp.setPromotionName(newName);
 						Database.updateLine(filename,resp.getPromotionID(),resp.getLineCSVFormat());
-						System.out.println("Promotion name has been successfully changed");
 						break;
 					case 2:
 						String newDes = InputHandler.getString("Please enter new promotion description");
@@ -246,6 +250,7 @@ return false;
 									counter--;
 								}
 								resp.setStartDate(newStartDate);
+								System.out.println("Start date successfully updated");
 								if(!checkDateValid(newStartDate,endDate)){
 									Subject subject = new Subject();
 									MenuManager.getInstance().updateMenuManagerForSubject(subject);
@@ -500,7 +505,7 @@ return false;
 				String test =data_cat2.get(j.intValue()).get("type").toString();
 				if(test.equals("setmeal")){
 					String menuItemID = data_cat2.get(j.intValue()).get("menuItemID").toString();
-					System.out.println(menuItemID);
+					//System.out.println(menuItemID);
 					listOfSetItems.add(menuItemID);
 				}
 				j.getAndIncrement();
