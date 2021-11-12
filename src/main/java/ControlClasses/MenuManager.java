@@ -487,9 +487,9 @@ public class MenuManager extends Observer {
 		// Iterating HashMap through for loop
 		for (Map.Entry<Integer, FoodCategory> set :
 				FoodCategoryMap.entrySet()) {
-			System.out.println(PrintColor.YELLOW_BOLD);
+			System.out.print(PrintColor.YELLOW_BOLD);
 			System.out.println(set.getKey() + "  |  " + set.getValue());
-			System.out.println(PrintColor.RESET);
+			System.out.print(PrintColor.RESET);
 		}
 	}
 
