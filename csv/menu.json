@@ -50,7 +50,7 @@
                 },
                 {
                     "type": "setmeal",
-                    "promotionPrice": 10.0,
+                    "promotionPrice": 20.0,
                     "setOfItem": [
                         {
                             "price": 36.0,
