@@ -1,6 +1,7 @@
 package UI;
 
 import ControlClasses.MenuManager;
+import Enumerations.PrintColor;
 import Interfaces.UI;
 
 import java.io.IOException;
@@ -38,12 +39,14 @@ public class MenuUI implements UI {
     public void displayOptions() throws IOException {
         int choice;
         do {
-
-            System.out.println("\n==================================================");
+            System.out.println(PrintColor.YELLOW_BOLD);
+            System.out.println("==================================================");
             System.out.println(" Menu item Management: ");
             System.out.println("==================================================");
+            System.out.print(PrintColor.RESET);
             System.out.println("(1) Create Menu item\t(2) Update Menu item");
             System.out.println("(3) Remove Menu item\t(4) View Menu\t(5) Back");
+
             choice = sc.nextInt();
             switch (choice) {
                 case 1:

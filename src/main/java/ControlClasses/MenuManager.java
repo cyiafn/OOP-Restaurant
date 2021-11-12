@@ -28,6 +28,7 @@ public class MenuManager extends Observer {
 	public HashMap<Integer,FoodCategory> FoodCategoryMap = new HashMap<>();
 	private Menu menu;
 	String filename =  "csv/menu.json";
+	String restaurantName= "Michelin Western Restaurant";
 
 	public Menu getMenu() {
 		return menu;
@@ -289,7 +290,7 @@ public class MenuManager extends Observer {
 
 
 
-		Menu mymenu = new Menu( UUID.randomUUID().toString(),  "Royale RRPSS Menu",
+		Menu mymenu = new Menu( UUID.randomUUID().toString(),  restaurantName,
 				"We sell various cuisine, including vegetarian and special seat meal," +
 						"which prepare by our michelin 5 star chef : Gordan Ramsay.", mc_arr);
 
@@ -444,17 +445,19 @@ public class MenuManager extends Observer {
 		File f = new File(this.filename.trim());
 		if(f.exists() && !f.isDirectory())
 		{
-			// do nothing
+			System.out.print(PrintColor.YELLOW_BOLD);
 			System.out.println();
 			System.out.println("================================================");
 			System.out.println("There is an existing menu. Loading existing menu.");
+			System.out.print(PrintColor.RESET);
 		}else
 		{
-			// Create default menu and write your json file
+			System.out.print(PrintColor.YELLOW_BOLD);
 			System.out.println("There has no menu in your restaurant. Creating new menu.");
 			Menu menu = createSingleMenuWhenNoMenuExisted();
 			Database.WriteToJsonFile(menu, this.filename.trim());
 			System.out.println("Welcome to " + menu.getName());
+			System.out.print(PrintColor.RESET);
 		}
 		Map data = Database.LoadFromJsonFile(this.filename.trim());
 		Menu newMenu = formatDatabaseMapIntoMenu(data);
@@ -484,7 +487,9 @@ public class MenuManager extends Observer {
 		// Iterating HashMap through for loop
 		for (Map.Entry<Integer, FoodCategory> set :
 				FoodCategoryMap.entrySet()) {
+			System.out.println(PrintColor.YELLOW_BOLD);
 			System.out.println(set.getKey() + "  |  " + set.getValue());
+			System.out.println(PrintColor.RESET);
 		}
 	}
 
@@ -622,7 +627,6 @@ public class MenuManager extends Observer {
 				confirmation(this.getMenu());
 			}
 		}
-
 	}
 
 	/**
