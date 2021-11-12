@@ -46,8 +46,9 @@ public class MenuManager_test {
     }
 
     @AfterAll
-    static void teardown() {
+    static void teardown() throws IOException {
         Database.DeleteFile("csv/menu.json");
+        MenuManager.getInstance().init();
     }
 
 

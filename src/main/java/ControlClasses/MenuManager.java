@@ -244,23 +244,20 @@ public class MenuManager extends Observer {
 	public Menu createSingleMenuWhenNoMenuExisted() {
 
 		ArrayList<MenuItem> mi_arr = new ArrayList<>(
-				Arrays.asList(new Alacarte(UUID.randomUUID().toString(), "Salad",
+				Arrays.asList(new Alacarte("3268ff43-58dc-41dd-a0c7-40b6a68bec31", "Salad",
 										"topped with powdered sugar. With two eggs served any style, \n " +
 										"and your choice of smoked bacon or smoked ham.", 17, 1)
-						, new Alacarte(UUID.randomUUID().toString(), "Kebab",
+						, new Alacarte("3252b670-fddf-4fd0-9106-0e13ffb66476", "Kebab",
 								"Two butter croissants of your choice (plain, almond or cheese). " +
 										"\n With a side of herb butter or house-made hazelnut spread. "
 								, 15, 1)
-						, new Alacarte(UUID.randomUUID().toString(), "Pizza",
+						, new Alacarte("56f75381-848a-4020-ad06-3294c9e2b044", "Pizza",
 								"Duck  favour pizza."
 								, 30, 1)
-						, new Alacarte(UUID.randomUUID().toString(), "7up Lemon & Lime",
+						, new Alacarte("0cfd3c0d-54e7-46fe-9df5-554e271cbcc0", "7up Lemon & Lime",
 								"7up Lemon & Lime is a low calorie Lemon and Lime flavoured soft drink, available for delivery to homes, \n offices and workplaces directly from our warehouse in South London. "+
 										"\n Clear, bright and colourless liquid with a lively carbonation. Delicate, \n enticing aroma of lemon and lime, fused and dusted with powdered sugar. "
 								, 2.5, 1)
-						, new Alacarte(UUID.randomUUID().toString(), "Som Tam",
-								"Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. \n With a side of roasted potatoes, and your choice of toast or croissant."
-								, 2.4 , 1)
 				)
 		);
 
