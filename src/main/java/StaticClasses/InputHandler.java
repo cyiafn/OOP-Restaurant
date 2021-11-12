@@ -3,6 +3,7 @@ package StaticClasses;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -41,6 +42,46 @@ public class InputHandler {
 				datetime = LocalDateTime.parse(dt.strip(), dateTimeFormatter);
 				if (after){
 					if (datetime.isAfter(LocalDateTime.now())){
+						break;
+					}
+					else{
+						System.out.println("Please enter a date after the current time!");
+						continue;
+					}
+
+				}
+				else{
+					break;
+				}
+
+			} catch (DateTimeParseException e) {
+				//continue loop
+				System.out.println("Invalid date input!");
+				continue;
+			}
+		}while (true);
+		return datetime;
+	}
+
+	/**
+	 * Helper function to request user for date only.
+	 * @param after This signifies if the function checks if the provided date and time is after now or not.
+	 * @return LocalDateTime obj.
+	 */
+	public static LocalDate getDateOnly(boolean after){
+		LocalDate datetime;
+		do {
+			System.out.println("Please enter the date in the format YYYY-MM-DD:");
+			String dt = sc.next();
+			sc.nextLine();
+			String dateFormat = "yyyy-MM-dd";
+			//parse date strictly
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+				.ofPattern(dateFormat).withResolverStyle(ResolverStyle.LENIENT);
+			try {
+				datetime = LocalDate.parse(dt.strip(), dateTimeFormatter);
+				if (after){
+					if (datetime.isAfter(LocalDate.now())){
 						break;
 					}
 					else{

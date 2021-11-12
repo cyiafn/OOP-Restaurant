@@ -103,6 +103,11 @@ public class ReservationManager_test {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return dt.format(formatter);
     }
+
+    private String formatDToStr(LocalDateTime dt){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dt.format(formatter);
+    }
     @Order(2)
     @Test
     void delete_reservation_test_success(){
@@ -199,16 +204,9 @@ public class ReservationManager_test {
     void checkin_test_failure(){
         try {
             //provideInput("Test name 18" + System.getProperty("line.separator") + "999999999999999998" + System.getProperty("line.separator") + formatDtToStr(now) + System.getProperty("line.separator") );
-            ReservationManager.getInstance().checkin("testid18");
-            ArrayList<HashMap<String, String>> data = Database.readAll("Reservation.csv");
-            boolean flag = false;
-            for (HashMap<String, String> r: data){
-                if (r.get("status").equals("ACTIVE") && r.get("reservationID").equals("testid18")){
-                    flag = true;
-                    break;
-                }
-            }
-            assertTrue(flag);
+            //ReservationManager.getInstance().checkin("testid18");
+
+            assertEquals("", ReservationManager.getInstance().checkin("testid18"));
 
 
         } catch (IOException | CsvException e) {
@@ -273,33 +271,33 @@ public class ReservationManager_test {
     @Order(9)
     @Test
     void check_table_availability_full() throws IOException, CsvException {
-        provideInput("10" + System.getProperty("line.separator") + formatDtToStr(now.plusDays(3)) + System.getProperty("line.separator") );
+        provideInput("10" + System.getProperty("line.separator") + formatDToStr(now.plusDays(3)) + System.getProperty("line.separator") );
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
         ReservationManager.getInstance().checkAvailability();
         System.setOut(systemOut);
-        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMAvailablebookingtimings.Therearenoslotsavailableforbooking!");
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedateintheformatYYYY-MM-DD:Availablebookingtimings.Therearenoslotsavailableforbooking!");
 
     }
     @Order(10)
     @Test
     void check_table_availability_empty() throws IOException, CsvException {
-        provideInput("10" + System.getProperty("line.separator") + formatDtToStr(now.plusYears(1)) + System.getProperty("line.separator") );
+        provideInput("10" + System.getProperty("line.separator") + formatDToStr(now.plusYears(1)) + System.getProperty("line.separator") );
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
         ReservationManager.getInstance().checkAvailability();
         System.setOut(systemOut);
-        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMReservationsareavailableforthewholeday!");
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedateintheformatYYYY-MM-DD:Reservationsareavailableforthewholeday!");
     }
     @Order(11)
     @Test
     void check_table_availability_available_space() throws IOException, CsvException {
-        provideInput("9" + System.getProperty("line.separator") + formatDtToStr(now.plusDays(1)) + System.getProperty("line.separator") );
+        provideInput("9" + System.getProperty("line.separator") + formatDToStr(now.plusDays(1)) + System.getProperty("line.separator") );
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
         ReservationManager.getInstance().checkAvailability();
         System.setOut(systemOut);
-        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MMAvailablebookingtimings.08:00-10:0014:00-21:00");
+        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenterthetablenumber:PleaseenterthedateintheformatYYYY-MM-DD:Availablebookingtimings.08:00-10:0014:00-21:00");
     }
 
 
