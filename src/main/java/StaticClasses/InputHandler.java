@@ -279,7 +279,7 @@ public class InputHandler {
 		do {
 			System.out.println(req);
 			String unsafeInput = sc.next();
-			//sc.nextLine();
+			sc.nextLine();
 			// allow 10 or 10.00
 			if (unsafeInput.matches("\\d+")|| unsafeInput.matches("\\d+\\.\\d+")){
 				output = Double.parseDouble(unsafeInput);

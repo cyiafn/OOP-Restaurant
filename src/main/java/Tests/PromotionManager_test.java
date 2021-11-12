@@ -3,14 +3,13 @@ package Tests;
 import ControlClasses.MenuManager;
 import ControlClasses.PromotionManager;
 import EntityClasses.*;
+import Enumerations.FoodCategory;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -21,11 +20,11 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PromotionManager_test {
     private static final InputStream systemIn = System.in;
     private static InputHandler inputHandler;
     private ByteArrayInputStream testIn;
-    private String miid;
 
     @BeforeAll
     static void Init() {
@@ -33,12 +32,11 @@ public class PromotionManager_test {
         inputHandler = new InputHandler();
         ArrayList<Promotion> sampleDat = new ArrayList<>();
         try {
-            sampleDat.add(new Promotion("test","testingNOEDIT","testNOEDIT","02/11/2021","20/11/2021",10.0,"8ecafdaf-28a0-42f9-9e90-866ef713aec4"));
+            sampleDat.add(new Promotion("test","testingNOEDIT","testNOEDIT","02/11/2021","20/11/2021",10.0,"4fbfdb52-09c1-4c11-96b0-852420616862"));
+            PromotionManager.getInstance();
             for (Promotion i: sampleDat) {
                 Database.writeLine("Promotion.csv", i.getLineCSVFormat());
             }
-            PromotionManager.getInstance();
-            MenuManager.getInstance();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CsvException e) {
@@ -71,20 +69,21 @@ public class PromotionManager_test {
     @Order(1)
     @Test
     void createPromotionPass() {
+
         try {
             provideInput("testing" + System.getProperty("line.separator")
                     + "testing" + System.getProperty("line.separator")
                     + 10.00 + System.getProperty("line.separator")
                     + "2/11/2021" + System.getProperty("line.separator")
                     + "20/11/2021" + System.getProperty("line.separator")
-                    + "8ecafdaf-28a0-42f9-9e90-866ef713aec4" + System.getProperty("line.separator")
+                    + "b36b7c75-49c9-43db-b766-b996be41396d" + System.getProperty("line.separator")
             );
            boolean flag = false;
            PromotionManager.getInstance().createPromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
                 if(promo.getPromotionName().equals("testing") && promo.getDescription().equals("testing") && promo.getPromotionPrice() ==10.0 && promo.getStartDate().equals("02/11/2021")
-                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("8ecafdaf-28a0-42f9-9e90-866ef713aec4")){
+                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
                     flag = true;
                 }
             }
@@ -147,7 +146,7 @@ public class PromotionManager_test {
     @Test
     void updateStartDatePromotionPass() {
         try {
-            provideInput("testingNOEDIT" + System.getProperty("line.separator")
+            provideInput("testing" + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
                     + "01/11/2021"
@@ -156,10 +155,7 @@ public class PromotionManager_test {
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                System.out.println(promo.getPromotionName());
-                System.out.println(promo.getStartDate());
-                System.out.println(promo.getStartDate().equals("01/11/2021"));
-                if(promo.getPromotionName().equals("testingNOEDIT") && promo.getStartDate().equals("01/11/2021")){
+                if(promo.getPromotionName().equals("testing") && promo.getStartDate().equals("01/11/2021")){
                     flag = true;
                 }
             }
@@ -246,7 +242,7 @@ public class PromotionManager_test {
 
 
 
-    @Order(8)
+    @Order(12)
     @Test
     void updateNamePromotionPass() {
         try {
@@ -258,7 +254,7 @@ public class PromotionManager_test {
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                //System.out.println("Comparing" + promo.getPromotionName());
+                System.out.println(promo.getPromotionName());
                 if(promo.getPromotionName().equals("testingChanged")){
                     flag = true;
                 }
@@ -269,22 +265,22 @@ public class PromotionManager_test {
         }
     }
 
-    @Order(9)
+    @Order(11)
     @Test
     void updateNamePromotionFail() {
         try {
-            provideInput("testingChanged" + System.getProperty("line.separator")
+            provideInput("testing" + System.getProperty("line.separator")
                     + 1 +System.getProperty("line.separator")
-                    + "testingNOEDIT" + System.getProperty("line.seperator")
-                    + "0"
+                    + "testingNOEDIT" + System.getProperty("line.separator")
+                    + "0" + System.getProperty("line.separator")
             );
-            boolean flag = true;
+            boolean flag = false;
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                //System.out.println("Comparing" + promo.getPromotionName());
-                if(promo.getPromotionName().equals("testingChanged")){
-                    flag = false;
+                System.out.println("Comparing" + promo.getPromotionName());
+                if(promo.getPromotionName().equals("testingNOEDIT")){
+                    flag = true;
                 }
             }
             assertTrue(flag);
@@ -293,23 +289,20 @@ public class PromotionManager_test {
         }
     }
 
-    @Order(9)
+    @Order(8)
     @Test
     void updatePricePromotionPass() {
         try {
-            provideInput("testingNOEDIT" + System.getProperty("line.separator")
+            provideInput("testing" + System.getProperty("line.separator")
                     + 4 + System.getProperty("line.separator")
-                    + 20
+                    + 20 + System.getProperty("line.separator")
             );
             boolean flag = false;
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                //System.out.println("Comparing" + promo.getPromotionName());
-                System.out.println(promo.getPromotionName().equals(("testingNOEDIT")));
-                System.out.println(promo.getPromotionPrice() == 20.0);
-                System.out.println(promo.getPromotionName().equals("testingNOEDIT") && promo.getPromotionPrice() == 20.0);
-                if(promo.getPromotionName().equals("testingNOEDIT") && promo.getPromotionPrice() == 20.0){
+                System.out.println(promo.getPromotionName());
+                if(promo.getPromotionName().equals("testing") && promo.getPromotionPrice() == 20.0){
                     flag = true;
                 }
             }
@@ -323,15 +316,15 @@ public class PromotionManager_test {
     @Test
     void updateMenuIDPromotionPass() {
         try {
-            provideInput("testingNOEDIT" + System.getProperty("line.separator")
+            provideInput("testing" + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
-                    + "8ecafdaf-28a0-42f9-9e90-866ef713aec4"
+                    + "b36b7c75-49c9-43db-b766-b996be41396d"
             );
             boolean flag = false;
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-             if(promo.getPromotionName().equals("testingNOEDIT") && promo.getMenuItemID().equals("8ecafdaf-28a0-42f9-9e90-866ef713aec4")){
+             if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
                     flag = true;
                 }
             }
@@ -341,11 +334,11 @@ public class PromotionManager_test {
         }
     }
 
-    @Order(9)
+    @Order(10)
     @Test
     void updateMenuIDPromotionFail() {
         try {
-            provideInput("testingNOEDIT" + System.getProperty("line.separator")
+            provideInput("testing" + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
                     + "dead" + System.getProperty("line.separator")
                     + "dead" +  System.getProperty("line.separator")
@@ -355,7 +348,8 @@ public class PromotionManager_test {
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                if(promo.getPromotionName().equals("testingNOEDIT") && promo.getMenuItemID().equals("8ecafdaf-28a0-42f9-9e90-866ef713aec4")){
+                System.out.println(promo.getPromotionName());
+                if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
                     flag = true;
                 }
             }
@@ -366,7 +360,7 @@ public class PromotionManager_test {
     }
 
 
-    @Order(10)
+    @Order(13)
     @Test
     void deletePromotionFail() {
         try {
@@ -387,7 +381,7 @@ public class PromotionManager_test {
         }
     }
 
-    @Order(11)
+    @Order(14)
     @Test
     void deletePromotionPass() {
         try {

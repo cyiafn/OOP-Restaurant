@@ -505,7 +505,6 @@ return false;
 				String test =data_cat2.get(j.intValue()).get("type").toString();
 				if(test.equals("setmeal")){
 					String menuItemID = data_cat2.get(j.intValue()).get("menuItemID").toString();
-					//System.out.println(menuItemID);
 					listOfSetItems.add(menuItemID);
 				}
 				j.getAndIncrement();
