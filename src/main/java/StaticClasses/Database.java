@@ -488,7 +488,7 @@ public final class Database{
                     ,gstAmt, svcChargeAmt, total, order);
             invoiceList.add(invoice);
         }
-        System.out.println(stringArray.size() + " Invoice(s) Loaded.");
+        //System.out.println(stringArray.size() + " Invoice(s) Loaded.");
         return invoiceList;
     }
     /**

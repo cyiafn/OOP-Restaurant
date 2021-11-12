@@ -8,6 +8,7 @@ import Enumerations.PrintColor;
 import Interfaces.UI;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
+import org.mockito.internal.matchers.Or;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -48,44 +49,24 @@ public class PaymentUI implements UI {
      */
     public void generateInvoice() {
         Scanner sc = new Scanner(System.in);
-          if (true){
             int choice = -1;
-            do {
-                try {
-                    System.out.println("Create invoice by\n(0 -> Order ID)");
-                    System.out.println("(1 -> Back)");
-                    //System.out.println("Create invoice by (1 -> Table No.)");
-                    choice = sc.nextInt();
-                    if(choice != 0 && choice != 1) System.out.printf("Invalid input! ");
-                } catch (InputMismatchException e) {
-                    System.out.printf("Invalid input! ");
-                }
-                sc.nextLine();
-            } while (choice != 0 && choice != 1);
-
-            if(choice == 0) {
-                int orderID = -1;
-                do {
-                    try {
-                        System.out.print("Enter Order ID:");
-                        orderID = sc.nextInt();
-                        if(orderID <= 0) System.out.printf("Invalid input! ");
-                    } catch (InputMismatchException e) {
-                        System.out.printf("Invalid input! ");
+//                    System.out.println("Create invoice by\n(0 -> Order ID)");
+//                    System.out.println("(1 -> Back)");
+//                    //System.out.println("Create invoice by (1 -> Table No.)");
+                    choice = InputHandler.getInt(0,1,"Create Invoice by\n(0) OrderID (1) Back\n","Please enter an integer from 0-1");
+            switch (choice){
+                case 0:
+                    choice = InputHandler.getInt(0, Integer.MAX_VALUE, "Enter Order ID", "Invalid input!");
+                    Order order = OrderManager.getInstance().retrieveOrder(choice);
+                    if (order != null){
+                        choice = InputHandler.getInt(0,1,"Are you a Member of the Restaurant?\n(0) No (1) Yes\n", "Please enter an integer from 0-1");
+                        PaymentManager.getInstance().createInvoice(order,choice);
                     }
-                    sc.nextLine();
-                } while (orderID <= 0);
-                Order order = OrderManager.getInstance().retrieveOrder(orderID);
-                if (order != null){
-                    System.out.println("Are you a Member of the Restaurant?");
-                    System.out.println("0 -> No");
-                    System.out.println("1 -> Yes");
-                    choice = sc.nextInt();
-                    PaymentManager.getInstance().createInvoice(order,choice);
-                }
-                else System.out.println("Order does not exist!");
+                    else System.out.println("Order does not exist!");
+                    break;
+                case 1:
+                    break;
             }
-        } else System.out.println("No order made yet!");
     }
 
     /**
@@ -103,7 +84,7 @@ public class PaymentUI implements UI {
             System.out.println("Invoice not Found");
     }
     /**
-     * Helper function to display the UI if the View Invoice option is selected by User
+     * Helper function to display the UI if the Revenue Report option is selected by User
      * in displayOptions. The inputs will be validated here before parsing to PaymentManger
      */
     public void viewRevenueReport(){
@@ -157,26 +138,23 @@ public class PaymentUI implements UI {
         int choice;
         do{
             System.out.println(PrintColor.YELLOW_BOLD);
-            System.out.println("\n==================================================");
+            System.out.println("\n====================================================");
             System.out.println(" Welcome To Payment Management: ");
-            System.out.println("==================================================");
+            System.out.println("====================================================");
             System.out.print(PrintColor.RESET);
-            System.out.println("(1) Create Invoice and Make Payment.\t(2) View Invoice.");
-            System.out.println("(3) Revenue Report.\t(4) Back.");
+            System.out.println("(1) Create Invoice and Make Payment (2) View Invoice");
+            System.out.println("(3) Revenue Report                  (4) Back");
             String s;
             choice = InputHandler.getInt(0, 4, "Please enter an option", "Please enter an integer from 0-4!");
             switch (choice) {
                 case 1:
                     generateInvoice();
-                    InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 2:
                     viewInvoice();
-                    InputHandler.getString("Press Any Key To Continue");
                     break;
                 case 3:
                     viewRevenueReport();
-                    InputHandler.getString("Press Any Key To Continue");
                     break;
             }
         } while (choice != 4);

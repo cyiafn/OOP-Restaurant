@@ -1,13 +1,14 @@
 /**
  RevenueReport Class
- @author Yew Han
- @version 1.0
- @since 2021-10-23
+ @author Ong Yew Han
+ @version 1.3
+ @since 2021-11-08
  */
 package StaticClasses;
 
 import ControlClasses.PaymentManager;
 import EntityClasses.*;
+import Enumerations.PrintColor;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -144,10 +145,12 @@ public class RevenueReport {
 
         private static void displayResult(HashMap<String, String> itemList, HashMap<String, Integer> qtyList, HashMap<String, Double> priceList,
                                           HashMap<String, String> itemList2, HashMap<String, Integer> qtyList2, HashMap<String, Double> priceList2){
-                System.out.printf("=============================================================================================================================\n");
-                System.out.printf("\t\t\t\tREVENUE REPORT FOR %s\n", reportDate);
-                System.out.printf("=============================================================================================================================\n");
+                System.out.println(PrintColor.YELLOW_BOLD);
+                System.out.printf("===============================================================================================================================\n");
+                System.out.printf("\t\t\t\tREVENUE REPORT FOR "); System.out.print(PrintColor.BLUE); System.out.print(reportDate); System.out.print(PrintColor.YELLOW_BOLD);
+                System.out.printf("\n===============================================================================================================================\n");
                 System.out.println("ID                                      Food Type    Item                                   \t\t Qty   Revenue per Item(S$)");
+                System.out.print(PrintColor.RESET);
                 for(Map.Entry<String, String> entry: itemList.entrySet()){
                         String itemID = entry.getValue();
                         String itemName = entry.getKey();
@@ -179,14 +182,14 @@ public class RevenueReport {
 //                        System.out.printf("%s        %-30s   %-5s %-6.2f\n",itemID, itemName, qty, revenuePerItem);
 //                }
 
-                System.out.printf("-----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.printf("-------------------------------------------------------------------------------------------------------------------------------\n");
                 System.out.printf("Total Subtotal Revenue: %.2f\n", totalSubTotal);
                 System.out.printf("Total Member Discount Given: -%.2f\n", totalMemberDiscAmt);
                 System.out.printf("Total Subtotal Revenue After Discount: %.2f\n", totalSubTotalAD);
                 System.out.printf("Total Gst Amount Received: %.2f\n", totalGstAmt);
                 System.out.printf("Total Service Charge Amount Received: %.2f\n", totalSvcChargeAmt);
                 System.out.printf("Total Revenue: %.2f\n", totalRevenue);
-                System.out.println("-----------------------------------------------------------------------------------------------------------------------------\n");
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------\n");
         }
         private static void clearData(){
                 totalSubTotal = 0;
