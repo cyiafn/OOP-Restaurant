@@ -36,12 +36,17 @@ public class PaymentManager {
 
     public PaymentManager(){
         ArrayList<Invoice> invoiceList = new ArrayList<Invoice>(); //List of Invoices
+        init();
     }
 
     public static PaymentManager getInstance(){
         if (instance == null)
             instance = new PaymentManager();
         return instance;
+    }
+
+    public void init(){
+        loadFromDB();
     }
 
 //    public void createInvoice(Order order){
@@ -68,12 +73,12 @@ public class PaymentManager {
         savetoDB(invoiceList);
         System.out.println("Invoice Created");
         displayPayment(invoice);
-//        try {
-//            OrderManager.getInstance().deleteOrder(invoice.getOrders());
-//            ReservationManager.getInstance().closeReservation(invoice.getOrders().getReservationID());
-//        } catch (IOException | CsvException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            OrderManager.getInstance().deleteOrder(invoice.getOrders());
+            ReservationManager.getInstance().closeReservation(invoice.getOrders().getReservationID());
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -168,8 +173,8 @@ public class PaymentManager {
         System.out.printf("                                                  Tel: 6791 1744\n");
         System.out.printf("=============================================================================================================================\n");
         System.out.print(PrintColor.RESET);
-        System.out.printf("Invoice ID: %s                                                                                                Date: %s\n", displayInvoiceId, displayDate);
-        System.out.printf("    Server: %s                           Table No.: %s                                                       Time: %s\n", displayStaff, displayTableNo, displayTime);
+        System.out.printf("Invoice ID: %-30s                                                                 Date: %s\n", displayInvoiceId, displayDate);
+        System.out.printf("    Server: %-20s        ",displayStaff);System.out.printf("Table No.: %-5s                                                   Time: %s\n", displayTableNo, displayTime);
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
         System.out.println("ID                                      Food Type    Item                                   \t\t Qty   Price per Item(S$)");
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
