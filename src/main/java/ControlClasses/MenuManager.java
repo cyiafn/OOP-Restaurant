@@ -43,8 +43,12 @@ public class MenuManager extends Observer {
 	/**
 	 * Original method
 	 */
-	public MenuManager() throws IOException {
-		init();
+	public MenuManager() {
+		try{
+			init();
+		}catch( Exception e){
+			System.out.println(e);
+		}
 	}
 	/**
 	 * Overloading method
