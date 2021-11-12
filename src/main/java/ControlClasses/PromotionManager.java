@@ -63,7 +63,7 @@ public class PromotionManager{
 	public PromotionManager() throws IOException, CsvException {
 		loadPromotion();
 		loadSetMenuItems();
-		checkDateAfter();
+		updateCurrentPromotions();
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class PromotionManager{
 	}
 	/**
 	 * Ensures the user does not enter the same promotion entry twice
-	 * returns boolean
+	 * @return boolean whether there is a dupe or not
 	 */
 	public boolean checkDupeName(String name){
 		for(Promotion promo: this.promotions){
@@ -116,10 +116,10 @@ public class PromotionManager{
 		return false;
 
 		/**
-		 * To set promotions on the day and set those expired promotions to 0.
+		 * This function loads promotions from Promotion.csv and update promotions on the day and set those expired promotions to 0.
 		 */
 	}
-	public void checkDateAfter() throws IOException, CsvException {
+	public void updateCurrentPromotions() throws IOException, CsvException {
 		promotionList = new ArrayList<>();
 		ArrayList<HashMap<String, String>> listPromotions = Database.readAll(filename);
 		DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -160,8 +160,8 @@ public class PromotionManager{
 
 		}
 		/**
-		 * Help to ensure Promotion date is valid
-		 * returns boolean
+		 * This function checks whether the promotion date is valid
+		 * returns boolean whether the promotion is valid or not
 		 */
 	}
 	public boolean checkDateValid(String startDate,String endDate){
@@ -182,6 +182,7 @@ return false;
 	}
 	/**
 	 * Ensures Menu item ID entered is correct
+	 * @return boolean whether the setMenu is found
 	 */
 	public boolean checkSetMenu(String id){
 		for (String result : setItems) {
@@ -199,7 +200,7 @@ return false;
 	 * @throws IOException, this function write to json text file
 	 */
 	public void updatePromotion() throws IOException, CsvException {
-		checkDateAfter();
+		updateCurrentPromotions();
 		loadPromotion();
 		loadSetMenuItems();
 		String name = InputHandler.getString("Please enter the name of the promotion you would like to edit ");
@@ -379,7 +380,7 @@ return false;
 
 	/**
 	 * Check starting date to ensure end date cannot be after end date
-	 * returns boolean
+	 * @return boolean whether the start date is valid
 	 */
 	public boolean checkStartDate(String startDate, String endDate){
 		DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -397,7 +398,7 @@ return false;
 	}
 	/**
 	 * Check End date to ensure end date cannot be before start date
-	 * returns boolean
+	 * return boolean whether the end date is valid
 	 */
 	public boolean checkEndDate(String startDate, String endDate){
 		DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
