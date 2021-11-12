@@ -27,13 +27,7 @@ public class RRPSS {
     public static void main(String[] args) throws IOException, CsvException {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
-        ReservationManager reservationM = null;
         PaymentManager.getInstance().loadFromDB();
-        try {
-            reservationM = new ReservationManager();
-        } catch (IOException | CsvException e) {
-            e.printStackTrace();
-        }
         //main orchestrating loop
         int opt;
         do {
