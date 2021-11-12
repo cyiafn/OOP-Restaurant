@@ -5,14 +5,12 @@ import ControlClasses.MenuManager;
 import EntityClasses.*;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
-import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
