@@ -76,14 +76,14 @@ public class PromotionManager_test {
                     + 10.00 + System.getProperty("line.separator")
                     + "2/11/2021" + System.getProperty("line.separator")
                     + "20/11/2021" + System.getProperty("line.separator")
-                    + "b36b7c75-49c9-43db-b766-b996be41396d" + System.getProperty("line.separator")
+                    + "44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85" + System.getProperty("line.separator")
             );
            boolean flag = false;
            PromotionManager.getInstance().createPromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
                 if(promo.getPromotionName().equals("testing") && promo.getDescription().equals("testing") && promo.getPromotionPrice() ==10.0 && promo.getStartDate().equals("02/11/2021")
-                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
+                        && promo.getEndDate().equals("20/11/2021") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
                     flag = true;
                 }
             }
@@ -318,13 +318,13 @@ public class PromotionManager_test {
         try {
             provideInput("testing" + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
-                    + "b36b7c75-49c9-43db-b766-b996be41396d"
+                    + "44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85"
             );
             boolean flag = false;
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-             if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
+             if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
                     flag = true;
                 }
             }
@@ -349,7 +349,7 @@ public class PromotionManager_test {
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
                 System.out.println(promo.getPromotionName());
-                if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("b36b7c75-49c9-43db-b766-b996be41396d")){
+                if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("44f5bd9f-fbf9-4ce1-bab9-62294e6d1c85")){
                     flag = true;
                 }
             }

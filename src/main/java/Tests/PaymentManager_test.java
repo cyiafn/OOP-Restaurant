@@ -54,7 +54,7 @@ public class PaymentManager_test {
                 if (i != 19){
                     Database.removeLine("Reservation.csv", "12345" );
                     Database.removeLine("order.csv", "99" );
-                    Database.removeLine("Invoice.csv", "")
+                    Database.removeLine("Invoice.csv", "");
                 }
             }
             System.setIn(systemIn);
