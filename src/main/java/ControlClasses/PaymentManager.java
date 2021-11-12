@@ -49,17 +49,11 @@ public class PaymentManager {
         loadFromDB();
     }
 
-//    public void createInvoice(Order order){
-//        ArrayList<MenuItem> itemList = order.getOrderedItems();
-//        Invoice invoice = new Invoice(order.getOrderID(), order);
-//        invoice.setMemberStatus(Invoice.Membership.IS_MEMBER);
-//        computeSubTotal(invoice);
-//        computeTotal(invoice);
-//        displayPayment(invoice);
-//        System.out.println("Invoice Created");
-//    }
-
-
+    /**
+     *
+     * @param order
+     * @param isMember
+     */
     public void createInvoice(Order order, int isMember) {
         ArrayList<MenuItem> itemList = order.getOrderedItems();
         Invoice invoice = new Invoice(order);
@@ -70,7 +64,7 @@ public class PaymentManager {
         retrieveTableNo(invoice);
         computeInvoice(invoice);
         invoiceList.add(invoice);
-        savetoDB(invoiceList);
+        saveToDB(invoiceList);
         System.out.println("Invoice Created");
         displayPayment(invoice);
         try {
@@ -166,13 +160,13 @@ public class PaymentManager {
         double displaySvcCharge = invoice.getSvcChargeAmt();
         double displayGST = invoice.getGstAmt();
         double displayMemberDiscount = invoice.getMemberDiscAmt();
-        System.out.println(PrintColor.YELLOW_BOLD);
+//        System.out.println(PrintColor.YELLOW_BOLD);
         System.out.printf("=============================================================================================================================\n");
         System.out.printf("                                             Michelin Western Restaurant\n");
         System.out.printf("                                               50 Nanyang Ave, 639798\n");
         System.out.printf("                                                  Tel: 6791 1744\n");
         System.out.printf("=============================================================================================================================\n");
-        System.out.print(PrintColor.RESET);
+//        System.out.print(PrintColor.RESET);
         System.out.printf("Invoice ID: %-30s                                                                 Date: %s\n", displayInvoiceId, displayDate);
         System.out.printf("    Server: %-20s        ",displayStaff);System.out.printf("Table No.: %-5s                                                   Time: %s\n", displayTableNo, displayTime);
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------");
@@ -273,7 +267,7 @@ public class PaymentManager {
 //                System.out.println("====================================================================================================");
 //    }
 
-   public void savetoDB(ArrayList<Invoice> invoiceList){
+   public void saveToDB(ArrayList<Invoice> invoiceList){
        try {
            Database.savePayment(invoiceFile, invoiceList);
        } catch (IOException e) {
