@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Formatter;
+import Enumerations.PrintColor;
 
 /**
  * Order entity class
@@ -179,15 +180,21 @@ public class Order {
      */
     public void viewOrder() {
         Formatter fmt = new Formatter();
+        System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("ID    Staff      Date                       ReservationID                    Status   ");
+        System.out.print(PrintColor.RESET);
         System.out.println(toString());
+        System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("======================================================================================");
-        System.out.println("ID                                          Name                           Quantity  ");
+        System.out.println("MenuID                                      Name                           Quantity  ");
         System.out.println("======================================================================================");
+        System.out.print(PrintColor.RESET);
         for (MenuItem item : orderedItems) {
             System.out.printf("%s        %-30s     %-5s \n", item.getMenuItemID(), item.getName(), item.getQuantity());
         }
+        System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("======================================================================================");
+        System.out.print(PrintColor.RESET);
     }
 
     public String toString() {

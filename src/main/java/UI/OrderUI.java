@@ -9,6 +9,7 @@ import ControlClasses.MenuManager;
 import ControlClasses.OrderManager;
 import ControlClasses.ReservationManager;
 import com.opencsv.exceptions.CsvException;
+import Enumerations.PrintColor;
 
 /**
  * OrderUI is a boundary class
@@ -34,9 +35,11 @@ public class OrderUI{
     public void displayOptions() throws IOException, CsvException {
         int choice;
         do {
+            System.out.println(PrintColor.YELLOW_BOLD);
             System.out.println("\n==================================================");
             System.out.println(" Welcome To Order Management: ");
             System.out.println("==================================================");
+            System.out.print(PrintColor.RESET);
             System.out.println("(1) Create Order\t(2) Update Order");
             System.out.println("(3) Remove Order\t(4) View Order");
             System.out.println("(5) Back");
@@ -53,7 +56,7 @@ public class OrderUI{
                         try {
 //                            System.out.println("Enter order ID to be updated: ");
 //                            id = sc.nextInt();
-                            id = InputHandler.getInt(3, 100, "Enter order ID to be updated: ", "Please enter an integer from 0-5!");
+                            id = InputHandler.getInt(2, 100, "Enter order ID to be updated: ", "Please enter an integer from 0-5!");
                             if(id <= 0) System.out.printf("Invalid input! ");
                         } catch (InputMismatchException e) {
                             System.out.printf("Invalid input! ");
@@ -84,9 +87,11 @@ public class OrderUI{
     }
 
     public void createOrder() throws IOException, CsvException {
+        System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("\n==================================================");
         System.out.println(" Choose A Reservation: ");
         System.out.println("==================================================");
+        System.out.print(PrintColor.RESET);
         try {
             var resi = ReservationManager.getInstance().getTodaysCreatedReservations();
             for ( int i = 0; i < resi.size(); i++ ){
@@ -120,6 +125,7 @@ public class OrderUI{
 //            e.printStackTrace();
 //        }
         order.setReservationID(ReservationID);
+        ReservationManager.getInstance().checkin(ReservationID);
         updateOrder(order);
         if(order.getOrderedItems().size() == 0) {
             System.out.println("You did not add any items! Order deleted.");
@@ -230,14 +236,14 @@ public class OrderUI{
         int orderID = -1;
         do {
             try {
-                System.out.print("Enter OrderID:");
-                orderID = sc.nextInt();
-                //orderID = InputHandler.getInt(1,10,"Enter OrderID:","Invalid OrderID Please Try Again");
+//                System.out.print("Enter OrderID:");
+//                orderID = sc.nextInt();
+                orderID = InputHandler.getInt(1,100,"Enter OrderID:","Invalid OrderID Please Try Again");
                 if(orderID <= 0) System.out.printf("Invalid input! ");
             } catch (InputMismatchException e) {
                 System.out.printf("Invalid input! ");
             }
-            sc.nextLine();
+            //sc.nextLine();
         } while (orderID <= 0);
         Order order = OrderManager.getInstance().retrieveOrder(orderID);
         if (order != null) {
@@ -254,14 +260,14 @@ public class OrderUI{
             int choice = -1;
             do {
                 try {
-                    System.out.println("View order by (0 - Order ID)");
-                    choice = sc.nextInt();
-                    //choice = InputHandler.getInt(0,0,"View order by (0 - Order ID)","Invalid, Please Try Again");
+//                    System.out.println("View order by (0 - Order ID)");
+//                    choice = sc.nextInt();
+                    choice = InputHandler.getInt(0,0,"View order by (0 - Order ID)","Invalid, Please Try Again");
                     if(choice != 0 && choice != 1) System.out.printf("Invalid input! ");
                 } catch (InputMismatchException e) {
                     System.out.printf("Invalid input! ");
                 }
-                sc.nextLine();
+                //sc.nextLine();
             } while (choice != 0 && choice != 1);
             if(choice == 0) {
                 int orderID = -1;
