@@ -159,6 +159,21 @@ public class Menu {
         }
 
         /**
+         * Find by ID
+         * @param id
+         * @return int , return 1 or 0, 1 is success, 0 is failed
+         */
+        public int findBySubstringId(String id){
+                for(MenuCategory mc : menuCategory){
+                        if(mc.findBySubstringId(id)!= null){
+                                MenuItem mi= mc.findBySubstringId(id);
+                                return 1;
+                        }
+                }
+                return 0;
+        }
+
+        /**
          * Find by ID overloading method
          * @param id
          * @return MenuItem
@@ -168,6 +183,22 @@ public class Menu {
                 for(MenuCategory mc : menuCategory){
                         if(mc.findById(id)!= null){
                                 mi= mc.findById(id);
+                                return mi;
+                        }
+                }
+                return mi;
+        }
+
+        /**
+         * Find by ID overloading method
+         * @param id
+         * @return MenuItem
+         */
+        public MenuItem findBySubstringIdForMenuItem(String id){
+                MenuItem mi = new MenuItem();
+                for(MenuCategory mc : menuCategory){
+                        if(mc.findBySubstringId(id)!= null){
+                                mi= mc.findBySubstringId(id);
                                 return mi;
                         }
                 }

@@ -548,7 +548,7 @@ public class MenuManager extends Observer {
 		createHashMap();
 		printFoodCategoryHashMap();
 		Integer category_number = InputHandler.getInt(1,FoodCategory.values().length ,"Please choose a category to create your menu item: " +
-				"\n By typing in the category number: ", "Error input! Please type from 1-8");
+				"\n By typing in the category number: ", "Error input! Please type from 1-4");
 		FoodCategory enum_cat =  FoodCategoryMap.get(category_number);
 
 		MenuCategory mc = menu.getSingleMenuCategroy(enum_cat.toString());
@@ -592,11 +592,12 @@ public class MenuManager extends Observer {
 	public void updateMenuItem() throws IOException {
 		String id = InputHandler.getString("Please type in the menu item id that you wish to update.");
 
-		int res_find=findById(id);
+		int res_find=findBySubstringId(id);
 		if(res_find== 1)
 		{
 			MenuItem mi = new MenuItem();
-			int type = this.menu.getTypeByID(id);
+			MenuItem mim = findBySubstringIdForMenuItem(id);
+			int type = this.menu.getTypeByID(mim.getMenuItemID());
 			if(type == 1)
 			{
 				mi = createAlacarteFromUserInput();
@@ -607,10 +608,9 @@ public class MenuManager extends Observer {
 			}
 
 			Menu m = this.getMenu();
-			int res= m.update(id, mi);
+			int res= m.update(mim.getMenuItemID(), mi);
 			if(res ==1 ) {
 				this.setMenu(m);
-				//PrintMenu();
 				confirmation(this.getMenu());
 			}
 		}
@@ -626,11 +626,12 @@ public class MenuManager extends Observer {
 		// Ask delete menu item
 		String id = InputHandler.getString("Please type in the menu item id that you wish to delete.");
 
-		int res_find=findById(id);
+		int res_find=findBySubstringId(id);
 		if(res_find== 1)
 		{
 			Menu m = this.getMenu();
-			int res= m.delete(id);
+			MenuItem mi = findBySubstringIdForMenuItem(id);
+			int res= m.delete(mi.getMenuItemID());
 			if(res ==1 ) {
 				this.setMenu(m);
 				confirmation(this.getMenu());
@@ -721,6 +722,35 @@ public class MenuManager extends Observer {
 	}
 
 	/**
+	 * Find by id
+	 * Follow DRY
+	 * @param id , Menu Item ID
+	 * @return 1,0, 1 is success to find a menu item, 0 is find nothing
+	 */
+	public int findBySubstringId(String id){
+		int res = menu.findBySubstringId(id);
+		if(res==0)
+		{
+			System.out.println(" -------------------------------");
+			System.out.print(PrintColor.RED);
+			System.out.println("Sorry, unable to find the menu id to update/delete.");
+			System.out.println("There is nothing we can do.");
+			System.out.println("Remember that we only can update the Alacarte item or SetMeal Item.");
+			System.out.print(PrintColor.RESET);
+			System.out.println(" -------------------------------");
+
+		}
+		else{
+			System.out.println(" -------------------------------");
+			System.out.print(PrintColor.GREEN);
+			System.out.println("We found your menu item");
+			System.out.print(PrintColor.RESET);
+			System.out.println(" -------------------------------");
+		}
+		return res;
+	}
+
+	/**
 	 * Find by id overloading method requested by Gotwin
 	 * Follow DRY
 	 * @param id
@@ -740,6 +770,17 @@ public class MenuManager extends Observer {
 		MenuItem res = menu.findByNameForMenuItem(name);
 		return res;
 	}
+	/**
+	 * Find by id substring
+	 * Follow DRY
+	 * @param id
+	 * @return MenuItem
+	 */
+	public MenuItem findBySubstringIdForMenuItem(String id){
+		MenuItem res = menu.findBySubstringIdForMenuItem(id);
+		return res;
+	}
+
 
 
 }

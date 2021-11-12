@@ -60,6 +60,17 @@ public class MenuCategory {
     }
 
     /**
+     * Find the menu item by substring of string id
+     * @param id
+     * @return a menu item
+     */
+    public MenuItem findBySubstringId(String id) {
+        return  menuItem.stream().filter(s ->
+                s.getMenuItemID().startsWith(id,0)
+        ).findFirst().orElse(null);
+    }
+
+    /**
      * Find the menu item by name
      * @param name
      * @return

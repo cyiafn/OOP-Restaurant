@@ -3,9 +3,11 @@ package UI;
 import ControlClasses.MenuManager;
 import Enumerations.PrintColor;
 import Interfaces.UI;
+import StaticClasses.InputHandler;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Handler;
 
 /**
  * MenuUI is a boudary class
@@ -47,7 +49,7 @@ public class MenuUI implements UI {
             System.out.println("(1) Create Menu item\t(2) Update Menu item");
             System.out.println("(3) Remove Menu item\t(4) View Menu\t(5) Back");
 
-            choice = sc.nextInt();
+            choice = InputHandler.getInt(1, 5, "Please Choose a option to Continue: ", "Please enter an integer from 0-5!");
             switch (choice) {
                 case 1:
                     MenuManager.getInstance().createMenuItem();
