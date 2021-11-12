@@ -3,26 +3,11 @@ package ControlClasses;
 import EntityClasses.*;
 import EntityClasses.MenuItem;
 import EntityClasses.Order;
-import EntityClasses.Reservation;
-import EntityClasses.Staff;
-import Enumerations.FoodCategory;
-import Enumerations.ReservationStatus;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
-import com.opencsv.exceptions.CsvException;
-import org.mockito.internal.matchers.Or;
-
-import java.io.File;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  Order Manager that handles Orders.
  @author Tan Ge Wen, Gotwin
@@ -51,6 +36,12 @@ public class OrderManager {
     }
 
 
+    /**
+     * Static method
+     * Order Manager check exist only one at a time
+     *
+     * @return MenuManger
+     */
     public static OrderManager getInstance() {
         if (instance == null) {
             instance = new OrderManager();
@@ -58,25 +49,52 @@ public class OrderManager {
         return instance;
     }
 
+    /**
+     * This load in the order csv to be able to view orders
+     * Do not remove this method because this function load the order from database
+     *
+     * @throws IOException, cause this read from csv file
+     */
     public void init() throws IOException {
         loadinDB();
     }
 
+    /**
+     * This save order into the order csv
+     * Do not remove this method because this function write the order from database
+     *
+     * @throws IOException, cause this write to csv file
+     */
     public void savetoDB() throws IOException {
         Database.saveOrder(filename, orderList);
     }
-
+    /**
+     * This read the order csv
+     * Do not remove this method because this function load the order from database
+     *
+     * @throws IOException, cause this read csv file
+     */
     public void loadinDB() throws IOException {
         this.orderList = Database.readOrder(filename);
     }
 
+    /**
+     * remove order from orderlist
+     * check order id
+     * add order into orderlist
+     * @throws IOException
+     */
     public void updateOrder(Order order) throws IOException {
         orderList.remove(order);
         checkID();
         orderList.add(order);
 
     }
-
+    /**
+     * Retrieve order
+     * if order id is the same
+     * return order
+     */
     public Order retrieveOrder(int orderID) {
         for (Order order : orderList) {
             if (order.getOrderID() == orderID)
@@ -90,6 +108,9 @@ public class OrderManager {
         order = retrieveOrder(orderID);
         order.viewOrder();
     }
+    /**
+     * Helper function to view order
+     */
     public final int displayOrder() {
         Set<Integer> s = new HashSet<>();
         for (Order order : orderList) {
@@ -101,6 +122,9 @@ public class OrderManager {
         return orderList.size();
     }
 
+    /**
+     * Helper function to check order id
+     */
     public void checkID() {
         int id = 1;
         if(orderList!=null) {
@@ -111,6 +135,11 @@ public class OrderManager {
         Order.setIdCount(id+1);
     }
 
+    /**
+     * Delete Order
+     * Delete Order using orderID
+     * @throws IOException
+     */
     public void deleteOrder(Order order) {
         int id = order.getOrderID();
         if(id == (Order.getIdCount()-1))
@@ -124,7 +153,11 @@ public class OrderManager {
         }
     }
 
-
+    /**
+     * Delete Order item
+     * Delete Orderitem using menu item id
+     * @throws IOException
+     */
     public void deleteOrderItem(Order order, String itemid) throws IOException {
         MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemid);
 
@@ -133,7 +166,11 @@ public class OrderManager {
         else if (order.removeItem(it));
 
     }
-
+    /**
+     * Create Order item
+     * create Orderitem using menu item id
+     * @throws IOException
+     */
     public void createOrderItem(Order order, String itemid) throws IOException {
         MenuItem item = MenuManager.getInstance().findByNameForMenuItem(itemid);
 
@@ -149,9 +186,6 @@ public class OrderManager {
             }
             order.addItem(item);
             int quantity;
-//            System.out.println("Enter Quantity:");
-//            Scanner sc = new Scanner(System.in);
-//            quantity = sc.nextInt();
             quantity = InputHandler.getInt(1,30,"Please enter your quantity:","Invalid quantity,Please try again");
             item.setQuantity(quantity);
         } else System.out.println("This item does not exist");
