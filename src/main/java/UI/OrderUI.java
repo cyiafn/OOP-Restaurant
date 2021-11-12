@@ -40,9 +40,8 @@ public class OrderUI implements UI {
 
     /**
      * Entry point for Order Management
-     * @throws IOException for read / write to csv file
      */
-    public void displayOptions() throws IOException, CsvException {
+    public void displayOptions() {
         int choice;
         do {
             System.out.println(PrintColor.YELLOW_BOLD);
@@ -56,7 +55,13 @@ public class OrderUI implements UI {
             choice = InputHandler.getInt(1, 5, "Please Choose a option to Continue: ", "Please enter an integer from 0-5!");
             switch (choice) {
                 case 1:
-                    createOrder();
+                    try {
+                        createOrder();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (CsvException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 2:
                     int id = -1;
@@ -69,12 +74,22 @@ public class OrderUI implements UI {
                         }
                     } while (id <= 0);
                     Order order = OrderManager.getInstance().retrieveOrder(id);
-                    if (order != null) updateOrder(order);
+                    if (order != null) {
+                        try {
+                            updateOrder(order);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     else System.out.println("Order does not exist!");
                     break;
                 case 3:
                     if (OrderManager.getInstance().displayOrder() > 0) {
-                        OrderUI.getInstance().runRemoveOrder();
+                        try {
+                            OrderUI.getInstance().runRemoveOrder();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("No order made yet!");
                     }

@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Order;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,9 +54,12 @@ public class OrderManager_test {
     @Test
     void CreateOrderSuccess() {
         try {
-            provideInput( "1" + System.getProperty("line.separator")
+            provideInput( "6e962206-ff71-4b8f-8bfc-76cb8da7faf0" + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
-                    + "Vodka" + System.getProperty("line.separator")
+                    + "Pizza" + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + 1 + System.getProperty("line.separator")
+                    + "Kebab" + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + "Tom" + System.getProperty("line.separator")
@@ -68,6 +70,14 @@ public class OrderManager_test {
             } catch (CsvException e) {
                 e.printStackTrace();
             }
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Pizza");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("Pizza"))
+            {
+                flag = true;
+            }
+            assertTrue(flag);
+
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,17 +86,24 @@ public class OrderManager_test {
     @Test
     void CreateOrderFail() {
         try {
-            provideInput( "1" + System.getProperty("line.separator")
+            provideInput( "6e962206-ff71-4b8f-8bfc-76cb8da7faf0" + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
                     + "vodka" + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
             );
-            boolean flag = false;
+            boolean flag = true;
             try {
                 OrderUI.getInstance().createOrder();
             } catch (CsvException e) {
                 e.printStackTrace();
             }
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("vodka");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("vodka"))
+            {
+                flag = false;
+            }
+            assertTrue(flag);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,26 +111,26 @@ public class OrderManager_test {
 
     @Order(3)
     @Test
-    void UpdateAddOrderItemsSuccess() {
+    void UpdateAddOrderItemsSuccess() throws CsvException {
         try {
             provideInput( "2" + System.getProperty("line.separator")
-                    + 19 + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
-                    + "Pizza" + System.getProperty("line.separator")
-                    + 1 + System.getProperty("line.separator")
-                    + 1 + System.getProperty("line.separator")
-                    + "Katsu Curry" + System.getProperty("line.separator")
+                    + "7up Lemon & Lime" + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
 
             );
             boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
+            OrderUI.getInstance().displayOptions();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("7up Lemon & Lime");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("7up Lemon & Lime"))
+            {
+                flag = true;
             }
+            assertTrue(flag);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,22 +138,25 @@ public class OrderManager_test {
 
     @Order(4)
     @Test
-    void UpdateAddOrderItemsFail() {
+    void UpdateAddOrderItemsFail() throws CsvException {
         try {
             provideInput( "2" + System.getProperty("line.separator")
-                    + 7 + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
                     + "pizza" + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
 
             );
-            boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
+            boolean flag = true;
+            OrderUI.getInstance().displayOptions();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("pizza");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("pizza"))
+            {
+                flag = false;
             }
+            assertTrue(flag);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -144,22 +164,25 @@ public class OrderManager_test {
 
     @Order(5)
     @Test
-    void UpdateRemoveOrderItemsSuccess() {
+    void UpdateRemoveOrderItemsSuccess() throws CsvException {
         try {
             provideInput( "2" + System.getProperty("line.separator")
-                    + 16 + System.getProperty("line.separator")
                     + 2 + System.getProperty("line.separator")
-                    + "Vodka" + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
+                    + "Kebab" + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
 
             );
             boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
+            OrderUI.getInstance().displayOptions();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("Kebab");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("Kebab"))
+            {
+                flag = true;
             }
+            assertTrue(flag);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -167,100 +190,28 @@ public class OrderManager_test {
 
     @Order(6)
     @Test
-    void UpdateRemoveOrderItemsFail() {
+    void UpdateRemoveOrderItemsFail() throws CsvException {
         try {
             provideInput( "2" + System.getProperty("line.separator")
-                    + 17 + System.getProperty("line.separator")
                     + 2 + System.getProperty("line.separator")
-                    + "vodka" + System.getProperty("line.separator")
+                    + 2 + System.getProperty("line.separator")
+                    + "pizza" + System.getProperty("line.separator")
                     + 3 + System.getProperty("line.separator")
                     + 5 + System.getProperty("line.separator")
 
             );
-            boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
+            boolean flag = true;
+            OrderUI.getInstance().displayOptions();
+            MenuItem mi = MenuManager.getInstance().findByNameForMenuItem("pizza");
+            if (mi instanceof  Alacarte
+                    && mi.getName().equals("pizza"))
+            {
+                flag = false;
             }
+            assertTrue(flag);
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    @Order(7)
-    @Test
-    void UpdateRemoveOrderSuccess() {
-        try {
-            provideInput( "3" + System.getProperty("line.separator")
-                    + 14 + System.getProperty("line.separator")
-                    + 5 + System.getProperty("line.separator")
-            );
-            boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Order(7)
-    @Test
-    void UpdateRemoveOrderFail() {
-        try {
-            provideInput( "3" + System.getProperty("line.separator")
-                    + 1 + System.getProperty("line.separator")
-                    + 5 + System.getProperty("line.separator")
-            );
-            boolean flag = false;
-            try {
-                OrderUI.getInstance().displayOptions();
-            } catch (CsvException e) {
-                e.printStackTrace();
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-//    @Order(8)
-//    @Test
-//    void ViewOrderSuccess() {
-//        try {
-//            provideInput( "4" + System.getProperty("line.separator")
-//                    + 0 + System.getProperty("line.separator")
-//                    + 2 + System.getProperty("line.separator")
-//            );
-//            boolean flag = false;
-//            try {
-//                OrderUI.getInstance().displayOptions();
-//            } catch (CsvException e) {
-//                e.printStackTrace();
-//            }
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    @Order(9)
-//    @Test
-//    void ViewOrderFail() {
-//        try {
-//            provideInput( "4" + System.getProperty("line.separator")
-//                    + 0 + System.getProperty("line.separator")
-//                    + 1 + System.getProperty("line.separator")
-//            );
-//            boolean flag = false;
-//            try {
-//                OrderUI.getInstance().displayOptions();
-//            } catch (CsvException e) {
-//                e.printStackTrace();
-//            }
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 }

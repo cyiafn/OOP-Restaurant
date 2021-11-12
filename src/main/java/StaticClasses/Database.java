@@ -259,6 +259,11 @@ public final class Database{
         }
     }
 
+    /**
+     * This method save order into order.csv
+     * By appending it 1 by 1 using separator ;
+     * @param filepath
+     */
     public static final String SEPARATOR = ";";
     public static void saveOrder(String filename, List orderList) throws IOException {
         ArrayList<String> ordersw = new ArrayList<String>();
@@ -382,6 +387,10 @@ public final class Database{
         Database.writeOrder(filename, invoicesw);
     }
 
+    /**
+     * This method read order into order.csv
+     *
+     */
    // @Override
     public static ArrayList<Order> readOrder(String fileName) throws IOException {
         ArrayList<String> stringArray = (ArrayList<String>) Database.read(fileName);
@@ -410,9 +419,6 @@ public final class Database{
                 int qty = Integer.valueOf(star.nextToken().trim());
                 String promostatus = star.nextToken().trim();
                 String mealtype = star.nextToken().trim();
-                //MenuItem item = new MenuItem(itemID, name,desc, price, qty);
-                //MenuItem item = new MenuItem(itemID, name, price, type);
-                //items.add(item);
                 if(mealtype.equals("setmeal")){
                     SetMeal setitem = new SetMeal(itemID, name,desc, price, qty, item2);
                     if(promostatus.equals("true")){
