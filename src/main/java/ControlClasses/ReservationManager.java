@@ -376,7 +376,7 @@ public class ReservationManager {
 			.withResolverStyle(ResolverStyle.LENIENT);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		int table = InputHandler.getInt(1, noOfTable, "Please enter the table number: ", "Invalid table number!");
-		LocalDate datetime = InputHandler.getDateOnly(false);
+		LocalDate datetime = InputHandler.getDateOnly(true);
 		// get everything on that date
 		ArrayList<Reservation> curRes = new ArrayList<>();
 		for (Reservation r: reservations.get(table)){
