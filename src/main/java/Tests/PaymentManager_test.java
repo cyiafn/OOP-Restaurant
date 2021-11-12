@@ -49,15 +49,12 @@ public class PaymentManager_test {
 
     @AfterAll
     static void teardown(){
-        SimpleDateFormat Id = new SimpleDateFormat("yyyyMMddss");
-        Calendar c = Calendar.getInstance();
-        String invoiceId = Id.format(c.getTime()) + 99;
         try {
             for (int i = 0; i < 22; i ++){
                 if (i != 19){
                     Database.removeLine("Reservation.csv", "12345" );
-                    Database.removeLine("order.csv", "99" );
-                    Database.removeLine("Invoice.csv", invoiceId);
+//                    Database.removeLine("order.csv", "99" );
+                    Database.removeLine("Invoice.csv", "");
                 }
             }
             System.setIn(systemIn);
