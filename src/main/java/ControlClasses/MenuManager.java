@@ -280,7 +280,7 @@ public class MenuManager extends Observer {
 
 
 		mymenu.insertSingleMenuItemOnSingleMenuCategroy("MAINCOURSE",
-				new SetMeal(UUID.randomUUID().toString(), "Pineapple and roquefort salad",
+				new SetMeal("000d3c0d-54e7-46fe-9df5-554e271cbcc0", "Pineapple and roquefort salad",
 						"A crunchy salad featuring fresh pineapple and roquefort",
 						60,1,
 						new ArrayList<>(
