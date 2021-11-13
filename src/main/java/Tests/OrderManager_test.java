@@ -26,30 +26,53 @@ import static org.junit.jupiter.api.Assertions.fail;
  @since 2021-11-03
  */
 public class OrderManager_test {
-
+    /**
+     * input stream for order manager test case
+     */
     private static final InputStream systemIn = System.in;
+    /**
+     * InputHandler
+     */
     private static InputHandler inputHandler;
+    /**
+     * ByteArrayInputStream
+     */
     private ByteArrayInputStream testIn;
     private String miid;
 
+    /**
+     * Init function for order manager test case
+     */
     @BeforeAll
     static void Init(){
         inputHandler = new InputHandler();
         OrderManager.getInstance();
     }
 
+    /**
+     * Teardown function for order manager
+     * Will delete the file
+     * @throws IOException to ensure the file is delete
+     */
     @AfterAll
     static void teardown() {
         Database.DeleteFile("csv/order.csv");
     }
 
-
+    /**
+     * To provide input for test case
+     * @param data any test data
+     * @throws IOException to ensure the input is read
+     */
     private void provideInput(String data) throws IOException {
         testIn = new ByteArrayInputStream(data.getBytes());
         InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 
+    /**
+     * Create Order Success
+     */
     @Order(1)
     @Test
     void CreateOrderSuccess() {
@@ -82,6 +105,9 @@ public class OrderManager_test {
             e.printStackTrace();
         }
     }
+    /**
+     * Create Order fail
+     */
     @Order(2)
     @Test
     void CreateOrderFail() {
@@ -108,7 +134,10 @@ public class OrderManager_test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * update add order item success
+     * @throws CsvException
+     */
     @Order(3)
     @Test
     void UpdateAddOrderItemsSuccess() throws CsvException {
@@ -135,7 +164,10 @@ public class OrderManager_test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * update add order item fail
+     * @throws CsvException
+     */
     @Order(4)
     @Test
     void UpdateAddOrderItemsFail() throws CsvException {
@@ -161,7 +193,10 @@ public class OrderManager_test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * update remove order item success
+     * @throws CsvException
+     */
     @Order(5)
     @Test
     void UpdateRemoveOrderItemsSuccess() throws CsvException {
@@ -187,7 +222,10 @@ public class OrderManager_test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * update remove order item fail
+     * @throws CsvException
+     */
     @Order(6)
     @Test
     void UpdateRemoveOrderItemsFail() throws CsvException {
