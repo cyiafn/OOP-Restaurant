@@ -22,7 +22,7 @@ task printSourceSetInformation(){
 sourceSets{
     javadocs {
         // Compiled Java classes should use this directory
-        java.destinationDirectory.set(file('src/html'))
+        java.destinationDirectory.set(file('html'))
     }
 }
 
@@ -35,6 +35,7 @@ javadoc {
     options.linkSource false
     options.author = true
     options.version = true
+    options.noQualifiers 'all'
 
 }
 

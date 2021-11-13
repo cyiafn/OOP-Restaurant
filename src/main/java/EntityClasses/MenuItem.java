@@ -7,8 +7,8 @@ package EntityClasses;
  * @since 2021-11-07
  */
 public class MenuItem {
-	/*
-	Attributes of Menu Item
+	/**
+	 *
 	 */
 	private String menuItemID;
 	private String name;

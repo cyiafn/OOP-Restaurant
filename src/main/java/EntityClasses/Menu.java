@@ -9,28 +9,26 @@ import java.util.Locale;
 /**
  * Menu entity class
  * Only have one menu exists at any point in time
- *          *
- *          *      https://home.binwise.com/blog/types-of-menu
- *          *     a la carte menus,
- *          *     static menus,
- *          *     du jour menus,
- *          *     cycle menus, and
- *          *     fixed menus.
- *          *     Beverage Menu
- *          *     Dessert Menu?
- *          *     Possible menu vs normal menu
  * @author Daniel Chu Jia Hao
  * @version 1.0
  * @since 2021-11-07
  */
 public class Menu {
-
         /**
-        Attributes of Menu
+         * The id of the menu of Michelin Western Restaurant
          */
         private String id;
+        /**
+         * The name of the menu
+         */
         private String name;
+        /**
+         * The description of the menu
+         */
         private String description;
+        /**
+         * A menu can have multiple Categories.
+         */
         private ArrayList<MenuCategory> menuCategory;
 
         /**
@@ -125,8 +123,8 @@ public class Menu {
 
         /**
          * Update function will update the menu item
-         * @param itemid
-         * @param mim
+         * @param itemid menu item id
+         * @param mim the menuitem object which have updated value from user input
          * @return 0,1, 0 is failed, 1 is success
          */
         public int update(String itemid, MenuItem mim) {
@@ -144,7 +142,7 @@ public class Menu {
 
         /**
          * Find by ID
-         * @param id
+         * @param id menu item id
          * @return int , return 1 or 0, 1 is success, 0 is failed
          */
         public int findById(String id){
@@ -174,7 +172,7 @@ public class Menu {
 
         /**
          * Find by ID overloading method
-         * @param id
+         * @param id menu item id
          * @return MenuItem
          */
         public MenuItem findByIdForMenuItem(String id){
@@ -190,7 +188,7 @@ public class Menu {
 
         /**
          * Find by ID overloading method
-         * @param id
+         * @param id menu item id
          * @return MenuItem
          */
         public MenuItem findBySubstringIdForMenuItem(String id){
@@ -206,7 +204,7 @@ public class Menu {
 
         /**
          * Find by Name overloading method
-         * @param name
+         * @param name menu item name
          * @return MenuItem
          */
         public MenuItem findByNameForMenuItem(String name){
@@ -220,37 +218,66 @@ public class Menu {
                 return mi;
         }
 
-        /*
-        Accessors and Mutators
+        /**
+         * Get the id of this menu
+         * @return the menu id
          */
         public String getId() {
                 return id;
         }
 
+        /**
+         * Changes the id of this menu
+         * @param id This menu id should not be empty
+         */
         public void setId(String id) {
                 this.id = id;
         }
 
+        /**
+         * Get the name of this menu.
+         * @return the menu name
+         */
         public String getName() {
                 return name;
         }
 
+        /**
+         * Changes the name of this menu
+         * @param name This menu name should not be empty
+         */
         public void setName(String name) {
                 this.name = name;
         }
 
+        /**
+         * Get the description of the menu
+         * @return the menu description
+         */
         public String getDescription() {
                 return description;
         }
 
+        /**
+         * Changes the description of this menu
+         * @param description menu item description
+         */
         public void setDescription(String description) {
                 this.description = description;
         }
 
+        /**
+         * Get all the menu categories that this menu have
+         * @return a list of menu categories
+         */
         public ArrayList<MenuCategory> getMenuCategory() {
                 return menuCategory;
         }
 
+        /**
+         * Change the Menu Categories in this menu
+         * @param menuCategory An arraylist of menu category
+         */
         public void setMenuCategory(ArrayList<MenuCategory> menuCategory) {
                 this.menuCategory = menuCategory;
         }

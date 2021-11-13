@@ -28,9 +28,9 @@ public class MenuCategory {
 
     /**
      * Constructor for MenuCategory
-     * @param category
-     * @param description
-     * @param menuItem
+     * @param category An item from enum FoodCategory
+     * @param description description of the menu
+     * @param menuItem A list of menu item
      */
     public MenuCategory(FoodCategory category, String description, ArrayList<MenuItem> menuItem) {
         this.category = category;
@@ -40,7 +40,7 @@ public class MenuCategory {
 
     /**
      * Insert Menu Item into the Menu
-     * @param item
+     * @param item A menu item
      */
     public void insertSingleMenuItem(MenuItem item) {
         this.menuItem.add(item);
@@ -48,7 +48,7 @@ public class MenuCategory {
 
     /**
      * Delete Menu Item in the Menu
-     * @param item
+     * @param item A menu item
      */
     public void deleteSingleMenuItem(MenuItem item) {
         // searching for the item id
@@ -57,7 +57,7 @@ public class MenuCategory {
 
     /**
      * Find the menu item by string id
-     * @param id
+     * @param id full menu id
      * @return a menu item
      */
     public MenuItem findById(String id) {
@@ -68,7 +68,7 @@ public class MenuCategory {
 
     /**
      * Find the menu item by substring of string id
-     * @param id
+     * @param id substring of menu id
      * @return a menu item
      */
     public MenuItem findBySubstringId(String id) {
@@ -79,8 +79,8 @@ public class MenuCategory {
 
     /**
      * Find the menu item by name
-     * @param name
-     * @return
+     * @param name full name of menu item
+     * @return a menu item
      */
     public MenuItem findByName(String name) {
 
@@ -91,8 +91,8 @@ public class MenuCategory {
 
     /**
      * Update the menu item by reset the id of the new menu item
-     * @param mi
-     * @param mim
+     * @param mi the old menu item you wish to update
+     * @param mim the menu item that hold user input
      */
     public void updateMenuItem(MenuItem mi , MenuItem mim) {
         int index= this.menuItem.indexOf(mi);
@@ -139,33 +139,49 @@ public class MenuCategory {
     }
 
     /**
-     * Below is normal setter and getter
-     * Accessor and mutator
-     * @return
+     * Get the Category of this menu category
+     * @return an item from enum FoodCategory
      */
     public FoodCategory getCategory() {
         return category;
     }
 
+    /**
+     * Change the category of this menu category
+     * @param category an item from enum FoodCategory
+     */
     public void setCategory(FoodCategory category) {
         this.category = category;
     }
 
+    /**
+     * Get a list of menu item from this category
+     * @return a list of menu item
+     */
     public ArrayList<MenuItem> getMenuItem() {
         return menuItem;
     }
 
+    /**
+     * Change the list of menu item from this category
+     * @param menuItem a list of menu item
+     */
     public void setMenuItem(ArrayList<MenuItem> menuItem) {
         this.menuItem = menuItem;
     }
 
     /**
-     * @return
+     * Get the description of this category
+     * @return description of this category
      */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Changes the description of this category
+     * @param description a description of this category
+     */
     public void setDescription(String description) {
         this.description = description;
     }

@@ -71,8 +71,8 @@ loadScripts(document, 'script');</script>
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">ControlClasses</a></div>
 <h1 title="Class ReservationManager" class="title">Class ReservationManager</h1>
 </div>
-<div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">ControlClasses.ReservationManager</div>
+<div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+<div class="inheritance">ReservationManager</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -226,7 +226,7 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
+<h3 id="methods-inherited-from-class-Object">Methods inherited from class&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
@@ -317,12 +317,12 @@ loadScripts(document, 'script');</script>
 <h3>ReservationManager</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ReservationManager</span>()
                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Default constructor, initialises attributes and loads in data from CSVs.</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - Read file exception.</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - Read CSV Exception.</dd>
+<dd><code>CsvException</code> - Read CSV Exception.</dd>
 </dl>
 </section>
 </li>
@@ -339,14 +339,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>getInstance</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ReservationManager.html" title="class in ControlClasses">ReservationManager</a></span>&nbsp;<span class="element-name">getInstance</span>()
                                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Static method to create a new reservation manager if there isn't already one, else return</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>singleton reservation managers</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
-<dd><code>com.opencsv.exceptions.CsvException</code></dd>
+<dd><code>CsvException</code></dd>
 </dl>
 </section>
 </li>
@@ -355,12 +355,12 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>cleanup</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">cleanup</span>()
              throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Cleanup runs everytime any function in here runs to cleanup expiring reservations. (15mins)</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -369,12 +369,12 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>loadTables</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">loadTables</span>()
                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Function to load table into attribute.</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -383,12 +383,12 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>loadReservations</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">loadReservations</span>()
                        throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Function to load reservation data into attribute</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -397,14 +397,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>deleteReservation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">deleteReservation</span>()
                           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Orchestrating function to delete reservations.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>whether or not deletion is successfull</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -413,14 +413,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>checkin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">checkin</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;reservationId)</span>
                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Orchestrating function to checkin a user. (enters the restaurant)</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the id of the reservation.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -429,7 +429,7 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>getTableNumber</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTableNumber</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;reservationId)</span>
                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Function to return the table number based on reservationid</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -438,7 +438,7 @@ com.opencsv.exceptions.CsvException</span></div>
 <dd>table number, -1 if don't have such reservation</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -447,14 +447,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>closeReservation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">closeReservation</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;reservationId)</span>
                          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">function to close a reservation when someone is done with food.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>successful close or not</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -464,7 +464,7 @@ com.opencsv.exceptions.CsvException</span></div>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">updateReservation</span><wbr><span class="parameters">(<a href="../Enumerations/ReservationStatus.html" title="enum class in Enumerations">ReservationStatus</a>&nbsp;stat,
  <a href="../Enumerations/ReservationStatus.html" title="enum class in Enumerations">ReservationStatus</a>&nbsp;validState,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;reservationId)</span>
-                          throws <span class="exceptions">com.opencsv.exceptions.CsvException,
+                          throws <span class="exceptions">CsvException,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block">Function to update status of reservation.</div>
 <dl class="notes">
@@ -475,7 +475,7 @@ com.opencsv.exceptions.CsvException</span></div>
 <dd>"" for failure and id for success.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -484,14 +484,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>createReservation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">createReservation</span>()
                           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Creates a reservation. Checks if possible.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>success</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -500,12 +500,12 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>checkReservation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkReservation</span>()
                       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Print details of reservation.</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -514,13 +514,13 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>checkAvailability</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkAvailability</span>()
                        throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Check a table's availability in a 2-hour window. (Customer gets to dine in 2 hours)
  Assumes 6am - 9pm</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - IO file read exception</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - CSV file read exception</dd>
+<dd><code>CsvException</code> - CSV file read exception</dd>
 </dl>
 </section>
 </li>
@@ -529,14 +529,14 @@ com.opencsv.exceptions.CsvException</span></div>
 <h3>getTodaysCreatedReservations</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getTodaysCreatedReservations</span>()
                                                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
-com.opencsv.exceptions.CsvException</span></div>
+CsvException</span></div>
 <div class="block">Gets all valid today created reservations after current time.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Arraylist of eligible today reservations.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - Cannot interface with files</dd>
-<dd><code>com.opencsv.exceptions.CsvException</code> - Cannot read/write CSV.</dd>
+<dd><code>CsvException</code> - Cannot read/write CSV.</dd>
 </dl>
 </section>
 </li>
