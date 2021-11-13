@@ -7,15 +7,11 @@ import EntityClasses.Order;
 import Enumerations.PrintColor;
 import Interfaces.UI;
 import StaticClasses.InputHandler;
-import com.opencsv.exceptions.CsvException;
-import org.mockito.internal.matchers.Or;
+
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.*;
+
 
 /**
  * PaymentUI the boundary class that will be responsible for pass User's inputs to the PaymentManager(Controller Class)
@@ -41,7 +37,7 @@ public class PaymentUI implements UI {
         return instance;
     }
 
-    public static boolean isNumeric(String str){return false;};
+    public static boolean isNumeric(String str){return false;}
 
     /**
      * Helper function to display the UI if the View Invoice option is selected by User
@@ -132,9 +128,9 @@ public class PaymentUI implements UI {
     /**
      * displayOptions() is the entry point called by the RRPSS class when functions related to Payment is
      * required
-     * @throws IOException to catch any exception related to User Inputs
+     *
      */
-    public void displayOptions() throws IOException {
+    public void displayOptions() {
         int choice;
         do{
             System.out.println(PrintColor.YELLOW_BOLD);

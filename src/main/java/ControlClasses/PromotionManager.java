@@ -196,8 +196,10 @@ return false;
 
 	/**
 	 * Update Promotion
-	 * @throws CsvException, this function write to csv text file
-	 * @throws IOException, this function write to json text file
+	 * @throws CsvException
+	 * this function write to csv text file
+	 * @throws IOException
+	 * this function write to json text file
 	 */
 	public void updatePromotion() throws IOException, CsvException {
 		updateCurrentPromotions();
@@ -310,7 +312,7 @@ return false;
 									subject.setState(promotionList);
 									Database.updateLine(filename,resp.getPromotionID(),resp.getLineCSVFormat());
 								}
-								;break;
+								break;
 						}
 						break;
 					case 4:
@@ -417,7 +419,8 @@ return false;
 
 	/**
 	 * Loads promotion from csv file
-	 * @throws CsvException, cause this function write to csv text file
+	 * @throws CsvException
+	 * cause this function write to csv text file
 	 * @throws IOException
 	 */
 	public void loadPromotion() throws IOException, CsvException {

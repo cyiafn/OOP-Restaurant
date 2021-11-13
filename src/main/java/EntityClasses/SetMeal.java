@@ -77,7 +77,7 @@ public class SetMeal extends MenuItem {
         System.out.print(PrintColor.YELLOW_BOLD);
         System.out.println(" Set Meal Price: " + this.getPrice()+ " | "+ " Set Meal Quantity: "+ this.getQuantity().toString());
         System.out.println(" Type: "+ this.getType());
-        System.out.println("");
+        System.out.println();
         for(MenuItem mi : this.setOfItem)
         {
             System.out.print(PrintColor.GREEN_BOLD);

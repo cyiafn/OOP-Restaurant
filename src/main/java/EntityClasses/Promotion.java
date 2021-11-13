@@ -23,13 +23,6 @@ public class Promotion extends Subject{
 
 	/**
 	 * Constructor of MenuItem
-	 * @param promotionID promotion ID
-	 * @param promotionPrice promotion price
-	 * @param promotionDescription promotion description
-	 * @param menuItemID promotion menu item ID
-	 * @param promotionName promotion name
-	 * @param promotionStartDate promotion start date
-	 * @param promotionEndDate promotion end date
 	 */
 
 	public Promotion(String id,String name,String description,String startDate,String endDate, double price , String menuItemID){

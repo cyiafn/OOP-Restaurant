@@ -22,7 +22,7 @@ public class Order {
     private static int idCount = 0;
     private int orderID;
     private String reservationID;
-    private ArrayList<MenuItem> orderedItems = new ArrayList<MenuItem>();;
+    private ArrayList<MenuItem> orderedItems = new ArrayList<MenuItem>();
     private String status = "Ordering";
     private String Staff = "";
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:MM");
@@ -183,7 +183,7 @@ public class Order {
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("ID    Staff      Date                       ReservationID                    Status   ");
         System.out.print(PrintColor.RESET);
-        System.out.println(toString());
+        System.out.println(this);
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("======================================================================================");
         System.out.println("MenuID                                      Name                           Quantity  ");

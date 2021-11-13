@@ -53,7 +53,8 @@ public class OrderManager {
      * This load in the order csv to be able to view orders
      * Do not remove this method because this function load the order from database
      *
-     * @throws IOException, cause this read from csv file
+     * @throws IOException
+     * cause this read from csv file
      */
     public void init() throws IOException {
         loadinDB();
@@ -63,7 +64,8 @@ public class OrderManager {
      * This save order into the order csv
      * Do not remove this method because this function write the order from database
      *
-     * @throws IOException, cause this write to csv file
+     * @throws IOException
+     * cause this write to csv file
      */
     public void savetoDB() throws IOException {
         Database.saveOrder(filename, orderList);
@@ -72,7 +74,8 @@ public class OrderManager {
      * This read the order csv
      * Do not remove this method because this function load the order from database
      *
-     * @throws IOException, cause this read csv file
+     * @throws IOException
+     * cause this read csv file
      */
     public void loadinDB() throws IOException {
         this.orderList = Database.readOrder(filename);
@@ -115,9 +118,7 @@ public class OrderManager {
         Set<Integer> s = new HashSet<>();
         for (Order order : orderList) {
             int i = order.getOrderID();
-            if (!s.contains(i)) {
-                s.add(i);
-            }
+            s.add(i);
         }
         return orderList.size();
     }
@@ -138,7 +139,7 @@ public class OrderManager {
     /**
      * Delete Order
      * Delete Order using orderID
-     * @throws IOException
+     *
      */
     public void deleteOrder(Order order) {
         int id = order.getOrderID();

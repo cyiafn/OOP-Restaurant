@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Subject {
-    private List<Observer> observers = new ArrayList<Observer>();
+    private final List<Observer> observers = new ArrayList<Observer>();
     /**
      * First paramter is menuItemID
      * Second paramter is promotinoPrice

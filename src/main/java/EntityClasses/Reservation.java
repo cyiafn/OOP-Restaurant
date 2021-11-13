@@ -18,27 +18,27 @@ public class Reservation {
 	/**
 	 * Primary key, unique.
 	 */
-	private String reservationID;
+	private final String reservationID;
 	/**
 	 * DateTime object of reservation
 	 */
-	private LocalDateTime dt;
+	private final LocalDateTime dt;
 	/**
 	 * Number of pax for reservation
 	 */
-	private int noOfPax;
+	private final int noOfPax;
 	/**
 	 * Name of person who made reservation
 	 */
-	private String name;
+	private final String name;
 	/**
 	 * contact number of person who made reservation.
 	 */
-	private String contactNo;
+	private final String contactNo;
 	/**
 	 * Table number the reservation is assigned to.
 	 */
-	private int tableNo;
+	private final int tableNo;
 	/**
 	 * Whether or not the reservation is active (ACTIVE, REMOVED, EXPIRED, COMPLETED)
 	 */
@@ -90,7 +90,7 @@ public class Reservation {
 		//Formatting LocalDateTimeObj and printing it
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		System.out.println("Reservation for: " + this.name + "\nContact No: " + this.contactNo +"\nAt: " + this.dt.format(myFormatObj) +
-				"\nFor: " + Integer.toString(noOfPax) + "pax\nAssigned: Table no. " + Integer.toString(this.tableNo) +
+				"\nFor: " + noOfPax + "pax\nAssigned: Table no. " + this.tableNo +
 				"\nStatus: " + status.name());
 	}
 

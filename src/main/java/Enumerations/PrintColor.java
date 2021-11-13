@@ -8,7 +8,6 @@ package Enumerations;
  *
  *         System.out.print(PrintColor.YELLOW);
  *         System.out.print(PrintColor.BLUE_BACKGROUND);
- *         System.out.println("YELLOW & BLUE");
  *         System.out.print(PrintColor.RESET);
  *
  *         System.out.print(PrintColor.YELLOW);

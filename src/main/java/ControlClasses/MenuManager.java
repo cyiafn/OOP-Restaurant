@@ -426,7 +426,7 @@ public class MenuManager extends Observer {
 	 * Do not remove this method because this function loaded the Menu from database
 	 * If there is no menu file in the csv directory, it will create a new file with default menu values.
 	 *
-	 * @throws IOException, cause this read/ write from json text file
+	 * @throws IOException
 	 */
 	public void init() throws IOException {
 
@@ -500,7 +500,7 @@ public class MenuManager extends Observer {
 	 */
 	public void viewMenu() {
 		try {
-			PromotionManager.getInstance().checkDateAfter();
+			PromotionManager.getInstance().updateCurrentPromotions();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (CsvException e) {
@@ -542,7 +542,8 @@ public class MenuManager extends Observer {
 	 * Create Menu Item in this function
 	 * 		// Asking which category you want to choose
 	 * 		// Display the Hashmap of the category
-	 * @throws IOException, cause this function write to json text file
+	 * @throws IOException
+	 * cause this function write to json text file
 	 */
 	public void createMenuItem() throws IOException {
 
@@ -662,7 +663,7 @@ public class MenuManager extends Observer {
 
 	/**
 	 * Retrieve all set meal item id in the menu
-	 * @return ArrayList<String> which belong to Set meal item id
+	 * @return ArrayList of String  which belong to Set meal item id
 	 */
 	public ArrayList<String> retrieveAllSeatMealID() {
 		ArrayList<String> listOfSmenuID = new ArrayList<>();

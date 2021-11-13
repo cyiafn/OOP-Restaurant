@@ -25,9 +25,9 @@ import java.util.Set;
  * @since 2021-11-09
  */
 public class PaymentManager {
-    private double gst = TaxDiscount.GST;
-    private double serviceCharge = TaxDiscount.SERVICE_CHARGE;
-    private double memberDiscount = TaxDiscount.MEMBER_DISCOUNT;
+    private final double gst = TaxDiscount.GST;
+    private final double serviceCharge = TaxDiscount.SERVICE_CHARGE;
+    private final double memberDiscount = TaxDiscount.MEMBER_DISCOUNT;
 
 
     private static final String invoiceFile = "Invoice.csv";

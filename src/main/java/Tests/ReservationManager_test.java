@@ -95,7 +95,7 @@ public class ReservationManager_test {
 
     private void provideInput(String data) throws IOException {
         testIn = new ByteArrayInputStream(data.getBytes());
-        inputHandler.sc = new Scanner(testIn);
+        InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 
@@ -264,7 +264,7 @@ public class ReservationManager_test {
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
         ReservationManager.getInstance().checkReservation();
-        System.setOut((PrintStream) systemOut);
+        System.setOut(systemOut);
         assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "Pleaseenteryourname:Pleaseenteryourcontactnumber(nospacesor+):PleaseenterthedatetimeintheformatYYYY-MM-DDHH:MM1.Reservationfor:Testname2ContactNo:999999999999999998At:"+ formatDtToStr(now).replace(" ", "")+ "For:10paxAssigned:Tableno.9Status:CREATED");
 
     }

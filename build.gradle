@@ -7,6 +7,12 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+configurations {
+    jaxDoclet
+}
+task myJavadocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+}
 
 dependencies {
     implementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

@@ -12,11 +12,24 @@ import java.util.*;
  * @since 2021-11-07
  */
 public class MenuCategory {
-    /*
-    Attributes of MenuCategory
+    /**
+     * The description for menu category
+     * @HasGetter
+     * @HasSetter
      */
     private String description;
+    /**
+     * Enum type of food category in menu category entity class
+     * @HasGetter
+     * @HasSetter
+     */
     private FoodCategory category;
+    /**
+     * Array List of menu Item in menu category entity class
+     * A menu category can hold many menu items
+     * @HasGetter
+     * @HasSetter
+     */
     private ArrayList<MenuItem> menuItem;
 
     /**
@@ -66,7 +79,7 @@ public class MenuCategory {
      */
     public MenuItem findBySubstringId(String id) {
         return  menuItem.stream().filter(s ->
-                s.getMenuItemID().startsWith(id,0)
+                s.getMenuItemID().startsWith(id)
         ).findFirst().orElse(null);
     }
 
@@ -117,7 +130,7 @@ public class MenuCategory {
 
     /**
      * Retrieve all set meal item id in the menu
-     * @return ArrayList<String> which belong to Set meal item id
+     * @return ArrayList of String which belong to Set meal item id
      */
     public ArrayList<String> retrieveAllSeatMealID(){
         ArrayList<String> listOfSmenuID = new ArrayList<>();

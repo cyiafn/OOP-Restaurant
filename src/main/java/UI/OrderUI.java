@@ -125,7 +125,7 @@ public class OrderUI implements UI {
         sc = new Scanner(System.in);
         String staff;
         String ReservationID = InputHandler.getString("Enter Reservation ID: ");
-        System.out.println("");
+        System.out.println();
         OrderManager.getInstance().checkID();
         Order order = new Order(ReservationID);
         try {
@@ -173,7 +173,7 @@ public class OrderUI implements UI {
             switch (input) {
                 case 1:
                     MenuManager.getInstance().viewMenu();
-                    System.out.println("");
+                    System.out.println();
                         try {
                              id = InputHandler.getString("Enter MenuItem Name: ");
                             if(id == null) System.out.printf("Invalid input! ");

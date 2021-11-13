@@ -10,8 +10,9 @@ import java.util.Scanner;
 import java.util.logging.Handler;
 
 /**
- * MenuUI is a boudary class
+ * MenuUI is a boundary class
  * Which responsible to display options for Menu Management and use Menu Manager to access the menu item
+ *
  * @author Daniel Chu Jia Hao
  * @version 1.0
  * @since 2021-11-07
@@ -27,18 +28,20 @@ public class MenuUI implements UI {
 
     /**
      * Singleton design for Menu Management
+     *
      * @return return one and only one menu UI
      */
-    public static MenuUI getInstance() throws IOException {
+    public static MenuUI getInstance(){
         if (instance == null) instance = new MenuUI();
         return instance;
     }
 
     /**
      * Entry point for Menu Management
-     * @throws IOException for read / write to json text file
+     *
+     *  for read / write to json text file
      */
-    public void displayOptions() throws IOException {
+    public void displayOptions() {
         int choice;
         do {
             System.out.println(PrintColor.YELLOW_BOLD);
@@ -52,16 +55,32 @@ public class MenuUI implements UI {
             choice = InputHandler.getInt(1, 5, "Please Choose a option to Continue: ", "Please enter an integer from 0-5!");
             switch (choice) {
                 case 1:
-                    MenuManager.getInstance().createMenuItem();
-                    break;
+                    try {
+                        MenuManager.getInstance().createMenuItem();
+                        break;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 case 2:
-                    MenuManager.getInstance().updateMenuItem();
-                    break;
+                    try {
+                        MenuManager.getInstance().updateMenuItem();
+                        break;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 case 3:
-                    MenuManager.getInstance().deleteMenuItem();
-                    break;
+                    try {
+                        MenuManager.getInstance().deleteMenuItem();
+                        break;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 case 4:
-                    MenuManager.getInstance().viewMenu();
+                    try {
+                        MenuManager.getInstance().viewMenu();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 case 5:
                     break;
                 default:

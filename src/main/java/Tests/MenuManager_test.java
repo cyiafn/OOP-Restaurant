@@ -52,7 +52,7 @@ public class MenuManager_test {
 
     private void provideInput(String data) throws IOException {
         testIn = new ByteArrayInputStream(data.getBytes());
-        inputHandler.sc = new Scanner(testIn);
+        InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 

@@ -33,11 +33,11 @@ public class ReservationManager {
 	/**
 	 * This attributes stores an arraylist of table objs.
 	 */
-	private ArrayList<Table> tables;
+	private final ArrayList<Table> tables;
 	/**
 	 * This attribute stores a hashmap of key: tableNo and value of ArrayList of reservations.
 	 */
-	private HashMap<Integer, ArrayList<Reservation>> reservations;
+	private final HashMap<Integer, ArrayList<Reservation>> reservations;
 	/**
 	 * This attributes caches all createdReservations only to optimize cleanup.
 	 */
@@ -180,7 +180,7 @@ public class ReservationManager {
 		System.out.print(PrintColor.RESET);
 		//select which reservation to update
 		for (int i = 0; i < temp.size(); i ++){
-			System.out.print(Integer.toString(i + 1) + ". ");
+			System.out.print(i + 1 + ". ");
 			temp.get(i).print();
 			System.out.print("\n");
 		}
@@ -230,10 +230,7 @@ public class ReservationManager {
 	 * @throws CsvException CSV file read exception
 	 */
 	public boolean closeReservation(String reservationId) throws IOException, CsvException {
-		if (updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE, reservationId).equals("")){
-			return false;
-		}
-		return true;
+		return !updateReservation(ReservationStatus.COMPLETED, ReservationStatus.ACTIVE, reservationId).equals("");
 	}
 
 	/**
@@ -355,7 +352,7 @@ public class ReservationManager {
 		System.out.print(PrintColor.RESET);
 
 		for (int i = 0; i < temp.size(); i ++){
-			System.out.print(Integer.toString(i + 1) + ". ");
+			System.out.print(i + 1 + ". ");
 			temp.get(i).print();
 			System.out.print("\n");
 		}
@@ -446,7 +443,7 @@ public class ReservationManager {
 		}
 		else{
 			// if someone doesn't book from morning onwards
-			System.out.println(morning.toString() + " - " + filteredList.get(0).getValue1().toString());
+			System.out.println(morning + " - " + filteredList.get(0).getValue1().toString());
 			printed = true;
 			for (int i = 1; i < filteredList.size() - 1; i ++){
 				if (filteredList.get(i).getValue0().equals("AFTER")){
@@ -461,7 +458,7 @@ public class ReservationManager {
 		}
 
 		if (!(filteredList.get(filteredList.size() - 1).getValue1().equals(evening) || filteredList.get(filteredList.size() - 1).getValue1().isAfter(evening))){
-			System.out.println(filteredList.get(filteredList.size() - 1).getValue1().toString() + " - " + evening.toString());
+			System.out.println(filteredList.get(filteredList.size() - 1).getValue1().toString() + " - " + evening);
 			printed = true;
 		}
 

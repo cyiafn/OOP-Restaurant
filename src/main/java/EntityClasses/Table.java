@@ -13,11 +13,11 @@ public class Table {
 	/**
 	 * Table number.
 	 */
-	private int tableNo;
+	private final int tableNo;
 	/**
 	 * Seating capacity of table (even nos from 2-10).
 	 */
-	private int seatingCapacity;
+	private final int seatingCapacity;
 
 	/**
 	 * Constructor when loading in from csv.

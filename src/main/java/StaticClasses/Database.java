@@ -41,14 +41,15 @@ public final class Database{
     /**
      * The dir path of the CSV files.
      */
-    private static String directory = "csv/";
+    private static final String directory = "csv/";
 
     /**
      * WriteLine simply writes a line to the CSV.
      * It assumes that you know what you are doing and doesn't check for PK violation.
      *
      * @param csvName "Reservation.csv" or wtv
-     * @param line line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; <- String[] type
+     * @param line
+     * line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type
      */
     public static void writeLine(String csvName, String[] line) throws IOException {
         try (ICSVWriter writer = new CSVWriterBuilder(
@@ -94,7 +95,7 @@ public final class Database{
      * Finds PK, removes it and rewrites the whole CSV. (inefficient i know)
      * @param csvName name of csv file
      * @param primaryKey pk
-     * @param line line to write format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; <- String[] type
+     * @param line line to write format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type
      * @return whether updated or not
      * @throws IOException File IO Exception
      * @throws CsvException CSV Exception
@@ -262,7 +263,6 @@ public final class Database{
     /**
      * This method save order into order.csv
      * By appending it 1 by 1 using separator ;
-     * @param filepath
      */
     public static final String SEPARATOR = ";";
     public static void saveOrder(String filename, List orderList) throws IOException {

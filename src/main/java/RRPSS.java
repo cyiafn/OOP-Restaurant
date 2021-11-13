@@ -9,7 +9,6 @@ import ControlClasses.OrderManager;
 import ControlClasses.PaymentManager;
 import ControlClasses.ReservationManager;
 import UI.*;
-import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -22,7 +21,7 @@ public class RRPSS {
      * Main ochestrating class.
      * @param args default
      */
-    public static void main(String[] args) throws IOException, CsvException {
+    public static void main(String[] args) throws IOException {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
         PaymentManager.getInstance().loadFromDB();

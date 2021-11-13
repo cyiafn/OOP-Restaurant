@@ -16,12 +16,12 @@ public class Invoice {
 
     private double total = 0;
 //    private ArrayList<Order> orders;  // GET ORDER FROM ORDER
-    private Order orders;
+    private final Order orders;
 
     public enum Membership{ IS_MEMBER, NOT_MEMBER }
     private Membership memberStatus;
-    private String date;
-    private String staffName;
+    private final String date;
+    private final String staffName;
 
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

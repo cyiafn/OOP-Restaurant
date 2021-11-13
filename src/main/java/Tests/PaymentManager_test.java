@@ -39,7 +39,7 @@ public class PaymentManager_test {
     private static InputHandler inputHandler;
     private static final LocalDateTime now = LocalDateTime.now();
     private ByteArrayInputStream testIn;
-    private String testId = "9999";
+    private final String testId = "9999";
 
     @BeforeAll
     static void Init(){
@@ -71,7 +71,7 @@ public class PaymentManager_test {
 
     private void provideInput(String data) throws IOException{
         testIn = new ByteArrayInputStream(data.getBytes());
-        inputHandler.sc = new Scanner(testIn);
+        InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 
