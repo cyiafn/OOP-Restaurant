@@ -96,7 +96,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Observer.html" title="class in EntityClasses">Observer</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#observers" class="member-name-link">observers</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">ArrayList of observers</div>
+</div>
 <div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#state" class="member-name-link">state</a></code></div>
 <div class="col-last odd-row-color">
@@ -178,6 +180,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="observers">
 <h3>observers</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Observer.html" title="class in EntityClasses">Observer</a>&gt;</span>&nbsp;<span class="element-name">observers</span></div>
+<div class="block">ArrayList of observers</div>
 </section>
 </li>
 <li>
@@ -218,7 +221,7 @@ loadScripts(document, 'script');</script>
 <div class="block">function to get state of the menuItem</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>List&lt;Map&lt;String, Double>> state which is menuItemID and the associated promotion price</dd>
+<dd>state which is an arraylist of maps of menuItemID and the associated promotion price</dd>
 </dl>
 </section>
 </li>

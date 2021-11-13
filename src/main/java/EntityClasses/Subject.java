@@ -20,7 +20,7 @@ public class Subject {
 
     /**
      * function to get state of the menuItem
-     * @return  List<Map<String, Double>> state which is menuItemID and the associated promotion price
+     * @return state which is an arraylist of maps of menuItemID and the associated promotion price
      *
      */
     public List<Map<String, Double>> getState() {
