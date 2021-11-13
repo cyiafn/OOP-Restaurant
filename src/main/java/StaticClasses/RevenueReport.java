@@ -69,7 +69,7 @@ public class RevenueReport {
                 if (list.size()!=0)
                         generateReport(list);
                 else
-                        System.out.println("No records of Selected Month");
+                        System.out.println("No records of Selected Year");
         }
 
         private static void generateReport(ArrayList<Invoice> list) {
