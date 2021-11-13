@@ -16,15 +16,25 @@ import Enumerations.PrintColor;
 /**
  * OrderUI is a boundary class
  * Which responsible to display options for Order Management and use OrderManager to create order items
-  @author Tan Ge Wen, Gotwin
-  @version 1.0
-  @since 2021-10-30
+ *
+ * @author Tan Ge Wen, Gotwin
+ * @version 1.0
+ * @since 2021-10-30
  */
 public class OrderUI implements UI {
+
+    /**
+     * Order UI instance
+     */
     public static OrderUI instance = null;
+    /**
+     * The scanner to read user input
+     */
     Scanner sc = new Scanner(System.in);
 
-
+    /**
+     * OrderUI constructor
+     */
     private OrderUI() {
         sc = new Scanner(System.in);
     }
