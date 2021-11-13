@@ -24,7 +24,6 @@ public class RRPSS {
     public static void main(String[] args) throws IOException {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
-        PaymentManager.getInstance().loadFromDB();
         //main orchestrating loop
         int opt;
         do {
