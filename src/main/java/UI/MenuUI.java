@@ -19,9 +19,18 @@ import java.util.logging.Handler;
  */
 public class MenuUI implements UI {
 
+    /**
+     * Menu UI instance
+     */
     private static MenuUI instance = null;
+    /**
+     * The scanner to read user input
+     */
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * MenuUI constructor
+     */
     public MenuUI() {
         sc = new Scanner(System.in);
     }

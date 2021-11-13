@@ -16,11 +16,11 @@ public class Alacarte extends MenuItem {
 
     /**
      * Constructor of Alacarte
-     * @param menuItemID
-     * @param name
-     * @param description
-     * @param price
-     * @param quantity
+     * @param menuItemID a menu item id
+     * @param name a name of menu item
+     * @param description description of menu item
+     * @param price price of menu item
+     * @param quantity quantity of menu item
      */
     public Alacarte(String menuItemID, String name, String description, double price, Integer quantity) {
         super(menuItemID, name, description, price, quantity);
@@ -44,13 +44,19 @@ public class Alacarte extends MenuItem {
         System.out.print(PrintColor.RESET);
         System.out.println(" -------------------------------");
     }
-    /*
-    Accessor and Mutator
+
+    /**
+     * Get the type of this alacarte
+     * @return string
      */
     public String getType() {
         return type;
     }
 
+    /**
+     * change the type of the alacarte
+     * @param type type of alacarte
+     */
     public void setType(String type) {
         this.type = type;
     }

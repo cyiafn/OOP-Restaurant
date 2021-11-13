@@ -186,9 +186,8 @@ public final class Database{
 
 
     /**
-     * For json
+     * A file writer for json format
      */
-
     private static FileWriter file;
 
     /**
@@ -196,9 +195,9 @@ public final class Database{
      * You can pass any type of class in this method,
      * With your own desired file path, and this method will save nice json format for you
      * Usage:: Database.WriteToJsonFile(menu,"csv/menu.json")
-     * @param obj
-     * @param filepath
-     * @throws IOException
+     * @param obj an type of object
+     * @param filepath  the path where json file located at.
+     * @throws IOException to ensure the file is save
      */
     public static void WriteToJsonFile(Object obj, String filepath) throws IOException {
         try {
@@ -236,8 +235,8 @@ public final class Database{
      *  WriteToJsonFile method above
      *  Usage:: Database.readFromJsonFile("csv/menu.json")
      *
-     * @param filepath
-     * @throws IOException
+     * @param filepath  the path where json file located at.
+     * @throws IOException to ensure the file is save
      */
     public static Map LoadFromJsonFile(String filepath) throws IOException {
         JsonSlurper jsonSlurper= new JsonSlurper();
@@ -249,7 +248,7 @@ public final class Database{
 
     /**
      * DELETE FILE FUNCTION
-     * @param filepath
+     * @param filepath   the path where json file located at.
      */
     public static void DeleteFile(String filepath) {
         File myObj = new File(filepath.trim());
@@ -259,6 +258,10 @@ public final class Database{
             System.out.println("Failed to delete the file.");
         }
     }
+
+
+
+
 
     /**
      * This method save order into order.csv

@@ -296,6 +296,11 @@ public class InputHandler {
 		return output;
 	}
 
+	/**
+	 * Helper function for getting String
+	 * @param promptMessage the message to warn user
+	 * @return the String.
+	 */
 	public static String getString(String promptMessage) {
 		System.out.println(promptMessage);
 		String name = sc.nextLine();

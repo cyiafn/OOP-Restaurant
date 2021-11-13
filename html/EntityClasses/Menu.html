@@ -311,10 +311,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Constructor of Menu</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - </dd>
-<dd><code>name</code> - </dd>
-<dd><code>description</code> - </dd>
-<dd><code>menuCategory</code> - </dd>
+<dd><code>id</code> - id of menu</dd>
+<dd><code>name</code> - name of menu</dd>
+<dd><code>description</code> - description of menu</dd>
+<dd><code>menuCategory</code> - a list of menu category of menu</dd>
 </dl>
 </section>
 </li>
@@ -340,7 +340,7 @@ loadScripts(document, 'script');</script>
 <div class="block">This is overloading constructor for getting single menu category based on user input</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fc</code> - </dd>
+<dd><code>fc</code> - a food category from enum FoodCategory</dd>
 <dt>Returns:</dt>
 <dd>a menu category</dd>
 </dl>
@@ -354,7 +354,8 @@ loadScripts(document, 'script');</script>
 <div class="block">This is overloading constructor for getting single menu category based on user input</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fc</code> - </dd>
+<dd><code>fc</code> - a food category from enum FoodCategory</dd>
+<dd><code>item</code> - a menu tiem</dd>
 </dl>
 </section>
 </li>
@@ -365,9 +366,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Delete function will search though the menu item and delete it</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>itemid</code> - </dd>
+<dd><code>itemid</code> - menu item id</dd>
 <dt>Returns:</dt>
-<dd>a integer, 1 is</dd>
+<dd>a integer, 1 is alacarte , 2 is set meal</dd>
 </dl>
 </section>
 </li>
@@ -378,7 +379,7 @@ loadScripts(document, 'script');</script>
 <div class="block">delete function will search though the menu item and delete it</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>itemid</code> - </dd>
+<dd><code>itemid</code> - menu item id</dd>
 <dt>Returns:</dt>
 <dd>a integer</dd>
 </dl>
@@ -419,7 +420,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Find by ID</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - </dd>
+<dd><code>id</code> - menu item id</dd>
 <dt>Returns:</dt>
 <dd>int , return 1 or 0, 1 is success, 0 is failed</dd>
 </dl>

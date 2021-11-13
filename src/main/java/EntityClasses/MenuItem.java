@@ -30,11 +30,11 @@ public class MenuItem {
 
 	/**
 	 * Constructor of MenuItem
-	 * @param menuItemID
-	 * @param name
-	 * @param description
-	 * @param price
-	 * @param quantity
+	 * @param menuItemID menuitem id
+	 * @param name name of menu item
+	 * @param description description of menu item
+	 * @param price price of menuitem
+	 * @param quantity quantity of menu item
 	 */
 	public MenuItem(String menuItemID, String name, String description, double price, Integer quantity) {
 		this.menuItemID = menuItemID;

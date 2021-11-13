@@ -33,10 +33,10 @@ public class Menu {
 
         /**
          * Constructor of Menu
-         * @param id
-         * @param name
-         * @param description
-         * @param menuCategory
+         * @param id id of menu
+         * @param name name of menu
+         * @param description description of menu
+         * @param menuCategory a list of menu category of menu
          */
         public Menu(String id, String name, String description, ArrayList<MenuCategory> menuCategory) {
                 this.id = id;
@@ -52,7 +52,7 @@ public class Menu {
 
         /**
          * This is overloading constructor for getting single menu category based on user input
-         * @param fc
+         * @param fc a food category from enum FoodCategory
          * @return a menu category
          */
         public MenuCategory getSingleMenuCategroy(String fc) {
@@ -68,7 +68,8 @@ public class Menu {
 
         /**
          * This is overloading constructor for getting single menu category based on user input
-         * @param fc
+         * @param fc a food category from enum FoodCategory
+         * @param item a menu tiem
          */
         public void insertSingleMenuItemOnSingleMenuCategroy(String fc, MenuItem item) {
 
@@ -83,8 +84,8 @@ public class Menu {
 
         /**
          * Delete function will search though the menu item and delete it
-         * @param itemid
-         * @return a integer, 1 is
+         * @param itemid menu item id
+         * @return a integer, 1 is alacarte , 2 is set meal
          */
         public int getTypeByID(String itemid) {
 
@@ -105,7 +106,7 @@ public class Menu {
 
         /**
          * delete function will search though the menu item and delete it
-         * @param itemid
+         * @param itemid menu item id
          * @return a integer
          */
         public int delete(String itemid) {
@@ -157,7 +158,7 @@ public class Menu {
 
         /**
          * Find by ID
-         * @param id
+         * @param id menu item id
          * @return int , return 1 or 0, 1 is success, 0 is failed
          */
         public int findBySubstringId(String id){

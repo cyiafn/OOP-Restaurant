@@ -29,7 +29,7 @@ sourceSets{
 javadoc {
     options.header("MICHELIN WESTERN RESTAURANT");
     options.windowTitle = "Build by Daniel, Gotwin, Yew Han, Yi Fan, Ryan"
-    options.verbose();
+   // options.verbose();
     options.destinationDirectory(file("html"))
     options.memberLevel = JavadocMemberLevel.PRIVATE
     options.linkSource false

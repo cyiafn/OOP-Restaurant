@@ -99,7 +99,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>private static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FileWriter.html" title="class or interface in java.io" class="external-link">FileWriter</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#file" class="member-name-link">file</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">For json</div>
+<div class="block">A file writer for json format</div>
 </div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#SEPARATOR" class="member-name-link">SEPARATOR</a></code></div>
@@ -241,7 +241,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="file">
 <h3>file</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FileWriter.html" title="class or interface in java.io" class="external-link">FileWriter</a></span>&nbsp;<span class="element-name">file</span></div>
-<div class="block">For json</div>
+<div class="block">A file writer for json format</div>
 </section>
 </li>
 <li>
@@ -372,10 +372,10 @@ CsvValidationException</span></div>
  Usage:: Database.WriteToJsonFile(menu,"csv/menu.json")</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>obj</code> - </dd>
-<dd><code>filepath</code> - </dd>
+<dd><code>obj</code> - an type of object</dd>
+<dd><code>filepath</code> - the path where json file located at.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - to ensure the file is save</dd>
 </dl>
 </section>
 </li>
@@ -390,9 +390,9 @@ CsvValidationException</span></div>
   Usage:: Database.readFromJsonFile("csv/menu.json")</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>filepath</code> - </dd>
+<dd><code>filepath</code> - the path where json file located at.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - to ensure the file is save</dd>
 </dl>
 </section>
 </li>
@@ -403,7 +403,7 @@ CsvValidationException</span></div>
 <div class="block">DELETE FILE FUNCTION</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>filepath</code> - </dd>
+<dd><code>filepath</code> - the path where json file located at.</dd>
 </dl>
 </section>
 </li>

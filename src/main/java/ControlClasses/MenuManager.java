@@ -52,6 +52,7 @@ public class MenuManager extends Observer {
 	}
 	/**
 	 * Overloading method
+	 * @param menu a menu
 	 */
 	public MenuManager(Menu menu) {
 		this.menu = menu;
@@ -62,6 +63,7 @@ public class MenuManager extends Observer {
 	 * Menu Manager check exist only one at a time
 	 *
 	 * @return MenuManger
+	 * @throws IOException
 	 */
 	public static MenuManager getInstance() throws IOException {
 		if (instance == null) {
@@ -72,7 +74,7 @@ public class MenuManager extends Observer {
 
 	/**
 	 * For observer pattern design to update menu
-	 * @param subject
+	 * @param subject a subject
 	 */
 	public void updateMenuManagerForSubject(Subject subject){
 		this.subject = subject;
@@ -426,7 +428,7 @@ public class MenuManager extends Observer {
 	 * Do not remove this method because this function loaded the Menu from database
 	 * If there is no menu file in the csv directory, it will create a new file with default menu values.
 	 *
-	 * @throws IOException
+	 * @throws IOException will throw io exception
 	 */
 	public void init() throws IOException {
 
@@ -516,7 +518,7 @@ public class MenuManager extends Observer {
 	 * Follow DRY format
 	 * Reuse in creation / Update/ Delete menu item function
 	 * @param m, is a menu
-	 * @throws IOException
+	 * @throws IOException will throw io exception
 	 */
 	private void confirmation(Menu m) throws IOException {
 		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");
