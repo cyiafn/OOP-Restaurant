@@ -20,12 +20,31 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ Black box Tests for Promotion manager
+ @author Chia Songcheng
+ @version 1.0
+ @since 2021-11-03
+ */
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PromotionManager_test {
+    /**
+     * input stream for menu manager test case
+     */
     private static final InputStream systemIn = System.in;
+    /**
+     * InputHandler
+     */
     private static InputHandler inputHandler;
+    /**
+     * ByteArrayInputStream
+     */
     private ByteArrayInputStream testIn;
 
+    /**
+     * Init function for promotion manager test case
+     */
     @BeforeAll
     static void Init() {
 
@@ -44,6 +63,9 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Teardown function for promotion manager
+     */
 
     @AfterAll
     static void teardown() {
@@ -60,11 +82,21 @@ public class PromotionManager_test {
 
     }
 
+    /**
+     * To provide input for test case
+     * @param data any test data
+     * @throws IOException to ensure the input is read
+     */
+
     private void provideInput(String data) throws IOException {
         testIn = new ByteArrayInputStream(data.getBytes());
         InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
+
+    /**
+     * Create Promotion Pass
+     */
 
     @Order(1)
     @Test
@@ -93,6 +125,9 @@ public class PromotionManager_test {
               }
         }
 
+    /**
+     * Create Promotion Fail
+     */
     @Order(2)
     @Test
     void createPromotionFail() {
@@ -120,6 +155,10 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Update Description Pass
+     */
+
     @Order(3)
     @Test
     void updateDescriptionPromotionPass() {
@@ -141,6 +180,10 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Update start date Pass
+     */
 
     @Order(4)
     @Test
@@ -164,6 +207,10 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Update start date Fail
+     */
 
     @Order(5)
     @Test
@@ -190,6 +237,10 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Update End date Pass
+     */
+
     @Order(6)
     @Test
     void updateEndDatePromotionPass() {
@@ -212,6 +263,10 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Update end date Fail
+     */
 
     @Order(7)
     @Test
@@ -240,7 +295,9 @@ public class PromotionManager_test {
     }
 
 
-
+    /**
+     * Update name Pass
+     */
 
     @Order(12)
     @Test
@@ -264,6 +321,10 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Update name Fail
+     */
 
     @Order(11)
     @Test
@@ -289,6 +350,10 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Update price Pass
+     */
+
     @Order(8)
     @Test
     void updatePricePromotionPass() {
@@ -312,6 +377,10 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Update menu id Pass
+     */
+
     @Order(9)
     @Test
     void updateMenuIDPromotionPass() {
@@ -333,6 +402,11 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Update menu id Fail
+     */
+
 
     @Order(10)
     @Test
@@ -359,6 +433,10 @@ public class PromotionManager_test {
         }
     }
 
+    /**
+     * Delete promotion Fail
+     */
+
 
     @Order(13)
     @Test
@@ -380,6 +458,10 @@ public class PromotionManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Delete promotion Pass
+     */
 
     @Order(14)
     @Test
