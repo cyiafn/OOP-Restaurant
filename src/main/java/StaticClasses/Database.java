@@ -392,7 +392,9 @@ public final class Database{
 
     /**
      * This method read order into order.csv
-     *
+     * @param fileName order.csv
+     * @return orderlist orderlist
+     * @throws IOException to ensure the file is save
      */
    // @Override
     public static ArrayList<Order> readOrder(String fileName) throws IOException {
@@ -569,6 +571,8 @@ public final class Database{
      * @param fileName
      *            To determine the file to read from.
      * @return the data to read from the text file.
+     * @throws IOException to ensure the file is read/write
+     *
      */
     public static List read(String fileName) throws IOException {
         List data = new ArrayList();

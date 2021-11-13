@@ -85,7 +85,8 @@ public class OrderManager {
      * remove order from orderlist
      * check order id
      * add order into orderlist
-     * @throws IOException
+     * @throws IOException will throw io exception
+     * @param order updateorder
      */
     public void updateOrder(Order order) throws IOException {
         orderList.remove(order);
@@ -97,6 +98,8 @@ public class OrderManager {
      * Retrieve order
      * if order id is the same
      * return order
+     * @param orderID orderID
+     * @return order
      */
     public Order retrieveOrder(int orderID) {
         for (Order order : orderList) {
@@ -113,6 +116,8 @@ public class OrderManager {
     }
     /**
      * Helper function to view order
+     * @return orderlist size
+     *
      */
     public final int displayOrder() {
         Set<Integer> s = new HashSet<>();
@@ -139,6 +144,7 @@ public class OrderManager {
     /**
      * Delete Order
      * Delete Order using orderID
+     * @param order deleteorder
      *
      */
     public void deleteOrder(Order order) {
@@ -157,7 +163,9 @@ public class OrderManager {
     /**
      * Delete Order item
      * Delete Orderitem using menu item id
-     * @throws IOException
+     * @throws IOException will throw io exception
+     * @param order order
+     * @param itemid itemid
      */
     public void deleteOrderItem(Order order, String itemid) throws IOException {
         MenuItem it = MenuManager.getInstance().findByNameForMenuItem(itemid);
@@ -170,7 +178,9 @@ public class OrderManager {
     /**
      * Create Order item
      * create Orderitem using menu item id
-     * @throws IOException
+     * @throws IOException will throw io exception
+     * @param itemid itemid
+     * @param order order
      */
     public void createOrderItem(Order order, String itemid) throws IOException {
         MenuItem item = MenuManager.getInstance().findByNameForMenuItem(itemid);

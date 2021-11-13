@@ -92,7 +92,7 @@ public class Order {
 
     /**
      * Datetime object setter
-     * @param date
+     * @param date date
      */
     public void setDate(String date) {
         this.date = date;
@@ -108,7 +108,7 @@ public class Order {
 
     /**
      * reservationID setter
-     * @param reservationID
+     * @param reservationID reservationID
      */
     public void setReservationID(String reservationID) {
         this.reservationID = reservationID;
@@ -124,7 +124,7 @@ public class Order {
 
     /**
      * Staff setter
-     * @param staff
+     * @param staff staff
      */
     public void setStaff(String staff) {
         Staff = staff;
@@ -148,7 +148,7 @@ public class Order {
 
     /**
      * status setter
-     * @param status
+     * @param status status
      */
     public void setStatus(String status) {
         this.status = status;
@@ -156,6 +156,7 @@ public class Order {
 
     /**
      * Add items into ordered items
+     * @param item item
      */
     public void addItem(MenuItem item){
 
@@ -163,6 +164,9 @@ public class Order {
     }
     /**
      * Remove items from ordereditems
+     * @param item item
+     * @return boolean
+     * @throws IOException will throw io exception
      */
     public boolean removeItem(MenuItem item) throws IOException {
         for (MenuItem it : orderedItems) {
