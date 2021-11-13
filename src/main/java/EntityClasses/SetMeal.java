@@ -19,22 +19,22 @@ public class SetMeal extends MenuItem {
      */
     private ArrayList<MenuItem> setOfItem ;
     /**
-     *
+     * Promotion price of set meal
      */
     private  double promotionPrice= 0;
     /**
-     * 
+     * Promotion status of set meal
      */
     private boolean promotionStatus = false;
 
     /**
      * Constructor of Set Meal
-     * @param menuItemID
-     * @param name
-     * @param description
-     * @param price
-     * @param quantity
-     * @param ala
+     * @param menuItemID menu item id
+     * @param name name of menu item
+     * @param description description of menu item
+     * @param price price of menu item
+     * @param quantity quantity of menu item
+     * @param ala a list of menu item
      */
     public SetMeal(String menuItemID, String name, String description, double price, Integer quantity, ArrayList<MenuItem> ala) {
         super(menuItemID, name, description, price, quantity);
@@ -42,13 +42,14 @@ public class SetMeal extends MenuItem {
     }
 
     /**
-     * OVerloading Constructor of Set Meal
-     * @param menuItemID
-     * @param name
-     * @param description
-     * @param price
-     * @param quantity
-     * @param ala
+     * Constructor of Set Meal
+     * @param menuItemID menu item id
+     * @param name name of menu item
+     * @param description description of menu item
+     * @param price price of menu item
+     * @param promotionPrice promotion price of set meal
+     * @param quantity quantity of menu item
+     * @param ala a list of menu item
      */
     public SetMeal(String menuItemID, String name, String description, double price,double promotionPrice ,Integer quantity,ArrayList<MenuItem> ala) {
         super(menuItemID, name, description, price, quantity);
@@ -99,37 +100,66 @@ public class SetMeal extends MenuItem {
         System.out.println(" -------------------------------");
     }
 
-    /*
-    Accessor and Mutator
+    /**
+     * Get type of set meal
+     * @return a string
      */
     public String getType() {
         return type;
     }
 
+    /**
+     * Change type of set meal
+     * @param type type of set meal
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Get a list of menu item in set meal
+     * @return a list of menu item
+     */
     public ArrayList<MenuItem> getSetOfItem() {
         return setOfItem;
     }
 
+    /**
+     * Change a list of menu item in set meal
+     * @param setOfIteme a list of menu item
+     */
     public void setSetOfItem(ArrayList<MenuItem> setOfIteme) {
         this.setOfItem = setOfIteme;
     }
 
+    /**
+     * Get promotion price of set meal
+     * @return promotion price
+     */
     public double getPromotionPrice() {
         return promotionPrice;
     }
 
+    /**
+     * Change the promotio price of set meal
+     * @param promotionPrice a promotion price
+     */
     public void setPromotionPrice(double promotionPrice) {
         this.promotionPrice = promotionPrice;
     }
 
+    /**
+     * Get promotion status of set meal
+     * @return promotionStatus
+     */
     public boolean isPromotionStatus() {
         return promotionStatus;
     }
 
+    /**
+     * Change promotion status of set meal
+     * @param promotionStatus a boolean of promotion status
+     */
     public void setPromotionStatus(boolean promotionStatus) {
         this.promotionStatus = promotionStatus;
     }
