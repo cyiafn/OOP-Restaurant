@@ -9,18 +9,25 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- Order Manager that handles Orders.
- @author Tan Ge Wen, Gotwin
- @version 1.0
- @since 2021-10-30
+ * Order Manager that handles Orders.
+ *
+ * @author Tan Ge Wen, Gotwin
+ * @version 1.0
+ * @since 2021-10-30
  */
 
 public class OrderManager {
     /**
-     * Constant for file name order.
+     * Arraylist of order list
      */
     ArrayList<Order> orderList = new ArrayList<Order>();
+    /**
+     * Constant for file name order.
+     */
     public static final String filename = "order.csv";
+    /**
+     * Order Manager instance
+     */
     private static OrderManager instance = null;
 
     /**
@@ -108,7 +115,11 @@ public class OrderManager {
         }
         return null;
     }
-
+    /**
+     * Helper function to view order
+     * @param orderID orderid
+     *
+     */
     public void displayOrder(int orderID) {
         Order order;
         order = retrieveOrder(orderID);
