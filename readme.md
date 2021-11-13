@@ -16,8 +16,15 @@ The main objective of this assignment is
 - Visual Paradigm
 - IntelliJ IDEA
 
+### Generating javadocs
+```bash
+./gradlew javadoc
+
+```
+
 ### Reference
 
 - [How to Generate Java from UML (Instant Generator Guide)?](https://www.visual-paradigm.com/support/documents/vpuserguide/276/330/27971_instantgener.html)
 - [VP ONLINE class diagram](https://online.visual-paradigm.com/share.jsp?id=313635393839372d34)
+- [Java docs gradle](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html)
 - 
