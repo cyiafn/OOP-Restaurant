@@ -106,6 +106,13 @@ public class OrderUI implements UI {
         } while (choice < 5);
     }
 
+    /**
+     * Create Order
+     * create Order using reservation id
+     * @throws IOException will throw io exception
+     * @throws CsvException will throw io exception
+     *
+     */
     public void createOrder() throws IOException, CsvException {
         System.out.println(PrintColor.YELLOW_BOLD);
         System.out.println("\n==================================================");
@@ -155,6 +162,13 @@ public class OrderUI implements UI {
         }
         OrderManager.getInstance().savetoDB();
     }
+    /**
+     * Update Order
+     * update Order able to add/remove items
+     * @throws IOException will throw io exception
+     * @param order order
+     *
+     */
     public void updateOrder(Order order) throws IOException {
         sc = new Scanner(System.in);
         int input;
@@ -230,6 +244,12 @@ public class OrderUI implements UI {
         OrderManager.getInstance().savetoDB();
     }
 
+    /**
+     * remove Order
+     * remove Order using orderid
+     * @throws IOException will throw io exception
+     *
+     */
     public void runRemoveOrder() throws IOException {
         sc = new Scanner(System.in);
         int orderID = -1;
@@ -250,6 +270,11 @@ public class OrderUI implements UI {
         else System.out.println("Order does not exist!");
     }
 
+    /**
+     * view Order
+     * view Order using orderid
+     *
+     */
     public void viewOrder() {
         sc = new Scanner(System.in);
         if (OrderManager.getInstance().displayOrder() > 0) {

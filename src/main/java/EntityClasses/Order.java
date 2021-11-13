@@ -19,13 +19,37 @@ import Enumerations.PrintColor;
  Attributes of Order
  */
 public class Order {
+    /**
+     * The id count for order
+     */
     private static int idCount = 0;
+    /**
+     * the order id for order
+     */
     private int orderID;
+    /**
+     * Reservation id for reservation
+     */
     private String reservationID;
+    /**
+     * ordered items in order
+     */
     private ArrayList<MenuItem> orderedItems = new ArrayList<MenuItem>();
+    /**
+     * status for order
+     */
     private String status = "Ordering";
+    /**
+     * staff name
+     */
     private String Staff = "";
+    /**
+     * date time format
+     */
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:MM");
+    /**
+     * date
+     */
     private String date;
 
 
@@ -61,15 +85,26 @@ public class Order {
         idCount++;
     }
 
-
+    /**
+     * idcount getter
+     * @return idCount
+     */
     public static int getIdCount() {
         return idCount;
     }
 
+    /**
+     * idcount object setter
+     * @param ID idcount
+     */
     public static void setIdCount(int ID) {
         idCount = ID;
     }
 
+    /**
+     * orderid object setter
+     * @param orderID orderid
+     */
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
@@ -201,6 +236,9 @@ public class Order {
         System.out.print(PrintColor.RESET);
     }
 
+    /**
+     * Simply prints out Order details
+     */
     public String toString() {
         return (String.format(orderID +  "\t"+ Staff+ "    \t" +    date + "\t" +  reservationID + "       \t" + status ));
         //return (String.format("%s        %-30s   %-5s \n",orderID, Staff, date , reservationID , status ));
