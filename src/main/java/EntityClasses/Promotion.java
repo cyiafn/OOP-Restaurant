@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Promotion extends Subject{
 	/*
-	Attributes of Menu Item
+	Attributes of Promotion Item
 	 */
 	private String promotionID;
 	private double promotionPrice;
@@ -22,7 +22,7 @@ public class Promotion extends Subject{
 	private String promotionEndDate;
 
 	/**
-	 * Constructor of MenuItem
+	 * Constructor of Promotion
 	 */
 
 	public Promotion(String id,String name,String description,String startDate,String endDate, double price , String menuItemID){
@@ -37,13 +37,6 @@ public class Promotion extends Subject{
 	}
 	/**
 	 * Empty Constructor for Promotion
-	 */
-	public Promotion(){
-
-	}
-
-	/*
-	Accessor and Mutator
 	 */
 
 	/**

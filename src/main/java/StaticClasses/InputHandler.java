@@ -105,6 +105,7 @@ public class InputHandler {
 	/**
 	 * Helper function to request user for date.
 	 * Ensures that string input is formatted according to dd/MM/yyyy
+	 * @param promptMessage String to prompt user for input
 	 * @return date in string
 	 */
 	public static String stringDate(String promptMessage){
@@ -132,6 +133,7 @@ public class InputHandler {
 	 * Helper function to request user for date.
 	 * Ensures that string input is formatted according to dd/MM/yyyy
 	 * Output string will be yyyyMMdd
+	 * @param promptMessage String to prompt user for input
 	 * @return date in string
 	 */
 	public static String stringDate2(String promptMessage){
@@ -159,6 +161,7 @@ public class InputHandler {
 	 * Helper function to request user for date.
 	 * Ensures that string input is formatted according to MM/yyyy
 	 * Output string will be yyyyMM
+	 * @param promptMessage String to prompt user for input
 	 * @return date in string
 	 */
 	public static String stringDate3(String promptMessage){
@@ -185,6 +188,7 @@ public class InputHandler {
 	 * Helper function to request user for date.
 	 * Ensures that string input is formatted according to yyyy
 	 * Output string will be yyyy
+	 * @param promptMessage String to prompt user for input
 	 * @return date in string
 	 */
 	public static String stringDate4(String promptMessage){

@@ -337,8 +337,10 @@ loadScripts(document, 'script');</script>
  check order id
  add order into orderlist</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - updateorder</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - will throw io exception</dd>
 </dl>
 </section>
 </li>
@@ -349,6 +351,12 @@ loadScripts(document, 'script');</script>
 <div class="block">Retrieve order
  if order id is the same
  return order</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orderID</code> - orderID</dd>
+<dt>Returns:</dt>
+<dd>order</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -362,6 +370,10 @@ loadScripts(document, 'script');</script>
 <h3>displayOrder</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">displayOrder</span>()</div>
 <div class="block">Helper function to view order</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>orderlist size</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -377,6 +389,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">deleteOrder</span><wbr><span class="parameters">(<a href="../EntityClasses/Order.html" title="class in EntityClasses">Order</a>&nbsp;order)</span></div>
 <div class="block">Delete Order
  Delete Order using orderID</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - deleteorder</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -388,8 +404,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Delete Order item
  Delete Orderitem using menu item id</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - order</dd>
+<dd><code>itemid</code> - itemid</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - will throw io exception</dd>
 </dl>
 </section>
 </li>
@@ -402,8 +421,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Create Order item
  create Orderitem using menu item id</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>itemid</code> - itemid</dd>
+<dd><code>order</code> - order</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - will throw io exception</dd>
 </dl>
 </section>
 </li>

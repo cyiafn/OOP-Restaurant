@@ -1,6 +1,7 @@
 package ControlClasses;
 
 import EntityClasses.*;
+import EntityClasses.Observer;
 import StaticClasses.Database;
 import StaticClasses.InputHandler;
 import com.opencsv.exceptions.CsvException;
@@ -78,6 +79,9 @@ public class PromotionManager{
 		double price = InputHandler.getDouble(1,100,"Please enter promotion price :","Error input! Please recheck and retry again.");
 		String startDate = InputHandler.stringDate("Please enter start date in the form of dd/MM/yyyy");
 		String endDate  = InputHandler.stringDate("Please enter end date in the form of dd/MM/yyyy");
+		while(checkEndDate(startDate,endDate)){
+			endDate  = InputHandler.stringDate("End date is before start date,Please enter end date in the form of dd/MM/yyyy");
+		}
 		String menuItemId = InputHandler.getString("Please type in the menu item id that you wish to input.");
 		while(!checkSetMenu(menuItemId)){
 			menuItemId = InputHandler.getString("Please try again, invalid set meal ID. Enter 0 to exit");
@@ -105,6 +109,7 @@ public class PromotionManager{
 	}
 	/**
 	 * Ensures the user does not enter the same promotion entry twice
+	 * @param name name of the promotion to check
 	 * @return boolean whether there is a dupe or not
 	 */
 	public boolean checkDupeName(String name){
@@ -117,6 +122,8 @@ public class PromotionManager{
 
 		/**
 		 * This function loads promotions from Promotion.csv and update promotions on the day and set those expired promotions to 0.
+		 * @throws IOException
+		 * @throws CsvException
 		 */
 	}
 	public void updateCurrentPromotions() throws IOException, CsvException {
@@ -161,7 +168,7 @@ public class PromotionManager{
 		}
 		/**
 		 * This function checks whether the promotion date is valid
-		 * returns boolean whether the promotion is valid or not
+		 * @returns boolean whether the promotion is valid or not
 		 */
 	}
 	public boolean checkDateValid(String startDate,String endDate){
@@ -382,6 +389,8 @@ return false;
 
 	/**
 	 * Check starting date to ensure end date cannot be after end date
+	 * @param startDate starting date of the promotion
+	 * @param endDate  ending date of the promotion
 	 * @return boolean whether the start date is valid
 	 */
 	public boolean checkStartDate(String startDate, String endDate){
@@ -400,6 +409,8 @@ return false;
 	}
 	/**
 	 * Check End date to ensure end date cannot be before start date
+	 * @param startDate starting date of the promotion
+	 * @param endDate ending date of the promotion
 	 * return boolean whether the end date is valid
 	 */
 	public boolean checkEndDate(String startDate, String endDate){
@@ -451,6 +462,7 @@ return false;
 	public ArrayList<Promotion> allPromotion(){
 		return this.promotions;
 	}
+
 	/**
 	 * Delete Promotion
 	 * @throws IOException

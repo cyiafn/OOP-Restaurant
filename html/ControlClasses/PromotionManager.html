@@ -170,8 +170,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkEndDate(java.lang.String,java.lang.String)" class="member-name-link">checkEndDate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;startDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;endDate)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Check End date to ensure end date cannot be before start date
- return boolean whether the end date is valid</div>
+<div class="block">Check End date to ensure end date cannot be before start date</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkSetMenu(java.lang.String)" class="member-name-link">checkSetMenu</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
@@ -339,6 +338,8 @@ CsvException</span></div>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkDupeName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Ensures the user does not enter the same promotion entry twice</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - name of the promotion to check</dd>
 <dt>Returns:</dt>
 <dd>boolean whether there is a dupe or not</dd>
 </dl>
@@ -396,6 +397,9 @@ CsvException</span></div>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;endDate)</span></div>
 <div class="block">Check starting date to ensure end date cannot be after end date</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>startDate</code> - starting date of the promotion</dd>
+<dd><code>endDate</code> - ending date of the promotion</dd>
 <dt>Returns:</dt>
 <dd>boolean whether the start date is valid</dd>
 </dl>
@@ -406,8 +410,13 @@ CsvException</span></div>
 <h3>checkEndDate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkEndDate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;startDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;endDate)</span></div>
-<div class="block">Check End date to ensure end date cannot be before start date
- return boolean whether the end date is valid</div>
+<div class="block">Check End date to ensure end date cannot be before start date</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>startDate</code> - starting date of the promotion</dd>
+<dd><code>endDate</code> - ending date of the promotion
+ return boolean whether the end date is valid</dd>
+</dl>
 </section>
 </li>
 <li>
