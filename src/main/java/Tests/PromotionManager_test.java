@@ -348,7 +348,7 @@ public class PromotionManager_test {
             PromotionManager.getInstance().updatePromotion();
             ArrayList<Promotion> promotions = PromotionManager.getInstance().allPromotion();
             for(Promotion promo : promotions){
-                System.out.println(promo.getPromotionName());
+                //System.out.println(promo.getPromotionName());
                 if(promo.getPromotionName().equals("testing") && promo.getMenuItemID().equals("000d3c0d-54e7-46fe-9df5-554e271cbcc0")){
                     flag = true;
                 }
