@@ -113,11 +113,8 @@ public class InputHandler {
 		do {
 			System.out.println(promptMessage);
 			date = sc.nextLine();
-			//sc.nextLine();
-			//String dateFormat = "dd/MM/yyyy";
 			DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
 			DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
-			//parse date strictly
 			try {
 				Date date1 =inputFormatter.parse(date);
 				String dateOutput = outputFormatter.format(date1);
@@ -141,11 +138,8 @@ public class InputHandler {
 		do {
 			System.out.println(promptMessage);
 			date = sc.nextLine();
-			//sc.nextLine();
-			//String dateFormat = "dd/MM/yyyy";
 			DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
 			DateFormat outputFormatter = new SimpleDateFormat("yyyyMMdd");
-			//parse date strictly
 			try {
 				Date date1 =inputFormatter.parse(date);
 				String dateOutput = outputFormatter.format(date1);

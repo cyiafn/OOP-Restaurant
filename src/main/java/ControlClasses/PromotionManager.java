@@ -25,7 +25,7 @@ public class PromotionManager{
 	/**
 	 * List of setItems allowed
 	 */
-	List<String> setItems = new ArrayList<String>();
+	private List<String> setItems = new ArrayList<String>();
 	private static PromotionManager instance = null;
 	/**
 	 * Constant for file name reservation.
@@ -35,13 +35,13 @@ public class PromotionManager{
 	 * ArrayList of promotions to keep track of current promotions
 	 */
 
-	ArrayList<Promotion> promotions = new ArrayList<>();
+	private ArrayList<Promotion> promotions = new ArrayList<>();
 
 	/**
 	 * For observer pattern design to keep track of subjects
 	 *
 	 */
-	List<Map<String , Double>> promotionList = new ArrayList<>();
+	private List<Map<String , Double>> promotionList = new ArrayList<>();
 
 	/**
 	 * Static method
