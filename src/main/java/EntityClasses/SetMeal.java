@@ -18,7 +18,13 @@ public class SetMeal extends MenuItem {
      * This attribute to store a set of Menu Item
      */
     private ArrayList<MenuItem> setOfItem ;
+    /**
+     *
+     */
     private  double promotionPrice= 0;
+    /**
+     * 
+     */
     private boolean promotionStatus = false;
 
     /**

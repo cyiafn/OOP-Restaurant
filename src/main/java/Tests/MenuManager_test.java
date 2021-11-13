@@ -25,12 +25,23 @@ import static org.junit.jupiter.api.Assertions.fail;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MenuManager_test {
 
+    /**
+     * input stream for menu manager test case
+     */
     private static final InputStream systemIn = System.in;
+    /**
+     * InputHandler
+     */
     private static InputHandler inputHandler;
+    /**
+     * ByteArrayInputStream
+     */
     private ByteArrayInputStream testIn;
-    private String miid;
 
 
+    /**
+     * Init function for menu manager test case
+     */
     @BeforeAll
     static void Init(){
         try {
@@ -43,20 +54,31 @@ public class MenuManager_test {
         }
     }
 
+    /**
+     * Teardown function for menu manager
+     * Will delete the file and generate a default menu json
+     * @throws IOException to ensure the file is delete and generate again
+     */
     @AfterAll
     static void teardown() throws IOException {
         Database.DeleteFile("csv/menu.json");
         MenuManager.getInstance().init();
     }
 
-
+    /**
+     * To provide input for test case
+     * @param data any test data
+     * @throws IOException to ensure the input is read
+     */
     private void provideInput(String data) throws IOException {
         testIn = new ByteArrayInputStream(data.getBytes());
         InputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 
-
+    /**
+     * CreateAlacarte Fail
+     */
     @Order(1)
     @Test
     void CreateAlacarteFail() {
@@ -81,6 +103,10 @@ public class MenuManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * CreateAlacarte Successful
+     */
     @Order(2)
     @Test
     void CreateAlacarteSuccessful() {
@@ -109,13 +135,15 @@ public class MenuManager_test {
     }
 
 
-
+    /**
+     * UpdateAlacarte Successful
+     */
     @Order(3)
     @Test
     void UpdateAlacarteSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -139,12 +167,16 @@ public class MenuManager_test {
         }
     }
 
+
+    /**
+     * UpdateAlacarte Fail
+     */
     @Order(4)
     @Test
     void UpdateAlacarteFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -168,13 +200,15 @@ public class MenuManager_test {
         }
     }
 
-
+    /**
+     * DeleteAlacarte Successful
+     */
     @Order(5)
     @Test
     void DeleteAlacarteSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
@@ -195,13 +229,15 @@ public class MenuManager_test {
         }
     }
 
-
+    /**
+     * DeleteAlacarte Fail
+     */
     @Order(6)
     @Test
     void DeleteAlacarteFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
@@ -222,6 +258,9 @@ public class MenuManager_test {
         }
     }
 
+    /**
+     * CreateSetMeal Fail
+     */
     @Order(7)
     @Test
     void CreateSetMealFail() {
@@ -262,6 +301,10 @@ public class MenuManager_test {
             e.printStackTrace();
         }
     }
+
+    /**
+     * CreateSetMeal Successful
+     */
     @Order(8)
     @Test
     void CreateSetMealSuccessful() {
@@ -306,12 +349,15 @@ public class MenuManager_test {
     }
 
 
+    /**
+     * UpdateSetMeal Successful
+     */
     @Order(9)
     @Test
     void UpdateSetMealSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -350,12 +396,15 @@ public class MenuManager_test {
         }
     }
 
+    /**
+     * UpdateSetMeal Fail
+     */
     @Order(10)
     @Test
     void UpdateSetMealFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("Steamed Truffle & Pork Xiao Long Bao");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
                     + "999" + System.getProperty("line.separator")
@@ -393,13 +442,15 @@ public class MenuManager_test {
             e.printStackTrace();
         }
     }
-
+    /**
+     * DeleteSetMeal Successful
+     */
     @Order(11)
     @Test
     void DeleteSetMealSuccessful() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );
@@ -420,13 +471,15 @@ public class MenuManager_test {
         }
     }
 
-
+    /**
+     * DeleteSetMeal Fail
+     */
     @Order(12)
     @Test
     void DeleteSetMealFail() {
         try {
             MenuItem mi_1 = MenuManager.getInstance().findByNameForMenuItem("999");
-            miid = mi_1.getMenuItemID();
+            String miid = mi_1.getMenuItemID();
             provideInput( miid + System.getProperty("line.separator")
                     + 1 + System.getProperty("line.separator")
             );

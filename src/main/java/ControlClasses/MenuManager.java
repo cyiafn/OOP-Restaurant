@@ -22,22 +22,43 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2021-11-07
  */
 public class MenuManager extends Observer {
+
 	/**
-	 * Constant for file name reservation.
+	 * Hashmap of Food category
 	 */
 	public HashMap<Integer,FoodCategory> FoodCategoryMap = new HashMap<>();
+	/**
+	 * Menu
+	 */
 	private Menu menu;
+	/**
+	 * The file name and file path which menu will save to
+	 */
 	String filename =  "csv/menu.json";
+	/**
+	 * The restaurant name
+	 */
 	String restaurantName= "Michelin Western Restaurant";
 
+	/**
+	 * Get single menu
+	 * @return menu
+	 */
 	public Menu getMenu() {
 		return menu;
 	}
 
+	/**
+	 * Change the menu
+	 * @param menu a menu
+	 */
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
 
+	/**
+	 * Menu Mangaer instance
+	 */
 	private static MenuManager instance = null;
 
 	/**
@@ -63,7 +84,7 @@ public class MenuManager extends Observer {
 	 * Menu Manager check exist only one at a time
 	 *
 	 * @return MenuManger
-	 * @throws IOException
+	 * @throws IOException to ensure the file is saved
 	 */
 	public static MenuManager getInstance() throws IOException {
 		if (instance == null) {
@@ -591,7 +612,7 @@ public class MenuManager extends Observer {
 	 * Only update for set meal and alacarte
 	 * Cannot update sub menu item in set meal
 	 * Delete and create the set meal if you need to change the sub meal item
-	 * @throws IOException
+	 * @throws IOException to ensure the file is saved
 	 */
 	public void updateMenuItem() throws IOException {
 		String id = InputHandler.getString("Please type in the menu item id that you wish to update.");
@@ -624,7 +645,7 @@ public class MenuManager extends Observer {
 	 * Delete Menu Item
 	 * Only delete the alacarte / set meal menu item
 	 * Will not search though the sub meal menu item
-	 * @throws IOException
+	 * @throws IOException to ensure the file is saved
 	 */
 	public void deleteMenuItem() throws IOException {
 		// Ask delete menu item
@@ -648,7 +669,8 @@ public class MenuManager extends Observer {
 	 * Delete Menu Item
 	 * Only delete the alacarte / set meal menu item
 	 * Will not search though the sub meal menu item
-	 * @throws IOException
+	 * @param id menu item id
+	 * @throws IOException to ensure the file is saved
 	 */
 	public void teardown(String id) throws IOException {
 		int res_find=findById(id);
@@ -681,6 +703,7 @@ public class MenuManager extends Observer {
 	 * Helper class to format 1 to 1st
 	 * Input integer number
 	 * Usage::  ordinal(1) => 1st
+	 * @return a string
 	 */
 	public static String ordinal(int i) {
 		String[] suffixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
@@ -757,7 +780,7 @@ public class MenuManager extends Observer {
 	/**
 	 * Find by id overloading method requested by Gotwin
 	 * Follow DRY
-	 * @param id
+	 * @param id menu item id
 	 * @return MenuItem
 	 */
 	public MenuItem findByIdForMenuItem(String id){
@@ -767,7 +790,7 @@ public class MenuManager extends Observer {
 	/**
 	 * Find by id overloading method requested by Gotwin
 	 * Follow DRY
-	 * @param name
+	 * @param name menu item name
 	 * @return MenuItem
 	 */
 	public MenuItem findByNameForMenuItem(String name) {
@@ -777,7 +800,7 @@ public class MenuManager extends Observer {
 	/**
 	 * Find by id substring
 	 * Follow DRY
-	 * @param id
+	 * @param id substring of the menu item id
 	 * @return MenuItem
 	 */
 	public MenuItem findBySubstringIdForMenuItem(String id){
