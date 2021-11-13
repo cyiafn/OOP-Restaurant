@@ -14,21 +14,15 @@ import java.util.*;
 public class MenuCategory {
     /**
      * The description for menu category
-     * @HasGetter
-     * @HasSetter
      */
     private String description;
     /**
      * Enum type of food category in menu category entity class
-     * @HasGetter
-     * @HasSetter
      */
     private FoodCategory category;
     /**
      * Array List of menu Item in menu category entity class
      * A menu category can hold many menu items
-     * @HasGetter
-     * @HasSetter
      */
     private ArrayList<MenuItem> menuItem;
 
@@ -165,6 +159,9 @@ public class MenuCategory {
         this.menuItem = menuItem;
     }
 
+    /**
+     * @return
+     */
     public String getDescription() {
         return description;
     }

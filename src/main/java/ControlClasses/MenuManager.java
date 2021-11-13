@@ -516,7 +516,7 @@ public class MenuManager extends Observer {
 	 * Follow DRY format
 	 * Reuse in creation / Update/ Delete menu item function
 	 * @param m, is a menu
-	 * @throws IOException, this function write to json text file
+	 * @throws IOException
 	 */
 	private void confirmation(Menu m) throws IOException {
 		System.out.println("Please confirm that you want to save/delete/update this food item into your menu.");

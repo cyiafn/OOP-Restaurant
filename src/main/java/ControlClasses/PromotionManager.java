@@ -38,7 +38,7 @@ public class PromotionManager{
 
 	/**
 	 * For observer pattern design to keep track of subjects
-	 * @param promotionList
+	 *
 	 */
 	List<Map<String , Double>> promotionList = new ArrayList<>();
 

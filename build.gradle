@@ -8,6 +8,36 @@ repositories {
     mavenCentral()
 }
 
+task printSourceSetInformation(){
+    doLast{
+        sourceSets.each { srcSet ->
+            println "["+srcSet.name+"]"
+            print "-->Source directories: "+srcSet.allJava.srcDirs+"\n"
+            print "-->Output directories: "+srcSet.output.classesDirs.files+"\n"
+            println ""
+        }
+    }
+}
+
+sourceSets{
+    javadocs {
+        // Compiled Java classes should use this directory
+        java.destinationDirectory.set(file('src/html'))
+    }
+}
+
+javadoc {
+    options.header("MICHELIN WESTERN RESTAURANT");
+    options.windowTitle = "Build by Daniel, Gotwin, Yew Han, Yi Fan, Ryan"
+    options.verbose();
+    options.destinationDirectory(file("html"))
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    options.linkSource false
+    options.author = true
+    options.version = true
+
+}
+
 dependencies {
     implementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     implementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
