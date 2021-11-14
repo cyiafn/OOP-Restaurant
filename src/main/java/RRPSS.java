@@ -21,7 +21,7 @@ public class RRPSS {
      * Main ochestrating class.
      * @param args default
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //init your managers + other inits here
         Scanner sc = new Scanner(System.in);
         //main orchestrating loop

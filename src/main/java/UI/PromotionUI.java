@@ -19,7 +19,7 @@ import java.util.*;
 
 public class PromotionUI implements UI {
     private static PromotionUI instance = null;
-    public static PromotionUI getInstance() throws IOException {
+    public static PromotionUI getInstance() {
         if (instance == null) {
             instance = new PromotionUI();
         }

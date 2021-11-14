@@ -225,6 +225,7 @@ public class ReservationManager {
 
 	/**
 	 * function to close a reservation when someone is done with food.
+	 * @param reservationId reservation unique identifier for closing reservation
 	 * @return successful close or not
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception
@@ -237,6 +238,7 @@ public class ReservationManager {
 	 * Function to update status of reservation.
 	 * @param stat the enum of the status
 	 * @param validState valid previous state
+	 * @param reservationId id of the reservation to update
 	 * @return "" for failure and id for success.
 	 * @throws IOException IO file read exception
 	 * @throws CsvException CSV file read exception

@@ -49,6 +49,7 @@ public final class Database{
      *
      * @param csvName "Reservation.csv" or wtv
      * @param line
+     * @throws IOException if cant access file
      * line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type
      */
     public static void writeLine(String csvName, String[] line) throws IOException {
