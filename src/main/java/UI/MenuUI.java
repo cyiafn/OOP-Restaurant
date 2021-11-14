@@ -13,7 +13,7 @@ import java.util.logging.Handler;
  * MenuUI is a boundary class
  * Which responsible to display options for Menu Management and use Menu Manager to access the menu item
  *
- * @author Daniel Chu Jia Hao
+ * @author CHU JIA HAO
  * @version 1.0
  * @since 2021-11-07
  */

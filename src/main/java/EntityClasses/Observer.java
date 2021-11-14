@@ -1,7 +1,7 @@
 package EntityClasses;
 /**
  * Observer implementation
- @author Daniel Chu Jia Hao
+ @author CHU JIA HAO
  @version 1.1
  @since 2021-11-13
  */

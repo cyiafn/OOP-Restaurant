@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * MenuManager is a controller
  * Which handle the lifecycle of the Menu Entity
  * You can access the function here to retrieve menu item or update the menu item
- * @author Daniel Chu Jia Hao
+ * @author CHU JIA HAO
  * @version 1.0
  * @since 2021-11-07
  */

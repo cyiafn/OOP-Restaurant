@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * Menu entity class
  * Only have one menu exists at any point in time
- * @author Daniel Chu Jia Hao
+ * @author CHU JIA HAO
  * @version 1.0
  * @since 2021-11-07
  */

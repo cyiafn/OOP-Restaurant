@@ -2,7 +2,7 @@ package EntityClasses;
 
 /**
  * MenuItem entity class
- * @author Daniel Chu Jia Hao
+ * @author CHU JIA HAO
  * @version 1.0
  * @since 2021-11-07
  */
