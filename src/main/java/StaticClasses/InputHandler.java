@@ -163,8 +163,6 @@ public class InputHandler {
 		do {
 			System.out.println(promptMessage);
 			date = sc.nextLine();
-			//sc.nextLine();
-			//String dateFormat = "dd/MM/yyyy";
 			DateFormat inputFormatter = new SimpleDateFormat("MM/yyyy");
 			DateFormat outputFormatter = new SimpleDateFormat("yyyyMM");
 			//parse date strictly
@@ -190,19 +188,20 @@ public class InputHandler {
 		do {
 			System.out.println(promptMessage);
 			date = sc.nextLine();
-			//sc.nextLine();
-			//String dateFormat = "dd/MM/yyyy";
-			DateFormat inputFormatter = new SimpleDateFormat("yyyy");
-			DateFormat outputFormatter = new SimpleDateFormat("yyyy");
-			//parse date strictly
-			try {
-				Date date1 =inputFormatter.parse(date);
-				String dateOutput = outputFormatter.format(date1);
-				return dateOutput;
-			} catch (ParseException e) {
-				System.out.println("Invalid date input");
-				continue;
+			if(date.length()<=4) {
+				DateFormat inputFormatter = new SimpleDateFormat("yyyy");
+				DateFormat outputFormatter = new SimpleDateFormat("yyyy");
+				//parse date strictly
+				try {
+					Date date1 = inputFormatter.parse(date);
+					String dateOutput = outputFormatter.format(date1);
+					return dateOutput;
+				} catch (ParseException e) {
+					System.out.println("Invalid date input");
+					continue;
+				}
 			}
+			else System.out.println("Invalid date input");
 		}while (true);
 	}
 

@@ -52,7 +52,6 @@ public class OrderManager_test {
     /**
      * Teardown function for order manager
      * Will delete the file
-     * @throws IOException to ensure the file is delete
      */
     @AfterAll
     static void teardown() {

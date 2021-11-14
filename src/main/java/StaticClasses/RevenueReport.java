@@ -1,32 +1,64 @@
+package StaticClasses;
+
+import EntityClasses.Alacarte;
+import EntityClasses.Invoice;
+import EntityClasses.MenuItem;
+import EntityClasses.SetMeal;
+import Enumerations.PrintColor;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 /**
- RevenueReport Class
+ Revenue Report Class
  @author Ong Yew Han
  @version 1.3
  @since 2021-11-08
  */
-package StaticClasses;
 
-import ControlClasses.PaymentManager;
-import EntityClasses.*;
-import Enumerations.PrintColor;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
+/**
+ * Revenue report class
+ */
 public class RevenueReport {
-
+        /**
+         * total of SubTotal from list of invoice
+         */
         private static double totalSubTotal;
+        /**
+         * total of subtotal after discount from list of invoice
+         */
         private static double totalSubTotalAD = 0;
+        /**
+         * total of service charge received from list of invoice
+         */
         private static double totalSvcChargeAmt = 0;
+        /**
+         * total gst amount received from list of invoice
+         */
         private static double totalGstAmt;
+        /**
+         * total member discount given from list of invoice
+         */
         private static double totalMemberDiscAmt = 0;
+        /**
+         * total revenue received from list of invoice
+         */
         private static double totalRevenue;
+        /**
+         * date of report to be generated
+         */
         private static String reportDate;
+        /**
+         * list of invoices to be computed for revenue report
+         */
         static ArrayList<Invoice> revenueList = new ArrayList<Invoice>();
-        static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+        /**
+         * Generating of revenue report list based on day
+         * @param date date to search in invoice
+         * @param invoiceList list of invoice loaded from DB
+         */
         public static void generateReportByDay(String date, ArrayList<Invoice> invoiceList) {
                 reportDate = date.substring(0,4) + '/' + date.substring(4,6) + '/' + date.substring(6);
                 ArrayList<Invoice> list = new ArrayList<Invoice>();
@@ -42,6 +74,11 @@ public class RevenueReport {
                         System.out.println("No records of Selected Day");
         }
 
+        /**
+         * Generating of revenue report list based on Month
+         * @param date month to search in invoice
+         * @param invoiceList list of invoice loaded from DB
+         */
         public static void generateReportByMonth(String date, ArrayList<Invoice> invoiceList) {
                 reportDate = date.substring(0,4) + '/' + date.substring(4,6);
                 ArrayList<Invoice> list = new ArrayList<Invoice>();
@@ -57,6 +94,11 @@ public class RevenueReport {
                         System.out.println("No records of Selected Month");
         }
 
+        /**
+         * Generating of revenue report list based on Year
+         * @param date year to search for in invoice
+         * @param invoiceList list of invoice loaded from DB
+         */
         public static void generateReportByYear(String date, ArrayList<Invoice> invoiceList) {
                 reportDate = date.substring(0,4);
                 ArrayList<Invoice> list = new ArrayList<Invoice>();
@@ -72,6 +114,10 @@ public class RevenueReport {
                         System.out.println("No records of Selected Year");
         }
 
+        /**
+         * Helper class to generate report based on the revenue list created
+         * @param list list of invoices to be computed based on day, month or year
+         */
         private static void generateReport(ArrayList<Invoice> list) {
                 revenueList = list;
                 HashMap<String, String> itemList = new HashMap<String, String >();
@@ -143,6 +189,15 @@ public class RevenueReport {
                 clearData();
         }
 
+        /**
+         * Display Revenue Report based on computed calculations
+         * @param itemList list of alacarte items
+         * @param qtyList list of each alacarte item accumulated quantity
+         * @param priceList list of total price accumulated for each alacarte item
+         * @param itemList2 list of set meal items
+         * @param qtyList2  list of each set meal item accumulated quantity
+         * @param priceList2 list of total price accumulated for each set meal item
+         */
         private static void displayResult(HashMap<String, String> itemList, HashMap<String, Integer> qtyList, HashMap<String, Double> priceList,
                                           HashMap<String, String> itemList2, HashMap<String, Integer> qtyList2, HashMap<String, Double> priceList2){
                 System.out.println(PrintColor.YELLOW_BOLD);
@@ -172,15 +227,6 @@ public class RevenueReport {
                         //System.out.println(itemID +"    \t" + itemName +"    \t" + qty+"    \t" + revenuePerItem);
                         System.out.printf("%s    %-10s   %-45s   %-10s  %-6.2f\n",itemID, foodType, itemName, qty, revenuePerItem);
                 }
-                //                for(Map.Entry<String, String> entry: itemList.entrySet()){
-//                        String itemID = entry.getValue();
-//                        String itemName = entry.getKey();
-//                        int qty = qtyList.get(itemName);
-//                        double price = priceList.get(itemName);
-//                        double revenuePerItem = price * qty;
-//                        //System.out.println(itemID +"    \t" + itemName +"    \t" + qty+"    \t" + revenuePerItem);
-//                        System.out.printf("%s        %-30s   %-5s %-6.2f\n",itemID, itemName, qty, revenuePerItem);
-//                }
 
                 System.out.printf("-------------------------------------------------------------------------------------------------------------------------------\n");
                 System.out.printf("Total Subtotal Revenue: %.2f\n", totalSubTotal);
@@ -191,6 +237,10 @@ public class RevenueReport {
                 System.out.printf("Total Revenue: %.2f\n", totalRevenue);
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------\n");
         }
+
+        /**
+         * Helper function to clear all data after the revenue report is generated
+         */
         private static void clearData(){
                 totalSubTotal = 0;
                 totalSubTotalAD = 0;

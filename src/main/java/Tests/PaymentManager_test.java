@@ -31,28 +31,63 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PaymentManager_test {
-
+    /**
+     * input stream for payment manager test case
+     */
     private static final InputStream systemIn = System.in;
+    /**
+     * print stream for test case
+     */
     private static final PrintStream systemOut = System.out;
+    /**
+     * InputHandler
+     */
     private static InputHandler inputHandler;
-    private static final LocalDateTime now = LocalDateTime.now();
+    /**
+     * ByteArray input stream
+     */
     private ByteArrayInputStream testIn;
-
+    /**
+     * reservation id to be used in test
+     */
     private String rTestId = "9999";
+    /**
+     * order id to be used in test
+     */
     private String oTestId = "999";
+    /**
+     * invoice id to be used in test
+     */
     private String iTestId = "1990101399";
+    /**
+     * invoice id to be used for deletion after tests
+     */
     private static String primaryKey;
-
+    /**
+     * reservation test data
+     */
     String[] rTestData = {rTestId, "2021-12-13 06:00", "10", "testName","1234", "10", "ACTIVE"};
+    /**
+     * order test data
+     */
     String[] oTestData = { oTestId,"9999", "2021-12-13 06:00","Confirmed", "testStaffName","578007eb-9c86-4b72-a197-61a76eed463c","Pizza","78.92","3","false","alacarte"};
+    /**
+     * invoice test data
+     */
     String[] iTestData = { "1990101399","999","9999", "2021-10-13 06:00","10", "testStaffName","0","0","0","0","0","0","578007eb-9c86-4b72-a197-61a76eed463c","Pizza","78.92","3","false","alacarte"};
 
+    /**
+     * init function for payment manager test cases
+     */
     @BeforeAll
     static void Init(){
         inputHandler = new InputHandler();
         PaymentManager.getInstance();
     }
 
+    /**
+     * teardown function for deletion of test data from db after deletion
+     */
     @AfterAll
     static void teardown(){
         try {
@@ -62,9 +97,7 @@ public class PaymentManager_test {
             for (int i = 0; i < 22; i ++){
                 if (i != 19){
                     Database.removeLine("Reservation.csv", "9999");
-//                    Database.removeLine("order.csv", "99" );
                     Calendar c = Calendar.getInstance();
-
                     Database.removeLine("Invoice.csv", primaryKey);
                     Database.removeLine("Invoice.csv", "1990101399");
                 }
@@ -76,17 +109,20 @@ public class PaymentManager_test {
 
     }
 
-    private String formatDtToStr(LocalDateTime dt){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return dt.format(formatter);
-    }
-
+    /**
+     * Provide input for test cased
+     * @param data test data
+     * @throws IOException in event reading of data fails
+     */
     private void provideInput(String data) throws IOException{
         testIn = new ByteArrayInputStream(data.getBytes());
         inputHandler.sc = new Scanner(testIn);
         System.setIn(testIn);
     }
 
+    /**
+     * Display and printing of invoice success
+     */
     @Order(1)
     @Test
     void printPayment_success(){
@@ -126,7 +162,9 @@ public class PaymentManager_test {
         }
     }
 
-
+    /**
+     * Display and printing of invoice failure
+     */
     @Order(2)
     @Test
     void printPayment_failure(){
@@ -149,10 +187,11 @@ public class PaymentManager_test {
             flag = true;
         }
         assert(flag);
-//        System.setOut(systemOut);
-//        assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "CreateInvoiceby(0)OrderID(1)BackEnterOrderID0Order(s)Loaded.Orderdoesnotexist!");
     }
 
+    /**
+     * Viewing of existing invoice success
+     */
     @Order(3)
     @Test
     void viewInvoice_success(){
@@ -172,6 +211,9 @@ public class PaymentManager_test {
         assertNotEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "EntertheInvoiceyouwouldliketoviewInvoicenotFound");
     }
 
+    /**
+     * viewing of non-existing invoice failure
+     */
     @Order(4)
     @Test
     void viewInvoice_failure(){
@@ -190,6 +232,9 @@ public class PaymentManager_test {
         assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", "").replace(" ", ""), "EntertheInvoiceyouwouldliketoviewInvoicenotFound");
     }
 
+    /**
+     * generating of revenue report based day success
+     */
     @Order(5)
     @Test
     void revenueReportDay_success(){
@@ -210,6 +255,9 @@ public class PaymentManager_test {
         assertNotEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", ""), "Enter the Period(1)By day\t(2)By Month\t(3)By Year\t(0)BackEnter the Date in 'dd/MM/yyyy' formatNo records of Selected Day");
     }
 
+    /**
+     * generating of revenue report based on day failure
+     */
     @Order(6)
     @Test
     void revenueReportDay_failure(){
@@ -229,6 +277,9 @@ public class PaymentManager_test {
         assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", ""), "Enter the Period(1)By day\t(2)By Month\t(3)By Year\t(0)BackEnter the Date in 'dd/MM/yyyy' formatNo records of Selected Day");
     }
 
+    /**
+     * generating of revenue report based on month success
+     */
     @Order(7)
     @Test
     void revenueReportMonth_success(){
@@ -248,6 +299,9 @@ public class PaymentManager_test {
         assertNotEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", ""), "Enter the Period(1)By day\t(2)By Month\t(3)By Year\t(0)BackEnter the Month in 'MM/yyyy' formatNo records of Selected Month");
     }
 
+    /**
+     * generating of revenue report based on month failure
+     */
     @Order(8)
     @Test
     void revenueReportMonth_failure(){
@@ -268,6 +322,9 @@ public class PaymentManager_test {
         assertEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", ""), "Enter the Period(1)By day\t(2)By Month\t(3)By Year\t(0)BackEnter the Month in 'MM/yyyy' formatNo records of Selected Month");
     }
 
+    /**
+     * generating of revenue report by year
+     */
     @Order(9)
     @Test
     void revenueReportYear_success(){
@@ -287,6 +344,9 @@ public class PaymentManager_test {
         assertNotEquals(myOut.toString().replaceAll("\u001B\\[[;\\d]*m", "").replace("\n", ""), "Enter the Period(1)By day\t(2)By Month\t(3)By Year\t(0)BackEnter the Year in 'yyyy' formatNo records of Selected Year");
     }
 
+    /**
+     * generating of revenue report based on year failure
+     */
     @Order(10)
     @Test
     void revenueReportYear_failure(){

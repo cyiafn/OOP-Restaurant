@@ -25,19 +25,15 @@ public class PaymentUI implements UI {
      * Stores the Singleton instance of the PaymentUI
      */
     public static PaymentUI instance = null;
-    int c;
-    Scanner sc = new Scanner(System.in);
 
     /**
      * Static method to create a new PaymentUI if there isn't already one, else return
-     * @return a Singleton PaymentUI
+     * @return instance of Singleton PaymentUI
      */
     public static PaymentUI getInstance(){
         if(instance == null) instance = new PaymentUI();
         return instance;
     }
-
-    public static boolean isNumeric(String str){return false;}
 
     /**
      * Helper function to display the UI if the View Invoice option is selected by User
@@ -46,9 +42,6 @@ public class PaymentUI implements UI {
     public void generateInvoice() {
         Scanner sc = new Scanner(System.in);
             int choice = -1;
-//                    System.out.println("Create invoice by\n(0 -> Order ID)");
-//                    System.out.println("(1 -> Back)");
-//                    //System.out.println("Create invoice by (1 -> Table No.)");
                     choice = InputHandler.getInt(0,1,"Create Invoice by\n(0) OrderID (1) Back\n","Please enter an integer from 0-1");
             switch (choice){
                 case 0:
@@ -79,6 +72,7 @@ public class PaymentUI implements UI {
         else
             System.out.println("Invoice not Found");
     }
+
     /**
      * Helper function to display the UI if the Revenue Report option is selected by User
      * in displayOptions. The inputs will be validated here before parsing to PaymentManger
@@ -91,15 +85,11 @@ public class PaymentUI implements UI {
         switch (c){
             case 1:
                 String date;
-//                    System.out.println("Enter the date in 'yyyyMMdd' format");
-//                    date = sc.nextInt();
                     date = InputHandler.stringDate2("Enter the Date in 'dd/MM/yyyy' format");
                     PaymentManager.getInstance().generateRevenueReport(date, c);
                 break;
             case 2:
                 String month;
-//                    System.out.println("Enter the date in 'yyyyMM' format");
-//                    month = sc.nextInt();
                     month = InputHandler.stringDate3("Enter the Month in 'MM/yyyy' format");
                     PaymentManager.getInstance().generateRevenueReport(month, c);
                 break;
@@ -107,18 +97,6 @@ public class PaymentUI implements UI {
                 int year;
                 date = InputHandler.stringDate4("Enter the Year in 'yyyy' format");
                 PaymentManager.getInstance().generateRevenueReport(date, c);
-//                do{
-//                    System.out.println("Enter the date in 'yyyy' format");
-//                    year = sc.nextInt();
-//                    if( String.valueOf(year).length()==4){
-//                        PaymentManager.getInstance().generateRevenueReport(String.valueOf(year), c);
-//                        break;
-//                    }
-//                    else{
-//                        if(year!=0)System.out.println("Invalid Year!");
-//                        else System.out.println("Exited");
-//                    }
-//                }while (year!=0);
                 break;
             default:
 

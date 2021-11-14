@@ -1,19 +1,14 @@
 package ControlClasses;
 
 import EntityClasses.*;
-import Enumerations.PrintColor;
 import Enumerations.TaxDiscount;
 import StaticClasses.Database;
 import StaticClasses.RevenueReport;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Formatter;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * PaymentManager is a controller
@@ -25,32 +20,58 @@ import java.util.Set;
  * @since 2021-11-09
  */
 public class PaymentManager {
+    /**
+     * gst tax rate in fraction
+     */
     private final double gst = TaxDiscount.GST;
+    /**
+     * service charge
+     */
     private final double serviceCharge = TaxDiscount.SERVICE_CHARGE;
+    /**
+     * member discount to be given based on TaxDiscount class
+     */
     private final double memberDiscount = TaxDiscount.MEMBER_DISCOUNT;
-
-
+    /**
+     * file where invoice will be saved and loaded
+     */
     private static final String invoiceFile = "Invoice.csv";
+    /**
+     * instance of payment manager
+     */
     private static PaymentManager instance = null;
+    /**
+     * list of invoices to be loaded
+     */
     ArrayList<Invoice> invoiceList = new ArrayList<Invoice>(); //List of Invoices
 
+    /**
+     * Constructor
+     */
     public PaymentManager(){
         ArrayList<Invoice> invoiceList = new ArrayList<Invoice>(); //List of Invoices
         init();
     }
 
+    /**
+     * Singleton Design where only an instance of PaymentManager is created
+     * @return instance
+     */
     public static PaymentManager getInstance(){
         if (instance == null)
             instance = new PaymentManager();
         return instance;
     }
 
+    /**
+     * Lazy load where Database is loaded only when the Payment Manager instance is called
+     */
     public void init(){
         loadFromDB();
     }
 
     /**
-     *
+     * Method to create invoice based on information from teh Order entity class
      * @param order
      * @param isMember
      */
@@ -75,7 +96,11 @@ public class PaymentManager {
         }
     }
 
-
+    /**
+     * Method that will retrieve the invoice in the database based on invoiceID
+     * @param invoiceID
+     * @return invoice
+     */
     public Invoice retrieveInvoice(String invoiceID) {
         try {
             loadFromDB();
@@ -90,6 +115,12 @@ public class PaymentManager {
         }
     }
 
+    /**
+     * This will call the methods in the static class revenue report
+     * switch case will select which static method to call accordingly
+     * @param date date input by user
+     * @param i choice selected by user
+     */
     public void generateRevenueReport(String date, int i){
         loadFromDB();
         switch (i) {
@@ -104,6 +135,11 @@ public class PaymentManager {
         }
     }
 
+    /**
+     * Method to retrieve the table number by calling the Reservation Manager
+     * @param invoice
+     * @return integer
+     */
     public int retrieveTableNo(Invoice invoice) {
         String reservationId = invoice.getOrders().getReservationID();
         int tableNo = 0;
@@ -116,6 +152,10 @@ public class PaymentManager {
         return tableNo;
     }
 
+    /**
+     * Method to compute the taxation amount and saving the variables into the invoice attributes using Getter and Setter
+     * @param invoice
+     */
     public void computeInvoice(Invoice invoice){
         double subTotal = 0;
         double memberDiscAmt = 0;
@@ -145,6 +185,11 @@ public class PaymentManager {
         invoice.setTotal(total);
     }
 
+    /**
+     * Method to display information based on information in the Invoice entity class.
+     * All relevant information is formatted to show a mock of a physical invoice for easy reading
+     * @param invoice
+     */
     public void displayPayment(Invoice invoice){
         Formatter fmt = new Formatter();
         String displayInvoiceId = invoice.getInvoiceId();
@@ -267,6 +312,10 @@ public class PaymentManager {
 //                System.out.println("====================================================================================================");
 //    }
 
+    /**
+     * Saves the invoices from the list of invoice to the database
+     * @param invoiceList
+     */
    public void saveToDB(ArrayList<Invoice> invoiceList){
        try {
            Database.savePayment(invoiceFile, invoiceList);
@@ -276,6 +325,9 @@ public class PaymentManager {
        }
    }
 
+    /**
+     * Loads the invoices from the database and save them into a list of invoices
+     */
     public void loadFromDB(){
         try {
             this.invoiceList = Database.readInvoice(invoiceFile);
