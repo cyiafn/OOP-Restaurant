@@ -702,7 +702,7 @@ public class MenuManager extends Observer {
 	/**
 	 * Helper class to format 1 to 1st
 	 * Input integer number
-	 * Usage::  ordinal(1) => 1st
+	 * Usage::  ordinal(1) become 1st
 	 * @param i a int
 	 * @return a string
 	 */
