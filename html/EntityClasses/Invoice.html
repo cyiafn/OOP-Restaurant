@@ -78,6 +78,15 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Invoice</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Invoice entity class</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2021-10-30</dd>
+<dt>Version:</dt>
+<dd>1.3</dd>
+<dt>Author:</dt>
+<dd>Ong Yew Han</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,7 +101,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Invoice.Membership.html" class="type-name-link" title="enum class in EntityClasses">Invoice.Membership</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Membership Enum for Invoice
+ IS_MEMBER
+ NOT_MEMBER</div>
+</div>
 </div>
 </section>
 </li>
@@ -107,46 +120,74 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#date" class="member-name-link">date</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">date of Invoice</div>
+</div>
 <div class="col-first odd-row-color"><code>private double</code></div>
 <div class="col-second odd-row-color"><code><a href="#gstAmt" class="member-name-link">gstAmt</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">gst amount of invoice</div>
+</div>
 <div class="col-first even-row-color"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/SimpleDateFormat.html" title="class or interface in java.text" class="external-link">SimpleDateFormat</a></code></div>
 <div class="col-second even-row-color"><code><a href="#Id" class="member-name-link">Id</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Date time formatter for creating Invoice ID</div>
+</div>
 <div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#invoiceId" class="member-name-link">invoiceId</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Invoice Id for invoice</div>
+</div>
 <div class="col-first even-row-color"><code>private double</code></div>
 <div class="col-second even-row-color"><code><a href="#memberDiscAmt" class="member-name-link">memberDiscAmt</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">member discount amount given</div>
+</div>
 <div class="col-first odd-row-color"><code>private <a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#memberStatus" class="member-name-link">memberStatus</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Membership Status of Invoice</div>
+</div>
 <div class="col-first even-row-color"><code>private final <a href="Order.html" title="class in EntityClasses">Order</a></code></div>
 <div class="col-second even-row-color"><code><a href="#orders" class="member-name-link">orders</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">order object from Order class</div>
+</div>
 <div class="col-first odd-row-color"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/SimpleDateFormat.html" title="class or interface in java.text" class="external-link">SimpleDateFormat</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#sdf" class="member-name-link">sdf</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Date time formatter for Date</div>
+</div>
 <div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#staffName" class="member-name-link">staffName</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">staff name on invoice</div>
+</div>
 <div class="col-first odd-row-color"><code>private double</code></div>
 <div class="col-second odd-row-color"><code><a href="#subTotal" class="member-name-link">subTotal</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">subtotal of invoice</div>
+</div>
 <div class="col-first even-row-color"><code>private double</code></div>
 <div class="col-second even-row-color"><code><a href="#subTotalAD" class="member-name-link">subTotalAD</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">subtotal after discount of invoice</div>
+</div>
 <div class="col-first odd-row-color"><code>private double</code></div>
 <div class="col-second odd-row-color"><code><a href="#svcChargeAmt" class="member-name-link">svcChargeAmt</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">service charge amount of invoice</div>
+</div>
 <div class="col-first even-row-color"><code>private int</code></div>
 <div class="col-second even-row-color"><code><a href="#tableNo" class="member-name-link">tableNo</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">table no.</div>
+</div>
 <div class="col-first odd-row-color"><code>private double</code></div>
 <div class="col-second odd-row-color"><code><a href="#total" class="member-name-link">total</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">total amount payable in invoice</div>
+</div>
 </div>
 </section>
 </li>
@@ -159,7 +200,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(EntityClasses.Order)" class="member-name-link">Invoice</a><wbr>(<a href="Order.html" title="class in EntityClasses">Order</a>&nbsp;orders)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for invoice</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,int,double,double,double,double,double,double,EntityClasses.Order)" class="member-name-link">Invoice</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;invoiceId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;date,
  int&nbsp;tableNo,
@@ -170,7 +213,9 @@ loadScripts(document, 'script');</script>
  double&nbsp;svcChargeAmt,
  double&nbsp;total,
  <a href="Order.html" title="class in EntityClasses">Order</a>&nbsp;orders)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Overloaded Constructor for invoice when reading params from database</div>
+</div>
 </div>
 </section>
 </li>
@@ -187,64 +232,104 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDate()" class="member-name-link">getDate</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">date getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGstAmt()" class="member-name-link">getGstAmt</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gst Amount getter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInvoiceId()" class="member-name-link">getInvoiceId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Invoice ID getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMemberDiscAmt()" class="member-name-link">getMemberDiscAmt</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Member discount amount getter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMemberStatus()" class="member-name-link">getMemberStatus</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Membership status getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Order.html" title="class in EntityClasses">Order</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOrders()" class="member-name-link">getOrders</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Order getter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubTotal()" class="member-name-link">getSubTotal</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sub total getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubTotalAD()" class="member-name-link">getSubTotalAD</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sub total after discount getter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSvcChargeAmt()" class="member-name-link">getSvcChargeAmt</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Service Charge Amount getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTableNo()" class="member-name-link">getTableNo</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">table number getter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTotal()" class="member-name-link">getTotal</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Total amount getter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGstAmt(double)" class="member-name-link">setGstAmt</a><wbr>(double&nbsp;gstAmt)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gst Amount setter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInvoiceId(java.lang.String)" class="member-name-link">setInvoiceId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;invoiceId)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Invoice ID setter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMemberDiscAmt(double)" class="member-name-link">setMemberDiscAmt</a><wbr>(double&nbsp;memberDiscAmt)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Member discount amount setter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMemberStatus(EntityClasses.Invoice.Membership)" class="member-name-link">setMemberStatus</a><wbr>(<a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a>&nbsp;m)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Membership status setter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSubTotal(double)" class="member-name-link">setSubTotal</a><wbr>(double&nbsp;subTotal)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sub total setter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSubtotalAD(double)" class="member-name-link">setSubtotalAD</a><wbr>(double&nbsp;subTotalAD)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sub total after discount setter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSvcChargeAmt(double)" class="member-name-link">setSvcChargeAmt</a><wbr>(double&nbsp;svcChargeAmt)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Service Charge Amount setter</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTableNo(int)" class="member-name-link">setTableNo</a><wbr>(int&nbsp;tableNo)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">table number setter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTotal(double)" class="member-name-link">setTotal</a><wbr>(double&nbsp;total)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Total amount setter</div>
+</div>
 </div>
 </div>
 </div>
@@ -266,84 +351,98 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="invoiceId">
 <h3>invoiceId</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">invoiceId</span></div>
+<div class="block">Invoice Id for invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="tableNo">
 <h3>tableNo</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">tableNo</span></div>
+<div class="block">table no. of invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="subTotal">
 <h3>subTotal</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">subTotal</span></div>
+<div class="block">subtotal of invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="subTotalAD">
 <h3>subTotalAD</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">subTotalAD</span></div>
+<div class="block">subtotal after discount of invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="svcChargeAmt">
 <h3>svcChargeAmt</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">svcChargeAmt</span></div>
+<div class="block">service charge amount of invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="gstAmt">
 <h3>gstAmt</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">gstAmt</span></div>
+<div class="block">gst amount of invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="memberDiscAmt">
 <h3>memberDiscAmt</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">memberDiscAmt</span></div>
+<div class="block">member discount amount given</div>
 </section>
 </li>
 <li>
 <section class="detail" id="total">
 <h3>total</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">total</span></div>
+<div class="block">total amount payable in invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="orders">
 <h3>orders</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="Order.html" title="class in EntityClasses">Order</a></span>&nbsp;<span class="element-name">orders</span></div>
+<div class="block">order object from Order class</div>
 </section>
 </li>
 <li>
 <section class="detail" id="memberStatus">
 <h3>memberStatus</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a></span>&nbsp;<span class="element-name">memberStatus</span></div>
+<div class="block">Membership Status of Invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="date">
 <h3>date</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">date</span></div>
+<div class="block">date of Invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="staffName">
 <h3>staffName</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">staffName</span></div>
+<div class="block">staff name on invoice</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sdf">
 <h3>sdf</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/SimpleDateFormat.html" title="class or interface in java.text" class="external-link">SimpleDateFormat</a></span>&nbsp;<span class="element-name">sdf</span></div>
+<div class="block">Date time formatter for Date</div>
 </section>
 </li>
 <li>
 <section class="detail" id="Id">
 <h3>Id</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/SimpleDateFormat.html" title="class or interface in java.text" class="external-link">SimpleDateFormat</a></span>&nbsp;<span class="element-name">Id</span></div>
+<div class="block">Date time formatter for creating Invoice ID</div>
 </section>
 </li>
 </ul>
@@ -358,6 +457,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(EntityClasses.Order)">
 <h3>Invoice</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Invoice</span><wbr><span class="parameters">(<a href="Order.html" title="class in EntityClasses">Order</a>&nbsp;orders)</span></div>
+<div class="block">Constructor for invoice</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orders</code> - from Order class</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -373,6 +477,20 @@ loadScripts(document, 'script');</script>
  double&nbsp;svcChargeAmt,
  double&nbsp;total,
  <a href="Order.html" title="class in EntityClasses">Order</a>&nbsp;orders)</span></div>
+<div class="block">Overloaded Constructor for invoice when reading params from database</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoiceId</code> - from DB</dd>
+<dd><code>date</code> - from DB</dd>
+<dd><code>tableNo</code> - from DB</dd>
+<dd><code>subTotal</code> - from DB</dd>
+<dd><code>memberDiscAmt</code> - from DB</dd>
+<dd><code>subTotalAD</code> - from DB</dd>
+<dd><code>gstAmt</code> - from DB</dd>
+<dd><code>svcChargeAmt</code> - from DB</dd>
+<dd><code>total</code> - from DB</dd>
+<dd><code>orders</code> - from DB</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -387,120 +505,220 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getInvoiceId()">
 <h3>getInvoiceId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getInvoiceId</span>()</div>
+<div class="block">Invoice ID getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>invoiceId</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setInvoiceId(java.lang.String)">
 <h3>setInvoiceId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setInvoiceId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;invoiceId)</span></div>
+<div class="block">Invoice ID setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoiceId</code> - invoice ID to be set</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDate()">
 <h3>getDate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getDate</span>()</div>
+<div class="block">date getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>date</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTableNo()">
 <h3>getTableNo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTableNo</span>()</div>
+<div class="block">table number getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>tableNo</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setTableNo(int)">
 <h3>setTableNo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTableNo</span><wbr><span class="parameters">(int&nbsp;tableNo)</span></div>
+<div class="block">table number setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tableNo</code> - table number to be set</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOrders()">
 <h3>getOrders</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Order.html" title="class in EntityClasses">Order</a></span>&nbsp;<span class="element-name">getOrders</span>()</div>
+<div class="block">Order getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>orders</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSubTotal()">
 <h3>getSubTotal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSubTotal</span>()</div>
+<div class="block">Sub total getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>subTotal</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setSubTotal(double)">
 <h3>setSubTotal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSubTotal</span><wbr><span class="parameters">(double&nbsp;subTotal)</span></div>
+<div class="block">Sub total setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>subTotal</code> - Sub total to be set</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSubTotalAD()">
 <h3>getSubTotalAD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSubTotalAD</span>()</div>
+<div class="block">Sub total after discount getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>subTotalAD</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setSubtotalAD(double)">
 <h3>setSubtotalAD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSubtotalAD</span><wbr><span class="parameters">(double&nbsp;subTotalAD)</span></div>
+<div class="block">Sub total after discount setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>subTotalAD</code> - Sub total after discount</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSvcChargeAmt()">
 <h3>getSvcChargeAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSvcChargeAmt</span>()</div>
+<div class="block">Service Charge Amount getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>svcChargeAmt</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setSvcChargeAmt(double)">
 <h3>setSvcChargeAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSvcChargeAmt</span><wbr><span class="parameters">(double&nbsp;svcChargeAmt)</span></div>
+<div class="block">Service Charge Amount setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>svcChargeAmt</code> - cumulated service charge amount</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getGstAmt()">
 <h3>getGstAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getGstAmt</span>()</div>
+<div class="block">Gst Amount getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>gstAmt</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setGstAmt(double)">
 <h3>setGstAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setGstAmt</span><wbr><span class="parameters">(double&nbsp;gstAmt)</span></div>
+<div class="block">Gst Amount setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>gstAmt</code> - cumulated gst amount</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMemberDiscAmt()">
 <h3>getMemberDiscAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMemberDiscAmt</span>()</div>
+<div class="block">Member discount amount getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>memeberDiscAmt</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setMemberDiscAmt(double)">
 <h3>setMemberDiscAmt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMemberDiscAmt</span><wbr><span class="parameters">(double&nbsp;memberDiscAmt)</span></div>
+<div class="block">Member discount amount setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>memberDiscAmt</code> - Member discount amt to be given</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTotal()">
 <h3>getTotal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTotal</span>()</div>
+<div class="block">Total amount getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>total</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setTotal(double)">
 <h3>setTotal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTotal</span><wbr><span class="parameters">(double&nbsp;total)</span></div>
+<div class="block">Total amount setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>total</code> - total amount</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMemberStatus()">
 <h3>getMemberStatus</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a></span>&nbsp;<span class="element-name">getMemberStatus</span>()</div>
+<div class="block">Membership status getter</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>memberStatus</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setMemberStatus(EntityClasses.Invoice.Membership)">
 <h3>setMemberStatus</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMemberStatus</span><wbr><span class="parameters">(<a href="Invoice.Membership.html" title="enum class in EntityClasses">Invoice.Membership</a>&nbsp;m)</span></div>
+<div class="block">Membership status setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>m</code> - membership status based on Membership</dd>
+</dl>
 </section>
 </li>
 </ul>

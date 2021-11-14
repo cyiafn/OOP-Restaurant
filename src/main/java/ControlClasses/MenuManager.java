@@ -703,6 +703,7 @@ public class MenuManager extends Observer {
 	 * Helper class to format 1 to 1st
 	 * Input integer number
 	 * Usage::  ordinal(1) => 1st
+	 * @param i a int
 	 * @return a string
 	 */
 	public static String ordinal(int i) {

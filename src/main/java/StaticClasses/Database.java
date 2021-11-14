@@ -236,6 +236,7 @@ public final class Database{
      *  Usage:: Database.readFromJsonFile("csv/menu.json")
      *
      * @param filepath  the path where json file located at.
+     * @return a Map of Object
      * @throws IOException to ensure the file is save
      */
     public static Map LoadFromJsonFile(String filepath) throws IOException {

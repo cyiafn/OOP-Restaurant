@@ -104,22 +104,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private final double</code></div>
 <div class="col-second even-row-color"><code><a href="#gst" class="member-name-link">gst</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">gst tax rate in fraction</div>
+</div>
 <div class="col-first odd-row-color"><code>private static <a href="PaymentManager.html" title="class in ControlClasses">PaymentManager</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#instance" class="member-name-link">instance</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">instance of payment manager</div>
+</div>
 <div class="col-first even-row-color"><code>private static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#invoiceFile" class="member-name-link">invoiceFile</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">file where invoice will be saved and loaded</div>
+</div>
 <div class="col-first odd-row-color"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#invoiceList" class="member-name-link">invoiceList</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">list of invoices to be loaded</div>
+</div>
 <div class="col-first even-row-color"><code>private final double</code></div>
 <div class="col-second even-row-color"><code><a href="#memberDiscount" class="member-name-link">memberDiscount</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">member discount to be given based on TaxDiscount class</div>
+</div>
 <div class="col-first odd-row-color"><code>private final double</code></div>
 <div class="col-second odd-row-color"><code><a href="#serviceCharge" class="member-name-link">serviceCharge</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">service charge</div>
+</div>
 </div>
 </section>
 </li>
@@ -132,7 +144,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">PaymentManager</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructor</div>
+</div>
 </div>
 </section>
 </li>
@@ -149,36 +163,57 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#computeInvoice(EntityClasses.Invoice)" class="member-name-link">computeInvoice</a><wbr>(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method to compute the taxation amount and saving the variables into the invoice attributes using Getter and Setter</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createInvoice(EntityClasses.Order,int)" class="member-name-link">createInvoice</a><wbr>(<a href="../EntityClasses/Order.html" title="class in EntityClasses">Order</a>&nbsp;order,
  int&nbsp;isMember)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method to create invoice based on information from teh Order entity class</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#displayPayment(EntityClasses.Invoice)" class="member-name-link">displayPayment</a><wbr>(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method to display information based on information in the Invoice entity class.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateRevenueReport(java.lang.String,int)" class="member-name-link">generateRevenueReport</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;date,
  int&nbsp;i)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This will call the methods in the static class revenue report
+ switch case will select which static method to call accordingly</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="PaymentManager.html" title="class in ControlClasses">PaymentManager</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getInstance()" class="member-name-link">getInstance</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Singleton Design where only an instance of PaymentManager is created</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#init()" class="member-name-link">init</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Lazy load where Database is loaded only when the Payment Manager instance is called</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadFromDB()" class="member-name-link">loadFromDB</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Loads the invoices from the database and save them into a list of invoices</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#retrieveInvoice(java.lang.String)" class="member-name-link">retrieveInvoice</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;invoiceID)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method that will retrieve the invoice in the database based on invoiceID</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#retrieveTableNo(EntityClasses.Invoice)" class="member-name-link">retrieveTableNo</a><wbr>(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method to retrieve the table number by calling the Reservation Manager</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveToDB(java.util.ArrayList)" class="member-name-link">saveToDB</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&gt;&nbsp;invoiceList)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Saves the invoices from the list of invoice to the database</div>
+</div>
 </div>
 </div>
 </div>
@@ -200,6 +235,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="gst">
 <h3>gst</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">gst</span></div>
+<div class="block">gst tax rate in fraction</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -214,6 +250,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="serviceCharge">
 <h3>serviceCharge</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">serviceCharge</span></div>
+<div class="block">service charge</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -228,6 +265,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="memberDiscount">
 <h3>memberDiscount</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">memberDiscount</span></div>
+<div class="block">member discount to be given based on TaxDiscount class</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -242,6 +280,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="invoiceFile">
 <h3>invoiceFile</h3>
 <div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">invoiceFile</span></div>
+<div class="block">file where invoice will be saved and loaded</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -256,12 +295,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="instance">
 <h3>instance</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="PaymentManager.html" title="class in ControlClasses">PaymentManager</a></span>&nbsp;<span class="element-name">instance</span></div>
+<div class="block">instance of payment manager</div>
 </section>
 </li>
 <li>
 <section class="detail" id="invoiceList">
 <h3>invoiceList</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&gt;</span>&nbsp;<span class="element-name">invoiceList</span></div>
+<div class="block">list of invoices to be loaded</div>
 </section>
 </li>
 </ul>
@@ -276,6 +317,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>PaymentManager</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PaymentManager</span>()</div>
+<div class="block">Constructor</div>
 </section>
 </li>
 </ul>
@@ -290,12 +332,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getInstance()">
 <h3>getInstance</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="PaymentManager.html" title="class in ControlClasses">PaymentManager</a></span>&nbsp;<span class="element-name">getInstance</span>()</div>
+<div class="block">Singleton Design where only an instance of PaymentManager is created</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>instance</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="init()">
 <h3>init</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">init</span>()</div>
+<div class="block">Lazy load where Database is loaded only when the Payment Manager instance is called</div>
 </section>
 </li>
 <li>
@@ -303,6 +351,7 @@ loadScripts(document, 'script');</script>
 <h3>createInvoice</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">createInvoice</span><wbr><span class="parameters">(<a href="../EntityClasses/Order.html" title="class in EntityClasses">Order</a>&nbsp;order,
  int&nbsp;isMember)</span></div>
+<div class="block">Method to create invoice based on information from teh Order entity class</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>order</code> - </dd>
@@ -314,6 +363,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="retrieveInvoice(java.lang.String)">
 <h3>retrieveInvoice</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a></span>&nbsp;<span class="element-name">retrieveInvoice</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;invoiceID)</span></div>
+<div class="block">Method that will retrieve the invoice in the database based on invoiceID</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoiceID</code> - </dd>
+<dt>Returns:</dt>
+<dd>invoice</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -321,36 +377,67 @@ loadScripts(document, 'script');</script>
 <h3>generateRevenueReport</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">generateRevenueReport</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;date,
  int&nbsp;i)</span></div>
+<div class="block">This will call the methods in the static class revenue report
+ switch case will select which static method to call accordingly</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>date</code> - date input by user</dd>
+<dd><code>i</code> - choice selected by user</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="retrieveTableNo(EntityClasses.Invoice)">
 <h3>retrieveTableNo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">retrieveTableNo</span><wbr><span class="parameters">(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</span></div>
+<div class="block">Method to retrieve the table number by calling the Reservation Manager</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoice</code> - </dd>
+<dt>Returns:</dt>
+<dd>integer</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="computeInvoice(EntityClasses.Invoice)">
 <h3>computeInvoice</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">computeInvoice</span><wbr><span class="parameters">(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</span></div>
+<div class="block">Method to compute the taxation amount and saving the variables into the invoice attributes using Getter and Setter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoice</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="displayPayment(EntityClasses.Invoice)">
 <h3>displayPayment</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">displayPayment</span><wbr><span class="parameters">(<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&nbsp;invoice)</span></div>
+<div class="block">Method to display information based on information in the Invoice entity class.
+ All relevant information is formatted to show a mock of a physical invoice for easy reading</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoice</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="saveToDB(java.util.ArrayList)">
 <h3>saveToDB</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">saveToDB</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../EntityClasses/Invoice.html" title="class in EntityClasses">Invoice</a>&gt;&nbsp;invoiceList)</span></div>
+<div class="block">Saves the invoices from the list of invoice to the database</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>invoiceList</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="loadFromDB()">
 <h3>loadFromDB</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">loadFromDB</span>()</div>
+<div class="block">Loads the invoices from the database and save them into a list of invoices</div>
 </section>
 </li>
 </ul>
