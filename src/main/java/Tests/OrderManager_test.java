@@ -135,7 +135,7 @@ public class OrderManager_test {
     }
     /**
      * update add order item success
-     * @throws CsvException
+     * @throws CsvException csvexception
      */
     @Order(3)
     @Test
@@ -165,7 +165,7 @@ public class OrderManager_test {
     }
     /**
      * update add order item fail
-     * @throws CsvException
+     * @throws CsvException csvexception
      */
     @Order(4)
     @Test
@@ -194,7 +194,7 @@ public class OrderManager_test {
     }
     /**
      * update remove order item success
-     * @throws CsvException
+     * @throws CsvException csvexception
      */
     @Order(5)
     @Test
@@ -223,7 +223,7 @@ public class OrderManager_test {
     }
     /**
      * update remove order item fail
-     * @throws CsvException
+     * @throws CsvException csvexception
      */
     @Order(6)
     @Test
