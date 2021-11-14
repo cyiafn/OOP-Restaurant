@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ControlClasses"},{"l":"EntityClasses"},{"l":"Enumerations"},{"l":"Interfaces"},{"l":"StaticClasses"},{"l":"Tests"},{"l":"UI"}];updateSearchResults();

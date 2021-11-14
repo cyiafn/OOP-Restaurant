@@ -13,16 +13,58 @@ public class Promotion extends Subject{
 	/*
 	Attributes of Promotion Item
 	 */
+
+	/**
+	 * The id of a Promotion
+	 */
+
 	private String promotionID;
+
+	/**
+	 * The price of a Promotion
+	 */
+
 	private double promotionPrice;
+
+	/**
+	 * The description of a Promotion
+	 */
+
 	private String promotionDescription;
+
+	/**
+	 * The menuItemID of a Promotion
+	 */
+
 	private String menuItemID;
+
+	/**
+	 * The name of a Promotion
+	 */
+
 	private String promotionName;
+
+	/**
+	 * The start date of a Promotion
+	 */
+
 	private String promotionStartDate;
+
+	/**
+	 * The end date of a Promotion
+	 */
+
 	private String promotionEndDate;
 
 	/**
-	 * Constructor of Promotion
+	 * Constructor of MenuItem
+	 * @param id promotion id
+	 * @param name name of promotion
+	 * @param description description of promotion
+	 * @param startDate start date of promotion
+	 * @param endDate end date of promotion
+	 * @param price price of promotion
+	 * @param menuItemID menu item id included in promotion
 	 */
 
 	public Promotion(String id,String name,String description,String startDate,String endDate, double price , String menuItemID){
@@ -41,19 +83,21 @@ public class Promotion extends Subject{
 
 	/**
 	 * PromotionName getter
-	 * @return promotionName
+	 * @return promotion name
 	 */
 	public String getPromotionName(){
 		return this.promotionName;
 	}
 	/**
 	 * PromotionName setter
+	 * @param name name of new promotion
 	 */
 	public void setPromotionName(String name){
 		this.promotionName = name;
 	}
 	/**
 	 * MenuItemID setter
+	 * @param menuItemId menuitemid of new menuitemid
 	 */
 	public void setMenuItemID(String menuItemId){
 		this.menuItemID = menuItemId;
@@ -73,47 +117,45 @@ public class Promotion extends Subject{
 	public String getPromotionID() {
 		return this.promotionID;
 	}
-	/**
-	 * PromotionID setter
-	 */
-	public void setPromotionID(String aPromotionMenuID) {
-		this.promotionID = aPromotionMenuID;
-	}
+
 	/**
 	 * PromotionPrice getter
-	 * @return promotionPrice
+	 * @return promotion price
 	 */
 	public double getPromotionPrice() {
 		return this.promotionPrice;
 	}
 	/**
 	 * PromotionPrice setter
+	 * @param aPromotionPrice new promotion price
 	 */
 	public void setPromotionPrice(double aPromotionPrice) {
 		this.promotionPrice = aPromotionPrice;
 	}
 	/**
 	 * StartDate setter
+	 * @param startDate new start date
 	 */
 	public void setStartDate(String startDate){
 		this.promotionStartDate = startDate;
 	}
 	/**
 	 * PromotionStartDate getter
-	 * @return promotionStartDate
+	 * @return promotion start date
 	 */
 	public String getStartDate(){
 		return this.promotionStartDate;
 	}
 	/**
 	 * PromotionEndDate setter
+	 * @param endDate new end date
 	 */
 	public void setEndDate(String endDate){
 		this.promotionEndDate = endDate;
 	}
 	/**
 	 * PromotionEndDate getter
-	 * @return promotionEndDate
+	 * @return promotion end date
 	 */
 	public String getEndDate(){
 		return this.promotionEndDate;
@@ -130,13 +172,14 @@ public class Promotion extends Subject{
 	}
 	/**
 	 * PromotionDescription getter
-	 * @return promotionDescription
+	 * @return promotion Description
 	 */
 	public String getDescription() {
 		return this.promotionDescription;
 	}
 	/**
 	 * PromotionDescription setter
+	 * @param description new description of promotion
 	 */
 
 	public void setDescription(String description) {

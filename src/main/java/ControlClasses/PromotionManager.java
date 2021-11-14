@@ -26,6 +26,10 @@ public class PromotionManager{
 	 * List of setItems allowed
 	 */
 	private List<String> setItems = new ArrayList<String>();
+
+	/**
+	 * Pormotion Manager instance
+	 */
 	private static PromotionManager instance = null;
 	/**
 	 * Constant for file name reservation.
@@ -46,7 +50,8 @@ public class PromotionManager{
 	/**
 	 * Static method
 	 * Promotion Manager check exist only one at a time
-	 *
+	 * @throws IOException IO file read exception
+	 * @throws CsvException CSV file read exception
 	 * @return PromotionManager
 	 */
 
@@ -59,6 +64,8 @@ public class PromotionManager{
 
 	/**
 	 * load Promotion and set menu data from csv and json into PromotionManager
+	 * @throws IOException IO file read exception
+	 * @throws CsvException CSV file read exception
 	 */
 
 	public PromotionManager() throws IOException, CsvException {
@@ -69,6 +76,7 @@ public class PromotionManager{
 
 	/**
 	 * Create Promotion from user input
+	 * @throws IOException IO file read exception
 	 */
 	public void createPromotion() throws IOException {
 		String name = InputHandler.getString("Please enter promotion name");
@@ -120,12 +128,14 @@ public class PromotionManager{
 		}
 		return false;
 
-		/**
-		 * This function loads promotions from Promotion.csv and update promotions on the day and set those expired promotions to 0.
-		 * @throws IOException
-		 * @throws CsvException
-		 */
 	}
+
+	/**
+	 * This function loads promotions from Promotion.csv and update promotions on the day and set those expired promotions to 0.
+	 * @throws IOException IO file read exception
+	 * @throws CsvException CSV file read exception
+	 */
+
 	public void updateCurrentPromotions() throws IOException, CsvException {
 		promotionList = new ArrayList<>();
 		ArrayList<HashMap<String, String>> listPromotions = Database.readAll(filename);
@@ -166,11 +176,15 @@ public class PromotionManager{
 
 
 		}
-		/**
-		 * This function checks whether the promotion date is valid
-		 * @returns boolean whether the promotion is valid or not
-		 */
 	}
+
+	/**
+	 * This function checks whether the promotion date is valid
+	 * @param startDate start date of promotion
+	 * @param endDate  end date of promotion
+	 * @return boolean whether the promotion is valid or not
+	 */
+
 	public boolean checkDateValid(String startDate,String endDate){
 		DateFormat inputFormatter = new SimpleDateFormat("dd/M/yyyy");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
@@ -189,6 +203,7 @@ return false;
 	}
 	/**
 	 * Ensures Menu item ID entered is correct
+	 * @param id Input ID
 	 * @return boolean whether the setMenu is found
 	 */
 	public boolean checkSetMenu(String id){
@@ -203,10 +218,8 @@ return false;
 
 	/**
 	 * Update Promotion
-	 * @throws CsvException
-	 * this function write to csv text file
-	 * @throws IOException
-	 * this function write to json text file
+	 * @throws CsvException CSV file read exception
+	 * @throws IOException IO file read exception
 	 */
 	public void updatePromotion() throws IOException, CsvException {
 		updateCurrentPromotions();
@@ -411,7 +424,7 @@ return false;
 	 * Check End date to ensure end date cannot be before start date
 	 * @param startDate starting date of the promotion
 	 * @param endDate ending date of the promotion
-	 * return boolean whether the end date is valid
+	 * @return boolean whether the end date is valid
 	 */
 	public boolean checkEndDate(String startDate, String endDate){
 		DateFormat inputFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -430,9 +443,9 @@ return false;
 
 	/**
 	 * Loads promotion from csv file
-	 * @throws CsvException
+	 * @throws CsvException CSV file read exception
 	 * cause this function write to csv text file
-	 * @throws IOException
+	 * @throws IOException IO file read exception
 	 */
 	public void loadPromotion() throws IOException, CsvException {
 		ArrayList<HashMap<String, String>> listPromotions = Database.readAll(filename);
@@ -458,6 +471,7 @@ return false;
 
 	/**
 	 * Helper function to get all promotions
+	 * @return ArrayList of al the current promotions
 	 */
 	public ArrayList<Promotion> allPromotion(){
 		return this.promotions;
@@ -465,8 +479,8 @@ return false;
 
 	/**
 	 * Delete Promotion
-	 * @throws IOException
-	 * @throws CsvException
+	 * @throws IOException IO file read exception
+	 * @throws CsvException CSV file read exception
 	 */
 	public void deletePromotion() throws CsvException, IOException {
 		String name = InputHandler.getString("Please enter the name of the promotion you would like to delete");
@@ -507,7 +521,7 @@ return false;
 
 	/**
 	 * loads set menu item from csv file
-	 * @throws IOException
+	 * @throws IOException IO file read exception
 	 */
 	public void loadSetMenuItems() throws IOException {
 		List<String> listOfSetItems = new ArrayList<String>();

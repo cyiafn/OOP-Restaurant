@@ -30,6 +30,7 @@ public class Subject {
     /**
      * function to set state of the ArrayList of menuItemID with the corresponding promotion price
      * calls notifyAllObservers function to notify the subscribed subjects once state has been set
+     * @param state listmap of menuItemID with corresponding promotion price
      */
 
     public void setState(List<Map<String, Double>> state) {
