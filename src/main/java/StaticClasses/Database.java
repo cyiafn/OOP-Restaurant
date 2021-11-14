@@ -555,8 +555,9 @@ public final class Database{
     /**
      * For DB classes to read data from text file.
      *
-     * @param fileName
-     *            To determine the file to read from.
+     * @param fileName filename
+     * @param data data
+     * To determine the file to read from.
      * @throws IOException to ensure the file is read/write
      *
      */
