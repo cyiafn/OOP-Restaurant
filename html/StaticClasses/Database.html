@@ -293,9 +293,10 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>csvName</code> - "Reservation.csv" or wtv</dd>
-<dd><code>line</code> - line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type</dd>
+<dd><code>line</code> - </dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - if cant access file
+ line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type</dd>
 </dl>
 </section>
 </li>
@@ -469,7 +470,9 @@ CsvValidationException</span></div>
 <div class="block">For DB classes to read data from text file.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fileName</code> - To determine the file to read from.</dd>
+<dd><code>fileName</code> - filename</dd>
+<dd><code>data</code> - data
+ To determine the file to read from.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - to ensure the file is read/write</dd>
 </dl>

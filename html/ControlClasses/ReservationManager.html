@@ -450,6 +450,8 @@ CsvException</span></div>
 CsvException</span></div>
 <div class="block">function to close a reservation when someone is done with food.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>reservationId</code> - reservation unique identifier for closing reservation</dd>
 <dt>Returns:</dt>
 <dd>successful close or not</dd>
 <dt>Throws:</dt>
@@ -471,6 +473,7 @@ CsvException</span></div>
 <dt>Parameters:</dt>
 <dd><code>stat</code> - the enum of the status</dd>
 <dd><code>validState</code> - valid previous state</dd>
+<dd><code>reservationId</code> - id of the reservation to update</dd>
 <dt>Returns:</dt>
 <dd>"" for failure and id for success.</dd>
 <dt>Throws:</dt>

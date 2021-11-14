@@ -48,7 +48,7 @@ public final class Database{
      * It assumes that you know what you are doing and doesn't check for PK violation.
      *
      * @param csvName "Reservation.csv" or wtv
-     * @param line
+     * @param line string line
      * @throws IOException if cant access file
      * line format =  {"2", "2021-10-13","2000","5", "Ryan", "995", "8"}; = String[] type
      */

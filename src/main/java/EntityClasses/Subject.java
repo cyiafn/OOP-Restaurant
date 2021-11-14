@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Subject implementation
+ @author Chia Songcheng
+ @version 1.1
+ @since 2021-11-13
+ */
+
 public class Subject {
 
     /**
@@ -30,6 +38,7 @@ public class Subject {
     /**
      * function to set state of the ArrayList of menuItemID with the corresponding promotion price
      * calls notifyAllObservers function to notify the subscribed subjects once state has been set
+     * @param state listmap of corresponding menuItemID with promotion price
      */
 
     public void setState(List<Map<String, Double>> state) {

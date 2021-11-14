@@ -18,7 +18,16 @@ import java.util.*;
  */
 
 public class PromotionUI implements UI {
+
+    /**
+     * Stores the single instance of Promotion UI
+     */
     private static PromotionUI instance = null;
+
+    /**
+     * Static method to create a new PromotionUI if there isn't already one, else return
+     * @return singleton PromotionUI
+     */
     public static PromotionUI getInstance() {
         if (instance == null) {
             instance = new PromotionUI();
